@@ -1,0 +1,89 @@
+##
+## Input file for automake
+##
+## Copyright (C) 2007, 2008 Francesco Salvestrini
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License along
+## with this program; if not, write to the Free Software Foundation, Inc.,
+## 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+##
+
+include $(top_srcdir)/Makefile.sub
+
+ACLOCAL_AMFLAGS = -I tools/autotools/m4
+
+SUBDIRS =					\
+	tools					\
+	src					\
+	docs 
+
+# Base directories
+TOOLSDIR   = $(top_builddir)/tools
+SCRIPTSDIR = $(TOOLSDIR)/scripts
+
+#
+# NOTE:
+#     Options listed in AUTOMAKE_OPTIONS variable are applied on a
+#     per-`Makefile' basis.
+#
+AUTOMAKE_OPTIONS = check-news
+
+##
+## NOTE:
+##     ChangeLogs are shipped by this directory Makefile.am even if they lies on
+##     child directory ... CHANGELOGS variable is needed here for distribution
+##     purposes ...
+##
+CHANGELOGS =					\
+	ChangeLog				\
+	$(srcdir)/docs/ChangeLog-2008.0
+
+EXTRA_DIST =							\
+	BUGS TODO README NEWS COPYING AUTHORS INSTALL THANKS	\
+	$(CHANGELOGS)						\
+	configure.ac.in
+
+##
+## distribution related target
+##
+#NEWS: $(SCRIPTSDIR)/CL2NEWS Makefile $(CHANGELOGS)
+#        ( input="" ;                                    \
+#          for j in $(CHANGELOGS) ; do                   \
+#                input="$$input $(srcdir)/$$j" ;         \
+#          done ;                                        \
+#          $(SCRIPTSDIR)/CL2NEWS -- $$input > NEWS ) ||  \
+#        { rm -f NEWS ; exit 1 ; }
+
+ChangeLog: $(srcdir)/NEWS
+	HEAD_TAG=`$(SCRIPTSDIR)/NEWS-query $(srcdir)/NEWS 0` ;	\
+	PREV_TAG=`$(SCRIPTSDIR)/NEWS-query $(srcdir)/NEWS 1` ;	\
+	$(SCRIPTSDIR)/gitlog2ChangeLog $$PREV_TAG..$$HEAD_TAG >	\
+		ChangeLog || {					\
+		rm -f ChangeLog ;				\
+		exit 1;						\
+	}
+
+#dist-hook: ChangeLog NEWS
+#	cp ChangeLog $(distdir)/ChangeLog || {  \
+#	        rm -f $(distdir)/ChangeLog ;    \
+#	        exit 1 ;                        \
+#	}
+#	cp NEWS $(distdir)/NEWS || {            \
+#	        rm -f $(distdir)/NEWS ;         \
+#	        exit 1 ;                        \
+#	}
+
+update:
+	(cd tools && $(MAKE) $(AM_MAKEFLAGS) update)
+
+DISTCLEANFILES =

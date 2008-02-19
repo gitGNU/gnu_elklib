@@ -1,0 +1,421 @@
+# Process this file with autoconf to produce a configure script.
+
+#
+# configure.ac for elklib
+#
+# Copyright (C) 2007, 2008 Francesco Salvestrini
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+AC_INIT([ELKlib],[@VERSION@],[salvestrini@gmail.com],[elklib])
+
+# Check for a recent version of autoconf
+AC_PREREQ([2.61])
+
+# Place/find all autotools related files in the following directories
+AC_CONFIG_AUX_DIR([tools/autotools])
+AC_CONFIG_MACRO_DIR([tools/autotools/m4])
+AC_CONFIG_SRCDIR([src/libc/malloc.c])
+AC_CONFIG_HEADERS([src/config.h])
+
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+
+AM_INIT_AUTOMAKE([1.10 foreign -Wall nostdinc])
+
+#
+# Build related programs
+#
+AC_PROG_MKDIR_P
+AC_PROG_GREP
+AC_PROG_SED
+AC_PROG_AWK
+AC_PROG_LN_S
+AC_PROG_GREP
+AC_PROG_SED
+AC_PROG_RANLIB
+
+AX_PATH_MISSING([SITETOOL], [sitetool])
+AX_PATH_MISSING([WGET],     [wget])
+AX_PATH_MISSING([PERL],     [perl])
+
+# Gather supported flags while checking programs and their features
+AX_CONFIG_ASFLAGS=""
+AX_CONFIG_CPPFLAGS=""
+AX_CONFIG_CFLAGS=""
+AX_CONFIG_CXXCPPFLAGS=""
+AX_CONFIG_CXXFLAGS=""
+AX_CONFIG_LDFLAGS=""
+
+# Assembler
+AM_PROG_AS
+
+# C Preprocessor
+AC_PROG_CPP
+
+# C Preprocessor flags
+AX_CPP_CHECK_FLAG([-W],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -W"
+])
+AX_CPP_CHECK_FLAG([-Wall],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wall"
+])
+AX_CPP_CHECK_FLAG([-Werror],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Werror"
+])
+AX_CPP_CHECK_FLAG([-Wendif-labels],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wendif-labels"
+])
+AX_CPP_CHECK_FLAG([-Wcast-align],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wcast-align"
+])
+AX_CPP_CHECK_FLAG([-Wredundant-decls],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wredundant-decls"
+])
+AX_CPP_CHECK_FLAG([-Wswitch],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wswitch"
+])
+AX_CPP_CHECK_FLAG([-Wswitch-enum],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wswitch-enum"
+])
+AX_CPP_CHECK_FLAG([-Wparentheses],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wparentheses"
+])
+AX_CPP_CHECK_FLAG([-Wimplicit],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wimplicit"
+])
+AX_CPP_CHECK_FLAG([-Wunused],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wunused"
+])
+AX_CPP_CHECK_FLAG([-Wmissing-braces],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wmissing-braces"
+])
+AX_CPP_CHECK_FLAG([-Wreturn-type],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wreturn-type"
+])
+AX_CPP_CHECK_FLAG([-Wundef],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wundef"
+])
+AX_CPP_CHECK_FLAG([-Wswitch-default],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wswitch-default"
+])
+AX_CPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
+  TEMP_CPPFLAGS="$TEMP_CPPFLAGS -Wchar-subscripts"
+])
+
+# C compiler
+AC_PROG_CC([gcc])
+AS_IF([test x"$CC" = x"gcc"],[
+  gcc_available=1
+],[
+  gcc_available=0
+])
+AC_DEFINE_UNQUOTED(HAVE_GCC,$gcc_available,[ Define to 1 if gcc is available ])
+
+# C compiler version
+CC_VERSION="unknown"
+
+# Checks for gcc version, blacklist and supported flags
+AS_IF([test x"$gcc_available" = x"1"],[
+  AX_GCC_VERSION
+
+  CC_VERSION=$GCC_VERSION
+
+  AX_BLACKLIST_VERSION([gcc],$GCC_VERSION,[3.3.6],[
+    AC_MSG_FAILURE([Sorry, your compiler is blacklisted.])
+  ],[])
+
+  AX_C_CHECK_FLAG([-fno-builtin],[],[],[
+    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fno-builtin"
+  ],[
+  ])
+
+  AX_C_CHECK_FLAG([-fmessage-length=0],[],[],[
+    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fmessage-length=0"
+  ],[
+  ])
+
+  AX_C_CHECK_FLAG([-fsigned-char],[],[],[
+    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fsigned-char"
+  ],[
+  ])
+
+  AX_C_CHECK_FLAG([-Wunreachable-code],[],[],[
+    AX_REMOVE_FORBIDDEN(CC, [-Wunreachable-code])
+  ],[
+  ])
+
+  AX_C_CHECK_FLAG([-Wsequence-point],[],[],[
+    AX_REMOVE_FORBIDDEN(CC, [-Wsequence-point])
+  ],[
+  ])
+])
+
+AM_PROG_CC_C_O
+
+# C++ Compiler
+AC_PROG_CXX([g++])
+AS_IF([test x"$CXX" = x"g++"],[
+  gxx_available=1
+],[
+  gxx_available=0
+])
+AC_DEFINE_UNQUOTED(HAVE_GXX,$gxx_available,[ Define to 1 if g++ is available ])
+# C compiler version
+CXX_VERSION="unknown"
+
+# Checks for g++ supported flags
+AS_IF([test x"$gxx_available" = x"1"],[
+  AX_GXX_VERSION
+
+  CXX_VERSION=$GXX_VERSION
+
+  AX_CXX_CHECK_FLAG([-fno-builtin],[],[],[
+    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-builtin"
+  ],[
+  ])
+  AX_CXX_CHECK_FLAG([-fno-rtti],[],[],[
+    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-rtti"
+  ],[
+  ])
+  AX_CXX_CHECK_FLAG([-fno-exceptions],[],[],[
+    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-exceptions"
+  ],[
+  ])
+  AX_CXX_CHECK_FLAG([-Woverloaded-virtual],[],[],[
+    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -Woverloaded-virtual"
+  ],[
+  ])
+  AX_CXX_CHECK_FLAG([-fmessage-length=0],[],[],[
+    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fmessage-length=0"
+  ],[
+  ])
+
+  AX_REMOVE_FORBIDDEN(CXX, [-Wunreachable-code -Wsequence-point])
+])
+
+AC_PROG_CXX_C_O
+# C++ Preprocessor
+AC_PROG_CXXCPP
+
+# C++ Preprocessor flags
+AX_CXXCPP_CHECK_FLAG([-W],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -W"
+])
+AX_CXXCPP_CHECK_FLAG([-Wall],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wall"
+])
+AX_CXXCPP_CHECK_FLAG([-Werror],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Werror"
+])
+AX_CXXCPP_CHECK_FLAG([-Wendif-labels],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wendif-labels"
+])
+AX_CXXCPP_CHECK_FLAG([-Wcast-align],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wcast-align"
+])
+AX_CXXCPP_CHECK_FLAG([-Wredundant-decls],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wredundant-decls"
+])
+AX_CXXCPP_CHECK_FLAG([-Wswitch],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wswitch"
+])
+AX_CXXCPP_CHECK_FLAG([-Wswitch-enum],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wswitch-enum"
+])
+AX_CXXCPP_CHECK_FLAG([-Wparentheses],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wparentheses"
+])
+AX_CXXCPP_CHECK_FLAG([-Wimplicit],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wimplicit"
+])
+AX_CXXCPP_CHECK_FLAG([-Wunused],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wunused"
+])
+AX_CXXCPP_CHECK_FLAG([-Wmissing-braces],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wmissing-braces"
+])
+AX_CXXCPP_CHECK_FLAG([-Wreturn-type],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wreturn-type"
+])
+AX_CXXCPP_CHECK_FLAG([-Wundef],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wundef"
+])
+AX_CXXCPP_CHECK_FLAG([-Wswitch-default],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wswitch-default"
+])
+AX_CXXCPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
+  TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wchar-subscripts"
+])
+
+# Build AX_CONFIG_CPPFLAGS as intersection of TEMP_CPPFLAGS and
+# TEMP_CPPCXXFLAGS variable values
+AX_STRING_INTERSECT(AX_CONFIG_CPPFLAGS,$TEMP_CPPFLAGS,$TEMP_CXXCPPFLAGS)
+
+# Substitute gathered flags (clean them first) 
+AX_STRING_CLEAN(AX_CONFIG_ASFLAGS)
+AC_SUBST(AX_CONFIG_ASFLAGS)
+AX_STRING_CLEAN(AX_CONFIG_CPPFLAGS)
+AC_SUBST(AX_CONFIG_CPPFLAGS)
+AX_STRING_CLEAN(AX_CONFIG_CFLAGS)
+AC_SUBST(AX_CONFIG_CFLAGS)
+AX_STRING_CLEAN(AX_CONFIG_CXXCPPFLAGS)
+AC_SUBST(AX_CONFIG_CXXCPPFLAGS)
+AX_STRING_CLEAN(AX_CONFIG_CXXFLAGS)
+AC_SUBST(AX_CONFIG_CXXFLAGS)
+AX_STRING_CLEAN(AX_CONFIG_LDFLAGS)
+AC_SUBST(AX_CONFIG_LDFLAGS)
+
+AC_PROG_RANLIB
+#AC_PROG_LIBTOOL
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_INLINE
+AC_C_CONST
+AC_C_VOLATILE
+AC_C_STRINGIZE
+AX_C_CONCATENATION
+AX_C___ATTRIBUTE__
+AX_C___ATTRIBUTE___NORETURN
+AX_C___ATTRIBUTE___UNUSED
+AX_C___ATTRIBUTE___DEPRECATED
+AX_C___ATTRIBUTE___SECTION
+AX_C___ASM__
+AX_C___BUILTIN_EXPECT
+AX_C_EMPTY_STRUCTS
+AX_C_VAR___TIME__
+AX_C_VAR___DATE__
+AX_C_VAR___LINE__
+AX_C_VAR___FILE__
+AX_C_VAR___FUNCTION__
+AX_C_VAR___PRETTY_FUNCTION__
+AX_CXX_BOOL
+AX_CXX_TEMPLATES
+AX_CXX_EXCEPTIONS
+AX_CXX_NAMESPACES
+AX_CXX_RTTI
+AX_CXX_DTOR_AFTER_ATEXIT
+AX_CXX_STATIC_CAST
+AX_CXX_DYNAMIC_CAST
+AX_CXX_TYPENAME
+AX_ASM_USCORE
+
+#
+# Checks for miscellaneous programs
+#
+AC_PATH_PROG([WGET],[wget])
+
+#
+# The API version is the base version.  We must guarantee
+# compatibility for all releases with the same API version.
+# Our current rule is that:
+#
+# * All releases, including the prereleases, in an X.Y series
+#   are compatible.  So 1.5.1 is compatible with 1.5.
+#
+# * Prereleases on the trunk are all incompatible -- 1.5.1 and 1.5.2
+#   aren't the same.
+#
+AX_SPLIT_VERSION($PACKAGE_VERSION)
+API_VERSION="${AX_MAJOR_VERSION}.${AX_MINOR_VERSION}"
+AC_SUBST(API_VERSION)
+
+# Versioned directories, defined here for convenience
+AC_SUBST(pkgvdir,     ["\${datadir}/${PACKAGE}-${API_VERSION}"])
+AC_SUBST(pkgvbindir,  ["\${datadir}/${PACKAGE}-${API_VERSION}/bin"])
+AC_SUBST(pkgvdatadir, ["\${datadir}/${PACKAGE}-${API_VERSION}/data"])
+AC_SUBST(pkgvlibsdir, ["\${datadir}/${PACKAGE}-${API_VERSION}/libs"])
+
+AC_CONFIG_FILES([
+	Makefile
+
+	docs/Makefile
+	docs/info/Makefile
+
+	src/Makefile
+	src/libc/Makefile
+	src/compiler/Makefile
+
+	tools/Makefile
+	tools/scripts/Makefile
+	tools/autotools/Makefile
+	tools/autotools/m4/Makefile
+])
+
+AC_OUTPUT
+
+# Header
+cat <<EOF
+
+  ${PACKAGE_NAME} ${API_VERSION} (${PACKAGE_VERSION}) configuration summary
+
+EOF
+
+# Body
+cat <<EOF
+     Host CPU         : ${host_cpu} ($host)
+     Build CPU        : ${build_cpu} ($build)
+     Target CPU       : ${target_cpu} ($target)
+
+     Host endianess   : ${host_endianess}
+     Target endianess : ${target_endianess}
+
+     Assembler        : ${CCAS}
+
+     C compiler       : ${CC} (version ${CC_VERSION})
+     C flags          : ${CFLAGS}
+
+     C preprocessor   : ${CPP}
+     C pp flags       : ${CPPFLAGS}
+
+     C++ compiler     : ${CXX} (version ${CXX_VERSION})
+     C++ flags        : ${CXXFLAGS}
+
+     C++ preprocessor : ${CXXCPP}
+     C++ pp flags     : ${CXXCPPFLAGS}
+
+     ASM flags        : ${AX_CONFIG_ASFLAGS}
+     C pp flags       : ${AX_CONFIG_CPPFLAGS}
+     C flags          : ${AX_CONFIG_CFLAGS}
+     C++ pp flags     : ${AX_CONFIG_CXXCPPFLAGS}
+     C++ flags        : ${AX_CONFIG_CXXFLAGS}
+     Linker flags     : ${AX_CONFIG_LDFLAGS}
+
+     Archive handler  : ${RANLIB}
+
+     Linker flags     : ${LDFLAGS}
+EOF
+
+# Footer
+cat <<EOF
+
+   Copyright (C) 2007, 2008 Francesco Salvestrini
+   All Rights Reserved.
+
+   The ${PACKAGE_NAME}; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2 of
+   the License, or (at your option) any later version.
+
+   The ${PACKAGE_NAME} is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   Francesco Salvestrini <salvestrini@gmail.com>
+
+EOF
