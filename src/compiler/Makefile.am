@@ -22,11 +22,11 @@ include $(top_srcdir)/Makefile.sub
 
 AUTOMAKE_OPTIONS = subdir-objects
 
-lib_LIBRARIES = libcompiler.a
+lib_LIBRARIES = libelk-compiler.a
 
-libcompiler_a_CFLAGS   = $(COMMONCFLAGS)
-libcompiler_a_CPPFLAGS = $(COMMONCPPFLAGS)
-libcompiler_a_SOURCES  =			\
+libelk_compiler_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_compiler_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_compiler_a_SOURCES  =			\
 	cdefs.h					\
 	compiler.h				\
 	consistency.h				\
