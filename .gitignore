@@ -5,6 +5,9 @@
 *.o
 *.a
 
+elklib-config
+elklib-config-*
+
 build
 
 Makefile.in
