@@ -30,7 +30,6 @@ DOWNLOAD =					\
 	ax_cpp_check_flag.m4			\
 	ax_cxx_check_flag.m4			\
 	ax_cxxcpp_check_flag.m4			\
-	ax_gcc_install_dir.m4			\
 	ax_path_missing.m4			\
 	ax_missing_prog.m4
 
