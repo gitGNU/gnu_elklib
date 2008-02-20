@@ -25,7 +25,8 @@ ACLOCAL_AMFLAGS = -I tools/autotools/m4
 SUBDIRS =					\
 	tools					\
 	src					\
-	docs 
+	docs					\
+	site
 
 # Base directories
 TOOLSDIR   = $(top_builddir)/tools
@@ -37,6 +38,26 @@ SCRIPTSDIR = $(TOOLSDIR)/scripts
 #     per-`Makefile' basis.
 #
 AUTOMAKE_OPTIONS = check-news
+
+##
+## Place handy configuration tool somewhere in the system
+##
+bin_SCRIPTS = elklib-config-@target_cpu@
+
+all-local: elklib-config-@target_cpu@
+
+elklib-config-@target_cpu@: $(srcdir)/elklib-config.in Makefile
+	( rm -f $@ $@.tmp && \
+	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
+	   chmod +x $@.tmp && \
+	   chmod a-w $@.tmp && \
+	   mv -f $@.tmp $@ ) || { \
+	         rm -f $@ $@.tmp ; \
+	         exit 1 ; \
+	}
+
+CLEANFILES = elklib-config-@target_cpu@
+
 
 ##
 ## NOTE:
@@ -85,5 +106,8 @@ ChangeLog: $(srcdir)/NEWS
 
 update:
 	(cd tools && $(MAKE) $(AM_MAKEFLAGS) update)
+
+site: all
+	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
 
 DISTCLEANFILES =
