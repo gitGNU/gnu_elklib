@@ -6,7 +6,7 @@
 #
 # DESCRIPTION
 #
-#   AX_GXX_VERSION retrieves the gxx version. It returns the gxx version in
+#   AX_GXX_VERSION retrieves the gxx version. Returns the g++ version in
 #   GXX_VERSION variable if available, 0.0.0 otherwise. 
 #
 # LAST MODIFICATION
@@ -34,7 +34,7 @@
 
 AC_DEFUN([AX_GXX_VERSION], [
   GXX_VERSION="0.0.0"
-  AX_GCC_OPTION(ax_gxx_version_option,[-dumpversion],"-dumpversion","")
+  AX_GCC_OPTION(ax_gxx_version_option,[-dumpversion],"-dumpversion")
   AS_IF([test "x$GXX" = "xyes"],[
     AS_IF([test "x$ax_gxx_version_option" != "x"],[
       AC_CACHE_CHECK([gxx version],[ax_cv_gxx_version],[
