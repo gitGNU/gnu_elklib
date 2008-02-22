@@ -33,11 +33,11 @@ EXTRA_DIST =					\
 	site.css
 
 site:
-	$(SITETOOL) -v --initialize && \
-	$(SITETOOL) -v --build || { \
-		$(SITETOOL) -v --clean ; \
+	$(SITETOOL) -v --mode initialize && \
+	$(SITETOOL) -v --mode build || { \
+		$(SITETOOL) -v --mode clean ; \
 		exit 1 ; \
 	}
 
 maintainer-clean-local:
-	$(SITETOOL) --clean || exit 1
+	$(SITETOOL) --mode clean || exit 1
