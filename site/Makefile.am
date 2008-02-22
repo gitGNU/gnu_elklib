@@ -33,11 +33,16 @@ EXTRA_DIST =					\
 	site.css
 
 site:
+	rm -f site.stamp ; \
 	$(SITETOOL) -v --mode initialize && \
 	$(SITETOOL) -v --mode build || { \
 		$(SITETOOL) -v --mode clean ; \
 		exit 1 ; \
-	}
+	} ; \
+	rm -f site.stamp
 
-#maintainer-clean-local:
-#	$(SITETOOL) --mode clean || exit 1
+maintainer-clean-local:
+	if test -e site.stamp ; then \
+		$(SITETOOL) --mode clean || exit 1 ; \
+		rm -f site.stamp ; \
+	fi
