@@ -39,5 +39,5 @@ site:
 		exit 1 ; \
 	}
 
-maintainer-clean-local:
-	$(SITETOOL) --mode clean || exit 1
+#maintainer-clean-local:
+#	$(SITETOOL) --mode clean || exit 1
