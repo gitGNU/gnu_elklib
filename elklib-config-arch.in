@@ -94,7 +94,7 @@ while test $# -gt 0 ; do
     shift
 done
 
-if test $module = "" ; then
+if test "$module" = "" ; then
     echo "$me: Missing module name"
     exit 1
 fi
