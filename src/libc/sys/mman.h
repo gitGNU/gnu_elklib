@@ -23,7 +23,7 @@
 #include "libc/stddef.h"
 #include "libc/types.h"
 #include "libc/bits/mman.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

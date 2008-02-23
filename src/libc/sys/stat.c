@@ -18,7 +18,7 @@
 
 #include "config.h"
 #include "libc/sys/stat.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 int stat(const char*  path,
 	 struct stat* buf)

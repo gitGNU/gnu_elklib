@@ -21,7 +21,7 @@
 
 #include "config.h"
 #include "libc/stddef.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

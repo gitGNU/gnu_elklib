@@ -19,7 +19,7 @@
 #include "config.h"
 #include "libc/sys/fcntl.h"
 #include "libc/types.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 int open(const char* pathname,
 	 int         flags,

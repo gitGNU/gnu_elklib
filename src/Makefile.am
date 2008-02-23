@@ -21,5 +21,5 @@
 include $(top_srcdir)/Makefile.sub
 
 SUBDIRS =					\
-	compiler				\
+	libcompiler				\
 	libc

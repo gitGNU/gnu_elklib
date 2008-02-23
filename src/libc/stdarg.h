@@ -20,7 +20,7 @@
 #define LIBC_STDARG_H
 
 #include "config.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

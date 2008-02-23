@@ -25,8 +25,8 @@
 #include "libc/stdlib.h"
 #include "libc/stdarg.h"
 #include "libc/stddef.h"
-#include "compiler/macro.h"
-#include "compiler/compiler.h"
+#include "libcompiler/macro.h"
+#include "libcompiler/compiler.h"
 
 static FILE _stdin  = FILE_INITIALIZER;
 FILE*       stdin   = &_stdin;

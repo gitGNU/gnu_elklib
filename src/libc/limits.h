@@ -22,7 +22,7 @@
 #include "config.h"
 #include "libc/limits.h"
 #include "libc/bits/wordsize.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 #define CHAR_BIT    8
 

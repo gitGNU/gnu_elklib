@@ -18,7 +18,7 @@
 
 #include "config.h"
 #include "libc/ctype.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 double pow(double x,
 	   double y)

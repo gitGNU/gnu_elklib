@@ -18,7 +18,7 @@
 
 #include "config.h"
 #include "libc/stdarg.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 int fcntl(int fd,
 	  int cmd,

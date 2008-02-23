@@ -23,7 +23,7 @@
 #include "libc/stdarg.h"
 #include "libc/stdint.h"
 #include "libc/bits/fcntl.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

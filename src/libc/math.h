@@ -20,7 +20,7 @@
 #define LIBC_MATH_H
 
 #include "config/config.h"
-#include "libs/c/stdint.h"
+#include "libc/stdint.h"
 
 __BEGIN_DECLS
 

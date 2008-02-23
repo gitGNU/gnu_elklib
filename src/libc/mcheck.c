@@ -22,7 +22,7 @@
 #include "libc/stdio.h"
 #include "libc/stdlib.h"
 #include "libc/heap.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 static void* (*old_malloc_hook)(size_t      size,
 				const void* caller)   = 0;

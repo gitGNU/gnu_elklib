@@ -22,7 +22,7 @@
 #include "libc/string.h"
 #include "libc/stddef.h"
 #include "libc/stdlib.h"
-#include "compiler/macro.h"
+#include "libcompiler/macro.h"
 
 //#include "core/dbg/bug.h"
 //#include "core/mem/heap.h"

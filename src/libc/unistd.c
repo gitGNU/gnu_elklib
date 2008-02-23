@@ -20,8 +20,8 @@
 #include "libc/stdio.h"
 #include "libc/bits/byteswap.h"
 #include "libc/assert.h"
-#include "compiler/macro.h"
-#include "compiler/compiler.h"
+#include "libcompiler/macro.h"
+#include "libcompiler/compiler.h"
 
 void _exit(int status)
 {

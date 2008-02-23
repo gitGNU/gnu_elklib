@@ -20,7 +20,7 @@
 #include "libc/sys/mman.h"
 #include "libc/stddef.h"
 #include "libc/types.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 void* mmap(void*  start,
 	   size_t length,

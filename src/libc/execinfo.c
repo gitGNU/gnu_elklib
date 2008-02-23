@@ -19,7 +19,7 @@
 #include "config.h"
 #include "libc/execinfo.h"
 #include "libc/stddef.h"
-#include "compiler/compiler.h"
+#include "libcompiler/compiler.h"
 
 int backtrace(void** buffer,
 	      int    size)

@@ -22,7 +22,7 @@
 #include "config.h"
 #include "libc/limits.h"
 #include "libc/stdint.h"
-#include "compiler/cdefs.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

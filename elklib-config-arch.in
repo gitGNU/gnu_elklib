@@ -40,7 +40,7 @@ Options:
 
 Modules:
     libc
-    compiler"
+    libcompiler"
 
 if test $# -eq 0 ; then
     echo "${usage}" 1>&2
@@ -87,8 +87,8 @@ while test $# -gt 0 ; do
 	libc)
 	    module="libc"
 	    ;;
-	compiler)
-	    module="compiler"
+	libcompiler)
+	    module="libcompiler"
 	    ;;
 	*)
 	    error "Unknown option \`$_'"
@@ -107,8 +107,8 @@ fi
 if test "$echo_static_libs" = "yes" ; then
     if test "$module" = "libc" ; then
         echo "@libdir@/libc-@target_cpu@.a"
-    elif test "$module" = "compiler" ; then
-        echo "@libdir@/compiler-@target_cpu@.a"
+    elif test "$module" = "libcompiler" ; then
+        echo "@libdir@/libcompiler-@target_cpu@.a"
     else
 	error "Unknown module"
 	exit 1

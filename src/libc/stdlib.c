@@ -27,8 +27,8 @@
 #include "libc/string.h"
 #include "libc/malloc.h"
 #include "libc/heap.h"
-#include "compiler/macro.h"
-#include "compiler/compiler.h"
+#include "libcompiler/macro.h"
+#include "libcompiler/compiler.h"
 
 long strtol(const char*  cp,
 	    char**       endp,
