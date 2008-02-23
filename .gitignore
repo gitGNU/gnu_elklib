@@ -6,7 +6,7 @@
 *.a
 
 elklib-config
-elklib-config-*
+elklib-config-i686
 
 build
 

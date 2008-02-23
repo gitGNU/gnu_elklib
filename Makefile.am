@@ -46,9 +46,9 @@ bin_SCRIPTS = elklib-config-@target_cpu@
 
 all-local: elklib-config-@target_cpu@
 
-elklib-config-@target_cpu@: $(srcdir)/elklib-config.in Makefile
+elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
 	( rm -f $@ $@.tmp && \
-	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
+	   $(do_subst) < $(srcdir)/elklib-config-arch.in > $@.tmp && \
 	   chmod +x $@.tmp && \
 	   chmod a-w $@.tmp && \
 	   mv -f $@.tmp $@ ) || { \
