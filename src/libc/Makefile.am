@@ -22,11 +22,11 @@ include $(top_srcdir)/Makefile.sub
 
 AUTOMAKE_OPTIONS = subdir-objects
 
-lib_LIBRARIES = libelk-c-@target_cpu@.a
+lib_LIBRARIES = libelk-libc-@target_cpu@.a
 
-libelk_c_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
-libelk_c_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
-libelk_c_@target_cpu@_a_SOURCES  =		\
+libelk_libc_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_libc_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_libc_@target_cpu@_a_SOURCES  =		\
 	glue.c					\
 	math.c					\
 	stdlib.c				\
