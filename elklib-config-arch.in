@@ -22,6 +22,10 @@
 
 me="elklib-config"
 
+function error {
+    echo "$me: $_"
+}
+
 usage="\
 Usage: elklib-config [OPTIONS] [MODULE]
 
@@ -87,6 +91,7 @@ while test $# -gt 0 ; do
 	    module="compiler"
 	    ;;
 	*)
+	    error "Unknown option \`$_'"
 	    echo "${usage}" 1>&2
 	    exit 1
 	    ;;
@@ -95,12 +100,19 @@ while test $# -gt 0 ; do
 done
 
 if test "$module" = "" ; then
-    echo "$me: Missing module name"
+    error "Missing module name"
     exit 1
 fi
 
 if test "$echo_static_libs" = "yes" ; then
-    echo "@libdir@"
+    if test "$module" = "libc" ; then
+        echo "@libdir@/libc-@target_cpu@.a"
+    elif test "$module" = "compiler" ; then
+        echo "@libdir@/compiler-@target_cpu@.a"
+    else
+	error "Unknown module"
+	exit 1
+    fi
 fi
 
 if test "$echo_includedir" = "yes" ; then
