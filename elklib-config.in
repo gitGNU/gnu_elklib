@@ -23,14 +23,33 @@
 me="elklib-config"
 
 usage="\
-Usage: elklib-config [--help] [--version]  [--libdir] [--includedir] [--cflags] [--cxxflags] [--ldflags]"
+Usage: elklib-config [OPTIONS] [MODULE]
 
-if test $# -eq 0; then
+Options:
+    [--help]
+    [--version]
+    [--includedir]
+    [--static-libs]
+    [--cflags]
+    [--cxxflags]
+    [--ldflags]
+
+Modules:
+    libc
+    compiler"
+
+if test $# -eq 0 ; then
     echo "${usage}" 1>&2
     exit 1
 fi
 
-while test $# -gt 0; do
+echo_static_libs=""
+echo_includedir=""
+echo_cflags=""
+echo_cxxflags=""
+echo_ldflags=""
+module=""
+while test $# -gt 0 ; do
     case "$1" in
 	-*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
 	*) optarg= ;;
@@ -45,22 +64,27 @@ while test $# -gt 0; do
 	    echo @PACKAGE_VERSION@
 	    exit 0
 	    ;;
-	--libdir)
-	    echo "@libdir@"
-	    exit 0
+	--static-libs)
+	    echo_static_libs=yes
 	    ;;
 	--includedir)
-	    echo "@includedir@"
+	    echo_includedir=yes
 	    exit 0
 	    ;;
 	--cflags)
-	    exit 0
+	    echo_cflags=yes
 	    ;;
 	--cxxflags)
-	    exit 0
+	    echo_cxxflags=yes
 	    ;;
 	--ldflags)
-	    exit 0
+	    echo_ldflags=yes
+	    ;;
+	libc)
+	    module="libc"
+	    ;;
+	compiler)
+	    module="compiler"
 	    ;;
 	*)
 	    echo "${usage}" 1>&2
@@ -70,4 +94,29 @@ while test $# -gt 0; do
     shift
 done
 
-exit 0;
+if test $module = "" ; then
+    echo "$me: Missing module name"
+    exit 1
+fi
+
+if test "$echo_static_libs" = "yes" ; then
+    echo "@libdir@"
+fi
+
+if test "$echo_includedir" = "yes" ; then
+    echo "@includedir@"
+fi
+
+if test "$echo_cflags" = "yes" ; then
+    echo "@CFLAGS@"
+fi
+
+if test "$echo_cxxflags" = "yes" ; then
+   echo "@CXXFLAGS@"
+fi
+
+if test "$echo_ldflags" = "yes" ; then
+   echo "@LDFLAGS@"
+fi
+
+exit 0
