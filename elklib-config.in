@@ -108,15 +108,15 @@ if test "$echo_includedir" = "yes" ; then
 fi
 
 if test "$echo_cflags" = "yes" ; then
-    echo "@CFLAGS@"
+    echo "@AX_CONFIG_CFLAGS@"
 fi
 
 if test "$echo_cxxflags" = "yes" ; then
-   echo "@CXXFLAGS@"
+   echo "@AX_CONFIG_CXXFLAGS@"
 fi
 
 if test "$echo_ldflags" = "yes" ; then
-   echo "@LDFLAGS@"
+   echo "@AX_CONFIG_LDFLAGS@"
 fi
 
 exit 0

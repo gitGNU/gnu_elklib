@@ -54,6 +54,9 @@ do_subst = sed \
   -e 's,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g' \
   -e 's,[@]PERL[@],$(PERL),g' \
   -e 's,[@]SHELL[@],$(SHELL),g' \
+  -e 's,[@]AX_CONFIG_CFLAGS[@],$(AX_CONFIG_CFLAGS),g' \
+  -e 's,[@]AX_CONFIG_CXXFLAGS[@],$(AX_CONFIG_CXXFLAGS),g' \
+  -e 's,[@]AX_CONFIG_LDFLAGS[@],$(AX_CONFIG_LDFLAGS),g' \
   -e 's,[@]WGET[@],$(WGET),g' \
   -e 's,[@]configure_input[@],Generated from $@.in; do not edit by hand.,g' \
   -e 's,[@]makefile_input[@],Generated from $@.am; do not edit by hand.,g' \
