@@ -26,7 +26,8 @@ lib_LIBRARIES = libelk-libc-@target_cpu@.a
 
 libelk_libc_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_libc_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
-nobase_include_HEADERS  =			\
+
+nobase_pkgvinclude_HEADERS  =			\
 	stdint.h				\
 	heap.h					\
 	assert.h				\

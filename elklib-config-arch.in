@@ -135,12 +135,12 @@ fi
 
 if test "$echo_cflags" == "yes" ; then
     missing_action="no"
-    echo "-I@includedir@ @AX_CONFIG_CFLAGS@"
+    echo "-I@pkgvincludedir@ @AX_CONFIG_CFLAGS@"
 fi
 
 if test "$echo_cxxflags" == "yes" ; then
     missing_action="no"
-    echo "-I@includedir@ @AX_CONFIG_CXXFLAGS@"
+    echo "-I@pkgvincludedir@ @AX_CONFIG_CXXFLAGS@"
 fi
 
 if test "$echo_ldflags" == "yes" ; then
