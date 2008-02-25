@@ -24,7 +24,10 @@ SUBDIRS =					\
 	libcompiler				\
 	libc
 
+##
+## Note:
+##     Do not install config.h ... 
+##
 incdestdir = $(pkgvincludedir)
 nobase_incdest_HEADERS  =			\
-	config.h				\
 	debug.h
