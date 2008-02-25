@@ -27,7 +27,8 @@ lib_LIBRARIES = libelk-libc-@target_cpu@.a
 libelk_libc_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_libc_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
 
-nobase_pkgvinclude_HEADERS  =			\
+incdestdir = $(pkgvincludedir)/libc
+nobase_incdest_HEADERS  =			\
 	stdint.h				\
 	heap.h					\
 	assert.h				\
@@ -61,6 +62,7 @@ nobase_pkgvinclude_HEADERS  =			\
 	unistd.h				\
 	param.h					\
 	errno.h
+
 libelk_libc_@target_cpu@_a_SOURCES  =		\
 	glue.c					\
 	math.c					\

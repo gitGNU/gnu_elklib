@@ -26,6 +26,17 @@ lib_LIBRARIES = libelk-libcompiler-@target_cpu@.a
 
 libelk_libcompiler_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_libcompiler_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+
+incdestdir = $(pkgvincludedir)/libcompiler
+nobase_incdest_HEADERS  =			\
+	cdefs.h					\
+	compiler.h				\
+	consistency.h				\
+	cxxabi.h				\
+	demangle.h				\
+	linker.h				\
+	macro.h
+
 libelk_libcompiler_@target_cpu@_a_SOURCES  =	\
 	cdefs.h					\
 	compiler.h				\
