@@ -5,7 +5,7 @@ common = {
 };
 
 vars = {
-	var-sitename = "Choicetool";
+	var-sitename = "ELKLib";
 };
 
 include "contents.as"
