@@ -57,12 +57,13 @@ AX_PATH_MISSING([PERL],     [perl])
 AX_CONFIG_ASFLAGS=""
 AX_CONFIG_CPPFLAGS=""
 AX_CONFIG_CFLAGS=""
-AX_CONFIG_CXXCPPFLAGS=""
 AX_CONFIG_CXXFLAGS=""
 AX_CONFIG_LDFLAGS=""
 
 # Assembler
 AM_PROG_AS
+
+# Assembler flags
 
 # C Preprocessor
 AC_PROG_CPP
@@ -370,37 +371,26 @@ EOF
 
 # Body
 cat <<EOF
-     Host CPU         : ${host_cpu} ($host)
-     Build CPU        : ${build_cpu} ($build)
-     Target CPU       : ${target_cpu} ($target)
+     Host CPU           : ${host_cpu} ($host)
+     Build CPU          : ${build_cpu} ($build)
+     Target CPU         : ${target_cpu} ($target)
 
-     Host endianess   : ${host_endianess}
-     Target endianess : ${target_endianess}
+     Host endianess     : ${host_endianess}
+     Target endianess   : ${target_endianess}
 
-     Assembler        : ${CCAS}
+     Assembler          : ${CCAS}
 
-     C compiler       : ${CC} (version ${CC_VERSION})
-     C flags          : ${CFLAGS}
+     Preprocessor flags : ${CPPFLAGS}
 
-     C preprocessor   : ${CPP}
-     C pp flags       : ${CPPFLAGS}
+     C preprocessor     : ${CPP}
+     C compiler         : ${CC} (version ${CC_VERSION})
+     C flags            : ${CFLAGS}
 
-     C++ compiler     : ${CXX} (version ${CXX_VERSION})
-     C++ flags        : ${CXXFLAGS}
+     C++ preprocessor   : ${CXXCPP}
+     C++ compiler       : ${CXX} (version ${CXX_VERSION})
+     C++ flags          : ${CXXFLAGS}
 
-     C++ preprocessor : ${CXXCPP}
-     C++ pp flags     : ${CXXCPPFLAGS}
-
-     ASM flags        : ${AX_CONFIG_ASFLAGS}
-     C pp flags       : ${AX_CONFIG_CPPFLAGS}
-     C flags          : ${AX_CONFIG_CFLAGS}
-     C++ pp flags     : ${AX_CONFIG_CXXCPPFLAGS}
-     C++ flags        : ${AX_CONFIG_CXXFLAGS}
-     Linker flags     : ${AX_CONFIG_LDFLAGS}
-
-     Archive handler  : ${RANLIB}
-
-     Linker flags     : ${LDFLAGS}
+     Archive handler    : ${RANLIB}
 EOF
 
 # Footer
