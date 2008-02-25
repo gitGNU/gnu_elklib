@@ -335,10 +335,11 @@ API_VERSION="${AX_MAJOR_VERSION}.${AX_MINOR_VERSION}"
 AC_SUBST(API_VERSION)
 
 # Versioned directories, defined here for convenience
-AC_SUBST(pkgvdir,     ["\${datadir}/${PACKAGE}-${API_VERSION}"])
-AC_SUBST(pkgvbindir,  ["\${datadir}/${PACKAGE}-${API_VERSION}/bin"])
-AC_SUBST(pkgvdatadir, ["\${datadir}/${PACKAGE}-${API_VERSION}/data"])
-AC_SUBST(pkgvlibsdir, ["\${datadir}/${PACKAGE}-${API_VERSION}/libs"])
+AC_SUBST(pkgvdir,        ["\${datadir}/${PACKAGE}-${API_VERSION}"])
+AC_SUBST(pkgvincludedir, ["\${includedir}/${PACKAGE}-${API_VERSION}"])
+AC_SUBST(pkgvbindir,     ["\${datadir}/${PACKAGE}-${API_VERSION}/bin"])
+AC_SUBST(pkgvdatadir,    ["\${datadir}/${PACKAGE}-${API_VERSION}/data"])
+AC_SUBST(pkgvlibsdir,    ["\${datadir}/${PACKAGE}-${API_VERSION}/libs"])
 
 AC_CONFIG_FILES([
 	Makefile
