@@ -45,6 +45,7 @@ Options:
     [-h|--help]
     [--version]
     [--static-libs]
+    [--cppflags]
     [--cflags]
     [--cxxflags]
     [--ldflags]
@@ -66,6 +67,7 @@ fi
 
 missing_action="yes"
 echo_static_libs="no"
+echo_cppflags="no"
 echo_cflags="no"
 echo_cxxflags="no"
 echo_ldflags="no"
@@ -88,6 +90,9 @@ while test $# -gt 0 ; do
 	    ;;
 	--static-libs)
 	    echo_static_libs="yes"
+	    ;;
+	--cppflags)
+	    echo_cppflags="yes"
 	    ;;
 	--cflags)
 	    echo_cflags="yes"
@@ -133,19 +138,28 @@ if test "$echo_static_libs" == "yes" ; then
     echo "$output"
 fi
 
+if test "$echo_cppflags" == "yes" ; then
+    missing_action="no"
+#    echo "-I@pkgvincludedir@ @AX_CONFIG_CPPFLAGS@"
+    echo "-I@pkgvincludedir@"
+fi
+
 if test "$echo_cflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @AX_CONFIG_CFLAGS@"
+#    echo "-I@pkgvincludedir@ @AX_CONFIG_CFLAGS@"
+    echo "-I@pkgvincludedir@"
 fi
 
 if test "$echo_cxxflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @AX_CONFIG_CXXFLAGS@"
+#    echo "-I@pkgvincludedir@ @AX_CONFIG_CXXFLAGS@"
+    echo "-I@pkgvincludedir@"
 fi
 
 if test "$echo_ldflags" == "yes" ; then
     missing_action="no"
-    echo "@AX_CONFIG_LDFLAGS@"
+#    echo "@AX_CONFIG_LDFLAGS@"
+    echo ""
 fi
 
 if test "$missing_action" == "yes" ; then

@@ -54,6 +54,7 @@ do_subst = sed \
   -e 's,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g' \
   -e 's,[@]PERL[@],$(PERL),g' \
   -e 's,[@]SHELL[@],$(SHELL),g' \
+  -e 's,[@]AX_CONFIG_CPPFLAGS[@],$(AX_CONFIG_CPPFLAGS),g' \
   -e 's,[@]AX_CONFIG_CFLAGS[@],$(AX_CONFIG_CFLAGS),g' \
   -e 's,[@]AX_CONFIG_CXXFLAGS[@],$(AX_CONFIG_CXXFLAGS),g' \
   -e 's,[@]AX_CONFIG_LDFLAGS[@],$(AX_CONFIG_LDFLAGS),g' \
