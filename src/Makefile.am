@@ -23,3 +23,8 @@ include $(top_srcdir)/Makefile.sub
 SUBDIRS =					\
 	libcompiler				\
 	libc
+
+incdestdir = $(pkgvincludedir)
+nobase_incdest_HEADERS  =			\
+	config.h				\
+	debug.h
