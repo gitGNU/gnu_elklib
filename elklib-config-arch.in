@@ -20,19 +20,30 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-me="elklib-config"
+me="elklib-config-@target_cpu@"
+debug="no"
 
-function error {
-    echo "$me: $_"
+function debug {
+    if test "$debug" == "yes" ; then
+	echo "$me: DEBUG: $1"
+    fi
 }
 
-usage="\
+function error {
+    echo "$me: $1"
+}
+
+function hint {
+    echo "Try \`$me -h' for more information."
+}
+
+function usage {
+    cat <<EOF 1>&2
 Usage: elklib-config [OPTIONS] [MODULE]
 
 Options:
-    [--help]
+    [-h|--help]
     [--version]
-    [--includedir]
     [--static-libs]
     [--cflags]
     [--cxxflags]
@@ -40,19 +51,26 @@ Options:
 
 Modules:
     libc
-    libcompiler"
+    libcompiler
+EOF
+}
 
+#
+# Main
+#
 if test $# -eq 0 ; then
-    echo "${usage}" 1>&2
+    error "Missing parameter"
+    hint
     exit 1
 fi
 
-echo_static_libs=""
-echo_includedir=""
-echo_cflags=""
-echo_cxxflags=""
-echo_ldflags=""
-module=""
+missing_action="yes"
+echo_static_libs="no"
+echo_cflags="no"
+echo_cxxflags="no"
+echo_ldflags="no"
+module_libc="no"
+module_libcompiler="no"
 while test $# -gt 0 ; do
     case "$1" in
 	-*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
@@ -60,8 +78,8 @@ while test $# -gt 0 ; do
     esac
 
     case $1 in
-	--help)
-	    echo "${usage}" 1>&2
+	-h|--help)
+	    usage
 	    exit 0
 	    ;;
 	--version)
@@ -69,66 +87,71 @@ while test $# -gt 0 ; do
 	    exit 0
 	    ;;
 	--static-libs)
-	    echo_static_libs=yes
-	    ;;
-	--includedir)
-	    echo_includedir=yes
-	    exit 0
+	    echo_static_libs="yes"
 	    ;;
 	--cflags)
-	    echo_cflags=yes
+	    echo_cflags="yes"
 	    ;;
 	--cxxflags)
-	    echo_cxxflags=yes
+	    echo_cxxflags="yes"
 	    ;;
 	--ldflags)
-	    echo_ldflags=yes
+	    echo_ldflags="yes"
 	    ;;
 	libc)
-	    module="libc"
+	    module_libc="yes"
 	    ;;
 	libcompiler)
-	    module="libcompiler"
+	    module_libcompiler="yes"
 	    ;;
 	*)
-	    error "Unknown option \`$_'"
-	    echo "${usage}" 1>&2
+	    error "Unknown option \`$1'"
+	    hint
 	    exit 1
 	    ;;
     esac
     shift
 done
 
-if test "$module" = "" ; then
+if test "$module_libc" == "no" -a "$module_libcompiler" == "no"; then
     error "Missing module name"
+    hint
     exit 1
 fi
 
-if test "$echo_static_libs" = "yes" ; then
-    if test "$module" = "libc" ; then
-        echo "@libdir@/libc-@target_cpu@.a"
-    elif test "$module" = "libcompiler" ; then
-        echo "@libdir@/libcompiler-@target_cpu@.a"
-    else
-	error "Unknown module"
-	exit 1
+debug "module is \`$module'"
+
+if test "$echo_static_libs" == "yes" ; then
+    missing_action="no"
+    output=""
+    if test "$module_libc" == "yes" ; then
+	output="@libdir@/libc-@target_cpu@.a $output"
     fi
+    if test "$module_libcompiler" == "yes" ; then
+	output="@libdir@/libcompiler-@target_cpu@.a $output"
+    fi
+    echo "$output"
 fi
 
-if test "$echo_includedir" = "yes" ; then
-    echo "@includedir@"
+if test "$echo_cflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@includedir@ @AX_CONFIG_CFLAGS@"
 fi
 
-if test "$echo_cflags" = "yes" ; then
-    echo "@AX_CONFIG_CFLAGS@"
+if test "$echo_cxxflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@includedir@ @AX_CONFIG_CXXFLAGS@"
 fi
 
-if test "$echo_cxxflags" = "yes" ; then
-   echo "@AX_CONFIG_CXXFLAGS@"
+if test "$echo_ldflags" == "yes" ; then
+    missing_action="no"
+    echo "@AX_CONFIG_LDFLAGS@"
 fi
 
-if test "$echo_ldflags" = "yes" ; then
-   echo "@AX_CONFIG_LDFLAGS@"
+if test "$missing_action" == "yes" ; then
+    error "Missing parameter(s)"
+    hint
+    exit 1
 fi
 
 exit 0
