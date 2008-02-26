@@ -16,8 +16,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef ELKLIB_DEBUG_H
-#define ELKLIB_DEBUG_H
+#ifndef ELKLIB_EXTERNALS_H
+#define ELKLIB_EXTERNALS_H
 
 #include "elklib.h"
 
@@ -27,4 +27,4 @@ extern void arch_panic(const char* message);
 
 __END_DECLS
 
-#endif /* ELKLIB_DEBUG_H */
+#endif /* ELKLIB_EXTERNALS_H */
