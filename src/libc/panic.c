@@ -16,7 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "elklib.h"
+#include "config.h"
 #include "externals.h"
 #include "libc/stdarg.h"
 #include "libc/stdio.h"
@@ -29,8 +29,8 @@ void panic(const char* format, ...)
 	va_list     args;
 
 	va_start(args, format);
-        count = vsnprintf(buffer, sizeof(buffer), format, args);
+        (void) vsnprintf(buffer, sizeof(buffer), format, args);
 	va_end(args);
 
-	arch_panic(message);
+	arch_panic(buffer);
 }

@@ -20,6 +20,7 @@
 #define ELKLIB_EXTERNALS_H
 
 #include "elklib.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 
