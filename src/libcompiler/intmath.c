@@ -17,6 +17,7 @@
  */
 
 #include "config.h"
+#include "debug.h"
 
 #if HAVE_GCC
 
