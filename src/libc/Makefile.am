@@ -26,43 +26,6 @@ lib_LIBRARIES = libelk-libc-@target_cpu@.a
 
 libelk_libc_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_libc_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
-
-incdestdir = $(pkgvincludedir)/libc
-nobase_incdest_HEADERS  =			\
-	stdint.h				\
-	heap.h					\
-	assert.h				\
-	time.h					\
-	fcntl.h					\
-	endian.h				\
-	malloc.h				\
-	string.h				\
-	mcheck.h				\
-	stddef.h				\
-	bits/mman.h				\
-	bits/wordsize.h				\
-	bits/fcntl.h				\
-	bits/errno_values.h			\
-	bits/byteswap.h				\
-	bits/dlfnc.h				\
-	stdarg.h				\
-	ctype.h					\
-	execinfo.h				\
-	limits.h				\
-	math.h					\
-	bcd.h					\
-	sys/mman.h				\
-	sys/fcntl.h				\
-	sys/stat.h				\
-	values.h				\
-	stdlib.h				\
-	stdio.h					\
-	types.h					\
-	setjmp.h				\
-	unistd.h				\
-	param.h					\
-	errno.h
-
 libelk_libc_@target_cpu@_a_SOURCES  =		\
 	glue.c					\
 	math.c					\
@@ -75,6 +38,7 @@ libelk_libc_@target_cpu@_a_SOURCES  =		\
 	sys/mman.c				\
 	sys/stat.c				\
 	sys/fcntl.c				\
+	sys/ioctl.c				\
 	malloc.c				\
 	time.c					\
 	errno.c					\
