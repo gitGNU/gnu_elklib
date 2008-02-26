@@ -31,6 +31,7 @@ libelk_libc_@target_cpu@_a_SOURCES  =		\
 	math.c					\
 	stdlib.c				\
 	unistd.c				\
+	panic.c					\
 	bits/mman.c				\
 	bits/byteswap.c				\
 	bits/fcntl.c				\
