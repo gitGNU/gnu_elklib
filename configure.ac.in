@@ -348,6 +348,8 @@ AC_CONFIG_FILES([
 	docs/Makefile
 	docs/info/Makefile
 
+	inc/Makefile
+
 	src/Makefile
 	src/libc/Makefile
 	src/libcompiler/Makefile
