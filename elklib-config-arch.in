@@ -130,10 +130,10 @@ if test "$echo_static_libs" == "yes" ; then
     missing_action="no"
     output=""
     if test "$module_libc" == "yes" ; then
-	output="@libdir@/libc-@target_cpu@.a $output"
+	output="@libdir@/libelk-libc-@target_cpu@.a $output"
     fi
     if test "$module_libcompiler" == "yes" ; then
-	output="@libdir@/libcompiler-@target_cpu@.a $output"
+	output="@libdir@/libelk-libcompiler-@target_cpu@.a $output"
     fi
     echo "$output"
 fi
