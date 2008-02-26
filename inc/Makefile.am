@@ -67,8 +67,8 @@ nobase_incdest_HEADERS  =			\
 
 check-local:
 	for i in $(nobase_incdest_HEADERS) ; do \
-		if test grep config.h ; then \
-			echo "Include file $i contains config.h" ; \
+		if grep "config.h" $$i ; then \
+			echo "Include file $$i contains config.h" ; \
 			exit 1 ; \
 		fi ; \
 	done
