@@ -22,15 +22,19 @@
 COMMONLDFLAGS =                                 \
         -nostdlib                               \
         -nodefaultlibs
-        
-COMMONASFLAGS =		                        \
-        -I$(top_srcdir)/src                     \
-        -I$(top_builddir)/src
 
-COMMONCPPFLAGS =                                \
-        $(AX_CONFIG_CPPFLAGS)                   \
-        -I$(top_srcdir)/src                     \
-        -I$(top_builddir)/src
+COMMONASFLAGS =					\
+        -I$(top_srcdir)/src			\
+        -I$(top_builddir)/src			\
+        -I$(top_srcdir)/inc			\
+        -I$(top_builddir)/inc
+
+COMMONCPPFLAGS =				\
+        $(AX_CONFIG_CPPFLAGS)			\
+        -I$(top_srcdir)/src			\
+        -I$(top_builddir)/src			\
+        -I$(top_srcdir)/inc			\
+        -I$(top_builddir)/inc
 
 COMMONCFLAGS =                                  \
         $(AX_CONFIG_CFLAGS)                     \
