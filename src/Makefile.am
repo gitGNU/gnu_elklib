@@ -23,11 +23,3 @@ include $(top_srcdir)/Makefile.sub
 SUBDIRS =					\
 	libcompiler				\
 	libc
-
-##
-## Note:
-##     Do not install config.h ... 
-##
-incdestdir = $(pkgvincludedir)
-nobase_incdest_HEADERS  =			\
-	debug.h
