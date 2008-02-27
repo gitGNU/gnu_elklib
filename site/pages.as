@@ -8,7 +8,7 @@ pages = {
 			footer = "footer";
 		};
 		vars = {
-			title = "Choicetool";
+			title = "ELKLib";
 			css   = "site.css";
 		};
 	};
