@@ -39,7 +39,7 @@ function hint {
 
 function usage {
     cat <<EOF 1>&2
-Usage: elklib-config [OPTIONS] [MODULE]
+Usage: elklib-config [OPTIONS]
 
 Options:
     [-h|--help]
@@ -49,10 +49,6 @@ Options:
     [--cflags]
     [--cxxflags]
     [--ldflags]
-
-Modules:
-    libc
-    libcompiler
 EOF
 }
 
@@ -71,8 +67,6 @@ echo_cppflags="no"
 echo_cflags="no"
 echo_cxxflags="no"
 echo_ldflags="no"
-module_libc="no"
-module_libcompiler="no"
 while test $# -gt 0 ; do
     case "$1" in
 	-*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
@@ -103,12 +97,6 @@ while test $# -gt 0 ; do
 	--ldflags)
 	    echo_ldflags="yes"
 	    ;;
-	libc)
-	    module_libc="yes"
-	    ;;
-	libcompiler)
-	    module_libcompiler="yes"
-	    ;;
 	*)
 	    error "Unknown option \`$1'"
 	    hint
@@ -118,24 +106,9 @@ while test $# -gt 0 ; do
     shift
 done
 
-if test "$module_libc" == "no" -a "$module_libcompiler" == "no"; then
-    error "Missing module name"
-    hint
-    exit 1
-fi
-
-debug "module is \`$module'"
-
 if test "$echo_static_libs" == "yes" ; then
     missing_action="no"
-    output=""
-    if test "$module_libc" == "yes" ; then
-	output="@libdir@/libelk-libc-@target_cpu@.a $output"
-    fi
-    if test "$module_libcompiler" == "yes" ; then
-	output="@libdir@/libelk-libcompiler-@target_cpu@.a $output"
-    fi
-    echo "$output"
+    echo "@libdir@/libelk-@target_cpu@.a $output"
 fi
 
 if test "$echo_cppflags" == "yes" ; then
