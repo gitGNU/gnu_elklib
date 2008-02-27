@@ -38,7 +38,6 @@ nobase_incdest_HEADERS  =			\
 	libc/bits/fcntl.h			\
 	libc/bits/errno_values.h		\
 	libc/bits/byteswap.h			\
-	libc/bits/dlfnc.h			\
 	libc/stdarg.h				\
 	libc/ctype.h				\
 	libc/execinfo.h				\
