@@ -22,11 +22,13 @@
 #include "libc/string.h"
 #include "libc/ctype.h"
 #include "libcompiler/cdefs.h"
+#include "libcompiler/macro.h"
+#include "libcompiler/compiler.h"
 
 #define BANNER          "demangle: "
 
 #define CONFIG_SYMBOLS_DEMANGLING_DEBUG 0
-#define CONFIG_SYMBOLS_DEMANGLING       0
+#define CONFIG_SYMBOLS_DEMANGLING       1
 
 #if CONFIG_SYMBOLS_DEMANGLING_DEBUG
 #define dprintf(F,A...) printf(BANNER F,##A)
