@@ -20,6 +20,35 @@
 
 include $(top_srcdir)/Makefile.sub
 
-SUBDIRS =					\
-	libcompiler				\
-	libc
+AUTOMAKE_OPTIONS = subdir-objects
+
+lib_LIBRARIES =	libelk-@target_cpu@.a
+
+libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_@target_cpu@_a_SOURCES  =		\
+	libc/glue.c				\
+	libc/math.c				\
+	libc/stdlib.c				\
+	libc/unistd.c				\
+	libc/panic.c				\
+	libc/bits/mman.c			\
+	libc/bits/byteswap.c			\
+	libc/bits/fcntl.c			\
+	libc/execinfo.c				\
+	libc/sys/mman.c				\
+	libc/sys/stat.c				\
+	libc/sys/fcntl.c			\
+	libc/sys/ioctl.c			\
+	libc/malloc.c				\
+	libc/time.c				\
+	libc/errno.c				\
+	libc/stdio.c				\
+	libc/fcntl.c				\
+	libc/string.c				\
+	libc/mcheck.c				\
+	libc/ctype.c				\
+	libc/bcd.c				\
+	libcompiler/cxxabi.c			\
+	libcompiler/demangle.c			\
+	libcompiler/intmath.c
