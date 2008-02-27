@@ -56,12 +56,12 @@ static long long divremdi3(long long x,
 		d >>= 1;
 	} while (d);
 
-	#if 0
+#if 0
 	result    = (((x ^ y) & (1ll << 63)) == 0) ? res : -(long long)res;
 	remainder = (( x      & (1ll << 63)) == 0) ? a   : -(long long)a;
-	#else
+#else
 	result = remainder = 0;
-	#endif
+#endif
 
 	return ((type == DIV) ? result : remainder);
 }
