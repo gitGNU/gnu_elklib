@@ -41,7 +41,6 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	libc/sys/fcntl.c			\
 	libc/sys/ioctl.c			\
 	libc/malloc.c				\
-	libc/time.c				\
 	libc/errno.c				\
 	libc/stdio.c				\
 	libc/fcntl.c				\
