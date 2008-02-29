@@ -21,11 +21,9 @@
 #include "libc/stdarg.h"
 #include "libc/stdio.h"
 
-#define CONFIG_PRINTF_BUFFER_LENGTH 1024
-
 void panic(const char* format, ...)
 {
-        static char buffer[CONFIG_PRINTF_BUFFER_LENGTH];
+        static char buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
 	va_list     args;
 
 	va_start(args, format);

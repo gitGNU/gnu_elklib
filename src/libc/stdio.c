@@ -860,11 +860,9 @@ int vsscanf(const char* buf, const char* format, va_list args)
 	return num;
 }
 
-#define CONFIG_PRINTF_BUFFER_LENGTH 1024
-
 int vfprintf(FILE* stream, const char* format, va_list ap)
 {
-        static char  buffer[CONFIG_PRINTF_BUFFER_LENGTH];
+        static char  buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
 	unsigned int count;
 	int          retval;
 	

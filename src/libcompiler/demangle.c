@@ -16,6 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "elklib.h"
 #include "config.h"
 #include "debug.h"
 #include "libc/stdint.h"
@@ -25,20 +26,19 @@
 #include "libcompiler/macro.h"
 #include "libcompiler/compiler.h"
 
+#define SYMBOLS_DEMANGLING_DEBUG 0
+
+#if HAVE_GCC
+
+#if SYMBOLS_DEMANGLING_DEBUG
 #define BANNER          "demangle: "
 
-#define CONFIG_SYMBOLS_DEMANGLING_DEBUG 0
-#define CONFIG_SYMBOLS_DEMANGLING       1
-
-#if CONFIG_SYMBOLS_DEMANGLING_DEBUG
 #define dprintf(F,A...) printf(BANNER F,##A)
 #else
 #define dprintf(F,A...)
 #endif
 
-#if HAVE_GCC
-
-#if CONFIG_SYMBOLS_DEMANGLING
+#if ELKLIB_SYMBOLS_DEMANGLING
 typedef struct {
 	const char*  buffer;
 	size_t       length;
@@ -589,6 +589,6 @@ int demangle(const char* mangled_name,
 
 	return demangle_all(&data);
 }
-#endif /* CONFIG_SYMBOLS_DEMANGLING */
+#endif /* ELKLIB_SYMBOLS_DEMANGLING */
 
 #endif /* HAVE_GCC */

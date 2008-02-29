@@ -19,4 +19,7 @@
 #ifndef ELKLIB_H
 #define ELKLIB_H
 
+#define ELKLIB_SYMBOLS_DEMANGLING   1
+#define ELKLIB_PRINTF_BUFFER_LENGTH 1024
+
 #endif /* ELKLIB_H */

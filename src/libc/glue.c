@@ -22,10 +22,11 @@
 #include "libcompiler/linker.h"
 #include "libcompiler/macro.h"
 
+#define GLUE_DEBUG 0
+
+#if GLUE_DEBUG
 #define BANNER          "c-glue: "
 
-#define CONFIG_LIBC_DEBUG 0
-#if CONFIG_LIBC_DEBUG
 #define dprintf(F,A...) printf(BANNER F,##A)
 #else
 #define dprintf(F,A...)
