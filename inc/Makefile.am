@@ -25,7 +25,6 @@ nobase_incdest_HEADERS  =			\
 	libc/stdint.h				\
 	libc/heap.h				\
 	libc/assert.h				\
-	libc/time.h				\
 	libc/fcntl.h				\
 	libc/float.h				\
 	libc/endian.h				\
