@@ -32,7 +32,6 @@ nobase_incdest_HEADERS  =			\
 	libc/string.h				\
 	libc/mcheck.h				\
 	libc/stddef.h				\
-	libc/bits/mman.h			\
 	libc/bits/wordsize.h			\
 	libc/bits/fcntl.h			\
 	libc/bits/errno_values.h		\
@@ -44,7 +43,6 @@ nobase_incdest_HEADERS  =			\
 	libc/math.h				\
 	libc/bcd.h				\
 	libc/sys/ioctl.h			\
-	libc/sys/mman.h				\
 	libc/sys/fcntl.h			\
 	libc/sys/stat.h				\
 	libc/values.h				\

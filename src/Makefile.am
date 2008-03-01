@@ -32,11 +32,9 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	libc/stdlib.c				\
 	libc/unistd.c				\
 	libc/panic.c				\
-	libc/bits/mman.c			\
 	libc/bits/byteswap.c			\
 	libc/bits/fcntl.c			\
 	libc/execinfo.c				\
-	libc/sys/mman.c				\
 	libc/sys/stat.c				\
 	libc/sys/fcntl.c			\
 	libc/sys/ioctl.c			\
