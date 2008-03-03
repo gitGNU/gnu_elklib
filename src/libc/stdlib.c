@@ -330,10 +330,10 @@ lldiv_t lldiv(long long num,
         return r;
 }
 
-#define CONFIG_CHECK_DOUBLE_FREE 1
-#define CONFIG_MALLOC_SIGNATURE  1
+#define DEBUG_CHECK_DOUBLE_FREE 1
+#define DEBUG_MALLOC_SIGNATURE  1
 
-#if CONFIG_MALLOC_SIGNATURE
+#if DEBUG_MALLOC_SIGNATURE
 #define SIGNATURE_MAGIC  0xDDEEAADD
 #define SIGNATURE_HEADER 0xDEAD0101
 #define SIGNATURE_FOOTER 0x0220DEAD
@@ -413,7 +413,7 @@ static void signed_free(void* address)
 			      tmp, address);
 		}
 
-#if CONFIG_CHECK_DOUBLE_FREE
+#if DEBUG_CHECK_DOUBLE_FREE
 		/* Remove signature tag ! */
 		(* (uint_t *) ptr) = SIGNATURE_NONE;
 #endif
@@ -431,7 +431,7 @@ static void signed_free(void* address)
 			      tmp, address);
 		}
 
-#if CONFIG_CHECK_DOUBLE_FREE
+#if DEBUG_CHECK_DOUBLE_FREE
 		/* Remove signature tag ! */
 		(* (uint_t *) ptr) = SIGNATURE_NONE;
 #endif
@@ -453,7 +453,7 @@ void* malloc(size_t size)
 		return NULL;
 	}
 
-#if CONFIG_MALLOC_SIGNATURE
+#if DEBUG_MALLOC_SIGNATURE
 	return signed_alloc(size);
 #else
 	return heap_alloc(size);
@@ -473,7 +473,7 @@ void free(void* address)
 		return;
 	}
 
-#if CONFIG_MALLOC_SIGNATURE
+#if DEBUG_MALLOC_SIGNATURE
 	signed_free(address);
 #else
 	heap_free(address);
