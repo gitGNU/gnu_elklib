@@ -22,9 +22,9 @@
 #include "libcompiler/linker.h"
 #include "libcompiler/macro.h"
 
-#define GLUE_DEBUG 0
+#define DEBUG_GLUE 0
 
-#if GLUE_DEBUG
+#if DEBUG_GLUE
 #define BANNER          "c-glue: "
 
 #define dprintf(F,A...) printf(BANNER F,##A)
