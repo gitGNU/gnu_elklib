@@ -43,13 +43,7 @@ void panic(const char* format, ...);
 	       __PRETTY_FUNCTION__,__LINE__);		\
 	__END_MACRO
 
-/* The user has the option to cut-off expect() calls */
-#define CONFIG_EXPECT 1
-#if CONFIG_EXPECT
 #define expect(EXPRESSION)   assert(EXPRESSION)
-#else
-#define expect(EXPRESSION)
-#endif
 
 __END_DECLS
 
