@@ -26,11 +26,11 @@
 #include "libcompiler/macro.h"
 #include "libcompiler/compiler.h"
 
-#define SYMBOLS_DEMANGLING_DEBUG 0
+#define DEBUG_SYMBOLS_DEMANGLING 0
 
 #if HAVE_GCC
 
-#if SYMBOLS_DEMANGLING_DEBUG
+#if DEBUG_SYMBOLS_DEMANGLING
 #define BANNER          "demangle: "
 
 #define dprintf(F,A...) printf(BANNER F,##A)
