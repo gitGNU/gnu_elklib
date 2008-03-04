@@ -40,7 +40,6 @@ nobase_incdest_HEADERS  =			\
 	libc/ctype.h				\
 	libc/execinfo.h				\
 	libc/limits.h				\
-	libc/math.h				\
 	libc/bcd.h				\
 	libc/sys/ioctl.h			\
 	libc/sys/fcntl.h			\
@@ -53,6 +52,7 @@ nobase_incdest_HEADERS  =			\
 	libc/unistd.h				\
 	libc/param.h				\
 	libc/errno.h				\
+	libm/math.h				\
 	libcompiler/cdefs.h			\
 	libcompiler/compiler.h			\
 	libcompiler/consistency.h		\
