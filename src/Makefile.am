@@ -28,7 +28,6 @@ libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
 libelk_@target_cpu@_a_SOURCES  =		\
 	libc/glue.c				\
-	libc/math.c				\
 	libc/stdlib.c				\
 	libc/unistd.c				\
 	libc/panic.c				\
@@ -46,6 +45,7 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	libc/mcheck.c				\
 	libc/ctype.c				\
 	libc/bcd.c				\
+	libm/math.c				\
 	libcompiler/cxxabi.c			\
 	libcompiler/demangle.c			\
 	libcompiler/intmath.c
