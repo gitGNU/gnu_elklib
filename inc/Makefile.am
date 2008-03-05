@@ -40,7 +40,6 @@ nobase_incdest_HEADERS  =			\
 	libc/ctype.h				\
 	libc/execinfo.h				\
 	libc/limits.h				\
-	libc/bcd.h				\
 	libc/sys/ioctl.h			\
 	libc/sys/fcntl.h			\
 	libc/sys/stat.h				\

@@ -44,7 +44,6 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	libc/string.c				\
 	libc/mcheck.c				\
 	libc/ctype.c				\
-	libc/bcd.c				\
 	libm/math.c				\
 	libcompiler/cxxabi.c			\
 	libcompiler/demangle.c			\
