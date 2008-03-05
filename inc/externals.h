@@ -25,6 +25,7 @@
 __BEGIN_DECLS
 
 extern void arch_panic(const char* message);
+extern int  arch_vm_pagesize(void);
 
 __END_DECLS
 

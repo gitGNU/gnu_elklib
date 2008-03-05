@@ -17,6 +17,7 @@
  */
 
 #include "config.h"
+#include "externals.h"
 #include "libc/stdio.h"
 #include "libc/bits/byteswap.h"
 #include "libc/assert.h"
@@ -54,10 +55,7 @@ void swab(const void* from, void* to, ssize_t n)
 
 int getpagesize(void)
 {
-	panic("Unimplemented");
-	//return vmm_pagesize();
-
-	return 0;
+	return arch_vm_pagesize();
 }
 
 int close(int fd)
