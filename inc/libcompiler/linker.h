@@ -24,25 +24,6 @@
 
 __BEGIN_DECLS
 
-/*
- * NOTE:
- *     The following externs are useful addresses defined in the linker script,
- *     each architecture should define them in its linker related script ...
- */
-
-extern unsigned long   _kernel;
-extern unsigned long   _text;
-extern unsigned long   _etext;
-extern unsigned long   _data;
-extern unsigned long   _edata;
-extern unsigned long   _rodata;
-extern unsigned long   _erodata;
-extern unsigned long   _bss;
-extern unsigned long   _ebss;
-extern unsigned long   _debug;
-extern unsigned long   _edebug;
-extern unsigned long   _ekernel;
-
 extern void            (*__INIT_LIST__)(void); /* C glue related */
 extern void            (*__INIT_END__)(void);  /* C glue related */
 extern void            (*__FINI_LIST__)(void); /* C glue related */
