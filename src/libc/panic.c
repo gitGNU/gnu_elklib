@@ -27,6 +27,8 @@ void panic(const char* format, ...)
 	va_list     args;
 
 	va_start(args, format);
+	/* Secure the callee by placing a terminator */
+	buffer[0] = 0;
         (void) vsnprintf(buffer, sizeof(buffer), format, args);
 	va_end(args);
 
