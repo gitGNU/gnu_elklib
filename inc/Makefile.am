@@ -19,9 +19,8 @@
 ##
 
 incdestdir = $(pkgvincludedir)
-nobase_incdest_HEADERS  =			\
-	elklib.h				\
-	debug.h					\
+
+libc_HDRS =					\
 	libc/stdint.h				\
 	libc/heap.h				\
 	libc/assert.h				\
@@ -50,8 +49,12 @@ nobase_incdest_HEADERS  =			\
 	libc/setjmp.h				\
 	libc/unistd.h				\
 	libc/param.h				\
-	libc/errno.h				\
-	libm/math.h				\
+	libc/errno.h
+
+libm_HDRS =					\
+	libm/math.h
+
+libcompile_HDRS =				\
 	libcompiler/cdefs.h			\
 	libcompiler/compiler.h			\
 	libcompiler/consistency.h		\
@@ -59,6 +62,13 @@ nobase_incdest_HEADERS  =			\
 	libcompiler/demangle.h			\
 	libcompiler/linker.h			\
 	libcompiler/macro.h
+
+nobase_incdest_HEADERS  =			\
+	elklib.h				\
+	debug.h					\
+	$(libc_HDRS)				\
+	$(libm_HDRS)				\
+	$(libcompile_HDRS)
 
 check-local:
 	for i in $(nobase_incdest_HEADERS) ; do \

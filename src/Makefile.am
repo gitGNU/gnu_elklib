@@ -24,9 +24,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 
 lib_LIBRARIES =	libelk-@target_cpu@.a
 
-libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
-libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
-libelk_@target_cpu@_a_SOURCES  =		\
+libc_SRCS =					\
 	libc/glue.c				\
 	libc/stdlib.c				\
 	libc/unistd.c				\
@@ -43,8 +41,19 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	libc/fcntl.c				\
 	libc/string.c				\
 	libc/mcheck.c				\
-	libc/ctype.c				\
-	libm/math.c				\
+	libc/ctype.c
+
+libm_SRCS =					\
+	libm/math.c
+
+libcompiler_SRCS =				\
 	libcompiler/cxxabi.c			\
 	libcompiler/demangle.c			\
 	libcompiler/intmath.c
+
+libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_@target_cpu@_a_SOURCES  =		\
+	$(libc_SRCS)				\
+	$(libm_SRCS)				\
+	$(libcompiler_SRCS)
