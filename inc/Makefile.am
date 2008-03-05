@@ -66,6 +66,7 @@ libcompile_HDRS =				\
 nobase_incdest_HEADERS  =			\
 	elklib.h				\
 	debug.h					\
+	externals.h				\
 	$(libc_HDRS)				\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)

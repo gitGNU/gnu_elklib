@@ -73,7 +73,8 @@ CHANGELOGS =					\
 EXTRA_DIST =							\
 	BUGS TODO README NEWS COPYING AUTHORS INSTALL THANKS	\
 	$(CHANGELOGS)						\
-	configure.ac.in
+	configure.ac.in						\
+	elklib-config-arch.in
 
 ##
 ## distribution related target
