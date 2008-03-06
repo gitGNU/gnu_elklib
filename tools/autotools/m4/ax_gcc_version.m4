@@ -11,7 +11,7 @@
 #
 # LAST MODIFICATION
 #
-#   2008-02-06
+#   2008-03-06
 #
 # COPYLEFT
 #
@@ -44,7 +44,7 @@ AC_DEFUN([AX_GCC_VERSION], [
       AC_CACHE_CHECK([gcc version],[ax_cv_gcc_version],[
         ax_cv_gcc_version="`$CC -dumpversion`"
         AS_IF([test "x$ax_cv_gcc_version" = "x"],[
-          ax_cv_gcc_version="0.0.0"
+          ax_cv_gcc_version=""
         ])
       ])
       GCC_VERSION=$ax_cv_gcc_version

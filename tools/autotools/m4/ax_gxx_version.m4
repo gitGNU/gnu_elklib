@@ -44,7 +44,7 @@ AC_DEFUN([AX_GXX_VERSION], [
       AC_CACHE_CHECK([gxx version],[ax_cv_gxx_version],[
         ax_cv_gxx_version="`$CXX -dumpversion`"
         AS_IF([test "x$ax_cv_gxx_version" = "x"],[
-          ax_cv_gxx_version="0.0.0"
+          ax_cv_gxx_version=""
         ])
       ])
       GXX_VERSION=$ax_cv_gxx_version
