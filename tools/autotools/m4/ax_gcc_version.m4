@@ -6,12 +6,12 @@
 #
 # DESCRIPTION
 #
-#   AX_GCC_VERSION retrieves the gcc version. Returns the gcc version in the
-#   GCC_VERSION variable if available, 0.0.0 otherwise.
+#   AX_GCC_VERSION retrieves the gcc version. Returns the version in the
+#   GCC_VERSION variable if available, an empty string otherwise.
 #
 # LAST MODIFICATION
 #
-#   2007-02-18
+#   2008-02-06
 #
 # COPYLEFT
 #
@@ -33,10 +33,14 @@
 #
 
 AC_DEFUN([AX_GCC_VERSION], [
-  GCC_VERSION="0.0.0"
-  AX_GCC_OPTION(ax_gcc_version_option,[-dumpversion],"-dumpversion")
+  GCC_VERSION=""
+  AX_GCC_OPTION([-dumpversion],[],[],[
+    ax_gcc_version_option=yes
+  ],[
+    ax_gcc_version_option=no
+  ])
   AS_IF([test "x$GCC" = "xyes"],[
-    AS_IF([test "x$ax_gcc_version_option" != "x"],[
+    AS_IF([test "x$ax_gcc_version_option" != "no"],[
       AC_CACHE_CHECK([gcc version],[ax_cv_gcc_version],[
         ax_cv_gcc_version="`$CC -dumpversion`"
         AS_IF([test "x$ax_cv_gcc_version" = "x"],[
