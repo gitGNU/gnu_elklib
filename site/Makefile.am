@@ -30,9 +30,13 @@ EXTRA_DIST =					\
 	map.as					\
 	pages.as				\
 	site.as					\
-	site.css
+	site.css				\
+	Doxyfile
 
 site:
+	$(DOXYGEN) Doxyfile || { \
+		exit 1 ; \
+	} ; \
 	if test ! -e site.stamp ; then \
 		$(SITETOOL) -v --mode initialize && \
 		$(SITETOOL) -v --mode build && \
