@@ -28,6 +28,7 @@ src/config.h.in
 src/stamp-h1
 
 site/site.stamp
+site/Doxygen
 
 tools/scripts/gitlog2ChangeLog
 tools/scripts/NEWS-query
