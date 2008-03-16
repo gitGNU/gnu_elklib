@@ -70,6 +70,10 @@ CHANGELOGS =					\
 	ChangeLog				\
 	$(srcdir)/docs/ChangeLog-2008.0
 
+##
+## NOTE:
+##     Makefile.sub is automatically distributed by automake rules
+##
 EXTRA_DIST =							\
 	BUGS TODO README NEWS COPYING AUTHORS INSTALL THANKS	\
 	$(CHANGELOGS)						\
