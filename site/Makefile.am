@@ -49,15 +49,13 @@ site: Doxyfile
 	$(DOXYGEN) Doxyfile || { \
 		exit 1 ; \
 	} ; \
-	if test ! -e site.stamp ; then \
-		$(SITETOOL) -v --mode initialize && \
-		$(SITETOOL) -v --mode build && \
-		touch site.stamp || { \
-			$(SITETOOL) -v --mode clean ; \
-			rm -f site.stamp ; \
-			exit 1 ; \
-		} \
-	fi
+	$(SITETOOL) -v --mode initialize && \
+	$(SITETOOL) -v --mode build && \
+	touch site.stamp || { \
+		$(SITETOOL) -v --mode clean ; \
+		rm -f site.stamp ; \
+		exit 1 ; \
+	}
 
 maintainer-clean-local:
 	if test -e site.stamp ; then \
