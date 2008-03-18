@@ -33,6 +33,7 @@ sub define_symbol ($)
 
     defined($name) || die "Missing name for defined symbol";
 
+    print "Defining symbol $name\n";
     $symbols{$name} = 1;
 }
 
@@ -42,9 +43,8 @@ sub undefine_symbol ($)
 
     defined($name) || die "Missing name for undefined symbol";
 
-    if (!defined($symbols{$name})) {
-	$symbols{$name} = 0;
-    }
+    print "Undefining symbol $name\n";
+    $symbols{$name} = 0;
 }
 
 #
@@ -63,15 +63,11 @@ while (<STDIN>) {
 	my $type    = $2;
 	my $name    = $3;
 
-	print "$address : $type : $name\n";
-
 	if ($type eq "T") {
 	    define_symbol($name);
 	}
     } elsif ($_ =~ m/^U (.+)$/) {
 	my $name = $1;
-
-	print " : : $name\n";
 
 	undefine_symbol($name);
     } elsif ($_ =~ m/^$/) {
@@ -83,9 +79,11 @@ while (<STDIN>) {
 }
 
 for my $symbol (keys(%symbols)) {
-    print "$symbol -> $symbols{$symbol}\n";
+    print "Symbol = $symbol\n";
     if ($symbols{$symbol} == 0) {
-	print STDOUT "$program: symbol $symbol\n";
+	print STDOUT "$program: undefined $symbol\n";
+    } else {
+	print STDOUT "$program: defined   $symbol\n";
     }
 }
 
