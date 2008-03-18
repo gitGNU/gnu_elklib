@@ -25,6 +25,32 @@ use warnings;
 
 my $program = "undefined-symbols";
 
+my %symbols = {};
+
+sub define_symbol ($)
+{
+    my $name = shift;
+
+    defined($name) || die "Missing name for defined symbol";
+
+    $symbols{$name} = 1;
+}
+
+sub undefine_symbol ($)
+{
+    my $name = shift;
+
+    defined($name) || die "Missing name for undefined symbol";
+
+    if (!defined($symbols{$name})) {
+	$symbols{$name} = 0;
+    }
+}
+
+#
+# Main
+#
+
 while (<STDIN>) {
     s/[ \t]+/ /;
     s/^[ ]*//;
@@ -32,19 +58,34 @@ while (<STDIN>) {
     
     if ($_ =~ m/^[a-zA-Z0-9_\-\.]+:$/) {
 	# Skip library declaration
-    } elsif ($_ =~ m/^([0-9a-fA-F]+) (.) (.*)+$/) {
+    } elsif ($_ =~ m/^([0-9a-fA-F]+) (.) (.+)$/) {
 	my $address = $1;
 	my $type    = $2;
-	my $symbol  = $3;
-	print STDERR "$program: Got defined symbol $type:$symbol:$address\n";
-    } elsif ($_ =~ m/^U[ ]+(.*)$/) {
-	my $symbol = $1;
-	print STDERR "$program: Got undefined symbol $symbol\n";
+	my $name    = $3;
+
+	print "$address : $type : $name\n";
+
+	if ($type eq "T") {
+	    define_symbol($name);
+	}
+    } elsif ($_ =~ m/^U (.+)$/) {
+	my $name = $1;
+
+	print " : : $name\n";
+
+	undefine_symbol($name);
     } elsif ($_ =~ m/^$/) {
 	# Skip empty lines
     } else {
 	print STDERR "$program: Unhandled input line \`" . $_ . "'\n";
 	exit 1;
+    }
+}
+
+for my $symbol (keys(%symbols)) {
+    print "$symbol -> $symbols{$symbol}\n";
+    if ($symbols{$symbol} == 0) {
+	print STDOUT "$program: symbol $symbol\n";
     }
 }
 
