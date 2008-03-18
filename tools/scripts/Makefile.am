@@ -23,12 +23,14 @@ include $(top_srcdir)/Makefile.sub
 EXTRA_DIST =					\
 	fetch.in				\
 	gitlog2ChangeLog.in			\
-	NEWS-query.in
+	NEWS-query.in				\
+	undefined-symbols
 
 noinst_SCRIPTS =				\
 	fetch					\
 	gitlog2ChangeLog			\
-	NEWS-query
+	NEWS-query				\
+	undefined-symbols
 
 CLEANFILES = $(noinst_SCRIPTS)
 
@@ -55,6 +57,16 @@ gitlog2ChangeLog: gitlog2ChangeLog.in Makefile
 fetch: fetch.in Makefile
 	( rm -f $@ $@.tmp && \
 	  $(do_subst) < $(srcdir)/fetch.in > $@.tmp && \
+	  chmod +x $@.tmp && \
+	  chmod a-w $@.tmp && \
+	  mv -f $@.tmp $@ ) || { \
+		rm -f $@ $@.tmp ; \
+		exit 1 ; \
+	}
+
+undefined-symbols: undefined-symbols.in Makefile
+	( rm -f $@ $@.tmp && \
+	  $(do_subst) < $(srcdir)/undefined-symbols.in > $@.tmp && \
 	  chmod +x $@.tmp && \
 	  chmod a-w $@.tmp && \
 	  mv -f $@.tmp $@ ) || { \
