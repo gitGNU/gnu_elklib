@@ -24,13 +24,13 @@ EXTRA_DIST =					\
 	fetch.in				\
 	gitlog2ChangeLog.in			\
 	NEWS-query.in				\
-	undefined-symbols
+	externals
 
 noinst_SCRIPTS =				\
 	fetch					\
 	gitlog2ChangeLog			\
 	NEWS-query				\
-	undefined-symbols
+	externals
 
 CLEANFILES = $(noinst_SCRIPTS)
 
@@ -64,9 +64,9 @@ fetch: fetch.in Makefile
 		exit 1 ; \
 	}
 
-undefined-symbols: undefined-symbols.in Makefile
+externals: externals.in Makefile
 	( rm -f $@ $@.tmp && \
-	  $(do_subst) < $(srcdir)/undefined-symbols.in > $@.tmp && \
+	  $(do_subst) < $(srcdir)/externals.in > $@.tmp && \
 	  chmod +x $@.tmp && \
 	  chmod a-w $@.tmp && \
 	  mv -f $@.tmp $@ ) || { \

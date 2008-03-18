@@ -59,4 +59,4 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libcompiler_SRCS)
 
 check-local: $(lib_LIBRARIES)
-	nm $(lib_LIBRARIES) | $(top_builddir)/tools/scripts/undefined-symbols
+	nm $(lib_LIBRARIES) | $(top_builddir)/tools/scripts/externals
