@@ -57,3 +57,6 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libc_SRCS)				\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
+
+check-local: $(lib_LIBRARIES)
+	nm $(lib_LIBRARIES) | $(top_builddir)/tools/scripts/undefined-symbols
