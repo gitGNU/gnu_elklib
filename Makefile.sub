@@ -78,3 +78,5 @@ do_subst = sed \
   -e 's,[@]pkgvdatadir[@],$(pkgvdatadir),g' \
   -e 's,[@]libdir[@],$(libdir),g' \
   -e 's,[@]includedir[@],$(includedir),g'
+
+SYMBOLS = $(top_builddir)/tools/scripts/symbols

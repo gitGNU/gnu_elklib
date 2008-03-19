@@ -34,7 +34,7 @@ site/doxygen
 tools/scripts/gitlog2ChangeLog
 tools/scripts/NEWS-query
 tools/scripts/fetch
-tools/scripts/externals
+tools/scripts/symbols
 
 tools/autotools/install-sh
 tools/autotools/missing
