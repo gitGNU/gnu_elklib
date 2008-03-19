@@ -27,24 +27,15 @@ my $program = "undefined-symbols";
 
 my %symbols = ();
 
-sub define_symbol ($)
+sub add_flag ($$)
 {
     my $name = shift;
+    my $type = shift;
 
-    defined($name) || die "Missing name for defined symbol";
+    defined($name)    || die "Missing name for updating symbol";
+    defined($type)    || die "Missing type for updating symbol $name";
 
-#    print "Defining   symbol $name\n";
-    $symbols{$name} = 1;
-}
-
-sub undefine_symbol ($)
-{
-    my $name = shift;
-
-    defined($name) || die "Missing name for undefined symbol";
-
-#    print "Undefining symbol $name\n";
-    $symbols{$name} = 0;
+    push @{ $symbols{$name} }, $type;
 }
 
 #
@@ -63,13 +54,11 @@ while (<STDIN>) {
 	my $type    = $2;
 	my $name    = $3;
 
-	if ($type eq "T") {
-	    define_symbol($name);
-	}
+	add_flag($name, $type);
     } elsif ($_ =~ m/^U (.+)$/) {
 	my $name = $1;
 
-	undefine_symbol($name);
+	add_flag($name, "U");
     } elsif ($_ =~ m/^$/) {
 	# Skip empty lines
     } else {
@@ -78,44 +67,59 @@ while (<STDIN>) {
     }
 }
 
+# Output
+print STDOUT "\n";
 {
-    # Filter the hash by selecting only the defined symbols
-    my %sorted = ();
+    print STDOUT "All symbols:\n";
 
     for my $symbol (keys(%symbols)) {
-	if ($symbols{$symbol} == 1) {
-	    $sorted{$symbol} = $symbols{$symbol};
+	print STDOUT "    $symbol  [ ";
+	foreach my $i ( 0 .. $#{ $symbols{$symbol} } ) {
+	    print STDOUT "$symbols{$symbol}[$i] ";
 	}
-    }
-
-    my @keys = sort { $a cmp $b } keys %sorted;
-
-    print STDOUT "Defined symbols:\n";
-    for my $symbol (@keys) {
-	if ($symbols{$symbol} == 1) {
-	    print STDOUT "    $symbol\n";
-	}
+	print STDOUT "]\n";
     }
 }
-
-{
-    # Filter the hash by selecting only the undefined symbols
-    my %sorted = ();
-
-    for my $symbol (keys(%symbols)) {
-	if ($symbols{$symbol} == 0) {
-	    $sorted{$symbol} = $symbols{$symbol};
-	}
-    }
-
-    my @keys = sort { $a cmp $b } keys %sorted;
-
-    print STDOUT "Undefined symbols:\n";
-    for my $symbol (@keys) {
-	if ($symbols{$symbol} == 0) {
-	    print STDOUT "    $symbol\n";
-	}
-    }
-}
+#print STDOUT "\n";
+#{
+#    # Filter the hash by selecting only the defined symbols
+#    my %sorted = ();
+#
+#    for my $symbol (keys(%symbols)) {
+#	if ($symbols{$symbol} == 1) {
+#	    $sorted{$symbol} = $symbols{$symbol};
+#	}
+#    }
+#
+#    my @keys = sort { $a cmp $b } keys %sorted;
+#
+#    print STDOUT "Defined symbols:\n";
+#    for my $symbol (@keys) {
+#	if ($symbols{$symbol} == 1) {
+#	    print STDOUT "    $symbol\n";
+#	}
+#    }
+#}
+#print STDOUT "\n";
+#{
+#    # Filter the hash by selecting only the undefined symbols
+#    my %sorted = ();
+#
+#    for my $symbol (keys(%symbols)) {
+#	if ($symbols{$symbol} == 0) {
+#	    $sorted{$symbol} = $symbols{$symbol};
+#	}
+#    }
+#
+#    my @keys = sort { $a cmp $b } keys %sorted;
+#
+#    print STDOUT "Undefined symbols:\n";
+#    for my $symbol (@keys) {
+#	if ($symbols{$symbol} == 0) {
+#	    print STDOUT "    $symbol\n";
+#	}
+#    }
+#}
+print STDOUT "\n";
 
 exit 0;
