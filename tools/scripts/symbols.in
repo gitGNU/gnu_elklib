@@ -25,7 +25,9 @@ use warnings;
 
 my $program = "undefined-symbols";
 
-my %symbols = ();
+my %symbols  = ();
+my @exported = [];
+my @imported = [];
 
 sub add_flag ($$)
 {
@@ -36,6 +38,34 @@ sub add_flag ($$)
     defined($type)    || die "Missing type for updating symbol $name";
 
     push @{ $symbols{$name} }, $type;
+}
+
+sub simplify_flags
+{
+    for my $symbol (keys(%symbols)) {
+	my $seen_U;
+	my $seen_T;
+
+	$seen_U = 0;
+	$seen_T = 0;
+
+	foreach my $i ( 0 .. $#{ $symbols{$symbol} } ) {
+	    my $flag;
+	    
+	    $flag = @{ $symbols{$symbol} }[$i];
+	    if ($flag eq "U") {
+		$seen_U = 1;
+	    } elsif ($flag eq "T") {
+		$seen_T = 1;
+	    }
+	}
+
+	if ($seen_T && $seen_U) {
+	    push(@exported, $symbol);
+	} elsif ($seen_U) {
+	    push(@imported, $symbol);
+	}
+    }
 }
 
 #
@@ -67,6 +97,8 @@ while (<STDIN>) {
     }
 }
 
+simplify_flags();
+
 # Output
 print STDOUT "\n";
 {
@@ -80,46 +112,23 @@ print STDOUT "\n";
 	print STDOUT "]\n";
     }
 }
-#print STDOUT "\n";
-#{
-#    # Filter the hash by selecting only the defined symbols
-#    my %sorted = ();
-#
-#    for my $symbol (keys(%symbols)) {
-#	if ($symbols{$symbol} == 1) {
-#	    $sorted{$symbol} = $symbols{$symbol};
-#	}
-#    }
-#
-#    my @keys = sort { $a cmp $b } keys %sorted;
-#
-#    print STDOUT "Defined symbols:\n";
-#    for my $symbol (@keys) {
-#	if ($symbols{$symbol} == 1) {
-#	    print STDOUT "    $symbol\n";
-#	}
-#    }
-#}
-#print STDOUT "\n";
-#{
-#    # Filter the hash by selecting only the undefined symbols
-#    my %sorted = ();
-#
-#    for my $symbol (keys(%symbols)) {
-#	if ($symbols{$symbol} == 0) {
-#	    $sorted{$symbol} = $symbols{$symbol};
-#	}
-#    }
-#
-#    my @keys = sort { $a cmp $b } keys %sorted;
-#
-#    print STDOUT "Undefined symbols:\n";
-#    for my $symbol (@keys) {
-#	if ($symbols{$symbol} == 0) {
-#	    print STDOUT "    $symbol\n";
-#	}
-#    }
-#}
+
+print STDOUT "\n";
+{
+    print STDOUT "Exported symbols:\n";
+    for my $symbol (@exported) {
+	print STDOUT "    $symbol\n";
+    }
+}
+
+print STDOUT "\n";
+{
+    print STDOUT "Imported symbols:\n";
+    for my $symbol (@imported) {
+	print STDOUT "    $symbol\n";
+    }
+}
+
 print STDOUT "\n";
 
 exit 0;
