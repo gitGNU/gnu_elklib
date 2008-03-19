@@ -25,7 +25,7 @@ use warnings;
 
 my $program = "undefined-symbols";
 
-my %symbols = {};
+my %symbols = ();
 
 sub define_symbol ($)
 {
@@ -33,7 +33,7 @@ sub define_symbol ($)
 
     defined($name) || die "Missing name for defined symbol";
 
-    print "Defining symbol $name\n";
+#    print "Defining   symbol $name\n";
     $symbols{$name} = 1;
 }
 
@@ -43,7 +43,7 @@ sub undefine_symbol ($)
 
     defined($name) || die "Missing name for undefined symbol";
 
-    print "Undefining symbol $name\n";
+#    print "Undefining symbol $name\n";
     $symbols{$name} = 0;
 }
 
@@ -58,7 +58,7 @@ while (<STDIN>) {
     
     if ($_ =~ m/^[a-zA-Z0-9_\-\.]+:$/) {
 	# Skip library declaration
-    } elsif ($_ =~ m/^([0-9a-fA-F]+) (.) (.+)$/) {
+    } elsif ($_ =~ m/^([0-9a-fA-F]+) ([ABCDGINRSTVWabcdginrstuvw\-\?]) (.+)$/) {
 	my $address = $1;
 	my $type    = $2;
 	my $name    = $3;
@@ -78,12 +78,17 @@ while (<STDIN>) {
     }
 }
 
+#print STDOUT "Defined symbols:\n";
+#for my $symbol (keys(%symbols)) {
+#    if ($symbols{$symbol} == 1) {
+#	print STDOUT "    $symbol\n";
+#    }
+#}
+
+print STDOUT "Undefined symbols:\n";
 for my $symbol (keys(%symbols)) {
-    print "Symbol = $symbol\n";
     if ($symbols{$symbol} == 0) {
-	print STDOUT "$program: undefined $symbol\n";
-    } else {
-	print STDOUT "$program: defined   $symbol\n";
+	print STDOUT "    $symbol\n";
     }
 }
 
