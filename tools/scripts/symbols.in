@@ -25,9 +25,9 @@ use warnings;
 
 my $program = "undefined-symbols";
 
-my %symbols  = ();
-my @exported = [];
-my @imported = [];
+my %symbols;
+my @exported;
+my @imported;
 
 sub add_flag ($$)
 {
@@ -60,10 +60,14 @@ sub simplify_flags
 	    }
 	}
 
-	if ($seen_T && $seen_U) {
+	if ($seen_T) {
 	    push(@exported, $symbol);
-	} elsif ($seen_U) {
+	    next;
+	}
+
+	if ($seen_U) {
 	    push(@imported, $symbol);
+	    next;
 	}
     }
 }
