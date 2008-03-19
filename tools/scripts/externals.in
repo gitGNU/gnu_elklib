@@ -55,7 +55,7 @@ while (<STDIN>) {
     s/[ \t]+/ /;
     s/^[ ]*//;
     s/[ ]*$//;
-    
+
     if ($_ =~ m/^[a-zA-Z0-9_\-\.]+:$/) {
 	# Skip library declaration
     } elsif ($_ =~ m/^([0-9a-fA-F]+) ([ABCDGINRSTVWabcdginrstuvw\-\?]) (.+)$/) {
@@ -78,17 +78,43 @@ while (<STDIN>) {
     }
 }
 
-#print STDOUT "Defined symbols:\n";
-#for my $symbol (keys(%symbols)) {
-#    if ($symbols{$symbol} == 1) {
-#	print STDOUT "    $symbol\n";
-#    }
-#}
+{
+    # Filter the hash by selecting only the defined symbols
+    my %sorted = ();
 
-print STDOUT "Undefined symbols:\n";
-for my $symbol (keys(%symbols)) {
-    if ($symbols{$symbol} == 0) {
-	print STDOUT "    $symbol\n";
+    for my $symbol (keys(%symbols)) {
+	if ($symbols{$symbol} == 1) {
+	    $sorted{$symbol} = $symbols{$symbol};
+	}
+    }
+
+    my @keys = sort { $a cmp $b } keys %sorted;
+
+    print STDOUT "Defined symbols:\n";
+    for my $symbol (@keys) {
+	if ($symbols{$symbol} == 1) {
+	    print STDOUT "    $symbol\n";
+	}
+    }
+}
+
+{
+    # Filter the hash by selecting only the undefined symbols
+    my %sorted = ();
+
+    for my $symbol (keys(%symbols)) {
+	if ($symbols{$symbol} == 0) {
+	    $sorted{$symbol} = $symbols{$symbol};
+	}
+    }
+
+    my @keys = sort { $a cmp $b } keys %sorted;
+
+    print STDOUT "Undefined symbols:\n";
+    for my $symbol (@keys) {
+	if ($symbols{$symbol} == 0) {
+	    print STDOUT "    $symbol\n";
+	}
     }
 }
 
