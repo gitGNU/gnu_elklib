@@ -138,28 +138,26 @@ while (<STDIN>) {
 simplify_flags();
 
 # Output
+if ($show_report) { print STDOUT "\n"; }
+
 if ($show_exported) {
-    if ($show_report) { print STDOUT "\n"; }
-    {
-	if ($show_report) { print STDOUT "Exported symbols:\n"; }
-	for my $symbol (@exported) {
-	    if ($show_report) {	print STDOUT "    "; }
-	    print STDOUT $symbol . "\n";
-	}
+    if ($show_report) { print STDOUT "Exported symbols:\n"; }
+    for my $symbol (@exported) {
+	if ($show_report) {	print STDOUT "    "; }
+	print STDOUT $symbol . "\n";
     }
-    if ($show_report) {	print STDOUT "\n"; }
 }
 
+if ($show_imported && $show_exported && $show_report) { print STDOUT "\n"; }
+
 if ($show_imported) {
-    if ($show_report) { print STDOUT "\n"; }
-    {
-	if ($show_report) { print STDOUT "Imported symbols:\n"; }
-	for my $symbol (@imported) {
-	    if ($show_report) { print STDOUT "    "; }
-	    print STDOUT $symbol . "\n";
-	}
+    if ($show_report) { print STDOUT "Imported symbols:\n"; }
+    for my $symbol (@imported) {
+	if ($show_report) { print STDOUT "    "; }
+	print STDOUT $symbol . "\n";
     }
-    if ($show_report) { print STDOUT "\n"; }
 }
+
+if ($show_report) { print STDOUT "\n"; }
 
 exit 0;
