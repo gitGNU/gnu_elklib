@@ -43,6 +43,9 @@ libc_SRCS =					\
 	libc/mcheck.c				\
 	libc/ctype.c
 
+libcxx_SRCS =					\
+	libc++/vector.cxx
+
 libm_SRCS =					\
 	libm/math.c
 
@@ -55,6 +58,7 @@ libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
 libelk_@target_cpu@_a_SOURCES  =		\
 	$(libc_SRCS)				\
+	$(libcxx_SRCS)				\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
 

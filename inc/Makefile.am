@@ -51,6 +51,9 @@ libc_HDRS =					\
 	libc/param.h				\
 	libc/errno.h
 
+libcxx_HDRS =					\
+	libc++/vector
+
 libm_HDRS =					\
 	libm/math.h
 
@@ -68,6 +71,7 @@ nobase_incdest_HEADERS  =			\
 	debug.h					\
 	externals.h				\
 	$(libc_HDRS)				\
+	$(libcxx_HDRS)				\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)
 
