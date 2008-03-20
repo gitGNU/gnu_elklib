@@ -53,6 +53,7 @@ AX_PATH_MISSING([DOXYGEN],  [doxygen])
 AX_PATH_MISSING([SITETOOL], [sitetool])
 AX_PATH_MISSING([WGET],     [wget])
 AX_PATH_MISSING([PERL],     [perl])
+AX_PATH_MISSING([NM],	    [nm])
 
 # Gather supported flags while checking programs and their features
 AX_CONFIG_ASFLAGS=""
