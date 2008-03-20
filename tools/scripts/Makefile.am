@@ -24,7 +24,7 @@ EXTRA_DIST =					\
 	fetch.in				\
 	gitlog2ChangeLog.in			\
 	NEWS-query.in				\
-	symbols
+	symbols.in
 
 noinst_SCRIPTS =				\
 	fetch					\
