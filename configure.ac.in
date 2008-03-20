@@ -55,6 +55,20 @@ AX_PATH_MISSING([WGET],     [wget])
 AX_PATH_MISSING([PERL],     [perl])
 AX_PATH_MISSING([NM],	    [nm])
 
+# Parameters
+AC_ARG_ENABLE([cxx_support],
+  AS_HELP_STRING([--disable-c++-support],
+                 [disable C++ support]),[
+  enable_cxx_support=no
+],[
+  enable_cxx_support=yes
+])
+AS_IF([enable_cxx_support],[
+  AC_MSG_NOTICE([C++ support disabled])
+],[
+  AC_MSG_NOTICE([C++ support enabled])
+])
+
 # Gather supported flags while checking programs and their features
 AX_CONFIG_ASFLAGS=""
 AX_CONFIG_CPPFLAGS=""
