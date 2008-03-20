@@ -76,6 +76,28 @@ sub simplify_flags
 # Main
 #
 
+my $show_imported;
+my $show_exported;
+
+$show_exported = 0;
+$show_imported = 0;
+
+if ($#ARGV < 0) {
+    printf STDERR "Missing parameters\n";
+}
+for my $i (0 .. $#ARGV) {
+    if ($ARGV[$i] eq "-i") {
+	$show_imported = 1;
+    }
+    if ($ARGV[$i] eq "-e") {
+	$show_exported = 1;
+    }
+}
+
+if (!$show_imported && !$show_exported) {
+    print STDERR "Missing parameter\n";
+}
+
 while (<STDIN>) {
     s/[ \t]+/ /;
     s/^[ ]*//;
@@ -104,35 +126,26 @@ while (<STDIN>) {
 simplify_flags();
 
 # Output
-print STDOUT "\n";
-{
-    print STDOUT "All symbols:\n";
-
-    for my $symbol (keys(%symbols)) {
-	print STDOUT "    $symbol  [ ";
-	foreach my $i ( 0 .. $#{ $symbols{$symbol} } ) {
-	    print STDOUT "$symbols{$symbol}[$i] ";
+if ($show_imported) {
+    print STDOUT "\n";
+    {
+	print STDOUT "Exported symbols:\n";
+	for my $symbol (@exported) {
+	    print STDOUT "    $symbol\n";
 	}
-	print STDOUT "]\n";
     }
+    print STDOUT "\n";
 }
 
-print STDOUT "\n";
-{
-    print STDOUT "Exported symbols:\n";
-    for my $symbol (@exported) {
-	print STDOUT "    $symbol\n";
+if ($show_exported) {
+    print STDOUT "\n";
+    {
+	print STDOUT "Imported symbols:\n";
+	for my $symbol (@imported) {
+	    print STDOUT "    $symbol\n";
+	}
     }
+    print STDOUT "\n";
 }
-
-print STDOUT "\n";
-{
-    print STDOUT "Imported symbols:\n";
-    for my $symbol (@imported) {
-	print STDOUT "    $symbol\n";
-    }
-}
-
-print STDOUT "\n";
 
 exit 0;
