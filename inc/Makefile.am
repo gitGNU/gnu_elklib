@@ -52,19 +52,19 @@ libc_HDRS =					\
 	libc/errno.h
 
 libcxx_HDRS =					\
-	libc++/vector				\
-	libc++/cmath				\
-	libc++/cstdint				\
 	libc++/cassert				\
-	libc++/cfloat				\
-	libc++/cstring				\
-	libc++/cstddef				\
-	libc++/cstdarg				\
 	libc++/cctype				\
+	libc++/cerrno				\
+	libc++/cfloat				\
 	libc++/climits				\
-	libc++/cstdlib				\
+	libc++/cmath				\
+	libc++/cstdarg				\
+	libc++/cstddef				\
+	libc++/cstdint				\
 	libc++/cstdio				\
-	libc++/cerrno
+	libc++/cstdlib				\
+	libc++/cstring				\
+	libc++/vector
 
 libm_HDRS =					\
 	libm/math.h
