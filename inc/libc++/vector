@@ -16,15 +16,22 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#if 0
 namespace ktl
 {
-	template<T> class vector {
+	template<typename T> class vector {
 	public:
 		vector(void);
 		~vector(void);
 
 	private:
 	};
+
+	template<typename T> vector<T>::vector(void)
+	{
+	}
+
+	template<typename T> vector<T>::~vector(void)
+	{
+	}
 }
-#endif
+

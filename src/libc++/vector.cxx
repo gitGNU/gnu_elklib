@@ -19,12 +19,4 @@
 #include "config.h"
 #include "libc++/vector"
 
-#if 0
-template ktl::vector<T>(void)
-{
-}
-
-template ktl::~vector<T>(void)
-{
-}
-#endif
+ktl::vector<int> x;
