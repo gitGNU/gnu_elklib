@@ -44,6 +44,7 @@ libc_SRCS =					\
 	libc/ctype.c
 
 libcxx_SRCS =					\
+	libc++/glue.cxx				\
 	libc++/vector.cxx
 
 libm_SRCS =					\
