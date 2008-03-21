@@ -78,7 +78,7 @@ nobase_incdest_HEADERS  =			\
 check-local:
 	for i in $(nobase_incdest_HEADERS) ; do \
 		if grep "\#include" $$i | grep "config\.h" ; then \
-			echo "Header file \`$$i' contains config.h" ; \
+			echo "Header file \`$$i' must not include config.h" ; \
 			exit 1 ; \
 		fi ; \
 	done
