@@ -1,3 +1,4 @@
+#if 0
 //
 // Copyright (C) 2007, 2008 Francesco Salvestrini
 //
@@ -49,4 +50,4 @@ namespace ktl
 	{
 	}
 }
-
+#endif
