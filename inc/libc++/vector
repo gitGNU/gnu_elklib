@@ -20,7 +20,6 @@ namespace ktl
 {
 	template<typename T> class vector {
 	public:
-#if 0
                 typedef T                  value_type;
                 typedef value_type *       pointer;
                 typedef const value_type * const_pointer;
@@ -28,7 +27,6 @@ namespace ktl
                 typedef const value_type & const_reference;
                 typedef pointer            iterator;
                 typedef const_pointer      const_iterator;
-#endif
 
 		vector(void);
 #if 0
