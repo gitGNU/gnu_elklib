@@ -51,7 +51,7 @@ sub simplify_flags
 
 	foreach my $i ( 0 .. $#{ $symbols{$symbol} } ) {
 	    my $flag;
-	    
+
 	    $flag = @{ $symbols{$symbol} }[$i];
 	    if ($flag eq "U") {
 		$seen_U = 1;
@@ -116,7 +116,7 @@ while (<STDIN>) {
     s/[ ]*$//;
 
     if ($_ =~ m/^[a-zA-Z0-9_\-\.]+:$/) {
-	# Skip library declaration
+# Skip library declaration
     } elsif ($_ =~ m/^([0-9a-fA-F]+) ([ABCDGINRSTVWabcdginrstuvw\-\?]) (.+)$/) {
 	my $address = $1;
 	my $type    = $2;
@@ -128,7 +128,7 @@ while (<STDIN>) {
 
 	add_flag($name, "U");
     } elsif ($_ =~ m/^$/) {
-	# Skip empty lines
+# Skip empty lines
     } else {
 	print STDERR "$program: Unhandled input line \`" . $_ . "'\n";
 	exit 1;
@@ -142,7 +142,11 @@ if ($show_report) { print STDOUT "\n"; }
 
 if ($show_exported) {
     if ($show_report) { print STDOUT "Exported symbols:\n"; }
-    for my $symbol (@exported) {
+
+    my @sorted;
+
+    @sorted = sort { $a cmp $b } @exported;
+    for my $symbol (@sorted) {
 	if ($show_report) {	print STDOUT "    "; }
 	print STDOUT $symbol . "\n";
     }
@@ -152,7 +156,11 @@ if ($show_imported && $show_exported && $show_report) { print STDOUT "\n"; }
 
 if ($show_imported) {
     if ($show_report) { print STDOUT "Imported symbols:\n"; }
-    for my $symbol (@imported) {
+
+    my @sorted;
+
+    @sorted = sort { $a cmp $b } @imported;
+    for my $symbol (@sorted) {
 	if ($show_report) { print STDOUT "    "; }
 	print STDOUT $symbol . "\n";
     }
