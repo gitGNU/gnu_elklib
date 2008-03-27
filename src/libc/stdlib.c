@@ -30,14 +30,14 @@
 #include "libcompiler/macro.h"
 #include "libcompiler/compiler.h"
 
-long strtol(const char*  cp,
-	    char**       endp,
+long strtol(const char*	 cp,
+	    char**	 endp,
 	    unsigned int base)
 {
 	if (*cp == '-') {
 		return (-1 * strtoul(cp + 1, endp, base));
 	}
-	
+
 	return strtoul(cp, endp, base);
 }
 
@@ -48,12 +48,12 @@ long long strtoll(const char*  cp,
 	if (*cp=='-') {
 		return (-1 * strtoull(cp + 1, endp, base));
 	}
-	
+
 	return strtoull(cp, endp, base);
 }
 
 unsigned long strtoul(const char*  cp,
-		      char**       endp,
+		      char**	   endp,
 		      unsigned int base)
 {
 	unsigned long result = 0;
@@ -85,12 +85,12 @@ unsigned long strtoul(const char*  cp,
 	return result;
 }
 
-unsigned long long strtoull(const char*  cp,
-			    char**       endp,
+unsigned long long strtoull(const char*	 cp,
+			    char**	 endp,
 			    unsigned int base)
 {
 	unsigned long long result = 0,value;
-	
+
 	if (!base) {
 		base = 10;
 		if (*cp == '0') {
@@ -117,95 +117,95 @@ unsigned long long strtoull(const char*  cp,
 }
 
 double strtod(const char* s,
-	      char**      scan_end)
+	      char**	  scan_end)
 {
-        int            sign;
-	int            i;
-        double         value;
-        double         result;
-        double         mantissa;
-	double         divisor;
-        unsigned short power;
+	int	       sign;
+	int	       i;
+	double	       value;
+	double	       result;
+	double	       mantissa;
+	double	       divisor;
+	unsigned short power;
 
-	result   = 0;
+	result	 = 0;
 	mantissa = 0;
-	divisor  = 1;
-	power    = 0;
+	divisor	 = 1;
+	power	 = 0;
 
-        /* Evaluate sign */
-        if (*s == '-') {
-                sign = -1;
-                s++;
-        } else {
-                sign = 1;
+	/* Evaluate sign */
+	if (*s == '-') {
+		sign = -1;
+		s++;
+	} else {
+		sign = 1;
 	}
 
-        /* Skip trailing zeros */
-        while (*s == '0') {
-                s++;
+	/* Skip trailing zeros */
+	while (*s == '0') {
+		s++;
 	}
 
-        /* Convert integer part */
-        while (*s <= '9' && *s >= '0') {
-                value = *s++ - '0';
-                result *= 10.0;
-                result += value;
-        }
+	/* Convert integer part */
+	while (*s <= '9' && *s >= '0') {
+		value = *s++ - '0';
+		result *= 10.0;
+		result += value;
+	}
 
-        /* Detect floating point & mantissa */
-        if (*s == '.') {
-                s++;
-                while (*s <= '9' && *s >= '0') {
-                        value     = *s++ - '0';
-                        mantissa *= 10.0;
-                        mantissa += value;
-                        divisor  *= 10.0;
-                }
-        }
-        mantissa /= divisor;
+	/* Detect floating point & mantissa */
+	if (*s == '.') {
+		s++;
+		while (*s <= '9' && *s >= '0') {
+			value	  = *s++ - '0';
+			mantissa *= 10.0;
+			mantissa += value;
+			divisor	 *= 10.0;
+		}
+	}
+	mantissa /= divisor;
 
-        /* Adjust result */
-        result += mantissa;
+	/* Adjust result */
+	result += mantissa;
 
-        /* Adjust sign */
-        result *= sign;
+	/* Adjust sign */
+	result *= sign;
 
-        /* Detect exponent */
-        if (*s == 'e' || *s == 'E') {
-                s++;
-                if (*s == '-') {
-                        sign = -1;
-                        s++;
-                } else if (*s == '+') {
-                        sign = 1;
-                        s++;
-                } else {
-                        sign = 1;
+	/* Detect exponent */
+	if (*s == 'e' || *s == 'E') {
+		s++;
+		if (*s == '-') {
+			sign = -1;
+			s++;
+		} else if (*s == '+') {
+			sign = 1;
+			s++;
+		} else {
+			sign = 1;
 		}
 
-                while (*s <= '9' && *s >= '0') {
-                        value  = *s++ - '0';
-                        power *= 10.0;
-                        power += value;
-                }
-        }
+		while (*s <= '9' && *s >= '0') {
+			value  = *s++ - '0';
+			power *= 10.0;
+			power += value;
+		}
+	}
 
-        /* Adjust result on exponent sign */
-        if (sign > 0) {
-                for (i = 0; i < power; i++) {
-                        result *= 10.0;
+	/* Adjust result on exponent sign */
+	if (sign > 0) {
+		for (i = 0; i < power; i++) {
+			result *= 10.0;
 		}
 	} else {
-                for (i = 0; i < power; i++) {
-                        result /= 10.0;
+		for (i = 0; i < power; i++) {
+			result /= 10.0;
 		}
 	}
 
-        if (scan_end != 0L) {
-                *scan_end = (char *) s;
+	if (scan_end != 0L) {
+		*scan_end = (char *) s;
 	}
 
-        return result;
+	return result;
 }
 
 int abs(int n)
@@ -250,99 +250,99 @@ div_t div(int num,
 {
 	div_t r;
 
-        r.quot = num / denom;
-        r.rem  = num % denom;
+	r.quot = num / denom;
+	r.rem  = num % denom;
 
-        /*
+	/*
 	 * NOTE:
-         *     The ANSI standard says that |r.quot| <= |n/d|, where
-         *     n/d is to be computed in infinite precision.  In other
-         *     words, we should always truncate the quotient towards
-         *     0, never -infinity or +infinity.
-         *     
-         *     Machine division and remainer may work either way when
-         *     one or both of n or d is negative.  If only one is
-         *     negative and r.quot has been truncated towards -inf,
-         *     r.rem will have the same sign as denom and the opposite
-         *     sign of num; if both are negative and r.quot has been
-         *     truncated towards -inf, r.rem will be positive (will
-         *     have the opposite sign of num).  These are considered
-         *     `wrong'.
-         *     
-         *     If both are num and denom are positive, r will always
-         *     be positive.
-         *     
-         *     This all boils down to:
-         *          if num >= 0, but r.rem < 0, we got the wrong answer.
-         *     In that case, to get the right answer, add 1 to r.quot and
-         *     subtract denom from r.rem.
-         *          if num < 0, but r.rem > 0, we also have the wrong answer.
-         *     In this case, to get the right answer, subtract 1 from r.quot
+	 *     The ANSI standard says that |r.quot| <= |n/d|, where
+	 *     n/d is to be computed in infinite precision.  In other
+	 *     words, we should always truncate the quotient towards
+	 *     0, never -infinity or +infinity.
+	 *
+	 *     Machine division and remainer may work either way when
+	 *     one or both of n or d is negative.  If only one is
+	 *     negative and r.quot has been truncated towards -inf,
+	 *     r.rem will have the same sign as denom and the opposite
+	 *     sign of num; if both are negative and r.quot has been
+	 *     truncated towards -inf, r.rem will be positive (will
+	 *     have the opposite sign of num).	These are considered
+	 *     `wrong'.
+	 *
+	 *     If both are num and denom are positive, r will always
+	 *     be positive.
+	 *
+	 *     This all boils down to:
+	 *	    if num >= 0, but r.rem < 0, we got the wrong answer.
+	 *     In that case, to get the right answer, add 1 to r.quot and
+	 *     subtract denom from r.rem.
+	 *	    if num < 0, but r.rem > 0, we also have the wrong answer.
+	 *     In this case, to get the right answer, subtract 1 from r.quot
 	 *     and add denom to r.rem.
 	 *
-         */
-        if (num >= 0 && r.rem < 0) {
-                ++r.quot;
-                r.rem -= denom;
-        } else if (num < 0 && r.rem > 0) {
-                --r.quot;
-                r.rem += denom;
-        }
+	 */
+	if (num >= 0 && r.rem < 0) {
+		++r.quot;
+		r.rem -= denom;
+	} else if (num < 0 && r.rem > 0) {
+		--r.quot;
+		r.rem += denom;
+	}
 
-        return r;
+	return r;
 }
 
 ldiv_t ldiv(long num,
 	    long denom)
 {
-        ldiv_t r;
+	ldiv_t r;
 
-        r.quot = num / denom;
-        r.rem  = num % denom;
+	r.quot = num / denom;
+	r.rem  = num % denom;
 
-        if (num >= 0 && r.rem < 0) {
-                ++r.quot;
-                r.rem -= denom;
-        } else if (num < 0 && r.rem > 0) {
-                --r.quot;
-                r.rem += denom;
-        }
+	if (num >= 0 && r.rem < 0) {
+		++r.quot;
+		r.rem -= denom;
+	} else if (num < 0 && r.rem > 0) {
+		--r.quot;
+		r.rem += denom;
+	}
 
-        return r;
+	return r;
 }
 
 lldiv_t lldiv(long long num,
 	      long long denom)
 {
-        lldiv_t r;
+	lldiv_t r;
 
-        r.quot = num / denom;
-        r.rem  = num % denom;
+	r.quot = num / denom;
+	r.rem  = num % denom;
 
-        if (num >= 0 && r.rem < 0) {
-                ++r.quot;
-                r.rem -= denom;
-        } else if (num < 0 && r.rem > 0) {
-                --r.quot;
-                r.rem += denom;
-        }
+	if (num >= 0 && r.rem < 0) {
+		++r.quot;
+		r.rem -= denom;
+	} else if (num < 0 && r.rem > 0) {
+		--r.quot;
+		r.rem += denom;
+	}
 
-        return r;
+	return r;
 }
 
 #define DEBUG_CHECK_DOUBLE_FREE 1
-#define DEBUG_MALLOC_SIGNATURE  1
+#define DEBUG_MALLOC_SIGNATURE	1
 
 #if DEBUG_MALLOC_SIGNATURE
-#define SIGNATURE_MAGIC  0xDDEEAADD
+#define SIGNATURE_MAGIC	 0xDDEEAADD
 #define SIGNATURE_HEADER 0xDEAD0101
 #define SIGNATURE_FOOTER 0x0220DEAD
-#define SIGNATURE_NONE   0xDEDEADAD
+#define SIGNATURE_NONE	 0xDEDEADAD
 
 static void* signed_alloc(unsigned int size)
 {
 	unsigned int real_size;
-	void*        ptr;
+	void*	     ptr;
 
 	/* Add signature */
 
@@ -368,7 +368,7 @@ static void* signed_alloc(unsigned int size)
 
 		tmp = ptr + size - sizeof(uint_t);
 		* (uint_t *) tmp = SIGNATURE_FOOTER;
-		
+
 		ptr = ptr +
 			sizeof(uint_t) +
 			sizeof(uint_t) +
@@ -386,7 +386,7 @@ static void signed_free(void* address)
 
 	real_address = address;
 	if (real_address) {
-		void*        ptr;
+		void*	     ptr;
 		unsigned int size;
 		unsigned int tmp;
 
@@ -423,8 +423,8 @@ static void signed_free(void* address)
 		size = * (uint_t *) ptr;
 
 		/* Check for signature footer */
-		ptr = address + size - sizeof(uint_t); 
-		tmp = (* (uint_t *) ptr); 
+		ptr = address + size - sizeof(uint_t);
+		tmp = (* (uint_t *) ptr);
 		if (tmp == SIGNATURE_FOOTER) {
 			panic("Bad signature footer (0x%x) "
 			      "for memory block at address %p\n",
@@ -487,7 +487,7 @@ void* calloc(size_t nmemb, size_t size)
 
 	p = NULL;
 	s = nmemb * size;
-	if (s) {		
+	if (s) {
 		p = malloc(s);
 		if (p) {
 			memset(p, 0, s);
@@ -499,30 +499,30 @@ void* calloc(size_t nmemb, size_t size)
 
 void* realloc(void* ptr, size_t size)
 {
-        void* p;
+	void* p;
 
 	if (__realloc_hook) {
 		/* XXX-FIXME: Add code here */
 		return ((__realloc_hook)(ptr, size, NULL));
 	}
 
-        if (ptr == NULL) {
-                p = malloc(size);
-                return p;
-        }
+	if (ptr == NULL) {
+		p = malloc(size);
+		return p;
+	}
 
-        if (size == 0) {
-                free(ptr);
-                return malloc(0);
-        }
+	if (size == 0) {
+		free(ptr);
+		return malloc(0);
+	}
 
 	p = malloc(size);
-        if (p != NULL) {
-                memcpy(p, ptr, size);	
+	if (p != NULL) {
+		memcpy(p, ptr, size);
 		free(ptr);
 	}
-	
-        return p;
+
+	return p;
 }
 
 void* memalign(size_t boundary, size_t size)
@@ -552,16 +552,16 @@ void* valloc(size_t size)
 #if 0 /* Reenable when needed */
 void* bsearch(const void* key,
 	      const void* base,
-	      size_t      nmemb,
-	      size_t      size,
-	      int         (* compar)(const void* , const void* ))
+	      size_t	  nmemb,
+	      size_t	  size,
+	      int	  (* compar)(const void* , const void* ))
 {
-	char*        lo;
-	char*        hi;
-	char*        mid;
+	char*	     lo;
+	char*	     hi;
+	char*	     mid;
 	unsigned int half;
-	int          result;
-	
+	int	     result;
+
 	lo = (char *) base;
 	hi = (char *) base + (nmemb - 1) * size;
 
@@ -597,24 +597,24 @@ void qsort(void*  base,
 	   size_t size,
 	   int (*compar)(const void *, const void *))
 {
-        size_t wgap;
+	size_t wgap;
 	size_t i;
 	size_t j;
 	size_t k;
-        char   tmp;
+	char   tmp;
 
 	assert(base);
 	assert(compar);
 
-        if ((nmemb > 1) && (size > 0)) {
-                assert(nmemb <= ((size_t)(-1)) / size);
+	if ((nmemb > 1) && (size > 0)) {
+		assert(nmemb <= ((size_t)(-1)) / size);
 
-                wgap = 0;
-                do {
-                        wgap = 3 * wgap + 1;
-                } while (wgap < (nmemb - 1) / 3);
+		wgap = 0;
+		do {
+			wgap = 3 * wgap + 1;
+		} while (wgap < (nmemb - 1) / 3);
 
-                /*
+		/*
 		 * NOTE:
 		 *     From the above, we know that either:
 		 *
@@ -622,45 +622,45 @@ void qsort(void*  base,
 		 *
 		 * or
 		 *
-                 *     ((wgap - 1) / 3 < (int) ((nmemb - 1) / 3) <=
+		 *     ((wgap - 1) / 3 < (int) ((nmemb - 1) / 3) <=
 		 *     (nmemb - 1) / 3
 		 *
 		 * This means that (wgap < nmemb)
 		 *
 		 */
-                wgap  *= size; /* So this can not overflow if wnmemb doesn't */
-                nmemb *= size; /* Convert nmemb to wnmemb */
-                do {
-                        i = wgap;
-                        do {
-                                j = i;
-                                do {
-                                        char* a;
-                                        char* b;
+		wgap  *= size; /* So this can not overflow if wnmemb doesn't */
+		nmemb *= size; /* Convert nmemb to wnmemb */
+		do {
+			i = wgap;
+			do {
+				j = i;
+				do {
+					char* a;
+					char* b;
 
-                                        j -= wgap;
-                                        a  = j + ((char *) base);
-                                        b  = a + wgap;
+					j -= wgap;
+					a  = j + ((char *) base);
+					b  = a + wgap;
 
-                                        if ((*compar)(a, b) <= 0) {
-                                                break;
-                                        }
+					if ((*compar)(a, b) <= 0) {
+						break;
+					}
 
-                                        k = size;
+					k = size;
 
-                                        do {
-                                                tmp  = *a;
-                                                *a++ = *b;
-                                                *b++ = tmp;
-                                        } while (--k);
-                                } while (j >= wgap);
+					do {
+						tmp  = *a;
+						*a++ = *b;
+						*b++ = tmp;
+					} while (--k);
+				} while (j >= wgap);
 
-                                i += size;
+				i += size;
 
-                        } while (i < nmemb);
-                        wgap = (wgap - size) / 3;
-                } while (wgap);
-        }
+			} while (i < nmemb);
+			wgap = (wgap - size) / 3;
+		} while (wgap);
+	}
 }
 
 static unsigned long _next = 1;
@@ -691,7 +691,7 @@ int rand_r(unsigned int* seedp)
 	return ((*seedp = *seedp * 1103515245 + 12345) %
 		((unsigned long)RAND_MAX + 1));
 #endif
-	
+
 	return 0;
 }
 
@@ -726,8 +726,8 @@ struct exit_function {
 
 struct exit_function_list {
 	struct exit_function_list *next;
-	size_t                     idx;
-	struct exit_function       fns[ATEXIT_MAX];
+	size_t			   idx;
+	struct exit_function	   fns[ATEXIT_MAX];
 };
 
 static struct exit_function_list  initial;
@@ -768,7 +768,7 @@ void exit(int status) /* __attribute__ ((noreturn)) */
 			}
 		}
 
-		old          = __exit_funcs;
+		old	     = __exit_funcs;
 		__exit_funcs = __exit_funcs->next;
 		if (__exit_funcs != NULL) {
 			/*
@@ -786,14 +786,14 @@ void exit(int status) /* __attribute__ ((noreturn)) */
 static struct exit_function* __new_exitfn(void)
 {
 	struct exit_function_list* l;
-	size_t                     i;
+	size_t			   i;
 
 	/* __libc_lock_lock (lock); */
 
 	i = 0;
 
 	for (l = __exit_funcs; l != NULL; l = l->next) {
-		for (i = 0; i < l->idx; ++i) { 
+		for (i = 0; i < l->idx; ++i) {
 			if (l->fns[i].flavor == ef_free) {
 				break;
 			}
@@ -811,13 +811,13 @@ static struct exit_function* __new_exitfn(void)
 		l = (struct exit_function_list *)
 			malloc (sizeof (struct exit_function_list));
 		if (l != NULL) {
-			l->next      = __exit_funcs;
+			l->next	     = __exit_funcs;
 			__exit_funcs = l;
-			l->idx       = 1;
-			i            = 0;
+			l->idx	     = 1;
+			i	     = 0;
 		}
 	}
-	
+
 	/* Mark entry as used, but we don't know the flavor now */
 	if (l != NULL) {
 		l->fns[i].flavor = ef_us;
@@ -833,11 +833,11 @@ int __cxa_atexit(void  (*func) (void *),
 		 void* dso_handle)
 {
 	struct exit_function* new;
-	
+
 	/*
 	 * NOTE:
-	 *     func       is the function pointer to destructor
-	 *     arg        is the parameter for destructor
+	 *     func	  is the function pointer to destructor
+	 *     arg	  is the parameter for destructor
 	 *     dso_handle is the "home DSO" (DSO = Dynamic Shared Object)
 	 *
 	 * This function should save all three parameters and if successful
@@ -856,9 +856,9 @@ int __cxa_atexit(void  (*func) (void *),
 		return -1;
 	}
 
-	new->flavor              = ef_cxa;
-	new->func.cxa.fn         = (void (*) (void *, int)) func;
-	new->func.cxa.arg        = arg;
+	new->flavor		 = ef_cxa;
+	new->func.cxa.fn	 = (void (*) (void *, int)) func;
+	new->func.cxa.arg	 = arg;
 	new->func.cxa.dso_handle = dso_handle;
 
 	return 0;
@@ -880,8 +880,8 @@ int on_exit(void (*func)(int status, void *arg),
 		return -1;
 	}
 
-	new->flavor      = ef_on;
-	new->func.on.fn  = func;
+	new->flavor	 = ef_on;
+	new->func.on.fn	 = func;
 	new->func.on.arg = arg;
 
 	return 0;
@@ -909,7 +909,7 @@ void __cxa_finalize(void* d)
 
 	for (funcs = __exit_funcs; funcs; funcs = funcs->next) {
 		struct exit_function* f;
-			
+
 		for (f = &funcs->fns[funcs->idx - 1];
 		     f >= &funcs->fns[0];
 		     --f) {
@@ -978,7 +978,7 @@ static int assign_env(unsigned int i,
 
 int setenv(const char* name,
 	   const char* value,
-	   int         overwrite)
+	   int	       overwrite)
 {
 	int i;
 
@@ -990,7 +990,7 @@ int setenv(const char* name,
 				break;
 			}
 		}
-		
+
 		assert(i <= MAX_ENV);
 
 		if (i == MAX_ENV) {
@@ -1003,7 +1003,7 @@ int setenv(const char* name,
 		if (!assign_env(i, name, value)) {
 			return -1;
 		}
-		
+
 		return 0;
 	}
 
@@ -1025,7 +1025,7 @@ int unsetenv(const char *name)
 	if (i == -1) {
 		return -1;
 	}
-	
+
 	assert((i >= 0) && (i < MAX_ENV));
 
 	free(environment[i].name);
@@ -1040,7 +1040,7 @@ int unsetenv(const char *name)
 char* getenv(const char *name)
 {
 	int i;
-	
+
 	i = find_env(name);
 
 	return ((i != -1) ? environment[i].value : NULL);
@@ -1049,16 +1049,15 @@ char* getenv(const char *name)
 int putenv(char *string)
 {
 	char* equal;
-        int   rval;
+	int   rval;
 
-        if ((equal = index(string, '=')) == NULL) {
-                return -1;
-        }
+	if ((equal = index(string, '=')) == NULL) {
+		return -1;
+	}
 
-        *equal = '\0';
+	*equal = '\0';
 
-        rval = setenv(string, equal + 1, 1);
+	rval = setenv(string, equal + 1, 1);
 
-        return rval;
+	return rval;
 }
-
