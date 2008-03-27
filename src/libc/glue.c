@@ -18,6 +18,7 @@
 
 #include "config.h"
 #include "debug.h"
+#include "externals.h"
 #include "libc/stdio.h"
 #include "libcompiler/linker.h"
 #include "libcompiler/macro.h"

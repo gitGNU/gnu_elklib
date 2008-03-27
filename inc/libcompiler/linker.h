@@ -24,16 +24,6 @@
 
 __BEGIN_DECLS
 
-extern void            (*__INIT_LIST__)(void); /* C glue related */
-extern void            (*__INIT_END__)(void);  /* C glue related */
-extern void            (*__FINI_LIST__)(void); /* C glue related */
-extern void            (*__FINI_END__)(void);  /* C glue related */
-
-extern void            (*__CTOR_LIST__)(void); /* C++ glue related */
-extern void            (*__CTOR_END__)(void);  /* C++ glue related */
-extern void            (*__DTOR_LIST__)(void); /* C++ glue related */
-extern void            (*__DTOR_END__)(void);  /* C++ glue related */
-
 __END_DECLS
 
 #endif /* ELKLIB_LIBCOMPILER_LINKER_H */

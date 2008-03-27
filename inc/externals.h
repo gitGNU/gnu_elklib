@@ -21,8 +21,22 @@
 
 #include "elklib.h"
 #include "libcompiler/cdefs.h"
+#include "libc/stdint.h"
 
 __BEGIN_DECLS
+
+extern void (*__INIT_LIST__)(void); /* C glue related */
+extern void (*__INIT_END__)(void);  /* C glue related */
+extern void (*__FINI_LIST__)(void); /* C glue related */
+extern void (*__FINI_END__)(void);  /* C glue related */
+
+extern void (*__CTOR_LIST__)(void); /* C++ glue related */
+extern void (*__CTOR_END__)(void);  /* C++ glue related */
+extern void (*__DTOR_LIST__)(void); /* C++ glue related */
+extern void (*__DTOR_END__)(void);  /* C++ glue related */
+
+extern void* heap_alloc(size_t size);
+extern void  heap_free(void* ptr);
 
 extern void arch_panic(const char* message);
 extern int  arch_vm_pagesize(void);

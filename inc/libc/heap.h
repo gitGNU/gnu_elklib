@@ -25,9 +25,6 @@
 
 __BEGIN_DECLS
 
-extern void* heap_alloc(size_t size);
-extern void  heap_free(void* ptr);
-
 __END_DECLS
 
 #endif /* ELKLIB_LIBC_HEAP_H */

@@ -18,6 +18,7 @@
 
 #include "config.h"
 #include "debug.h"
+#include "externals.h"
 #include "libc/stdio.h"
 #include "libc/stdint.h"
 #include "libc/stdlib.h"
