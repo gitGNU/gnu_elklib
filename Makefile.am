@@ -120,4 +120,9 @@ site: all
 DISTCLEANFILES =
 
 check-local:
-#	$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l
+	imported=`$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l` ; \
+	exported=`grep -c extern inc/externals.h` ; \
+	if test ! "$$imported" = "$$exported" ; then \
+		echo "Imported/exported symbols mismatch" ; \
+		exit 1 ; \
+	fi
