@@ -20,19 +20,23 @@
 #define ELKLIB_LIBC_MALLOC_H
 
 #include "elklib.h"
-#include "libc/stddef.h"
+#include "libc/stdint.h"
 #include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 
-extern void* (*__malloc_hook)(size_t size, const void* caller);
-extern void* (*__realloc_hook)(void* ptr, size_t size, const void* caller);
-extern void* (*__memalign_hook)(size_t      alignment,
-				size_t      size,
-				const void* caller);
-extern void  (*__free_hook)(void* ptr, const void* caller);
-extern void  (*__malloc_initialize_hook)(void);
-extern void  (*__after_morecore_hook)(void);
+void* (*__malloc_hook)(size_t      size,
+		       const void* caller);
+void* (*__realloc_hook)(void*  ptr,
+			size_t size,
+			const void* caller);
+void* (*__memalign_hook)(size_t      alignment,
+			 size_t      size,
+			 const void* caller);
+void  (*__free_hook)(void*       ptr,
+		     const void* caller);
+void  (*__malloc_initialize_hook)(void);
+void  (*__after_morecore_hook)(void);
 
 __END_DECLS
 

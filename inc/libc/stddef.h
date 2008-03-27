@@ -25,7 +25,7 @@
 /*
  * NOTE:
  *     GCC defines NULL and size_t inside <gcc-install-dir>/include/stddef.h
- *     We defines NULL here and size_t inside arch/types.h (because it is arch
+ *     We defines NULL here and size_t in stdint.h (it should be architecture
  *     dependent)
  */
 

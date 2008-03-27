@@ -18,16 +18,13 @@
 
 #include "config.h"
 #include "libc/stddef.h"
+#include "libc/malloc.h"
 
-void* (*__malloc_hook)(size_t      size,
-		       const void* caller)   = 0;
-void* (*__realloc_hook)(void*  ptr,
-			size_t size,
-			const void* caller);
-void* (*__memalign_hook)(size_t      alignment,
-			 size_t      size,
-			 const void* caller) = 0;
-void  (*__free_hook)(void*       ptr,
-		     const void* caller)     = 0;
-void  (*__malloc_initialize_hook)(void)      = 0;
-void  (*__after_morecore_hook)(void)         = 0;
+#if 0
+__malloc_hook            = NULL;
+__realloc_hook           = NULL;
+__memalign_hook          = NULL;
+__free_hook              = NULL;
+__malloc_initialize_hook = NULL;
+__after_morecore_hook    = NULL;
+#endif
