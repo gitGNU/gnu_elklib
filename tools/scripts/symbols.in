@@ -89,6 +89,10 @@ if ($#ARGV < 0) {
     exit 1;
 }
 for my $i (0 .. $#ARGV) {
+    if ($ARGV[$i] eq "-a") {
+	$show_imported = 1;
+	$show_exported = 1;
+    }
     if ($ARGV[$i] eq "-i") {
 	$show_imported = 1;
     }
@@ -106,7 +110,7 @@ if (!$show_imported && !$show_exported) {
 }
 
 if ($show_imported && $show_exported && !$show_report) {
-    print STDERR "Bad parameters\n";
+    print STDERR "Use -r if requesting both imported and exported symbols\n";
     exit 1;
 }
 
