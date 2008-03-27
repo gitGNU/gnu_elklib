@@ -36,7 +36,7 @@ void               qsort(void*  base,
 			 size_t size,
 			 int    (*compar)(const void *, const void *));
 
-int                atoi(const char* num); 
+int                atoi(const char* num);
 long               atol(const char* s);
 unsigned long      atoul(const char* s);
 long long          atoll(const char* s);
