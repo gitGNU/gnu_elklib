@@ -123,6 +123,6 @@ check-local:
 	imported=`$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l` ; \
 	exported=`grep -c extern inc/externals.h` ; \
 	if test ! "$$imported" = "$$exported" ; then \
-		echo "Imported/exported symbols mismatch" ; \
+		echo "Imported/exported symbols mismatch ($$imported/$$exported)" ; \
 		exit 1 ; \
 	fi
