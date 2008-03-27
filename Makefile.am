@@ -26,6 +26,7 @@ SUBDIRS =					\
 	tools					\
 	inc					\
 	src					\
+	.					\
 	docs					\
 	site
 
@@ -117,3 +118,6 @@ site: all
 	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
 
 DISTCLEANFILES =
+
+check-local:
+#	$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l

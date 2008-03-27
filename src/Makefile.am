@@ -63,5 +63,9 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
 
+##
+## NOTE:
+##     This rule is useless at the moment
+##
 check-local: $(lib_LIBRARIES)
-	$(NM) $(lib_LIBRARIES) | $(CXXFILT) | $(SYMBOLS) -r -e -i
+	$(NM) $(lib_LIBRARIES) | $(CXXFILT) | $(SYMBOLS) -r -a
