@@ -353,7 +353,7 @@ static void* signed_alloc(unsigned int size)
 		     size +
 		     sizeof(uint_t) /* Space for footer */);
 
-	ptr = heap_alloc(real_size);
+	ptr = arch_heap_alloc(real_size);
 	if (ptr) {
 		void* tmp;
 
@@ -438,7 +438,7 @@ static void signed_free(void* address)
 #endif
 	}
 
-	heap_free(real_address);
+	arch_heap_free(real_address);
 }
 #endif
 
@@ -457,7 +457,7 @@ void* malloc(size_t size)
 #if DEBUG_MALLOC_SIGNATURE
 	return signed_alloc(size);
 #else
-	return heap_alloc(size);
+	return arch_heap_alloc(size);
 #endif
 }
 
@@ -477,7 +477,7 @@ void free(void* address)
 #if DEBUG_MALLOC_SIGNATURE
 	signed_free(address);
 #else
-	heap_free(address);
+	arch_heap_free(address);
 #endif
 }
 

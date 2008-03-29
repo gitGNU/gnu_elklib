@@ -35,11 +35,10 @@ extern void (*__CTOR_END__)(void);  /* C++ glue related */
 extern void (*__DTOR_LIST__)(void); /* C++ glue related */
 extern void (*__DTOR_END__)(void);  /* C++ glue related */
 
-extern void* heap_alloc(size_t size);
-extern void  heap_free(void* ptr);
-
-extern void arch_panic(const char* message);
-extern int  arch_vm_pagesize(void);
+extern void* arch_heap_alloc(size_t size);
+extern void  arch_heap_free(void* ptr);
+extern void  arch_panic(const char* message);
+extern int   arch_vm_pagesize(void);
 
 __END_DECLS
 
