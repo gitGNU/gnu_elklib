@@ -36,6 +36,7 @@ DOWNLOAD =					\
 	ax_missing_prog.m4
 
 MACROS =					\
+	$(DOWNLOAD)				\
 	ax_c___asm__.m4				\
 	ax_asm_uscore.m4			\
 	ax_blacklist_version.m4			\
@@ -63,8 +64,7 @@ MACROS =					\
 	ax_cxx_exceptions.m4			\
 	ax_cxx_dynamic_cast.m4			\
 	ax_cxx_dtor_after_atexit.m4		\
-	ax_cxx_bool.m4				\
-	$(DOWNLOAD)
+	ax_cxx_bool.m4
 
 FETCH = $(top_builddir)/tools/scripts/fetch
 
