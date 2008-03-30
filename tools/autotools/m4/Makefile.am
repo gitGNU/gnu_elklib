@@ -31,6 +31,8 @@ DOWNLOAD =					\
 	ax_cxx_check_flag.m4			\
 	ax_cxxcpp_check_flag.m4			\
 	ax_path_missing.m4			\
+	ax_gcc_version.m4			\
+	ax_gxx_version.m4			\
 	ax_missing_prog.m4
 
 MACROS =					\
@@ -50,8 +52,6 @@ MACROS =					\
 	ax_c_var___line__.m4			\
 	ax_c_var___pretty_func__.m4		\
 	ax_c_var___time__.m4			\
-	ax_gcc_version.m4			\
-	ax_gxx_version.m4			\
 	ax_remove_forbidden.m4			\
 	ax_string_intersect.m4			\
 	ax_string_clean.m4			\
