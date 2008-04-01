@@ -27,10 +27,6 @@ src/config.h
 src/config.h.in
 src/stamp-h1
 
-site/site.stamp
-site/Doxyfile
-site/doxygen
-
 tools/scripts/gitlog2ChangeLog
 tools/scripts/NEWS-query
 tools/scripts/fetch
@@ -47,3 +43,9 @@ tools/autotools/config.sub
 
 docs/man/sitetool.1
 docs/info/elklib.info
+
+site/in/.sitetool
+site/in/site.stamp
+site/in/Doxyfile
+site/in/doxygen
+site/out/*

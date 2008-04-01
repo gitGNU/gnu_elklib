@@ -284,7 +284,7 @@ AX_CXXCPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
 # TEMP_CPPCXXFLAGS variable values
 AX_STRING_INTERSECT(AX_CONFIG_CPPFLAGS,$TEMP_CPPFLAGS,$TEMP_CXXCPPFLAGS)
 
-# Substitute gathered flags (clean them first) 
+# Substitute gathered flags (clean them first)
 AX_STRING_CLEAN(AX_CONFIG_ASFLAGS)
 AC_SUBST(AX_CONFIG_ASFLAGS)
 AX_STRING_CLEAN(AX_CONFIG_CPPFLAGS)
@@ -369,6 +369,7 @@ AC_CONFIG_FILES([
 	src/Makefile
 
 	site/Makefile
+	site/in/Makefile
 
 	tools/Makefile
 	tools/scripts/Makefile
