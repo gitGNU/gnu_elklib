@@ -35,52 +35,52 @@
 
 void __do_global_ctors_aux(void)
 {
-        /* C++ Runtime initialization instructions */
+	/* C++ Runtime initialization instructions */
 
-        void (**callback)();
-        int  count;
+	void (**callback)();
+	int  count;
 
-        /* Get the total number of functions to be called */
-        count = &__CTOR_END__ - &__CTOR_LIST__;
+	/* Get the total number of functions to be called */
+	count = &__CTOR_END__ - &__CTOR_LIST__;
 
-        dprintf("Total constructors %d\n", count);
+	dprintf("Total constructors %d\n", count);
 
-        callback =  &__CTOR_LIST__;
-        while (count) {
-                void (*ptr)() = *callback;
+	callback =  &__CTOR_LIST__;
+	while (count) {
+		void (*ptr)() = *callback;
 
-                assert(ptr);
-                ptr();
+		assert(ptr);
+		ptr();
 
-                count--;
-                callback++;
-        }
+		count--;
+		callback++;
+	}
 
-        dprintf("Completed\n");
+	dprintf("Completed\n");
 }
 
 void __do_global_dtors_aux(void)
 {
-        /* C++ Runtime finalization instructions */
+	/* C++ Runtime finalization instructions */
 
-        void (**callback)();
-        int  count;
+	void (**callback)();
+	int  count;
 
-        /* Get the total number of functions to be called */
-        count = &__DTOR_END__ - &__DTOR_LIST__;
+	/* Get the total number of functions to be called */
+	count = &__DTOR_END__ - &__DTOR_LIST__;
 
-        dprintf("Total destructors %d\n", count);
+	dprintf("Total destructors %d\n", count);
 
-        callback =  &__DTOR_LIST__;
-        while (count) {
-                void (*ptr)() = *callback;
+	callback =  &__DTOR_LIST__;
+	while (count) {
+		void (*ptr)() = *callback;
 
-                assert(ptr);
-                ptr();
+		assert(ptr);
+		ptr();
 
-                count--;
-                callback++;
-        }
+		count--;
+		callback++;
+	}
 
-        dprintf("Completed\n");
+	dprintf("Completed\n");
 }
