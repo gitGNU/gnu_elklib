@@ -45,6 +45,9 @@ libc_SRCS =					\
 
 libcxx_SRCS =					\
 	libc++/glue.cxx				\
+	libc++/list.cxx				\
+	libc++/new.cxx				\
+	libc++/string.cxx			\
 	libc++/vector.cxx
 
 libm_SRCS =					\
@@ -53,7 +56,8 @@ libm_SRCS =					\
 libcompiler_SRCS =				\
 	libcompiler/cxxabi.c			\
 	libcompiler/demangle.c			\
-	libcompiler/intmath.c
+	libcompiler/intmath.c			\
+	libcompiler/eh_personality.cxx
 
 libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)

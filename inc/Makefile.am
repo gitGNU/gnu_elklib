@@ -64,7 +64,10 @@ libcxx_HDRS =					\
 	libc++/cstdio				\
 	libc++/cstdlib				\
 	libc++/cstring				\
-	libc++/vector
+	libc++/vector				\
+	libc++/list				\
+	libc++/string				\
+	libc++/new
 
 libm_HDRS =					\
 	libm/math.h
