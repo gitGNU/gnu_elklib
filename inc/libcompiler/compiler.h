@@ -20,6 +20,7 @@
 #define ELKLIB_LIBCOMPILER_COMPILER_H
 
 #include "elklib.h"
+#include "libcompiler/cdefs.h"
 #include "libc/stdint.h"
 
 __BEGIN_DECLS
