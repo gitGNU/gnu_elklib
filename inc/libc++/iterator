@@ -1,0 +1,99 @@
+//
+// Copyright (C) 2007, 2008 Francesco Salvestrini
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+
+#ifndef ELKLIB_LIBCXX_ITERATOR
+#define ELKLIB_LIBCXX_ITERATOR
+
+#include "elklib.h"
+
+namespace ktl {
+        template <typename Iterator>
+        struct iterator_traits {
+                typedef typename Iterator::value_type      value_type;
+                typedef typename Iterator::difference_type difference_type;
+                typedef typename Iterator::pointer         pointer;
+                typedef typename Iterator::reference       reference;
+        };
+
+        template <typename T>
+        struct iterator_traits<T*> {
+                typedef T         value_type;
+                typedef ptrdiff_t difference_type;
+                typedef const T*  const_pointer;
+                typedef T*        pointer;
+                typedef T&        reference;
+        };
+
+        template <typename T>
+        struct iterator_traits<const T*> {
+                typedef T         value_type;
+                typedef ptrdiff_t difference_type;
+                typedef const T*  const_pointer;
+                typedef const T*  pointer;
+                typedef const T&  reference;
+        };
+
+        template <>
+        struct iterator_traits<void*> {
+                typedef uint8_t     value_type;
+                typedef ptrdiff_t   difference_type;
+                typedef const void* const_pointer;
+                typedef void*       pointer;
+                typedef value_type& reference;
+        };
+
+        template <>
+        struct iterator_traits<const void*> {
+                typedef uint8_t           value_type;
+                typedef ptrdiff_t         difference_type;
+                typedef const void*       const_pointer;
+                typedef const void*       pointer;
+                typedef const value_type& reference;
+        };
+
+        template <class Iterator>
+        class reverse_iterator {
+        public:
+                typedef typename iterator_traits<Iterator>::value_type      value_type;
+                typedef typename iterator_traits<Iterator>::difference_type difference_type;
+                typedef typename iterator_traits<Iterator>::pointer         pointer;
+                typedef typename iterator_traits<Iterator>::reference       reference;
+        public:
+                reverse_iterator (void) : m_i() {}
+                explicit                 reverse_iterator (Iterator iter)                : m_i (iter) {}
+                inline bool              operator== (const reverse_iterator& iter) const { return (m_i == iter.m_i); }
+                inline bool              operator< (const reverse_iterator& iter) const  { return (iter.m_i < m_i); }
+                inline Iterator          base (void) const                               { return m_i; }
+                inline reference         operator* (void) const                          { Iterator prev(m_i); --prev; return *prev; }
+                inline pointer           operator-> (void) const                         { return (&(operator*())); }
+                inline reverse_iterator& operator++ (void)                               { --m_i; return *this; }
+                inline reverse_iterator& operator-- (void)                               { ++m_i; return *this; }
+                inline reverse_iterator  operator++ (int)                                { reverse_iterator prev(*this); -- m_i; return prev; }
+                inline reverse_iterator  operator-- (int)                                { reverse_iterator prev(*this); ++ m_i; return prev; }
+                inline reverse_iterator& operator+= (size_t n)                           { m_i -= n; return *this; }
+                inline reverse_iterator& operator-= (size_t n)                           { m_i += n; return *this; }
+                inline reverse_iterator  operator+ (size_t n) const                      { return reverse_iterator(m_i - n); }
+                inline reverse_iterator  operator- (size_t n) const                      { return reverse_iterator(m_i + n); }
+                inline reference         operator[] (uoff_t n) const                     { return (*(*this + n)); }
+                inline difference_type   operator- (const reverse_iterator& i) const     { return distance(m_i, i.m_i); }
+        protected:
+                Iterator                 m_i;
+        };
+}
+
+#endif // ELKLIB_LIBCXX_ITERATOR
