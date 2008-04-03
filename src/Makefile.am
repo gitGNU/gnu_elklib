@@ -41,6 +41,8 @@ libc_SRCS =					\
 	libc/ctype.c
 
 libcxx_SRCS =					\
+	libc++/memory.cxx			\
+	libc++/memory.hxx			\
 	libc++/glue.cxx				\
 	libc++/list.cxx				\
 	libc++/new.cxx				\
