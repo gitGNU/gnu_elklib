@@ -32,9 +32,6 @@ libc_SRCS =					\
 	libc/bits/byteswap.c			\
 	libc/bits/fcntl.c			\
 	libc/execinfo.c				\
-	libc/sys/stat.c				\
-	libc/sys/fcntl.c			\
-	libc/sys/ioctl.c			\
 	libc/malloc.c				\
 	libc/errno.c				\
 	libc/stdio.c				\

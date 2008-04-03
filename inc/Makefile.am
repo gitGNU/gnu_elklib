@@ -39,9 +39,6 @@ libc_HDRS =					\
 	libc/ctype.h				\
 	libc/execinfo.h				\
 	libc/limits.h				\
-	libc/sys/ioctl.h			\
-	libc/sys/fcntl.h			\
-	libc/sys/stat.h				\
 	libc/values.h				\
 	libc/stdlib.h				\
 	libc/stdio.h				\
@@ -67,7 +64,8 @@ libcxx_HDRS =					\
 	libc++/vector				\
 	libc++/list				\
 	libc++/string				\
-	libc++/new
+	libc++/new				\
+	libc++/iterator
 
 libm_HDRS =					\
 	libm/math.h
