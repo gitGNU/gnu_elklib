@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCX_CSTDLIB
-#define ELKLIB_LIBCX_CSTDLIB
+#ifndef ELKLIB_LIBCXX_CSTDLIB
+#define ELKLIB_LIBCXX_CSTDLIB
 
 #include "elklib.h"
 
@@ -26,4 +26,4 @@ namespace ktl {
 #include "libc/stdlib.h"
 
 }
-#endif // ELKLIB_LIBCX_CSTDLIB
+#endif // ELKLIB_LIBCXX_CSTDLIB

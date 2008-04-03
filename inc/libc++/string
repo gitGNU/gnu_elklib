@@ -1,4 +1,3 @@
-#if 0
 //
 // Copyright (C) 2007, 2008 Francesco Salvestrini
 //
@@ -17,14 +16,21 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#ifndef ELKLIB_LIBCXX_STRING
+#define ELKLIB_LIBCXX_STRING
+
+#include "elklib.h"
+
 namespace ktl
 {
 	class string {
 	public:
 		string(void);
+		string(const string & s);
 		~string(void);
 
 	private:
 	};
 }
-#endif
+
+#endif // ELKLIB_LIBCXX_STRING

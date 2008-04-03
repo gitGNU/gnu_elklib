@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCX_CLIMITS
-#define ELKLIB_LIBCX_CLIMITS
+#ifndef ELKLIB_LIBCXX_CLIMITS
+#define ELKLIB_LIBCXX_CLIMITS
 
 #include "elklib.h"
 
@@ -26,4 +26,4 @@ namespace ktl {
 #include "libc/limits.h"
 
 }
-#endif // ELKLIB_LIBCX_CLIMITS
+#endif // ELKLIB_LIBCXX_CLIMITS

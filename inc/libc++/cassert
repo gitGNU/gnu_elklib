@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCX_CASSERT
-#define ELKLIB_LIBCX_CASSERT
+#ifndef ELKLIB_LIBCXX_CASSERT
+#define ELKLIB_LIBCXX_CASSERT
 
 #include "elklib.h"
 
@@ -26,4 +26,4 @@ namespace ktl {
 #include "libc/assert.h"
 
 }
-#endif // ELKLIB_LIBCX_CASSERT
+#endif // ELKLIB_LIBCXX_CASSERT
