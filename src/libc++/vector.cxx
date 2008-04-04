@@ -1,4 +1,3 @@
-#if 0
 //
 // Copyright (C) 2007, 2008 Francesco Salvestrini
 //
@@ -19,6 +18,3 @@
 
 #include "config.h"
 #include "libc++/vector"
-
-ktl::vector<int> x;
-#endif
