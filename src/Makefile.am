@@ -41,13 +41,13 @@ libc_SRCS =					\
 	libc/ctype.c
 
 libcxx_SRCS =					\
-	libc++/memory.cxx			\
-	libc++/memory.hxx			\
 	libc++/glue.cxx				\
-	libc++/list.cxx				\
 	libc++/new.cxx				\
+	libc++/iterator.cxx			\
+	libc++/vector.cxx			\
 	libc++/string.cxx			\
-	libc++/vector.cxx
+	libc++/list.cxx				\
+	libc++/map.cxx
 
 libm_SRCS =					\
 	libm/math.c
