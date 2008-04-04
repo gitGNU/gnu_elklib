@@ -29,6 +29,8 @@ namespace ktl
 		string(const string & s);
 		~string(void);
 
+	protected:
+
 	private:
 	};
 }
