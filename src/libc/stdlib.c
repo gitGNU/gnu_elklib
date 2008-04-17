@@ -550,7 +550,10 @@ void* valloc(size_t size)
 	return memalign(pagesize, size);
 }
 
-#if 0 /* Reenable when needed */
+#define CALGO_SEARCH_SUPPORT 0
+#define CALGO_SORT_SUPPORT   1
+
+#if CALGO_SEARCH_SUPPORT
 void* bsearch(const void* key,
 	      const void* base,
 	      size_t	  nmemb,
@@ -591,8 +594,9 @@ void* bsearch(const void* key,
 
 	return NULL;
 }
-#endif /* 0 */
+#endif
 
+#if CALGO_SORT_SUPPORT
 void qsort(void*  base,
 	   size_t nmemb,
 	   size_t size,
@@ -663,6 +667,7 @@ void qsort(void*  base,
 		} while (wgap);
 	}
 }
+#endif
 
 static unsigned long _next = 1;
 
