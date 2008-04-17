@@ -24,15 +24,23 @@
 #include "libc/bits/wordsize.h"
 #include "libcompiler/cdefs.h"
 
+/*
+ * Type  Minsize Minval (signed)  Maxval (signed)  Maxval (unsigned)
+ * char  8       -127             127              255
+ * short 16      -32,767          32,767           65,535
+ * int   16      -32,767          32,767           65,535
+ * long  32      -2,147,483,647   2,147,483,647    4,294,967,295
+ * 
+ * These values are the minimums guaranteed by the Standard. Many
+ * implementations allow larger values, but portable programs shouldn't depend
+ * on it.
+ */
+
 #define CHAR_BIT    8
 
 #define SCHAR_MIN   (-128)
 #define SCHAR_MAX   127
 #define UCHAR_MAX   255
-
-/* XXX FIXME: Please fix the following define ASAP */
-#define WCHAR_MIN   (-256)   
-#define WCHAR_MAX   257
 
 #define SHRT_MAX    ((short) (~0>>1))
 #define SHRT_MIN    ((-SHRT_MAX) - 1)
