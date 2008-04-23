@@ -70,6 +70,7 @@ libcxx_HDRS =					\
 	libc++/list				\
 	libc++/map				\
 	libc++/stack				\
+	libc++/bitset				\
 	libc++/pair
 
 libm_HDRS =					\
