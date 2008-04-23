@@ -63,11 +63,13 @@ libcxx_HDRS =					\
 	libc++/cstring				\
 	libc++/new				\
 	libc++/memory				\
+	libc++/limits				\
 	libc++/iterator				\
 	libc++/vector				\
 	libc++/string				\
 	libc++/list				\
-	libc++/map
+	libc++/map				\
+	libc++/stack
 
 libm_HDRS =					\
 	libm/math.h
