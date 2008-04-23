@@ -69,7 +69,8 @@ libcxx_HDRS =					\
 	libc++/string				\
 	libc++/list				\
 	libc++/map				\
-	libc++/stack
+	libc++/stack				\
+	libc++/pair
 
 libm_HDRS =					\
 	libm/math.h
