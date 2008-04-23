@@ -62,6 +62,7 @@ libcxx_HDRS =					\
 	libc++/cstdlib				\
 	libc++/cstring				\
 	libc++/new				\
+	libc++/memory				\
 	libc++/iterator				\
 	libc++/vector				\
 	libc++/string				\
