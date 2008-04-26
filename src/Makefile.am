@@ -41,7 +41,9 @@ libc_SRCS =					\
 	libc/ctype.c
 
 libcxx_SRCS =					\
-	libc++/glue.cxx
+	libc++/glue.cxx				\
+	libc++/new.cxx				\
+	libc++/exception.cxx
 
 libm_SRCS =					\
 	libm/math.c
