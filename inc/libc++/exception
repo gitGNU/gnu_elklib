@@ -1,0 +1,53 @@
+//
+// Copyright (C) 2007, 2008 Francesco Salvestrini
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+
+#ifndef ELKLIB_LIBCXX_EXCEPTION_HXX
+#define ELKLIB_LIBCXX_EXCEPTION_HXX
+
+#include "elklib.h"
+
+#if ELKLIB_EXCEPTIONS
+#define THROW(X) throw(X)
+#else
+#define THROW(X)
+#endif
+
+namespace ktl {
+	typedef void       (* terminate_handler) ();
+	typedef void       (* unexpected_handler) ();
+	terminate_handler  set_terminate(terminate_handler h) THROW();
+	void               terminate() ATTRIBUTE(__noreturn__);
+	unexpected_handler set_unexpected(unexpected_handler h) THROW();
+	void               unexpected() ATTRIBUTE(__noreturn__);
+	bool               uncaught_exception() THROW();
+
+	class exception {
+	public:
+		exception() THROW() { }
+		virtual ~exception() THROW();
+		virtual const char * what() const THROW();
+	};
+
+	class bad_exception : public exception {
+	public:
+		bad_exception() THROW() { }
+		virtual ~bad_exception() THROW();
+	};
+}
+
+#endif // ELKLIB_LIBCXX_EXCEPTION_HXX
