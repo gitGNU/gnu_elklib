@@ -30,79 +30,79 @@ new_handler __new_handler = 0;
 
 new_handler set_new_handler(new_handler handler)
 {
-        new_handler tmp;
+	new_handler tmp;
 
-        tmp           = __new_handler;
-        __new_handler = handler;
+	tmp           = __new_handler;
+	__new_handler = handler;
 
-        return tmp;
+	return tmp;
 }
 
 void * operator new(size_t size) THROW(ktl::bad_alloc)
 {
-        void * tmp;
+	void * tmp;
 
-        tmp = malloc(size);
-        if (!tmp) {
-                THROW(ktl::bad_alloc(size));
-                if (__new_handler) {
-                        __new_handler();
-                }
-        }
+	tmp = malloc(size);
+	if (!tmp) {
+		THROW(ktl::bad_alloc(size));
+		if (__new_handler) {
+			__new_handler();
+		}
+	}
 
-        return tmp;
+	return tmp;
 }
 
 
 void * operator new[](size_t size) THROW(ktl::bad_alloc)
 {
-        void * tmp;
+	void * tmp;
 
-        tmp = malloc(size);
-        if (!tmp) {
-                THROW(ktl::bad_alloc(size));
-                if (__new_handler) {
-                        __new_handler();
-                }
-        }
+	tmp = malloc(size);
+	if (!tmp) {
+		THROW(ktl::bad_alloc(size));
+		if (__new_handler) {
+			__new_handler();
+		}
+	}
 
-        return tmp;
+	return tmp;
 }
 
 void operator delete(void * pointer) THROW()
 {
-        if (pointer) {
-                ktl::free(pointer);
-        }
+	if (pointer) {
+		ktl::free(pointer);
+	}
 }
 
 void operator delete[](void * pointer) THROW()
 {
-        if (pointer) {
-                free(pointer);
-        }
+	if (pointer) {
+		free(pointer);
+	}
 }
 
 void * operator new(size_t size, void * pointer) THROW()
 {
-        unused_argument(size);
+	unused_argument(size);
 
-        return pointer;
+	return pointer;
 }
 
 void * operator new[](size_t size, void * pointer) THROW()
 {
-        unused_argument(size);
+	unused_argument(size);
 
-        return pointer;
+	return pointer;
 }
 
 void operator delete(void *, void *) THROW()
 {
-        missing();
+	missing();
 }
 
 void operator delete[](void *, void *) THROW()
 {
-        missing();
+	missing();
 }
