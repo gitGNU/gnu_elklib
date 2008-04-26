@@ -54,7 +54,7 @@ void terminate()
 		__terminate_handler();
 	}
 
-	arch_panic("terminate() exception handler called")
+	panic("terminate() exception handler called")
 }
 
 void unexpected()
@@ -63,7 +63,7 @@ void unexpected()
 		__unexpected_handler();
 	}
 
-	arch_panic("unexpected() exception handler called")
+	panic("unexpected() exception handler called")
 }
 
 bool uncaught_exception()
