@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_EXCEPTION_HXX
-#define ELKLIB_LIBCXX_EXCEPTION_HXX
+#ifndef ELKLIB_LIBCXX_EXCEPTION
+#define ELKLIB_LIBCXX_EXCEPTION
 
 #include "elklib.h"
 
@@ -50,4 +50,4 @@ namespace ktl {
 	};
 }
 
-#endif // ELKLIB_LIBCXX_EXCEPTION_HXX
+#endif // ELKLIB_LIBCXX_EXCEPTION

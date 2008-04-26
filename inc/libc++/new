@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_NEW_HXX
-#define ELKLIB_LIBCXX_NEW_HXX
+#ifndef ELKLIB_LIBCXX_NEW
+#define ELKLIB_LIBCXX_NEW
 
 #include "elklib.h"
 #include "libc++/exception"
@@ -40,4 +40,4 @@ void * operator new[](size_t, void * p) THROW();
 void  operator delete(void *, void *)   THROW();
 void  operator delete[](void *, void *) THROW();
 
-#endif // ELKLIB_LIBCXX_NEW_HXX
+#endif // ELKLIB_LIBCXX_NEW

@@ -16,10 +16,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_MEMORY_HXX
-#define ELKLIB_LIBCXX_MEMORY_HXX
+#ifndef ELKLIB_LIBCXX_MEMORY
+#define ELKLIB_LIBCXX_MEMORY
 
 #include "elklib.h"
+#include "libc++/iterator"
 
 namespace ktl
 {
