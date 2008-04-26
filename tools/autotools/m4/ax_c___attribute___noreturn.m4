@@ -39,12 +39,16 @@ AC_DEFUN([AX_C___ATTRIBUTE___NORETURN], [
   AC_CACHE_VAL(ax_cv_c__attribute___noreturn, [
     AC_COMPILE_IFELSE(
       AC_LANG_SOURCE([[
+#include <stdlib.h>
+
 static void foo(void) __attribute__ ((noreturn));
 static void foo(void)
 {
 	int a;
 
 	a = 1;
+
+	exit(1);
 }
 
 int
