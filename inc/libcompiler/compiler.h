@@ -37,14 +37,14 @@ __BEGIN_DECLS
 #define ATTRIBUTE(x) __attribute__ (( x ))
 #else
 #define ATTRIBUTE(x)
-#error __attribute__ support is needed
+//#error __attribute__ support is needed
 #endif
 
 #ifdef HAVE___ATTRIBUTE___SECTION
 #define SECTION(x)   ATTRIBUTE(section(x))
 #else
 #define SECTION(x)
-#error __attribute__((section())) support is needed
+//#error __attribute__((section())) support is needed
 #endif
 
 #ifdef HAVE___ATTRIBUTE___DEPRECATED
