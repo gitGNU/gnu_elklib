@@ -21,17 +21,34 @@
 
 #include "elklib.h"
 
+#include "libc++/cstdint"
+#include "libc++/iterator"
+
 namespace ktl
 {
+	typedef char             value_type;
+
+	typedef value_type *     pointer;
+	typedef const value_type const_pointer;
+	typedef pointer          iterator;
+	typedef const_pointer    const_iterator;
+	typedef value_type &     reference;
+	typedef value_type       const_reference;
+
 	class string {
 	public:
-		string(void);
+		string(void) { data_ = 0; size_ = 0; } ;
 		string(const string & s);
 		~string(void);
+
+		void          clear(void);
+		const_pointer c_str(void) const { return 0; }
 
 	protected:
 
 	private:
+		char * data_;
+		size_t size_;
 	};
 }
 
