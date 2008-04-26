@@ -20,9 +20,24 @@
 #define ELKLIB_LIBCXX_NEW_HXX
 
 #include "elklib.h"
+#include "libc++/exception"
 
-namespace ktl
-{
-}
+// new handler
+typedef void (* new_handler)(void);
+new_handler  set_new_handler(new_handler handler);
+
+void * operator new(size_t n)   THROW(ktl::bad_alloc);
+void * operator new[](size_t n) THROW(ktl::bad_alloc);
+
+void  operator delete(void * p)   THROW();
+void  operator delete[](void * p) THROW();
+
+// Default placement versions of operator new.
+void * operator new(size_t, void * p)   THROW();
+void * operator new[](size_t, void * p) THROW();
+
+// Default placement versions of operator delete.
+void  operator delete(void *, void *)   THROW();
+void  operator delete[](void *, void *) THROW();
 
 #endif // ELKLIB_LIBCXX_NEW_HXX
