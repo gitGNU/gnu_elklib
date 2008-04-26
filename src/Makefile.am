@@ -41,13 +41,7 @@ libc_SRCS =					\
 	libc/ctype.c
 
 libcxx_SRCS =					\
-	libc++/glue.cxx				\
-	libc++/new.cxx				\
-	libc++/iterator.cxx			\
-	libc++/vector.cxx			\
-	libc++/string.cxx			\
-	libc++/list.cxx				\
-	libc++/map.cxx
+	libc++/glue.cxx
 
 libm_SRCS =					\
 	libm/math.c
