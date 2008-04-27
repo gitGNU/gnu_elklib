@@ -94,7 +94,10 @@ nobase_incdest_HEADERS  =			\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)
 
-check-includes:
+##
+## Maintainer related targets
+##
+check-includes: Makefile
 	for i in $(nobase_incdest_HEADERS) ; do \
 		if grep "\#include" $$i | grep "config\.h" ; then \
 			echo "Header file \`$$i' must not include config.h" ; \
@@ -102,7 +105,7 @@ check-includes:
 		fi ; \
 	done
 
-check-whitespaces:
+check-whitespaces: Makefile
 	$(top_builddir)/tools/scripts/whitespace-detect $(nobase_incdest_HEADERS)
 
-check-local: check-whitespaces check-includes
+maintainer-check: Makefile check-whitespaces check-includes

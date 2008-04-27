@@ -63,13 +63,12 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libcompiler_SRCS)
 
 ##
-## NOTE:
-##     This rule is useless at the moment
+## Maintainer related targets
 ##
-check-symbols: $(lib_LIBRARIES)
+check-symbols: Makefile $(lib_LIBRARIES)
 	$(NM) $(lib_LIBRARIES) | $(CXXFILT) | $(SYMBOLS) -r -a
 
 check-whitespaces: $(libelk_@target_cpu@_a_SOURCES)
 	$(top_builddir)/tools/scripts/whitespace-detect $(libelk_@target_cpu@_a_SOURCES)
 
-check-local: check-whitespaces check-symbols
+maintainer-check: Makefile check-whitespaces

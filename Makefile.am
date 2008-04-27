@@ -153,3 +153,10 @@ check-local:
 		echo "Imported/external symbols mismatch ($$imported/$$external)" ; \
 		exit 1 ; \
 	fi
+
+##
+## Maintainer related targets
+##
+maintainer-check: Makefile
+	$(MAKE) maintainer-check -C inc
+	$(MAKE) maintainer-check -C src
