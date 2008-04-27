@@ -21,7 +21,7 @@ namespace ktl
 	template<typename T> class map {
 	public:
 
-	protected:	  
+	protected:
 
 	private:
 	};

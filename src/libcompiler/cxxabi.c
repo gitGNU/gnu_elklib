@@ -81,7 +81,7 @@ void __cxa_rethrow(void)
 
 void _Unwind_Resume(struct _Unwind_Exception* exc)
 {
-	unused_argument(exc);	
+	unused_argument(exc);
 }
 
 #endif /* HAVE_GCC */

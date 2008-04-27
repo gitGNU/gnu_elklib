@@ -44,8 +44,8 @@ static void  (*old_after_morecore_hook)(void)         = 0;
 static void* mtrace_malloc_hook(size_t      size,
 				const void* caller)
 {
-        void* result;
-	
+	void* result;
+
 	RESTORE_HOOK(malloc);
 	result = malloc(size);
 	SAVE_HOOK(malloc);
@@ -60,8 +60,8 @@ static void* mtrace_realloc_hook(void*       ptr,
 				 size_t      size,
 				 const void* caller)
 {
-        void* result;
-	
+	void* result;
+
 	RESTORE_HOOK(realloc);
 	result = realloc(ptr, size);
 	SAVE_HOOK(realloc);
@@ -69,7 +69,7 @@ static void* mtrace_realloc_hook(void*       ptr,
 	       ptr, (unsigned int) size, caller, result);
 
 	SET_HOOK(realloc);
-	
+
 	return result;
 }
 
@@ -77,15 +77,15 @@ static void* mtrace_memalign_hook(size_t      alignment,
 				  size_t      size,
 				  const void* caller)
 {
-        void* result;
-	
+	void* result;
+
 	RESTORE_HOOK(memalign);
 	result = memalign(alignment, size);
 	SAVE_HOOK(memalign);
 	printf("memalign(%u,%u) called from %p returns %p",
 	       alignment, size, caller, result);
 	SET_HOOK(memalign);
-	
+
 	return result;
 }
 
@@ -113,7 +113,7 @@ static void mtrace_after_morecore_hook(void)
 void mtrace(void)
 {
 	/* Save old hooks */
-	old_malloc_hook   	   = __malloc_hook;
+	old_malloc_hook	   = __malloc_hook;
 	old_realloc_hook           = __realloc_hook;
 	old_memalign_hook          = __memalign_hook;
 	old_free_hook              = __free_hook;

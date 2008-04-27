@@ -63,4 +63,3 @@ int    ffsll(long long int i);
 __END_DECLS
 
 #endif /* ELKLIB_LIBC_STRING_H */
-

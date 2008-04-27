@@ -28,8 +28,8 @@ static long long divremdi3(long long x,
 			   long long y,
 			   int       type)
 {
-	unsigned long long a; 
-	unsigned long long b; 
+	unsigned long long a;
+	unsigned long long b;
 	unsigned long long res;
 	unsigned long long d;
 	long long          result;
@@ -39,7 +39,7 @@ static long long divremdi3(long long x,
 	b   = (y < 0) ? -y : y;
 	res = 0;
 	d   = 1;
-     
+
 	if (b > 0) {
 		while (b < a) {
 			b <<= 1;
@@ -73,7 +73,7 @@ static unsigned long long udivremdi3(unsigned long long a,
 	unsigned long long res;
 	unsigned long long d;
 	unsigned long long e;
-     
+
 	res = 0;
 	d   = 1;
 	/* Cast the expression in order to stop the compiler barf */
@@ -102,7 +102,7 @@ static unsigned long long udivremdi3(unsigned long long a,
 		b >>= 1;
 		d >>= 1;
 	} while (d);
-	
+
 	return ((type == DIV) ? res : a);
 }
 

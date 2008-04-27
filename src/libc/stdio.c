@@ -72,16 +72,16 @@ void FILE_get(FILE* stream,
 	 *     non-NULL associated variable.
 	 */
 	if (putchar_func) {
-		*putchar_func = stream->putchar; 
+		*putchar_func = stream->putchar;
 	}
 	if (getchar_func) {
-		*getchar_func = stream->getchar; 
+		*getchar_func = stream->getchar;
 	}
 	if (fseek_func) {
-		*fseek_func   = stream->fseek;   
+		*fseek_func   = stream->fseek;
 	}
 	if (ftell_func) {
-		*ftell_func   = stream->ftell;   
+		*ftell_func   = stream->ftell;
 	}
 }
 
@@ -176,18 +176,18 @@ int snprintf(char* buf, size_t size, const char* format, ...)
 {
 	va_list args;
 	int     i;
-	
+
 	va_start(args, format);
 	i = vsnprintf(buf, size, format, args);
 	va_end(args);
-	
+
 	return i;
 }
 
 static int skip_atoi(const char **s)
 {
 	int i=0;
-	
+
 	while (isdigit(**s)) {
 		i = i * 10 + *((*s)++) - '0';
 	}
@@ -196,16 +196,16 @@ static int skip_atoi(const char **s)
 }
 
 static unsigned long long do_div(unsigned long long* n,
-				 unsigned            base) 
-{ 
-        unsigned long long res;
+				 unsigned            base)
+{
+	unsigned long long res;
 
 	assert(base != 0);
-	
-        res = (*n) % (unsigned long long) base;
-        *n  = (*n) / (unsigned long long) base;
-	
-        return res;
+
+	res = (*n) % (unsigned long long) base;
+	*n  = (*n) / (unsigned long long) base;
+
+	return res;
 }
 
 #define ZEROPAD	1		/* pad with zero */
@@ -219,8 +219,8 @@ static unsigned long long do_div(unsigned long long* n,
 static char* number(char*     buf,
 		    char*     end,
 		    long long num,
-		    int       base, 
-		    int       size, 
+		    int       base,
+		    int       size,
 		    int       precision,
 		    int       type)
 {
@@ -354,7 +354,7 @@ int vsnprintf(char* buf, size_t size, const char* format, va_list args)
 
 	int                flags;
 	int                field_width;
-	int                precision;				   
+	int                precision;
 	int                qualifier;
 
 	assert(buf);
@@ -408,7 +408,7 @@ int vsnprintf(char* buf, size_t size, const char* format, va_list args)
 		/* get the precision */
 		precision = -1;
 		if (*format == '.') {
-			++format;	
+			++format;
 			if (isdigit(*format)) {
 				precision = skip_atoi(&format);
 			} else if (*format == '*') {
@@ -514,18 +514,18 @@ int vsnprintf(char* buf, size_t size, const char* format, va_list args)
 			 */
 			if (qualifier == 'l') {
 				long* ip;
-				
+
 				ip  = va_arg(args, long *);
 				*ip = (str - buf);
 			} else if ((qualifier == 'Z') ||
 				   (qualifier == 'z')) {
 				size_t* ip;
-				
+
 				ip  = va_arg(args, size_t *);
 				*ip = (str - buf);
 			} else {
 				int* ip;
-				
+
 				ip  = va_arg(args, int *);
 				*ip = (str - buf);
 			}
@@ -653,7 +653,7 @@ int vsscanf(const char* buf, const char* format, va_list args)
 			break;
 		}
 		++format;
-		
+
 		/* skip this conversion, advance both strings to next white
 		 * space
 		 */
@@ -783,12 +783,12 @@ int vsscanf(const char* buf, const char* format, va_list args)
 		case 'h':
 			if (is_sign) {
 				short* s;
-				
+
 				s  = (short *) va_arg(args, short *);
 				*s = (short) strtol(str,&next,base);
 			} else {
 				unsigned short* s;
-				
+
 				s = (unsigned short *)
 					va_arg(args, unsigned short *);
 				*s = (unsigned short)
@@ -809,15 +809,15 @@ int vsscanf(const char* buf, const char* format, va_list args)
 				*l = strtoul(str,&next,base);
 			}
 			break;
-		case 'L': 
+		case 'L':
 			if (is_sign) {
 				long long* l;
-				
+
 				l  = (long long*) va_arg(args, long long *);
 				*l = strtoll(str,&next,base);
 			} else {
 				unsigned long long* l;
-				
+
 				l  = (unsigned long long*)
 					va_arg(args, unsigned long long*);
 				*l = strtoull(str,&next,base);
@@ -827,7 +827,7 @@ int vsscanf(const char* buf, const char* format, va_list args)
 		case 'Z':
 		case 'z': {
 			size_t* s;
-			
+
 			s  = (size_t*) va_arg(args, size_t*);
 			*s = (size_t) strtoul(str,&next,base);
 		}
@@ -862,29 +862,29 @@ int vsscanf(const char* buf, const char* format, va_list args)
 
 int vfprintf(FILE* stream, const char* format, va_list ap)
 {
-        static char  buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
+	static char  buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
 	unsigned int count;
 	int          retval;
-	
+
 	assert(stream);
 	assert(format);
-	
-        count = vsnprintf(buffer, sizeof(buffer), format, ap);
+
+	count = vsnprintf(buffer, sizeof(buffer), format, ap);
 
 	retval = -1;
 	if (count > 0) {
 		if (stream->putchar) {
 			int i;
-			
+
 			for (i = 0; buffer[i] != 0; i++) {
 				stream->putchar(buffer[i]);
 			}
-			
+
 			retval = count;
 		}
 	}
-	
-        return retval;
+
+	return retval;
 }
 
 int fprintf(FILE* stream, const char* format, ...)
@@ -908,7 +908,7 @@ int fputs(const char* s, FILE* stream)
 
 	if (stream->putchar) {
 		int i;
-		
+
 		for (i = 0; s[i] != 0; i++) {
 			stream->putchar(s[i]);
 		}
@@ -971,7 +971,7 @@ int ferror(FILE* stream)
 int fflush(FILE* stream)
 {
 	assert(stream);
-	
+
 	unused_argument(stream);
 
 	missing();
@@ -998,7 +998,7 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE* stream)
 
 	for (i = 0; i < count; i++) {
 		int c;
-		
+
 		c = fgetc(stream);
 		if (c == EOF) {
 			break;
@@ -1030,7 +1030,7 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE* stream)
 
 	for (i = 0; i < count; i++) {
 		int c;
-		
+
 		c = (unsigned char) (*((unsigned char *) ptr + i));
 		if (fputc(c, stream) == EOF) {
 			break;
@@ -1047,12 +1047,12 @@ int fseek(FILE* stream, long offset, int whence)
 	assert((whence == SEEK_SET) ||
 	       (whence == SEEK_CUR) ||
 	       (whence == SEEK_END));
-	
- 	if (stream->fseek) {
+
+	if (stream->fseek) {
 		/* Stream is seek-able */
 		return stream->fseek(offset, whence);
 	}
-	
+
 	/* Sorry, stream is not seek-able */
 	return EOF;
 }

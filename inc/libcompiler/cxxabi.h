@@ -35,7 +35,7 @@ __BEGIN_DECLS
 
 /* Allocate array */
 void* __cxa_vec_new(size_t __element_count,
-		    size_t __element_size, 
+		    size_t __element_size,
 		    size_t __padding_size,
 		    void   (*__constructor) (void*),
 		    void   (*__destructor) (void*));
@@ -45,7 +45,7 @@ void* __cxa_vec_new2(size_t __element_count,
 		     size_t __padding_size,
 		     void (*__constructor) (void*),
 		     void (*__destructor) (void*),
-		     void *(*__alloc) (size_t), 
+		     void *(*__alloc) (size_t),
 		     void (*__dealloc) (void*));
 
 void* __cxa_vec_new3(size_t __element_count,
@@ -53,7 +53,7 @@ void* __cxa_vec_new3(size_t __element_count,
 		     size_t __padding_size,
 		     void (*__constructor) (void*),
 		     void (*__destructor) (void*),
-		     void *(*__alloc) (size_t), 
+		     void *(*__alloc) (size_t),
 		     void (*__dealloc) (void*, size_t));
 
 /* Construct array */
@@ -65,22 +65,22 @@ void __cxa_vec_ctor(void*  __array_address,
 
 void __cxa_vec_cctor(void*  dest_array,
 		     void*  src_array,
-		     size_t element_count, 
+		     size_t element_count,
 		     size_t element_size,
-		     void   (*constructor) (void*, void*), 
+		     void   (*constructor) (void*, void*),
 		     void   (*destructor) (void*));
- 
+
 /* Destruct array */
 void __cxa_vec_dtor(void*  __array_address,
 		    size_t __element_count,
 		    size_t __element_size,
 		    void   (*__destructor) (void*));
-  
+
 void __cxa_vec_cleanup(void*  __array_address,
 		       size_t __element_count,
 		       size_t __element_size,
 		       void   (*__destructor) (void*));
-  
+
 /* Destruct and release array */
 void __cxa_vec_delete(void*  __array_address,
 		      size_t __element_size,
@@ -92,7 +92,7 @@ void __cxa_vec_delete2(void* __array_address,
 		       size_t __padding_size,
 		       void (*__destructor) (void*),
 		       void (*__dealloc) (void*));
-                  
+
 void __cxa_vec_delete3(void* __array_address,
 		       size_t __element_size,
 		       size_t __padding_size,
@@ -107,7 +107,7 @@ void __cxa_bad_typeid(void);
 int __cxa_atexit(void (*)(void*), void*, void*);
 int __cxa_finalize(void*);
 
-/* Demangling routines */ 
+/* Demangling routines */
 char* __cxa_demangle(const char* __mangled_name,
 		     char*       __output_buffer,
 		     size_t*     __length,

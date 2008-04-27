@@ -73,7 +73,7 @@ static void char_put(demangle_data_t* data, char c)
 	if (data->output.position < data->output.length) {
 		data->output.buffer[data->output.position] = c;
 		data->output.position++;
-		
+
 		/* dprintf("put value = '%c'\n", c); */
 	}
 }
@@ -177,7 +177,7 @@ static long demangle_number(demangle_data_t* data)
 		char_skip(data, 1);
 		peek     = char_peek(data);
 	}
-	
+
 	ret = 0;
 	while (1) {
 		if (!isdigit(peek)) {
@@ -186,7 +186,7 @@ static long demangle_number(demangle_data_t* data)
 			}
 			return ret;
 		}
-		
+
 		ret = ret * 10 + peek - '0';
 		char_skip(data, 1);
 		peek = char_peek(data);
@@ -274,7 +274,7 @@ static int demangle_prefix(demangle_data_t* data)
 			return 1;
 		}
 	}
-	
+
 	/* return 1; */
 }
 
@@ -295,7 +295,7 @@ static int demangle_nested_name(demangle_data_t* data)
 		dprintf("Nested name is not completed\n");
 		return 0;
 	}
-	
+
 	return 1;
 }
 
@@ -400,7 +400,7 @@ static int demangle_local_name(demangle_data_t* data)
 			return 0;
 		}
 	}
-	
+
 	return 1;
 }
 
@@ -435,7 +435,7 @@ static int demangle_identifier(demangle_data_t* data, unsigned int length)
 static int demangle_source_name(demangle_data_t* data)
 {
 	long len;
-	
+
 	assert(data);
 
 	dprintf("Demangling source name for %p\n");
@@ -498,7 +498,7 @@ static int demangle_dtor_name(demangle_data_t* data)
 {
 	char c;
 	int  retval;
-	
+
 	assert(data);
 
 	dprintf("Demangling dtor name for %p\n", data);
@@ -528,7 +528,7 @@ static int demangle_dtor_name(demangle_data_t* data)
 static int demangle_unqualified_name(demangle_data_t* data)
 {
 	char c;
-	
+
 	assert(data);
 
 	dprintf("Demangling unqualified name for %p\n", data);

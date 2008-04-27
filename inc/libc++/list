@@ -21,7 +21,7 @@ namespace ktl
 	template<typename T> class list {
 	public:
 
-	protected:	  
+	protected:
 
 	private:
 	};

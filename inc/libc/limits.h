@@ -30,7 +30,7 @@
  * short 16      -32,767          32,767           65,535
  * int   16      -32,767          32,767           65,535
  * long  32      -2,147,483,647   2,147,483,647    4,294,967,295
- * 
+ *
  * These values are the minimums guaranteed by the Standard. Many
  * implementations allow larger values, but portable programs shouldn't depend
  * on it.

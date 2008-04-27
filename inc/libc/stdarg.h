@@ -37,11 +37,11 @@ typedef void* __gnuc_va_list;
 void va_end (__gnuc_va_list);
 #define va_end(AP) \
 	((void) 0)
- 
+
 #define va_arg(AP, TYPE)						   \
 	(AP = (__gnuc_va_list) ((char *) (AP) + __va_rounded_size(TYPE)),  \
 	   *((TYPE *) (void *) ((char *) (AP) - __va_rounded_size(TYPE))))
- 
+
 #define __va_copy(dest, src) \
 	(dest) = (src)
 
