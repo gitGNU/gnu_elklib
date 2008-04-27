@@ -74,14 +74,14 @@ int toascii(int c)  { return (((unsigned char)(c)) &  0x7f);         }
 
 int tolower(int c)
 {
-        if (isupper(c))
-                c -= 'A'-'a';
-        return c;
+	if (isupper(c))
+		c -= 'A'-'a';
+	return c;
 }
 
 int toupper(int c)
 {
-        if (islower(c))
-                c -= 'a'-'A';
-        return c;
+	if (islower(c))
+		c -= 'a'-'A';
+	return c;
 }
