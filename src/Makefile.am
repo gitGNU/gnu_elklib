@@ -62,13 +62,17 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
 
-##
-## Maintainer related targets
-##
 check-symbols: Makefile $(lib_LIBRARIES)
 	$(NM) $(lib_LIBRARIES) | $(CXXFILT) | $(SYMBOLS) -r -a
 
-check-whitespaces: $(libelk_@target_cpu@_a_SOURCES)
-	$(top_builddir)/tools/scripts/whitespace-detect $(libelk_@target_cpu@_a_SOURCES)
+check-local: check-symbols
 
-maintainer-check: Makefile check-whitespaces
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-whitespaces: $(libelk_@target_cpu@_a_SOURCES)
+	$(WHITESPACE_DETECT) $(libelk_@target_cpu@_a_SOURCES)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces

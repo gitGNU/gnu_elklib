@@ -111,13 +111,27 @@ ChangeLog: $(srcdir)/NEWS
 #	        exit 1 ;                        \
 #	}
 
+site: all
+	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
+
+DISTCLEANFILES =
+
+check-local:
+	imported=`$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l` ; \
+	external=`grep -c extern inc/externals.h` ; \
+	if test ! "$$imported" = "$$external" ; then \
+		echo "Imported/external symbols mismatch ($$imported/$$external)" ; \
+		exit 1 ; \
+	fi
+
+##
+## Maintainer related targets
+##
 HOST = "http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob_plain;hb=HEAD;f=doc"
 
 DOWNLOAD =					\
 	INSTALL					\
 	COPYINGv2
-
-FETCH = $(top_builddir)/tools/scripts/fetch
 
 update-fixups:
 	mv -f COPYINGv2 COPYING
@@ -138,25 +152,6 @@ update-download:
 	done && \
 	rm -r -f fetch-dir
 
-update: update-download update-fixups
-	(cd tools && $(MAKE) $(AM_MAKEFLAGS) update)
+update-local: Makefile update-download update-fixups
 
-site: all
-	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
-
-DISTCLEANFILES =
-
-check-local:
-	imported=`$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l` ; \
-	external=`grep -c extern inc/externals.h` ; \
-	if test ! "$$imported" = "$$external" ; then \
-		echo "Imported/external symbols mismatch ($$imported/$$external)" ; \
-		exit 1 ; \
-	fi
-
-##
-## Maintainer related targets
-##
-maintainer-check: Makefile
-	$(MAKE) maintainer-check -C inc
-	$(MAKE) maintainer-check -C src
+maintainer-check-local: Makefile

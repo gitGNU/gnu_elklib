@@ -29,3 +29,10 @@ SUBDIRS =					\
 #
 
 EXTRA_DIST =
+
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-local: Makefile

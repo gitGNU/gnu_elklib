@@ -18,6 +18,8 @@
 ## 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ##
 
+include $(top_srcdir)/Makefile.sub
+
 incdestdir = $(pkgvincludedir)
 
 libc_HDRS =					\
@@ -94,9 +96,6 @@ nobase_incdest_HEADERS  =			\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)
 
-##
-## Maintainer related targets
-##
 check-includes: Makefile
 	for i in $(nobase_incdest_HEADERS) ; do \
 		if grep "\#include" $$i | grep "config\.h" ; then \
@@ -105,7 +104,14 @@ check-includes: Makefile
 		fi ; \
 	done
 
-check-whitespaces: Makefile
-	$(top_builddir)/tools/scripts/whitespace-detect $(nobase_incdest_HEADERS)
+check-local: check-includes
 
-maintainer-check: Makefile check-whitespaces check-includes
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-whitespaces: Makefile $(nobase_incdest_HEADERS)
+	$(WHITESPACE_DETECT) $(nobase_incdest_HEADERS)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces

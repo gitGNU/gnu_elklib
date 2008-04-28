@@ -86,4 +86,9 @@ whitespace-detect: whitespace-detect.in Makefile
 		exit 1 ; \
 	}
 
-update: fetch
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-local: Makefile

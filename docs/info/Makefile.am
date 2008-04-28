@@ -22,3 +22,10 @@ include $(top_srcdir)/Makefile.sub
 
 info_TEXINFOS = elklib.texi
 klib_TEXINFOS = fdl.texi
+
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-local: Makefile

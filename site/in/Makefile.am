@@ -62,3 +62,10 @@ maintainer-clean-local:
 		$(SITETOOL) --mode clean || exit 1 ; \
 		rm -f site.stamp ; \
 	fi
+
+##
+## Maintainer related targets
+##
+update-local: Makefile
+
+maintainer-check-local: Makefile
