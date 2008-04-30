@@ -73,7 +73,10 @@ libcxx_HDRS =					\
 	libc++/map				\
 	libc++/stack				\
 	libc++/bitset				\
-	libc++/pair
+	libc++/pair				\
+	libc++/deque				\
+	libc++/queue				\
+	libc++/set
 
 libm_HDRS =					\
 	libm/math.h
