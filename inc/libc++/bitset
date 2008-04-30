@@ -23,6 +23,15 @@
 
 namespace ktl
 {
+	template<typename TYPE> class bitset {
+	public:
+		bitset();
+		bitset(unsigned long val);
+
+	protected:
+
+	private:
+	};
 }
 
 #endif // ELKLIB_LIBCXX_BITSET

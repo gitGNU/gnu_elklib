@@ -16,13 +16,26 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#ifndef ELKLIB_LIBCXX_LIST
+#define ELKLIB_LIBCXX_LIST
+
+#include "elklib.h"
+#include "libc++/iterator"
+
 namespace ktl
 {
-	template<typename T> class list {
+	template<typename TYPE> class list {
 	public:
+		list();
+		list(const list & c);
+		list(size_type num, const TYPE & val = TYPE());
+		list(input_iterator start, input_iterator end);
+		~list();
 
 	protected:
 
 	private:
 	};
 }
+
+#endif // ELKLIB_LIBCXX_LIST

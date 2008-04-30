@@ -20,7 +20,6 @@
 #define ELKLIB_LIBCXX_STRING
 
 #include "elklib.h"
-
 #include "libc++/cstdint"
 #include "libc++/iterator"
 

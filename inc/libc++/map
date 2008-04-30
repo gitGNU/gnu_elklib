@@ -16,13 +16,42 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
+#ifndef ELKLIB_LIBCXX_MAP
+#define ELKLIB_LIBCXX_MAP
+
+#include "elklib.h"
+#include "libc++/iterator"
+
 namespace ktl
 {
-	template<typename T> class map {
+	template<typename TYPE> class map {
 	public:
+		map();
+		map(const map & m);
+		map(iterator start, iterator end);
+		map(iterator start, iterator end, const key_compare & cmp);
+		map(const key_compare & cmp);
+		~map();
+
+	protected:
+
+	private:
+	};
+
+	template<typename TYPE> class multimap {
+	public:
+		multimap();
+		multimap(const multimap & c);
+		multimap(iterator            begin,
+			 iterator            end,
+			 const key_compare & cmp = Compare(),
+			 const allocator &   alloc = Allocator());
+		~multimap();
 
 	protected:
 
 	private:
 	};
 }
+
+#endif // ELKLIB_LIBCXX_MAP

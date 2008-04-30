@@ -23,6 +23,15 @@
 
 namespace ktl
 {
+	template<typename TYPE> class stack {
+	public:
+		stack();
+		stack(const stack & c);
+
+	protected:
+
+	private:
+	};
 }
 
 #endif // ELKLIB_LIBCXX_STACK
