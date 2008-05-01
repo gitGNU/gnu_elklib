@@ -25,4 +25,4 @@ namespace ktl
 {
 }
 
-#endif // ELKLIB_LIBCXX_MEMORY_HXX
+#endif // ELKLIB_LIBCXX_MEMORY
