@@ -24,11 +24,11 @@
 
 namespace ktl
 {
-	template<typename TYPE> class deque {
+	template<typename T> class deque {
 	public:
 		container();
 		container(const container & c );
-		container(size_type num, const TYPE & val = TYPE());
+		container(size_type num, const T & val = T());
 		container(input_iterator start, input_iterator end);
 		~container();
 

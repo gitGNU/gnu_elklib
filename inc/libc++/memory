@@ -23,6 +23,48 @@
 
 namespace ktl
 {
+	template <class T> class allocator {
+	public:
+		typedef T         value_type;
+		typedef size_t    size_type;
+		typedef ptrdiff_t difference_type;
+		typedef T *       pointer;
+		typedef const T * const_pointer;
+		typedef T &       reference;
+		typedef const T & const_reference;
+
+		pointer       address(reference r) const       { return &r; }
+		const_pointer address(const_reference r) const { return &r; }
+
+		allocator() throw() { }
+		template <class U> allocator(const allocator<U> &) throw();
+		~allocator() throw() { }
+
+		pointer allocate(size_type n,
+				 typename allocator<void>::const_pointer = 0) {
+			return (T*)(::operator new(n * sizeof(T)));
+		}
+
+		void deallocate(pointer p,
+				size_type) {
+			::operator delete(p);
+		}
+
+		void construct(pointer   p,
+			       const T & val) {
+			new((void*) p) T(val);
+		}
+
+		void destroy(pointer p) {
+			((T*)p)->~T();
+		}
+
+		size_type max_size() const throw();
+
+		template<class U> struct rebind {
+			typedef allocator<U> other;
+		};
+	};
 }
 
 #endif // ELKLIB_LIBCXX_MEMORY

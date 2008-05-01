@@ -23,7 +23,7 @@
 
 namespace ktl
 {
-	template<typename TYPE> class stack {
+	template<typename T> class stack {
 	public:
 		stack();
 		stack(const stack & c);

@@ -24,11 +24,11 @@
 
 namespace ktl
 {
-	template<typename TYPE> class list {
+	template<typename T> class list {
 	public:
 		list();
 		list(const list & c);
-		list(size_type num, const TYPE & val = TYPE());
+		list(size_type num, const T & val = T());
 		list(input_iterator start, input_iterator end);
 		~list();
 

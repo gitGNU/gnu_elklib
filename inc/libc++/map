@@ -24,7 +24,7 @@
 
 namespace ktl
 {
-	template<typename TYPE> class map {
+	template<typename T> class map {
 	public:
 		map();
 		map(const map & m);
@@ -38,7 +38,7 @@ namespace ktl
 	private:
 	};
 
-	template<typename TYPE> class multimap {
+	template<typename T> class multimap {
 	public:
 		multimap();
 		multimap(const multimap & c);

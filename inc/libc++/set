@@ -23,7 +23,7 @@
 
 namespace ktl
 {
-	template<typename TYPE> class set {
+	template<typename T> class set {
 	public:
 		set();
 		set(const set & c);
@@ -34,7 +34,7 @@ namespace ktl
 	private:
 	};
 
-	template<typename TYPE> class multiset {
+	template<typename T> class multiset {
 	public:
 		multiset();
 		multiset(const multiset & c);

@@ -24,7 +24,7 @@
 
 namespace ktl
 {
-	template<typename TYPE> class queue {
+	template<typename T> class queue {
 	public:
 		queue();
 		queue(const queue & c);
@@ -34,7 +34,7 @@ namespace ktl
 	private:
 	};
 
-	template<typename TYPE> class priority_queue {
+	template<typename T> class priority_queue {
 	public:
 		priority_queue(const Compare &   cmp = Compare(),
 			       const Container & c   = Container());

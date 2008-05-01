@@ -23,32 +23,32 @@
 
 namespace ktl
 {
-        template <typename TYPE1, typename TYPE2>
+        template <typename T1, typename T2>
         class pair {
         public:
-                typedef TYPE1 first_type;
-                typedef TYPE2 second_type;
+                typedef T1 first_type;
+                typedef T2 second_type;
 
         public:
                 inline pair() :
-                        first(TYPE1()),
-                        second(TYPE2()) {
+                        first(T1()),
+                        second(T2()) {
                 }
 
-                inline pair(const TYPE1 & a,
-                            const TYPE2 & b) :
+                inline pair(const T1 & a,
+                            const T2 & b) :
                         first(a),
                         second(b) {
                 }
 
-                inline pair & operator=(const pair<TYPE1, TYPE2> & p) {
+                inline pair & operator=(const pair<T1, T2> & p) {
                         first  = p.first;
                         second = p.second;
                         return *this;
                 }
 
-                template <typename TYPE3, typename TYPE4>
-                inline pair & operator=(const pair<TYPE3, TYPE4> & p) {
+                template <typename T3, typename T4>
+                inline pair & operator=(const pair<T3, T4> & p) {
                         first  = p.first;
                         second = p.second;
                         return *this;
@@ -59,26 +59,26 @@ namespace ktl
                 second_type second;
         };
 
-        template <typename TYPE1, typename TYPE2>
-        inline bool operator==(const pair<TYPE1,TYPE2> & p1,
-			       const pair<TYPE1,TYPE2> & p2)
+        template <typename T1, typename T2>
+        inline bool operator==(const pair<T1, T2> & p1,
+			       const pair<T1, T2> & p2)
         {
                 return (p1.first == p2.first && p1.second == p2.second);
         }
 
-        template <typename TYPE1, typename TYPE2>
-        bool operator< (const pair<TYPE1,TYPE2>& p1,
-                        const pair<TYPE1,TYPE2>& p2)
+        template <typename T1, typename T2>
+        bool operator< (const pair<T1, T2>& p1,
+                        const pair<T1, T2>& p2)
         {
                 return ((p1.first < p2.first) ||
                         ((p1.first == p2.first) && (p1.second < p2.second)));
         }
 
-        template <typename TYPE1, typename TYPE2>
-        inline pair<TYPE1,TYPE2> make_pair(const TYPE1 & a,
-                                     const TYPE2 & b)
+        template <typename T1, typename T2>
+        inline pair<T1, T2> make_pair(const T1 & a,
+                                     const T2 & b)
         {
-                return (pair<TYPE1,TYPE2> (a, b));
+                return (pair<T1, T2> (a, b));
         }
 }
 

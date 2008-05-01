@@ -23,7 +23,7 @@
 
 namespace ktl
 {
-	template<typename TYPE> class bitset {
+	template<typename T> class bitset {
 	public:
 		bitset();
 		bitset(unsigned long val);
