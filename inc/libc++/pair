@@ -30,7 +30,7 @@ namespace ktl
                 typedef TYPE2 second_type;
 
         public:
-                inline pair(void) :
+                inline pair() :
                         first(TYPE1()),
                         second(TYPE2()) {
                 }
