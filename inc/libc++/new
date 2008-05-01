@@ -22,9 +22,19 @@
 #include "elklib.h"
 #include "libc++/exception"
 
-// new handler
-typedef void (* new_handler)(void);
-new_handler  set_new_handler(new_handler handler);
+namespace ktl
+{
+	class bad_alloc : public exception {
+	public:
+		bad_alloc() THROW();
+		virtual ~bad_alloc() THROW();
+	};
+
+	struct nothrow_t { };
+	extern const nothrow_t nothrow;
+	typedef void (* new_handler)();
+	new_handler set_new_handler(new_handler) throw();
+}
 
 void * operator new(size_t n)   THROW(ktl::bad_alloc);
 void * operator new[](size_t n) THROW(ktl::bad_alloc);
@@ -32,11 +42,11 @@ void * operator new[](size_t n) THROW(ktl::bad_alloc);
 void  operator delete(void * p)   THROW();
 void  operator delete[](void * p) THROW();
 
-// Default placement versions of operator new.
+// Default placement versions of operator new
 void * operator new(size_t, void * p)   THROW();
 void * operator new[](size_t, void * p) THROW();
 
-// Default placement versions of operator delete.
+// Default placement versions of operator delete
 void  operator delete(void *, void *)   THROW();
 void  operator delete[](void *, void *) THROW();
 
