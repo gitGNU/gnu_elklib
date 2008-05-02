@@ -25,11 +25,7 @@
 
 namespace ktl
 {
-	class bad_alloc : public exception {
-	public:
-		bad_alloc() throw();
-		virtual ~bad_alloc() throw();
-	};
+	class bad_alloc : public exception { };
 
 	struct nothrow_t { };
 	extern const nothrow_t nothrow;

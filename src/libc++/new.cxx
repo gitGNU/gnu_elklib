@@ -22,8 +22,8 @@
 #include "libcompiler/macro.h"
 #include "libc++/cstdlib"
 #include "libc++/cstddef"
-#include "libc++/new"
 #include "libc++/exception"
+#include "libc++/new"
 
 using namespace ktl;
 
@@ -49,7 +49,7 @@ void * operator new(ktl::size_t size) throw(ktl::bad_alloc)
 
 	tmp = malloc(size);
 	if (!tmp) {
-		throw(ktl::bad_alloc(size));
+		throw(ktl::bad_alloc());
 	}
 
 	return tmp;
@@ -62,7 +62,7 @@ void * operator new[](ktl::size_t size) throw(ktl::bad_alloc)
 
 	tmp = malloc(size);
 	if (!tmp) {
-		throw(ktl::bad_alloc(size));
+		throw(ktl::bad_alloc());
 	}
 
 	return tmp;
@@ -86,12 +86,12 @@ void operator delete[](void * pointer) throw()
 // No-Throw operators
 //
 
-void * operator new(ktl::size_t s, const ktl::nothrow_t & e) throw()
+void * operator new(ktl::size_t s, const ktl::nothrow_t &) throw()
 {
 	return malloc(s);
 }
 
-void * operator new[](ktl::size_t s, const ktl::nothrow_t & e) throw()
+void * operator new[](ktl::size_t s, const ktl::nothrow_t &) throw()
 {
 	return malloc(s);
 }
