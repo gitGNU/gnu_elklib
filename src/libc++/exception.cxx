@@ -17,13 +17,12 @@
 //
 
 #include "elklib.h"
+#include "debug.h"
 #include "externals.h"
 #include "libcompiler/compiler.h"
 #include "libc++/exception"
 
 using namespace ktl;
-
-#if ELKLIB_EXCEPTIONS
 
 terminate_handler  __terminate_handler  = 0;
 unexpected_handler __unexpected_handler = 0;
@@ -54,7 +53,7 @@ void terminate()
 		__terminate_handler();
 	}
 
-	panic("terminate() exception handler called")
+	panic("terminate() exception handler called");
 }
 
 void unexpected()
@@ -63,12 +62,10 @@ void unexpected()
 		__unexpected_handler();
 	}
 
-	panic("unexpected() exception handler called")
+	panic("unexpected() exception handler called");
 }
 
 bool uncaught_exception()
 {
 	return true;
 }
-
-#endif // ELKLIB_EXCEPTIONS
