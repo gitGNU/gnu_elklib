@@ -180,7 +180,8 @@ namespace ktl {
 	public:
 		explicit binary_negate(const P & x) : predicate_(x) { }
 		bool operator()(const typename P::first_argument_type &  x,
-				const typename P::second_argument_type & y) const {
+				const typename P::second_argument_type & y)
+			const {
 			return !predicate_(x, y);
 		}
 	};
