@@ -59,7 +59,6 @@ libcxx_HDRS =					\
 	libc++/cmath				\
 	libc++/cstdarg				\
 	libc++/cstddef				\
-	libc++/cstdint				\
 	libc++/cstdio				\
 	libc++/cstdlib				\
 	libc++/cstring				\

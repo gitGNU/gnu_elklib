@@ -23,6 +23,7 @@
 
 namespace ktl {
 
+#include "libc/stdint.h"
 #include "libc/stddef.h"
 
 }
