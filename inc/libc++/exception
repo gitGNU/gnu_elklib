@@ -21,32 +21,27 @@
 
 #include "elklib.h"
 
-#if ELKLIB_EXCEPTIONS
-#define THROW(X) throw(X)
-#else
-#define THROW(X)
-#endif
-
 namespace ktl {
 	typedef void       (* terminate_handler) ();
 	typedef void       (* unexpected_handler) ();
-	terminate_handler  set_terminate(terminate_handler h) THROW();
+
+	terminate_handler  set_terminate(terminate_handler h) throw();
 	void               terminate() ATTRIBUTE(__noreturn__);
-	unexpected_handler set_unexpected(unexpected_handler h) THROW();
+	unexpected_handler set_unexpected(unexpected_handler h) throw();
 	void               unexpected() ATTRIBUTE(__noreturn__);
-	bool               uncaught_exception() THROW();
+	bool               uncaught_exception() throw();
 
 	class exception {
 	public:
-		exception() THROW() { }
-		virtual ~exception() THROW();
-		virtual const char * what() const THROW();
+		exception() throw() { }
+		virtual ~exception() throw();
+		virtual const char * what() const throw();
 	};
 
 	class bad_exception : public exception {
 	public:
-		bad_exception() THROW() { }
-		virtual ~bad_exception() THROW();
+		bad_exception() throw() { }
+		virtual ~bad_exception() throw();
 	};
 }
 
