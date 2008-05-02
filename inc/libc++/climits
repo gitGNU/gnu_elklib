@@ -20,10 +20,9 @@
 #define ELKLIB_LIBCXX_CLIMITS
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/limits.h"
 
+namespace ktl {
 }
+
 #endif // ELKLIB_LIBCXX_CLIMITS

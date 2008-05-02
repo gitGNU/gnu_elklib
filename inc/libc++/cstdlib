@@ -20,10 +20,41 @@
 #define ELKLIB_LIBCXX_CSTDLIB
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/stdlib.h"
 
+namespace ktl {
+	using ::bsearch;
+	using ::qsort;
+	using ::atoi;
+	using ::atol;
+	using ::atoul;
+	using ::atoll;
+	using ::atof;
+	using ::abs;
+	using ::labs;
+	using ::strtol;
+	using ::strtoll;
+	using ::strtoul;
+	using ::strtoull;
+	using ::strtod;
+	using ::div;
+	using ::ldiv;
+	using ::lldiv;
+	using ::malloc;
+	using ::free;
+	using ::calloc;
+	using ::realloc;
+	using ::valloc;
+	using ::memalign;
+	using ::atexit;
+	using ::exit;
+	using ::rand;
+	using ::rand_r;
+	using ::srand;
+	using ::setenv;
+	using ::unsetenv;
+	using ::getenv;
+	using ::putenv;
 }
+
 #endif // ELKLIB_LIBCXX_CSTDLIB

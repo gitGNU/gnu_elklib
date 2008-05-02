@@ -20,10 +20,38 @@
 #define ELKLIB_LIBCXX_CSTDIO
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/stdio.h"
 
+namespace ktl {
+	using ::FILE;
+	using ::sscanf;
+	using ::printf;
+	using ::fprintf;
+	using ::sprintf;
+	using ::snprintf;
+	using ::vsscanf;
+	using ::vprintf;
+	using ::vfprintf;
+	using ::vsprintf;
+	using ::vsnprintf;
+	using ::puts;
+	using ::fputs;
+	using ::fputc;
+	using ::fgetc;
+	using ::putchar;
+	using ::getchar;
+	using ::getc;
+	using ::clearerr;
+	using ::feof;
+	using ::ferror;
+	using ::fflush;
+	using ::fread;
+	using ::fwrite;
+	using ::fseek;
+	using ::ftell;
+	using ::rewind;
+	using ::fgetpos;
+	using ::fsetpos;
 }
+
 #endif // ELKLIB_LIBCXX_CSTDIO

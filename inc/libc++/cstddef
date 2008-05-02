@@ -27,4 +27,5 @@ namespace ktl {
 	using ::ptrdiff_t;
 	using ::size_t;
 }
+
 #endif // ELKLIB_LIBCXX_CSTDDEF

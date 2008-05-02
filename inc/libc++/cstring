@@ -20,10 +20,40 @@
 #define ELKLIB_LIBCXX_CSTRING
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/string.h"
 
+namespace ktl {
+	using ::strlen;
+	using ::strnlen;
+	using ::strcmp;
+	using ::strncmp;
+	using ::strcpy;
+	using ::strncpy;
+	using ::strcat;
+	using ::strncat;
+	using ::strchr;
+	using ::strrchr;
+	using ::strstr;
+	using ::strdup;
+	using ::strndup;
+	using ::strcasecmp;
+	using ::strncasecmp;
+	using ::strpbrk;
+	using ::strsep;
+	using ::strspn;
+	using ::strcspn;
+	using ::strtok;
+	using ::strtok_r;
+	using ::index;
+	using ::rindex;
+	using ::memset;
+	using ::memcpy;
+	using ::memmove;
+	using ::memcmp;
+	using ::memchr;
+	using ::ffs;
+	using ::ffsl;
+	using ::ffsll;
 }
+
 #endif // ELKLIB_LIBCXX_CSTRING

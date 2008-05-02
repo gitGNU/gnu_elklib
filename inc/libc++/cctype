@@ -20,10 +20,25 @@
 #define ELKLIB_LIBCXX_CCTYPE
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/ctype.h"
 
+namespace ktl {
+	using ::isalnum;
+	using ::isalpha;
+	using ::iscntrl;
+	using ::isdigit;
+	using ::isgraph;
+	using ::islower;
+	using ::isprint;
+	using ::ispunct;
+	using ::isspace;
+	using ::isblank;
+	using ::isupper;
+	using ::isxdigit;
+	using ::isascii;
+	using ::toascii;
+	using ::tolower;
+	using ::toupper;
 }
+
 #endif // ELKLIB_LIBCXX_CCTYPE

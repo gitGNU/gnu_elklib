@@ -20,10 +20,10 @@
 #define ELKLIB_LIBCXX_CSTDARG
 
 #include "elklib.h"
-
-namespace ktl {
-
 #include "libc/stdarg.h"
 
+namespace ktl {
+	using ::va_list;
 }
+
 #endif // ELKLIB_LIBCXX_CSTDARG
