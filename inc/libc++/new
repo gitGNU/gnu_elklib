@@ -20,34 +20,40 @@
 #define ELKLIB_LIBCXX_NEW
 
 #include "elklib.h"
+#include "libc++/cstddef"
 #include "libc++/exception"
 
 namespace ktl
 {
 	class bad_alloc : public exception {
 	public:
-		bad_alloc() THROW();
-		virtual ~bad_alloc() THROW();
+		bad_alloc() throw();
+		virtual ~bad_alloc() throw();
 	};
 
 	struct nothrow_t { };
 	extern const nothrow_t nothrow;
+
 	typedef void (* new_handler)();
-	new_handler set_new_handler(new_handler) throw();
+	new_handler set_new_handler(new_handler h) throw();
 }
 
-void * operator new(size_t n)   THROW(ktl::bad_alloc);
-void * operator new[](size_t n) THROW(ktl::bad_alloc);
+// Throw operators
+void * operator new(ktl::size_t s)   throw (ktl::bad_alloc);
+void * operator new[](ktl::size_t s) throw (ktl::bad_alloc);
+void   operator delete(void * p)     throw();
+void   operator delete[](void * p)   throw();
 
-void  operator delete(void * p)   THROW();
-void  operator delete[](void * p) THROW();
+// No-throws operators
+void * operator new(ktl::size_t s,   const ktl::nothrow_t & e) throw();
+void * operator new[](ktl::size_t s, const ktl::nothrow_t & e) throw();
+void   operator delete(void * p,     const ktl::nothrow_t & e) throw();
+void   operator delete[](void * p,   const ktl::nothrow_t & e) throw();
 
-// Default placement versions of operator new
-void * operator new(size_t, void * p)   THROW();
-void * operator new[](size_t, void * p) THROW();
-
-// Default placement versions of operator delete
-void  operator delete(void *, void *)   THROW();
-void  operator delete[](void *, void *) THROW();
+// Placement operators
+inline void * operator new(ktl::size_t,   void * p) throw() { return p; }
+inline void * operator new[](ktl::size_t, void * p) throw() { return p; }
+inline void   operator delete  (void *, void *) throw() { }
+inline void   operator delete[](void *, void *) throw() { }
 
 #endif // ELKLIB_LIBCXX_NEW

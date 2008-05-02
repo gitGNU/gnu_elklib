@@ -21,6 +21,7 @@
 #include "libcompiler/compiler.h"
 #include "libcompiler/macro.h"
 #include "libc++/cstdlib"
+#include "libc++/cstddef"
 #include "libc++/new"
 #include "libc++/exception"
 
@@ -28,81 +29,79 @@ using namespace ktl;
 
 new_handler __new_handler = 0;
 
-new_handler set_new_handler(new_handler handler)
+new_handler set_new_handler(new_handler h)
 {
 	new_handler tmp;
 
 	tmp           = __new_handler;
-	__new_handler = handler;
+	__new_handler = h;
 
 	return tmp;
 }
 
-void * operator new(size_t size) THROW(ktl::bad_alloc)
+//
+// Throw operators
+//
+
+void * operator new(ktl::size_t size) throw(ktl::bad_alloc)
 {
 	void * tmp;
 
 	tmp = malloc(size);
 	if (!tmp) {
-		THROW(ktl::bad_alloc(size));
-		if (__new_handler) {
-			__new_handler();
-		}
+		throw(ktl::bad_alloc(size));
 	}
 
 	return tmp;
 }
 
 
-void * operator new[](size_t size) THROW(ktl::bad_alloc)
+void * operator new[](ktl::size_t size) throw(ktl::bad_alloc)
 {
 	void * tmp;
 
 	tmp = malloc(size);
 	if (!tmp) {
-		THROW(ktl::bad_alloc(size));
-		if (__new_handler) {
-			__new_handler();
-		}
+		throw(ktl::bad_alloc(size));
 	}
 
 	return tmp;
 }
 
-void operator delete(void * pointer) THROW()
+void operator delete(void * pointer) throw()
 {
 	if (pointer) {
 		ktl::free(pointer);
 	}
 }
 
-void operator delete[](void * pointer) THROW()
+void operator delete[](void * pointer) throw()
 {
 	if (pointer) {
 		free(pointer);
 	}
 }
 
-void * operator new(size_t size, void * pointer) THROW()
-{
-	unused_argument(size);
+//
+// No-Throw operators
+//
 
-	return pointer;
+void * operator new(ktl::size_t s, const ktl::nothrow_t & e) throw()
+{
+	return malloc(s);
 }
 
-void * operator new[](size_t size, void * pointer) THROW()
+void * operator new[](ktl::size_t s, const ktl::nothrow_t & e) throw()
 {
-	unused_argument(size);
-
-	return pointer;
+	return malloc(s);
 }
 
-void operator delete(void *, void *) THROW()
+void operator delete(void * p, const ktl::nothrow_t &) throw()
 {
-	missing();
+	free(p);
 }
 
-void operator delete[](void *, void *) THROW()
+void operator delete[](void * p, const ktl::nothrow_t &) throw()
 {
-	missing();
+	free(p);
 }
