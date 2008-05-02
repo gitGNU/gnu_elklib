@@ -76,7 +76,9 @@ libcxx_HDRS =					\
 	libc++/pair				\
 	libc++/deque				\
 	libc++/queue				\
-	libc++/set
+	libc++/set				\
+	libc++/algorithm			\
+	libc++/functional
 
 libm_HDRS =					\
 	libm/math.h
