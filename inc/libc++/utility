@@ -21,8 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl
-{
+namespace ktl {
 	namespace rel_ops {
 		template <class T> inline bool operator!=(const T & x,
 							  const T & y) {

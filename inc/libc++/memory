@@ -21,8 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl
-{
+namespace ktl {
 	template <class T> class allocator {
 	public:
 		typedef T         value_type;

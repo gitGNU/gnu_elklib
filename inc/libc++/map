@@ -22,8 +22,7 @@
 #include "elklib.h"
 #include "libc++/iterator"
 
-namespace ktl
-{
+namespace ktl {
 	template<typename T> class map {
 	public:
 		map();

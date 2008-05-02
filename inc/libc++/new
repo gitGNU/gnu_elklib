@@ -23,8 +23,7 @@
 #include "libc++/cstddef"
 #include "libc++/exception"
 
-namespace ktl
-{
+namespace ktl {
 	class bad_alloc : public exception { };
 
 	struct nothrow_t { };

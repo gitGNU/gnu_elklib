@@ -21,8 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl
-{
+namespace ktl {
 	template<typename T> class bitset {
 	public:
 		bitset();
