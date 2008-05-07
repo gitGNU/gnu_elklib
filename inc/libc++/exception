@@ -33,15 +33,17 @@ namespace ktl {
 
 	class exception {
 	public:
-		exception() throw() { }
-		virtual ~exception() throw();
-		virtual const char * what() const throw();
+		exception() throw()                       { };
+		virtual ~exception() throw()              { };
+		virtual const char * what() const throw() {
+			return "exception";
+		};
 	};
 
 	class bad_exception : public exception {
 	public:
-		bad_exception() throw() { }
-		virtual ~bad_exception() throw();
+		bad_exception() throw()          { };
+		virtual ~bad_exception() throw() { };
 	};
 }
 
