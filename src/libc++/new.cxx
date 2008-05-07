@@ -47,7 +47,7 @@ void * operator new(ktl::size_t size) throw(ktl::bad_alloc)
 {
 	void * tmp;
 
-	tmp = malloc(size);
+	tmp = ktl::malloc(size);
 	if (!tmp) {
 		throw(ktl::bad_alloc());
 	}
@@ -60,7 +60,7 @@ void * operator new[](ktl::size_t size) throw(ktl::bad_alloc)
 {
 	void * tmp;
 
-	tmp = malloc(size);
+	tmp = ktl::malloc(size);
 	if (!tmp) {
 		throw(ktl::bad_alloc());
 	}
@@ -78,7 +78,7 @@ void operator delete(void * pointer) throw()
 void operator delete[](void * pointer) throw()
 {
 	if (pointer) {
-		free(pointer);
+		ktl::free(pointer);
 	}
 }
 
@@ -88,20 +88,20 @@ void operator delete[](void * pointer) throw()
 
 void * operator new(ktl::size_t s, const ktl::nothrow_t &) throw()
 {
-	return malloc(s);
+	return ktl::malloc(s);
 }
 
 void * operator new[](ktl::size_t s, const ktl::nothrow_t &) throw()
 {
-	return malloc(s);
+	return ktl::malloc(s);
 }
 
 void operator delete(void * p, const ktl::nothrow_t &) throw()
 {
-	free(p);
+	ktl::free(p);
 }
 
 void operator delete[](void * p, const ktl::nothrow_t &) throw()
 {
-	free(p);
+	ktl::free(p);
 }
