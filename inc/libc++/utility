@@ -16,119 +16,110 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_PAIR
-#define ELKLIB_LIBCXX_PAIR
+#ifndef ELKLIB_LIBCXX_UTILITY
+#define ELKLIB_LIBCXX_UTILITY
 
 #include "elklib.h"
 
 namespace ktl {
 	namespace rel_ops {
-		template <class T> inline bool operator!=(const T & x,
-							  const T & y) {
-			return (!(x == y));
-		}
-
-		template <class T> inline bool operator>(const T & x,
+		template<class T> inline bool operator!=(const T & x,
 							 const T & y) {
-			return (y < x);
+			if (x < y || y < x) {
+				return true;
+			}
+			return false;
 		}
 
-		template <class T> inline bool operator<=(const T & x,
-							  const T & y) {
-			return (!(y < x));
+		template<class T> inline bool operator> (const T & x,
+							 const T & y) {
+			if ( y < x) {
+				return true;
+			}
+			return false;
 		}
 
-		template <class T> inline bool operator>=(const T & x,
-							  const T & y) {
-			return (!(x < y));
+		template<class T> inline bool operator<=(const T & x,
+							 const T & y) {
+			if ( y < x ) {
+				return false;
+			}
+			return true;
+		}
+
+		template<class T> inline bool operator>=(const T & x,
+							 const T & y) {
+			if (x < y) {
+				return false;
+			}
+			return true;
 		}
 	}
 
-        template <typename T1, typename T2>
-        class pair {
-        public:
-                typedef T1 first_type;
-                typedef T2 second_type;
+	template <class T1, class T2> struct pair;
+	template <class T1, class T2>
+	bool operator==(const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		if (x.first == y.first && x.second == y.second) {
+			return true;
+		}
+		return false;
+	}
+	template <class T1, class T2> bool
+	operator< (const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		return (x.first < y.first ||
+			(!(y.first < x.first) && x.second < y.second));
+	}
+	template <class T1, class T2>
+	bool operator!=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		if (x.first != y.first || x.second != y.second) {
+			return true;
+		}
+		return false;
+	}
+	template <class T1, class T2>
+	bool operator> (const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		return (x.first > y.first ||
+			(!(y.first > x.first) && x.second > y.second));
+	}
+	template <class T1, class T2>
+	bool operator>=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		return (x.first >= y.first ||
+			(!(y.first >= x.first) && x.second >= y.second));
+	}
+	template <class T1, class T2>
+	bool operator<=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
+		return (x.first <= y.first ||
+			(!(y.first <= x.first) && x.second <= y.second));
+	}
+	template <class T1, class T2> pair<T1,T2>
+	make_pair(const T1 & x, const T2 & y) {
+		return pair<T1,T2>(x, y);
+	}
 
-        public:
-                inline pair() :
-                        first(T1()),
-                        second(T2()) {
-                }
 
-                inline pair(const T1 & a,
-                            const T2 & b) :
-                        first(a),
-                        second(b) {
-                }
+	template <class T1, class T2> struct pair {
+		typedef T1 first_type;
+		typedef T2 second_type;
 
-                inline pair & operator=(const pair<T1, T2> & p) {
-                        first  = p.first;
-                        second = p.second;
-                        return *this;
-                }
+		T1 first;
+		T2 second;
+		pair();
+		pair(const T1& x, const T2& y);
+		template<class U, class V> pair(const pair<U, V> & p);
+	};
 
-                template <typename T3, typename T4>
-                inline pair & operator=(const pair<T3, T4> & p) {
-                        first  = p.first;
-                        second = p.second;
-                        return *this;
-                }
+	
+	template <class T1, class T2>
+	pair<T1, T2>::pair() :
+		first(), second() {  }
 
-        public:
-                first_type  first;
-                second_type second;
-        };
+	template <class T1, class T2>
+	pair<T1, T2>::pair(const T1 & x, const T2 & y) :
+		first(x), second(y) {  }
 
-        template <typename T1, typename T2>
-        inline bool operator==(const pair<T1, T2> & p1,
-			       const pair<T1, T2> & p2)
-        {
-                return (p1.first == p2.first && p1.second == p2.second);
-        }
-
-        template <typename T1, typename T2>
-        inline bool operator<(const pair<T1, T2>& p1,
-			      const pair<T1, T2>& p2)
-        {
-                return ((p1.first < p2.first) ||
-                        ((p1.first == p2.first) && (p1.second < p2.second)));
-        }
-
-        template <typename T1, typename T2>
-        inline bool operator!=(const pair<T1, T2> & p1,
-			       const pair<T1, T2> & p2)
-        {
-                return (!(p1 == p2));
-        }
-
-        template <typename T1, typename T2>
-        inline bool operator>(const pair<T1, T2> & p1,
-			      const pair<T1, T2> & p2)
-        {
-                return (p2 < p1);
-        }
-
-        template <typename T1, typename T2>
-        inline bool operator<=(const pair<T1, T2> & p1,
-			       const pair<T1, T2> & p2)
-        {
-                return (!(p2 < p1);
-        }
-
-        template <typename T1, typename T2>
-        inline bool operator>=(const pair<T1, T2> & p1,
-			       const pair<T1, T2> & p2)
-        {
-                return (!(p1 < p2);
-        }
-
-        template <typename T1, typename T2>
-        inline pair<T1, T2> make_pair(const T1 & a,
-				      const T2 & b)
-        {
-                return (pair<T1, T2> (a, b));
-        }
+	template <class T1, class T2>
+	template<class U, class V> pair<T1, T2>::pair(const pair<U, V> & p) :
+		first(p.first), second(p.second) {  }
 }
 
-#endif // ELKLIB_LIBCXX_PAIR
+#endif // ELKLIB_LIBCXX_UTILITY
