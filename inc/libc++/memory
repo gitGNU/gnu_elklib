@@ -20,8 +20,21 @@
 #define ELKLIB_LIBCXX_MEMORY
 
 #include "elklib.h"
+#include "libc++/new"
 
 namespace ktl {
+	template <class T> class allocator;
+
+	template <> class allocator<void> {
+	public:
+		typedef void *       pointer;
+		typedef const void * const_pointer;
+		typedef void         value_type;
+//		typedef <class U> struct rebind {
+//			typedef allocator<U> other;
+//		};
+	};
+
 	template <class T> class allocator {
 	public:
 		typedef T         value_type;
