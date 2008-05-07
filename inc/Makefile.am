@@ -77,7 +77,11 @@ libcxx_HDRS =					\
 	libc++/queue				\
 	libc++/set				\
 	libc++/algorithm			\
-	libc++/functional
+	libc++/functional			\
+	libc++/exception			\
+	libc++/bits/char_traits			\
+	libc++/bits/type_traits			\
+	libc++/bits/funct_exception
 
 libm_HDRS =					\
 	libm/math.h
