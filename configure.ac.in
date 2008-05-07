@@ -200,6 +200,10 @@ CXX_VERSION="unknown"
 AS_IF([test x"$gxx_available" = x"1"],[
   AX_GXX_VERSION
 
+  # XXX FIXME: Rename as AX_GXX_INSTALL_DIR
+  AX_GCC_INSTALL_DIR(GXX_INSTALL_DIR)
+  AC_SUBST(GXX_INSTALL_DIR)
+
   CXX_VERSION=$GXX_VERSION
 
   AX_CXX_CHECK_FLAG([-fno-builtin],[],[],[
