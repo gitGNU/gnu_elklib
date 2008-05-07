@@ -206,14 +206,14 @@ AS_IF([test x"$gxx_available" = x"1"],[
     AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-builtin"
   ],[
   ])
-  AX_CXX_CHECK_FLAG([-fno-rtti],[],[],[
-    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-rtti"
-  ],[
-  ])
-  AX_CXX_CHECK_FLAG([-fno-exceptions],[],[],[
-    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-exceptions"
-  ],[
-  ])
+#  AX_CXX_CHECK_FLAG([-fno-rtti],[],[],[
+#    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-rtti"
+#  ],[
+#  ])
+#  AX_CXX_CHECK_FLAG([-fno-exceptions],[],[],[
+#    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-exceptions"
+#  ],[
+#  ])
   AX_CXX_CHECK_FLAG([-Woverloaded-virtual],[],[],[
     AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -Woverloaded-virtual"
   ],[
@@ -279,6 +279,9 @@ AX_CXXCPP_CHECK_FLAG([-Wswitch-default],[],[],[
 AX_CXXCPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
   TEMP_CXXCPPFLAGS="$TEMP_CXXCPPFLAGS -Wchar-subscripts"
 ])
+
+# Linker flags
+AX_CONFIG_LDFLAGS=""
 
 # Build AX_CONFIG_CPPFLAGS as intersection of TEMP_CPPFLAGS and
 # TEMP_CPPCXXFLAGS variable values
