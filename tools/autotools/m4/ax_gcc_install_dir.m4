@@ -47,18 +47,19 @@
 #   special exception to the GPL to apply to your modified version as well.
 
 AC_DEFUN([AX_GCC_INSTALL_DIR], [
-AC_REQUIRE([AC_PROG_CC])
-if test "x$GCC" = "xyes"; then
-	AX_GCC_OPTION([-print-search-dirs],[],[],[
-		AC_MSG_CHECKING([gcc install directory])
-		ax_gcc_install_dir=`$CC -print-search-dirs | grep install | sed -e "s/^install://" | sed -e "s/\/$//"`
-		AC_MSG_RESULT([$ax_gcc_install_dir])
-		$1=$ax_gcc_install_dir
+	AC_REQUIRE([AC_PROG_CC])
+
+	AS_IF([test "x$GCC" = "xyes"],[
+		AX_GCC_OPTION([-print-search-dirs],[],[],[
+			AC_MSG_CHECKING([gcc install directory])
+			ax_gcc_install_dir=`$CC -print-search-dirs | grep install | sed -e "s,^install:,," -e "s,^\s*,," -e "s,\/$,," `
+			AC_MSG_RESULT([$ax_gcc_install_dir])
+			$1=$ax_gcc_install_dir
+		],[
+			unset $1
+		])
 	],[
+		AC_MSG_RESULT([sorry, no gcc available])
 		unset $1
 	])
-else
-	AC_MSG_RESULT([sorry, no gcc available])
-	unset $1
-fi
 ])
