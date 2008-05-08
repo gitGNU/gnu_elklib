@@ -331,14 +331,14 @@ lldiv_t lldiv(long long num,
 	return r;
 }
 
-#define DEBUG_CHECK_DOUBLE_FREE 0
 #define DEBUG_MALLOC_SIGNATURE	0
+#define DEBUG_CHECK_DOUBLE_FREE 0
 
 #if DEBUG_MALLOC_SIGNATURE
 #define SIGNATURE_MAGIC	 0xDDEEAADD
 #define SIGNATURE_HEADER 0xDEAD0101
 #define SIGNATURE_FOOTER 0x0220DEAD
-#define SIGNATURE_NONE	 0xDEDEADAD
+#define SIGNATURE_NONE	 0x00000000
 
 static void* signed_alloc(unsigned int size)
 {
@@ -405,6 +405,10 @@ static void signed_free(void* address)
 			      "(expected 0x%x)\n",
 			      tmp, address, SIGNATURE_MAGIC);
 		}
+#if DEBUG_CHECK_DOUBLE_FREE
+		/* Remove signature tag ! */
+		(* (uint_t *) ptr) = SIGNATURE_NONE;
+#endif
 
 		/* Check for signature header */
 		ptr = ptr + sizeof(uint_t);
@@ -415,7 +419,6 @@ static void signed_free(void* address)
 			      "(expected 0x%x)\n",
 			      tmp, address, SIGNATURE_HEADER);
 		}
-
 #if DEBUG_CHECK_DOUBLE_FREE
 		/* Remove signature tag ! */
 		(* (uint_t *) ptr) = SIGNATURE_NONE;
@@ -434,7 +437,6 @@ static void signed_free(void* address)
 			      "(expected 0x%x)\n",
 			      tmp, address, SIGNATURE_FOOTER);
 		}
-
 #if DEBUG_CHECK_DOUBLE_FREE
 		/* Remove signature tag ! */
 		(* (uint_t *) ptr) = SIGNATURE_NONE;
@@ -467,7 +469,7 @@ void* malloc(size_t size)
 void free(void* address)
 {
 	if (__free_hook) {
-		 /* XXX FIXME: Add code here */
+		/* XXX FIXME: Add code here */
 		(__free_hook)(address, NULL);
 		return;
 	}
@@ -901,20 +903,20 @@ void __cxa_finalize(void* d)
 {
 	struct exit_function_list* funcs;
 
-       /*
-	* NOTE:
-	*     If D is non-NULL, call all functions registered with
-	*     __cxa_atexit() with the same dso handle. Otherwise. Otherwise, if
-	*     d is NULL, call all of the registered handlers.
-	*/
+	/*
+	 * NOTE:
+	 *     If D is non-NULL, call all functions registered with
+	 *     __cxa_atexit() with the same dso handle. Otherwise. Otherwise, if
+	 *     d is NULL, call all of the registered handlers.
+	 */
 
-       /*
-	* NOTE:
-	*     We must provide the symbol __dso_handle in our executable. Only
-	*     the address of this symbol is needed, because GCC calls
-	*     __cxa_atexit with() &__dso_handle.
-	*
-	*/
+	/*
+	 * NOTE:
+	 *     We must provide the symbol __dso_handle in our executable. Only
+	 *     the address of this symbol is needed, because GCC calls
+	 *     __cxa_atexit with() &__dso_handle.
+	 *
+	 */
 
 	for (funcs = __exit_funcs; funcs; funcs = funcs->next) {
 		struct exit_function* f;
