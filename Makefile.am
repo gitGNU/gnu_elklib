@@ -111,9 +111,6 @@ ChangeLog: $(srcdir)/NEWS
 #	        exit 1 ;                        \
 #	}
 
-site: all
-	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
-
 DISTCLEANFILES =
 
 check-local:
@@ -127,6 +124,9 @@ check-local:
 ##
 ## Maintainer related targets
 ##
+site: all
+	(cd site && $(MAKE) $(AM_MAKEFLAGS) site)
+
 HOST = "http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob_plain;hb=HEAD;f=doc"
 
 DOWNLOAD =					\

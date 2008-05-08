@@ -41,6 +41,9 @@ DOWNLOAD =					\
 
 MACROS =					\
 	$(DOWNLOAD)				\
+	ax_gcc_lib.m4				\
+	ax_gcc_libgcc_eh.m4			\
+	ax_gcc_libsupcxx.m4			\
 	ax_c___asm__.m4				\
 	ax_asm_uscore.m4			\
 	ax_blacklist_version.m4			\
