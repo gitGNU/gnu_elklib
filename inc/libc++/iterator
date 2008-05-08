@@ -20,6 +20,7 @@
 #define ELKLIB_LIBCXX_ITERATOR
 
 #include "elklib.h"
+#include "cstddef"
 
 namespace ktl {
 	template<class Iterator> struct iterator_traits;
