@@ -331,8 +331,8 @@ lldiv_t lldiv(long long num,
 	return r;
 }
 
-#define DEBUG_CHECK_DOUBLE_FREE 1
-#define DEBUG_MALLOC_SIGNATURE	1
+#define DEBUG_CHECK_DOUBLE_FREE 0
+#define DEBUG_MALLOC_SIGNATURE	0
 
 #if DEBUG_MALLOC_SIGNATURE
 #define SIGNATURE_MAGIC	 0xDDEEAADD
@@ -399,19 +399,21 @@ static void signed_free(void* address)
 		/* Check for signature magic */
 		ptr = real_address;
 		tmp = (* (uint_t *) ptr);
-		if (tmp == SIGNATURE_MAGIC) {
+		if (tmp != SIGNATURE_MAGIC) {
 			panic("Bad signature magic (0x%x) "
-			      "for memory block at address %p\n",
-			      tmp, address);
+			      "for memory block at address %p, "
+			      "(expected 0x%x)\n",
+			      tmp, address, SIGNATURE_MAGIC);
 		}
 
 		/* Check for signature header */
 		ptr = ptr + sizeof(uint_t);
 		tmp = (* (uint_t *) ptr);
-		if (tmp == SIGNATURE_HEADER) {
+		if (tmp != SIGNATURE_HEADER) {
 			panic("Bad signature header (0x%x) "
-			      "for memory block at address %p\n",
-			      tmp, address);
+			      "for memory block at address %p, "
+			      "(expected 0x%x)\n",
+			      tmp, address, SIGNATURE_HEADER);
 		}
 
 #if DEBUG_CHECK_DOUBLE_FREE
@@ -426,10 +428,11 @@ static void signed_free(void* address)
 		/* Check for signature footer */
 		ptr = address + size - sizeof(uint_t);
 		tmp = (* (uint_t *) ptr);
-		if (tmp == SIGNATURE_FOOTER) {
+		if (tmp != SIGNATURE_FOOTER) {
 			panic("Bad signature footer (0x%x) "
-			      "for memory block at address %p\n",
-			      tmp, address);
+			      "for memory block at address %p, "
+			      "(expected 0x%x)\n",
+			      tmp, address, SIGNATURE_FOOTER);
 		}
 
 #if DEBUG_CHECK_DOUBLE_FREE
