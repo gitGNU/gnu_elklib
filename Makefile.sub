@@ -62,7 +62,8 @@ do_subst = sed \
   -e 's,[@]AX_CONFIG_CFLAGS[@],$(AX_CONFIG_CFLAGS),g' \
   -e 's,[@]AX_CONFIG_CXXFLAGS[@],$(AX_CONFIG_CXXFLAGS),g' \
   -e 's,[@]AX_CONFIG_LDFLAGS[@],$(AX_CONFIG_LDFLAGS),g' \
-  -e 's,[@]GXX_INSTALL_DIR[@],$(GXX_INSTALL_DIR),g' \
+  -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
+  -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g' \
   -e 's,[@]WGET[@],$(WGET),g' \
   -e 's,[@]target_cpu[@],$(target_cpu),g' \
   -e 's,[@]configure_input[@],Generated from $@.in; do not edit by hand.,g' \

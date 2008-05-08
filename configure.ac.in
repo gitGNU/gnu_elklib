@@ -200,10 +200,6 @@ CXX_VERSION="unknown"
 AS_IF([test x"$gxx_available" = x"1"],[
   AX_GXX_VERSION
 
-  # XXX FIXME: Rename as AX_GXX_INSTALL_DIR
-  AX_GCC_INSTALL_DIR(GXX_INSTALL_DIR)
-  AC_SUBST(GXX_INSTALL_DIR)
-
   CXX_VERSION=$GXX_VERSION
 
   AX_CXX_CHECK_FLAG([-fno-builtin],[],[],[
@@ -228,6 +224,18 @@ AS_IF([test x"$gxx_available" = x"1"],[
   ])
 
   AX_REMOVE_FORBIDDEN(CXX, [-Wunreachable-code -Wsequence-point])
+
+  AX_GCC_LIBGCC_EH(GXX_LIBGCC_EH)
+  AS_IF([test -z "$GXX_LIBGCC_EH"],[
+    AC_MSG_ERROR([Missing required library])
+  ])
+  AC_SUBST([GXX_LIBGCC_EH])
+
+  AX_GCC_LIBSUPCXX(GXX_LIBSUPCXX)
+  AS_IF([test -z "$GXX_LIBSUPCXX"],[
+    AC_MSG_ERROR([Missing required library])
+  ])
+  AC_SUBST([GXX_LIBSUPCXX])
 ])
 
 AC_PROG_CXX_C_O

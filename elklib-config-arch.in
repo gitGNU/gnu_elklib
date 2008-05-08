@@ -112,7 +112,7 @@ if test "$echo_static_libs" == "yes" ; then
     #
     # XXX FIXME ASAP
     #
-    echo "@libdir@/libelk-@target_cpu@.a @GXX_INSTALL_DIR@/libgcc_eh.a @GXX_INSTALL_DIR@/libsupc++.a $output"
+    echo "@libdir@/libelk-@target_cpu@.a @GXX_LIBGCC_EH@ @GXX_LIBSUPCXX@ $output"
 fi
 
 if test "$echo_cppflags" == "yes" ; then
