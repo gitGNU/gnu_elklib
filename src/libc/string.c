@@ -24,9 +24,6 @@
 #include "libc/stdlib.h"
 #include "libcompiler/macro.h"
 
-//#include "core/dbg/bug.h"
-//#include "core/mem/heap.h"
-
 char* strcat(char*       destination,
 	     const char* source)
 {
@@ -346,11 +343,9 @@ char* strtok(char*       s,
 		return NULL;
 	}
 
-	/*
-	 * Skip (span) leading delimiters (s += strspn(s, delim), sort of).
-	 */
+	/* Skip (span) leading delimiters (s += strspn(s, delim), sort of) */
  cont:
-	/* Please remove the 'cont:' label ASAP ... */
+	/* XXX FIXME: Please remove the 'cont:' label ASAP ... */
 	c = *s++;
 	for (spanp = (char *) delim; (sc = *spanp++) != 0;) {
 		if (c == sc) {
@@ -400,11 +395,9 @@ char* strtok_r(char*       s,
 		return NULL;
 	}
 
-	/*
-	 * Skip (span) leading delimiters (s += strspn(s, delim), sort of).
-	 */
+	/* Skip (span) leading delimiters (s += strspn(s, delim), sort of) */
  cont:
-	/* Please remove the 'cont:' label ASAP ... */
+	/* XXX FIXME: Please remove the 'cont:' label ASAP ... */
 	c = *s++;
 	for (spanp = (char *) delim; (sc = *spanp++) != 0;) {
 		if (c == sc) {
@@ -450,11 +443,9 @@ size_t strspn(const char* s1, const char* s2)
 
 	p = s1;
 
-	/*
-	 * Skip any characters in s2, excluding the terminating \0.
-	 */
+	/* Skip any characters in s2, excluding the terminating \0 */
  cont:
-	/* Please remove the 'cont:' label ASAP ... */
+	/* XXX FIXME: Please remove the 'cont:' label ASAP ... */
 	c = *p++;
 	for (spanp = s2; (sc = *spanp++) != 0;) {
 		if (sc == c) {
