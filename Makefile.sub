@@ -30,18 +30,18 @@ COMMONASFLAGS =					\
         -I$(top_builddir)/inc
 
 COMMONCPPFLAGS =				\
-        $(AX_CONFIG_CPPFLAGS)			\
+        $(HOST_CPPFLAGS)			\
         -I$(top_srcdir)/src			\
         -I$(top_builddir)/src			\
         -I$(top_srcdir)/inc			\
         -I$(top_builddir)/inc
 
-COMMONCFLAGS =                                  \
-        $(AX_CONFIG_CFLAGS)                     \
+COMMONCFLAGS =					\
+        $(HOST_CFLAGS)				\
         -nostdinc
 
-COMMONCXXFLAGS =                                \
-        $(AX_CONFIG_CXXFLAGS)                   \
+COMMONCXXFLAGS =				\
+        $(HOST_CXXFLAGS)			\
         -nostdinc -nostdinc++
 
 ##
@@ -59,12 +59,19 @@ do_subst = sed \
   -e 's,[@]PERL[@],$(PERL),g' \
   -e 's,[@]SHELL[@],$(SHELL),g' \
   \
-  -e 's,[@]PKG_ASFLAGS[@],$(PKG_ASFLAGS),g' \
-  -e 's,[@]PKG_CPPFLAGS[@],$(PKG_CPPFLAGS),g' \
-  -e 's,[@]PKG_CFLAGS[@],$(PKG_CFLAGS),g' \
-  -e 's,[@]PKG_CXXCPPFLAGS[@],$(PKG_CXXCPPFLAGS),g' \
-  -e 's,[@]PKG_CXXFLAGS[@],$(PKG_CXXFLAGS),g' \
-  -e 's,[@]PKG_LDFLAGS[@],$(PKG_LDFLAGS),g' \
+  -e 's,[@]TARGET_ASFLAGS[@],$(TARGET_ASFLAGS),g' \
+  -e 's,[@]TARGET_CPPFLAGS[@],$(TARGET_CPPFLAGS),g' \
+  -e 's,[@]TARGET_CFLAGS[@],$(TARGET_CFLAGS),g' \
+  -e 's,[@]TARGET_CXXCPPFLAGS[@],$(TARGET_CXXCPPFLAGS),g' \
+  -e 's,[@]TARGET_CXXFLAGS[@],$(TARGET_CXXFLAGS),g' \
+  -e 's,[@]TARGET_LDFLAGS[@],$(TARGET_LDFLAGS),g' \
+  \
+  -e 's,[@]HOST_ASFLAGS[@],$(HOST_ASFLAGS),g' \
+  -e 's,[@]HOST_CPPFLAGS[@],$(HOST_CPPFLAGS),g' \
+  -e 's,[@]HOST_CFLAGS[@],$(HOST_CFLAGS),g' \
+  -e 's,[@]HOST_CXXCPPFLAGS[@],$(HOST_CXXCPPFLAGS),g' \
+  -e 's,[@]HOST_CXXFLAGS[@],$(HOST_CXXFLAGS),g' \
+  -e 's,[@]HOST_LDFLAGS[@],$(HOST_LDFLAGS),g' \
   \
   -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
   -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g' \

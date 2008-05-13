@@ -71,11 +71,11 @@ AS_IF([test x"$enable_cxx_support" = x"no"],[
 ])
 
 # Gather supported flags while checking programs and their features
-AX_CONFIG_ASFLAGS=""
-AX_CONFIG_CPPFLAGS=""
-AX_CONFIG_CFLAGS=""
-AX_CONFIG_CXXFLAGS=""
-AX_CONFIG_LDFLAGS=""
+HOST_ASFLAGS=""
+HOST_CPPFLAGS=""
+HOST_CFLAGS=""
+HOST_CXXFLAGS=""
+HOST_LDFLAGS=""
 
 # Assembler
 AM_PROG_AS
@@ -158,17 +158,17 @@ AS_IF([test x"$gcc_available" = x"1"],[
   ],[])
 
   AX_C_CHECK_FLAG([-fno-builtin],[],[],[
-    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fno-builtin"
+    HOST_CFLAGS="$HOST_CFLAGS -fno-builtin"
   ],[
   ])
 
   AX_C_CHECK_FLAG([-fmessage-length=0],[],[],[
-    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fmessage-length=0"
+    HOST_CFLAGS="$HOST_CFLAGS -fmessage-length=0"
   ],[
   ])
 
   AX_C_CHECK_FLAG([-fsigned-char],[],[],[
-    AX_CONFIG_CFLAGS="$AX_CONFIG_CFLAGS -fsigned-char"
+    HOST_CFLAGS="$HOST_CFLAGS -fsigned-char"
   ],[
   ])
 
@@ -203,23 +203,23 @@ AS_IF([test x"$gxx_available" = x"1"],[
   CXX_VERSION=$GXX_VERSION
 
   AX_CXX_CHECK_FLAG([-fno-builtin],[],[],[
-    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-builtin"
+    HOST_CXXFLAGS="$HOST_CXXFLAGS -fno-builtin"
   ],[
   ])
 #  AX_CXX_CHECK_FLAG([-fno-rtti],[],[],[
-#    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-rtti"
+#    HOST_CXXFLAGS="$HOST_CXXFLAGS -fno-rtti"
 #  ],[
 #  ])
 #  AX_CXX_CHECK_FLAG([-fno-exceptions],[],[],[
-#    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fno-exceptions"
+#    HOST_CXXFLAGS="$HOST_CXXFLAGS -fno-exceptions"
 #  ],[
 #  ])
   AX_CXX_CHECK_FLAG([-Woverloaded-virtual],[],[],[
-    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -Woverloaded-virtual"
+    HOST_CXXFLAGS="$HOST_CXXFLAGS -Woverloaded-virtual"
   ],[
   ])
   AX_CXX_CHECK_FLAG([-fmessage-length=0],[],[],[
-    AX_CONFIG_CXXFLAGS="$AX_CONFIG_CXXFLAGS -fmessage-length=0"
+    HOST_CXXFLAGS="$HOST_CXXFLAGS -fmessage-length=0"
   ],[
   ])
 
@@ -293,7 +293,7 @@ AX_CXXCPP_CHECK_FLAG([-Wchar-subscripts],[],[],[
 ])
 
 # Linker flags
-AX_CONFIG_LDFLAGS=""
+HOST_LDFLAGS=""
 
 AC_PROG_RANLIB
 #AC_PROG_LIBTOOL
@@ -342,12 +342,12 @@ AX_ASM_USCORE
 #
 # Final flags fixups
 #
-AX_STRING_CLEAN(AX_CONFIG_ASFLAGS)
-AX_STRING_CLEAN(AX_CONFIG_CPPFLAGS)
-AX_STRING_CLEAN(AX_CONFIG_CFLAGS)
-AX_STRING_CLEAN(AX_CONFIG_CXXCPPFLAGS)
-AX_STRING_CLEAN(AX_CONFIG_CXXFLAGS)
-AX_STRING_CLEAN(AX_CONFIG_LDFLAGS)
+AX_STRING_CLEAN(HOST_ASFLAGS)
+AX_STRING_CLEAN(HOST_CPPFLAGS)
+AX_STRING_CLEAN(HOST_CFLAGS)
+AX_STRING_CLEAN(HOST_CXXCPPFLAGS)
+AX_STRING_CLEAN(HOST_CXXFLAGS)
+AX_STRING_CLEAN(HOST_LDFLAGS)
 
 #
 # Architecture related fixups
@@ -367,27 +367,27 @@ AS_CASE([$architecture],
   [ AC_MSG_ERROR([unknown architecture $architecture]) ]
 )
 
-PKG_ASFLAGS=""
-PKG_CPPFLAGS="$architecture_flags"
-PKG_CFLAGS=""
-PKG_CXXCPPFLAGS="$architecture_flags"
-PKG_CXXFLAGS=""
-PKG_CXXFLAGS=""
-PKG_LDFLAGS=""
+TARGET_ASFLAGS=""
+TARGET_CPPFLAGS="$architecture_flags"
+TARGET_CFLAGS=""
+TARGET_CXXCPPFLAGS="$architecture_flags"
+TARGET_CXXFLAGS=""
+TARGET_CXXFLAGS=""
+TARGET_LDFLAGS=""
 
 # Flags substitutions
-AC_SUBST(AX_CONFIG_ASFLAGS)
-AC_SUBST(AX_CONFIG_CPPFLAGS)
-AC_SUBST(AX_CONFIG_CFLAGS)
-AC_SUBST(AX_CONFIG_CXXCPPFLAGS)
-AC_SUBST(AX_CONFIG_CXXFLAGS)
-AC_SUBST(AX_CONFIG_LDFLAGS)
-AC_SUBST(PKG_ASFLAGS)
-AC_SUBST(PKG_CPPFLAGS)
-AC_SUBST(PKG_CFLAGS)
-AC_SUBST(PKG_CXXCPPFLAGS)
-AC_SUBST(PKG_CXXFLAGS)
-AC_SUBST(PKG_LDFLAGS)
+AC_SUBST(HOST_ASFLAGS)
+AC_SUBST(HOST_CPPFLAGS)
+AC_SUBST(HOST_CFLAGS)
+AC_SUBST(HOST_CXXCPPFLAGS)
+AC_SUBST(HOST_CXXFLAGS)
+AC_SUBST(HOST_LDFLAGS)
+AC_SUBST(TARGET_ASFLAGS)
+AC_SUBST(TARGET_CPPFLAGS)
+AC_SUBST(TARGET_CFLAGS)
+AC_SUBST(TARGET_CXXCPPFLAGS)
+AC_SUBST(TARGET_CXXFLAGS)
+AC_SUBST(TARGET_LDFLAGS)
 
 #
 # Checks for miscellaneous programs

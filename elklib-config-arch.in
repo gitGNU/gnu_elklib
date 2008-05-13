@@ -118,27 +118,27 @@ fi
 
 if test "$echo_cppflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @PKG_CPPFLAGS@"
+    echo "-I@pkgvincludedir@ @TARGET_CPPFLAGS@"
 fi
 
 if test "$echo_cflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @PKG_CFLAGS@"
+    echo "-I@pkgvincludedir@ @TARGET_CFLAGS@"
 fi
 
 if test "$echo_cxxcppflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @PKG_CXXCPPFLAGS@"
+    echo "-I@pkgvincludedir@ @TARGET_CXXCPPFLAGS@"
 fi
 
 if test "$echo_cxxflags" == "yes" ; then
     missing_action="no"
-    echo "-I@pkgvincludedir@ @PKG_CXXFLAGS@"
+    echo "-I@pkgvincludedir@ @TARGET_CXXFLAGS@"
 fi
 
 if test "$echo_ldflags" == "yes" ; then
     missing_action="no"
-    echo "@PKG_LDFLAGS@"
+    echo "@TARGET_LDFLAGS@"
 fi
 
 if test "$missing_action" == "yes" ; then
