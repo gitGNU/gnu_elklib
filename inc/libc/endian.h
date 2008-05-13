@@ -23,7 +23,8 @@
 
 __BEGIN_DECLS
 
-/* Definitions for byte order, according to significance of bytes,
+/*
+ * Definitions for byte order, according to significance of bytes,
  * from low addresses to high addresses.  The value is what you get by
  * putting '4' in the most significant byte, '3' in the second most
  * significant byte, '2' in the second least significant byte, and '1'
@@ -36,10 +37,11 @@ __BEGIN_DECLS
 #define __BIG_ENDIAN    4321
 #define __PDP_ENDIAN    3412
 
-/* This file defines `__BYTE_ORDER' for the particular machine
- * we're compiling for ...
+/*
+ * This file defines `__BYTE_ORDER' for the particular machine we are
+ * compiling for ...
  */
-#include "core/arch/libs/c/endian.h"
+#include "libc/bits/endian.h"
 
 /* Do some consistency checks ... */
 #ifndef __BYTE_ORDER
