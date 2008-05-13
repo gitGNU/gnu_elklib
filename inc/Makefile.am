@@ -37,6 +37,8 @@ libc_HDRS =					\
 	libc/bits/fcntl.h			\
 	libc/bits/errno_values.h		\
 	libc/bits/byteswap.h			\
+	libc/bits/values.h			\
+	libc/bits/endian.h			\
 	libc/stdarg.h				\
 	libc/ctype.h				\
 	libc/execinfo.h				\
