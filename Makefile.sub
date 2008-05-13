@@ -58,10 +58,14 @@ do_subst = sed \
   -e 's,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g' \
   -e 's,[@]PERL[@],$(PERL),g' \
   -e 's,[@]SHELL[@],$(SHELL),g' \
-  -e 's,[@]AX_CONFIG_CPPFLAGS[@],$(AX_CONFIG_CPPFLAGS),g' \
-  -e 's,[@]AX_CONFIG_CFLAGS[@],$(AX_CONFIG_CFLAGS),g' \
-  -e 's,[@]AX_CONFIG_CXXFLAGS[@],$(AX_CONFIG_CXXFLAGS),g' \
-  -e 's,[@]AX_CONFIG_LDFLAGS[@],$(AX_CONFIG_LDFLAGS),g' \
+  \
+  -e 's,[@]PKG_ASFLAGS[@],$(PKG_ASFLAGS),g' \
+  -e 's,[@]PKG_CPPFLAGS[@],$(PKG_CPPFLAGS),g' \
+  -e 's,[@]PKG_CFLAGS[@],$(PKG_CFLAGS),g' \
+  -e 's,[@]PKG_CXXCPPFLAGS[@],$(PKG_CXXCPPFLAGS),g' \
+  -e 's,[@]PKG_CXXFLAGS[@],$(PKG_CXXFLAGS),g' \
+  -e 's,[@]PKG_LDFLAGS[@],$(PKG_LDFLAGS),g' \
+  \
   -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
   -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g' \
   -e 's,[@]WGET[@],$(WGET),g' \
