@@ -113,7 +113,7 @@ done
 
 if test "$echo_static_libs" == "yes" ; then
     missing_action="no"
-    echo "@libdir@/libelk-@target_cpu@.a @GXX_LIBGCC_EH@ @GXX_LIBSUPCXX@ $output"
+    echo "@libdir@/libelk-@target_cpu@.a @TARGET_LIBADD@ $output"
 fi
 
 if test "$echo_cppflags" == "yes" ; then

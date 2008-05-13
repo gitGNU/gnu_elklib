@@ -65,6 +65,7 @@ do_subst = sed \
   -e 's,[@]TARGET_CXXCPPFLAGS[@],$(TARGET_CXXCPPFLAGS),g' \
   -e 's,[@]TARGET_CXXFLAGS[@],$(TARGET_CXXFLAGS),g' \
   -e 's,[@]TARGET_LDFLAGS[@],$(TARGET_LDFLAGS),g' \
+  -e 's,[@]TARGET_LIBADD[@],$(TARGET_LIBADD),g' \
   \
   -e 's,[@]HOST_ASFLAGS[@],$(HOST_ASFLAGS),g' \
   -e 's,[@]HOST_CPPFLAGS[@],$(HOST_CPPFLAGS),g' \
@@ -72,6 +73,7 @@ do_subst = sed \
   -e 's,[@]HOST_CXXCPPFLAGS[@],$(HOST_CXXCPPFLAGS),g' \
   -e 's,[@]HOST_CXXFLAGS[@],$(HOST_CXXFLAGS),g' \
   -e 's,[@]HOST_LDFLAGS[@],$(HOST_LDFLAGS),g' \
+  -e 's,[@]HOST_LIBADD[@],$(HOST_LIBADD),g' \
   \
   -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
   -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g' \
