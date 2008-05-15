@@ -380,7 +380,7 @@ char* strtok(char*       s,
 	}
 
 	/* This point shouldn't be reached */
-	bug();
+	assert(0);
 }
 
 char* strtok_r(char*       s,
@@ -432,7 +432,7 @@ char* strtok_r(char*       s,
 	}
 
 	/* This point shouldn't be reached */
-	bug();
+	assert(0);
 }
 
 size_t strspn(const char* s1, const char* s2)
@@ -478,7 +478,7 @@ size_t strcspn(const char* s1,
 	}
 
 	/* This point shouldn't be reached */
-	bug();
+	assert(0);
 }
 
 int strcasecmp(const char* s1, const char* s2)

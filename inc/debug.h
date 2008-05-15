@@ -31,12 +31,6 @@ void panic(const char* format, ...);
  * NOTE:
  *     Nobody should remove bug(), unpredictable results will happen ...
  */
-#define bug()					\
-	__BEGIN_MACRO				\
-	panic("Bug found in '%s' line %d",	\
-	       __PRETTY_FUNCTION__,__LINE__);	\
-	__END_MACRO
-
 #define missing()					\
 	__BEGIN_MACRO					\
 	printf("Missing code in '%s' line %d\n",	\
