@@ -24,14 +24,12 @@ EXTRA_DIST =					\
 	fetch.in				\
 	gitlog2ChangeLog.in			\
 	NEWS-query.in				\
-	symbols.in				\
-	whitespace-detect
+	whitespace-detect.in
 
 noinst_SCRIPTS =				\
 	fetch					\
 	gitlog2ChangeLog			\
 	NEWS-query				\
-	symbols					\
 	whitespace-detect
 
 CLEANFILES = $(noinst_SCRIPTS)
@@ -59,16 +57,6 @@ gitlog2ChangeLog: gitlog2ChangeLog.in Makefile
 fetch: fetch.in Makefile
 	( rm -f $@ $@.tmp && \
 	  $(do_subst) < $(srcdir)/fetch.in > $@.tmp && \
-	  chmod +x $@.tmp && \
-	  chmod a-w $@.tmp && \
-	  mv -f $@.tmp $@ ) || { \
-		rm -f $@ $@.tmp ; \
-		exit 1 ; \
-	}
-
-symbols: symbols.in Makefile
-	( rm -f $@ $@.tmp && \
-	  $(do_subst) < $(srcdir)/symbols.in > $@.tmp && \
 	  chmod +x $@.tmp && \
 	  chmod a-w $@.tmp && \
 	  mv -f $@.tmp $@ ) || { \

@@ -62,11 +62,6 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
 
-check-symbols: Makefile $(lib_LIBRARIES)
-	$(NM) $(lib_LIBRARIES) | $(CXXFILT) | $(SYMBOLS) -r -a
-
-check-local: check-symbols
-
 ##
 ## Maintainer related targets
 ##

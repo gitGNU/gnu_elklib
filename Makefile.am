@@ -113,14 +113,6 @@ ChangeLog: $(srcdir)/NEWS
 
 DISTCLEANFILES =
 
-check-local:
-	imported=`$(NM) src/libelk-@target_cpu@.a | $(CXXFILT) | $(SYMBOLS) -i | wc -l` ; \
-	external=`grep -c extern inc/externals.h` ; \
-	if test ! "$$imported" = "$$external" ; then \
-		echo "Imported/external symbols mismatch ($$imported/$$external)" ; \
-		exit 1 ; \
-	fi
-
 ##
 ## Maintainer related targets
 ##

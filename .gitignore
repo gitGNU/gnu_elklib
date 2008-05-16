@@ -30,7 +30,6 @@ src/stamp-h1
 tools/scripts/gitlog2ChangeLog
 tools/scripts/NEWS-query
 tools/scripts/fetch
-tools/scripts/symbols
 tools/scripts/whitespace-detect
 
 tools/autotools/install-sh
