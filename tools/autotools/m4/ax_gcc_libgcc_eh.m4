@@ -1,15 +1,15 @@
 # ===========================================================================
-#           http://autoconf-archive.cryp.to/ax_gcc_libgcc_eh.html
+#            http://autoconf-archive.cryp.to/ax_gcc_libgcc_eh.html
 # ===========================================================================
 #
 # SYNOPSIS
 #
-#   AX_GCC_LIBSUPCXX(VARIABLE)
+#   AX_GCC_LIBGCC_EH(VARIABLE)
 #
 # DESCRIPTION
 #
-#   AX_GCC_LIBSUPCXX defines VARIABLE as the absolute path to libgcc_eh.a if it
-#   is available on the system, empty otherwise
+#   AX_GCC_LIBGCC_EH defines VARIABLE as the absolute path to libgcc_eh.a if
+#   it is available on the system, empty otherwise
 #
 # LAST MODIFICATION
 #

@@ -1,5 +1,5 @@
 # ===========================================================================
-#           http://autoconf-archive.cryp.to/ax_gcc_libsupcxx.html
+#            http://autoconf-archive.cryp.to/ax_gcc_libsupcxx.html
 # ===========================================================================
 #
 # SYNOPSIS
@@ -8,8 +8,8 @@
 #
 # DESCRIPTION
 #
-#   AX_GCC_LIBSUPCXX defines VARIABLE as the absolute path to libsupc++.a if it
-#   is available on the system, empty otherwise
+#   AX_GCC_LIBSUPCXX defines VARIABLE as the absolute path to libsupc++.a if
+#   it is available on the system, empty otherwise
 #
 # LAST MODIFICATION
 #
