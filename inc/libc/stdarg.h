@@ -26,7 +26,7 @@ __BEGIN_DECLS
 
 #define __GNUC_VA_LIST
 
-typedef void* __gnuc_va_list;
+typedef void * __gnuc_va_list;
 
 #define __va_rounded_size(TYPE) \
 	(((sizeof(TYPE) + sizeof(int) - 1) / sizeof(int)) * sizeof(int))

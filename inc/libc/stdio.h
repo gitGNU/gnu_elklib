@@ -30,10 +30,10 @@ __BEGIN_DECLS
 typedef struct {
 	int  error;
 	int  eof;
-	int  (*putchar)(int character);
-	int  (*getchar)(void);
-	int  (*fseek)(long offset, int whence);
-	long (*ftell)(void);
+	int  (* putchar)(int character);
+	int  (* getchar)(void);
+	int  (* fseek)(long offset, int whence);
+	long (* ftell)(void);
 } FILE;
 
 #define FILE_INITIALIZER { 0, 0, NULL, NULL, NULL, NULL }
@@ -44,11 +44,11 @@ typedef struct {
  *     particular call-back. Keep attention about what you are doing ...
  *
  */
-void   FILE_set(FILE* stream,
-		int   (*putchar)(int character),
-		int   (*getchar)(void),
-		int   (*fseek)(long offset, int whence),
-		long  (*ftell)(void));
+void   FILE_set(FILE * stream,
+		int    (* putchar)(int character),
+		int    (* getchar)(void),
+		int    (* fseek)(long offset, int whence),
+		long   (* ftell)(void));
 
 /*
  * NOTE:
@@ -56,11 +56,11 @@ void   FILE_set(FILE* stream,
  *     corresponding function. Keep attention about what you are doing ...
  *
  */
-void   FILE_get(FILE* stream,
-		int   (**putchar)(int character),
-		int   (**getchar)(void),
-		int   (**fseek)(long offset, int whence),
-		long  (**ftell)(void));
+void   FILE_get(FILE * stream,
+		int    (** putchar)(int character),
+		int    (** getchar)(void),
+		int    (** fseek)(long offset, int whence),
+		long   (** ftell)(void));
 
 /*
  * NOTE:
@@ -68,61 +68,61 @@ void   FILE_get(FILE* stream,
  *     specific function. Keep attention about what you are doing ...
  *
  */
-void   FILE_update(FILE* stream,
-		   int   (*putchar)(int character),
-		   int   (*getchar)(void),
-		   int   (*fseek)(long offset, int whence),
-		   long  (*ftell)(void));
+void   FILE_update(FILE * stream,
+		   int    (* putchar)(int character),
+		   int    (* getchar)(void),
+		   int    (* fseek)(long offset, int whence),
+		   long   (* ftell)(void));
 
-extern FILE* stdout;
-extern FILE* stdin;
-extern FILE* stderr;
+extern FILE * stdout;
+extern FILE * stdin;
+extern FILE * stderr;
 
 /*
  * NOTE:
  *     The following functions should mimic as much as possible those in stdio
  */
-int    sscanf(const char* buf, const char* format, ...);
+int    sscanf(const char * buf, const char * format, ...);
 
-int    printf(const char* format, ...);
-int    fprintf(FILE* stream, const char* format, ...);
-int    sprintf(char* buf, const char* format, ...);
-int    snprintf(char* buf, size_t size, const char* format, ...);
+int    printf(const char * format, ...);
+int    fprintf(FILE * stream, const char * format, ...);
+int    sprintf(char * buf, const char * format, ...);
+int    snprintf(char * buf, size_t size, const char * format, ...);
 
-int    vsscanf(const char* buf, const char* format, va_list args);
+int    vsscanf(const char * buf, const char * format, va_list args);
 
-int    vprintf(const char* format, va_list ap);
-int    vfprintf(FILE* stream, const char* format, va_list ap);
-int    vsprintf(char* buf, const char* format, va_list args);
-int    vsnprintf(char* buf, size_t size, const char* format, va_list args);
+int    vprintf(const char * format, va_list ap);
+int    vfprintf(FILE * stream, const char * format, va_list ap);
+int    vsprintf(char * buf, const char * format, va_list args);
+int    vsnprintf(char * buf, size_t size, const char * format, va_list args);
 
 #define EOF -1
 
-int    puts(const char* string);
-int    fputs(const char* s, FILE* stream);
+int    puts(const char * string);
+int    fputs(const char * s, FILE * stream);
 
-int    fputc(int c, FILE* stream);
-int    fgetc(FILE* stream);
+int    fputc(int c, FILE * stream);
+int    fgetc(FILE * stream);
 
 int    putchar(int character);
 int    getchar(void);
 int    getc(FILE *stream);
 
-void   clearerr(FILE* stream);
-int    feof(FILE* stream);
-int    ferror(FILE* stream);
-int    fflush(FILE* stream);
+void   clearerr(FILE * stream);
+int    feof(FILE * stream);
+int    ferror(FILE * stream);
+int    fflush(FILE * stream);
 
-size_t fread(void *ptr, size_t size, size_t nmemb, FILE* stream);
-size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE* stream);
+size_t fread(void * ptr, size_t size, size_t nmemb, FILE * stream);
+size_t fwrite(const void * ptr, size_t size, size_t nmemb, FILE * stream);
 
 typedef long fpos_t;
 
-int    fseek(FILE* stream, long offset, int whence);
-long   ftell(FILE* stream);
-void   rewind(FILE* stream);
-int    fgetpos(FILE* stream, fpos_t *pos);
-int    fsetpos(FILE* stream, fpos_t *pos);
+int    fseek(FILE * stream, long offset, int whence);
+long   ftell(FILE * stream);
+void   rewind(FILE * stream);
+int    fgetpos(FILE * stream, fpos_t * pos);
+int    fsetpos(FILE * stream, fpos_t * pos);
 
 __END_DECLS
 

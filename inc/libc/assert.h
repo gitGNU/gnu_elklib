@@ -20,10 +20,11 @@
 #define ELKLIB_LIBC_ASSERT_H
 
 #include "elklib.h"
-#include "debug.h"
 #include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
+
+void panic(const char* format, ...);
 
 #ifdef NDEBUG
 #define assert(EXPRESSION)
