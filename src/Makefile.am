@@ -24,6 +24,9 @@ AUTOMAKE_OPTIONS = subdir-objects
 
 lib_LIBRARIES =	libelk-@target_cpu@.a
 
+noinst_HEADERS =				\
+	debug.h
+
 libc_SRCS =					\
 	libc/glue.c				\
 	libc/stdlib.c				\
