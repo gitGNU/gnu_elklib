@@ -974,8 +974,6 @@ int fflush(FILE* stream)
 
 	unused_argument(stream);
 
-	missing();
-
 	/* return 0; */
 	return EOF;
 }
