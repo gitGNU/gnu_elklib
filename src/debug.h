@@ -25,8 +25,6 @@
 
 __BEGIN_DECLS
 
-void panic(const char* format, ...);
-
 /*
  * NOTE:
  *     Nobody should remove bug(), unpredictable results will happen ...
@@ -37,7 +35,7 @@ void panic(const char* format, ...);
 	       __PRETTY_FUNCTION__,__LINE__);		\
 	__END_MACRO
 
-#define expect(EXPRESSION)   assert(EXPRESSION)
+//#define expect(EXPRESSION)   assert(EXPRESSION)
 
 __END_DECLS
 
