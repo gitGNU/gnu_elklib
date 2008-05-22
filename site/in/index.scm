@@ -1,9 +1,14 @@
 (h3 "DESCRIPTION")
 (p
- "ELKlib is an embeddable library for kernel-level development.
- It should provide basic C/C++ support (string/memory functions,
- STL-like containers and so on) for kernel developers. A sort of
- uClibc/newlib oriented to kernel development."
+ "ELKlib is an embeddable library that provides C/C++ support oriented "
+ "to kernel level development. ELKlib mimics GNU libc and the Standard "
+ "Template Library."
+ )
+(h4 "Copying")
+(p
+ "ELKlib is licensed under the "
+ (a (@ (href "http://www.gnu.org/licenses/licenses.html"))
+    "GNU General Public License, version 2")
  )
 
 (h3 "MAINTAINERS")
@@ -12,7 +17,8 @@
  )
 
 (h3 "AUTHORS")
-(p "Francesco Salvestrini <salvestrini AT gmail DOT com>"
+(p
+ "Francesco Salvestrini <salvestrini AT gmail DOT com>"
  )
 
 (h3 "RELEASES")
