@@ -47,7 +47,6 @@ libc_HDRS =					\
 	libc/stdlib.h				\
 	libc/stdio.h				\
 	libc/types.h				\
-	libc/setjmp.h				\
 	libc/unistd.h				\
 	libc/param.h				\
 	libc/errno.h

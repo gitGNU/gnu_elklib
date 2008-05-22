@@ -2,7 +2,7 @@
 (p
  "ELKlib is an embeddable library that provides C/C++ support oriented "
  "to kernel level development. ELKlib mimics GNU libc and the Standard "
- "Template Library."
+ "Template Library"
  )
 (h4 "Copying")
 (p
