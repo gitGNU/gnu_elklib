@@ -20,7 +20,7 @@
 #define ELKLIB_LIBCXX_CMATH
 
 #include "elklib.h"
-#include "libc/math.h"
+#include "libm/math.h"
 
 namespace ktl {
 	using ::pow;

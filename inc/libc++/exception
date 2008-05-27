@@ -20,6 +20,7 @@
 #define ELKLIB_LIBCXX_EXCEPTION
 
 #include "elklib.h"
+#include "libcompiler/compiler.h"
 
 namespace ktl {
 	typedef void       (* terminate_handler) ();
