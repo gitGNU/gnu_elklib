@@ -432,6 +432,7 @@ AC_CONFIG_FILES([
 
 	inc/Makefile
 	src/Makefile
+	tests/Makefile
 
 	site/Makefile
 	site/in/Makefile
