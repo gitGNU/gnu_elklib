@@ -285,8 +285,10 @@ namespace ktl {
 	}
 
 	template<class ForwardIterator1, class ForwardIterator2>
-	ForwardIterator1 search(ForwardIterator1 first1, ForwardIterator1 last1,
-				ForwardIterator2 first2, ForwardIterator2 last2)
+	ForwardIterator1 search(ForwardIterator1 first1,
+				ForwardIterator1 last1,
+				ForwardIterator2 first2,
+				ForwardIterator2 last2)
 	{
 		equal_to<typename iterator_traits<ForwardIterator1>::value_type> c;
 		return search(first1, last1, first2, last2, c);
@@ -674,7 +676,9 @@ namespace ktl {
 
 	template<class ForwardIterator, class BinaryPredicate>
 	ForwardIterator
-	unique(ForwardIterator first, ForwardIterator last, BinaryPredicate pred)
+	unique(ForwardIterator first,
+	       ForwardIterator last,
+	       BinaryPredicate pred)
 	{
 		ForwardIterator new_val(first);
 		ForwardIterator old_val(first);
@@ -694,7 +698,9 @@ namespace ktl {
 
 	template<class InputIterator, class OutputIterator>
 	OutputIterator
-	unique_copy(InputIterator first, InputIterator last, OutputIterator result)
+	unique_copy(InputIterator first,
+		    InputIterator last,
+		    OutputIterator result)
 	{
 		InputIterator temp(first);
 		while (first !=last) {
@@ -710,7 +716,9 @@ namespace ktl {
 		return result;
 	}
 
-	template<class InputIterator, class OutputIterator, class BinaryPredicate>
+	template<class InputIterator,
+		 class OutputIterator,
+		 class BinaryPredicate>
 	OutputIterator
 	unique_copy(InputIterator first, InputIterator last,
 		    OutputIterator result, BinaryPredicate pred)
@@ -733,7 +741,7 @@ namespace ktl {
 	void
 	reverse(BidirectionalIterator first, BidirectionalIterator last)
 	{
-		--last;		//Don't work with one past the end element
+		--last;
 		while (first < last) {
 			iter_swap(first, last);
 			++first;
@@ -756,7 +764,9 @@ namespace ktl {
 
 	template<class ForwardIterator>
 	void
-	rotate(ForwardIterator first, ForwardIterator middle, ForwardIterator last)
+	rotate(ForwardIterator first,
+	       ForwardIterator middle,
+	       ForwardIterator last)
 	{
 		if ((first == middle) || (last  == middle)) {
 			return;
@@ -831,14 +841,20 @@ namespace ktl {
 	}
 
 	// _lib.alg.partitions_, partitions:
-	template<class BidirectionalIterator, class Predicate> BidirectionalIterator
-	partition(BidirectionalIterator first, BidirectionalIterator last, Predicate pred)
+	template<class BidirectionalIterator, class Predicate>
+	BidirectionalIterator
+	partition(BidirectionalIterator first,
+		  BidirectionalIterator last,
+		  Predicate             pred)
 	{
 		return stable_partition(first, last, pred);
 	}
 
-	template<class BidirectionalIterator, class Predicate> BidirectionalIterator
-	stable_partition(BidirectionalIterator first, BidirectionalIterator last, Predicate pred)
+	template<class BidirectionalIterator, class Predicate>
+	BidirectionalIterator
+	stable_partition(BidirectionalIterator first,
+			 BidirectionalIterator last,
+			 Predicate             pred)
 	{
 		//first now points to the first non-desired element
 		while (first != last && pred(*first)) {
