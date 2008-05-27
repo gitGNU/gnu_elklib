@@ -27,6 +27,10 @@ src/config.h
 src/config.h.in
 src/stamp-h1
 
+tests/test-c++-list-1
+tests/test-c++-vector-1
+tests/test-c++-clibrary-1
+
 tools/scripts/gitlog2ChangeLog
 tools/scripts/NEWS-query
 tools/scripts/fetch
