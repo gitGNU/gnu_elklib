@@ -33,7 +33,7 @@ namespace ktl {
 
 		template<class T> inline bool operator> (const T & x,
 							 const T & y) {
-			if ( y < x) {
+			if (y < x) {
 				return true;
 			}
 			return false;
@@ -41,7 +41,7 @@ namespace ktl {
 
 		template<class T> inline bool operator<=(const T & x,
 							 const T & y) {
-			if ( y < x ) {
+			if (y < x) {
 				return false;
 			}
 			return true;
@@ -59,37 +59,37 @@ namespace ktl {
 	template <class T1, class T2> struct pair;
 	template <class T1, class T2>
 	bool operator==(const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		if (x.first == y.first && x.second == y.second) {
+		if ((x.first == y.first) && (x.second == y.second)) {
 			return true;
 		}
 		return false;
 	}
 	template <class T1, class T2> bool
 	operator< (const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		return (x.first < y.first ||
-			(!(y.first < x.first) && x.second < y.second));
+		return ((x.first < y.first) ||
+			(!(y.first < x.first) && (x.second < y.second)));
 	}
 	template <class T1, class T2>
 	bool operator!=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		if (x.first != y.first || x.second != y.second) {
+		if ((x.first != y.first) || (x.second != y.second)) {
 			return true;
 		}
 		return false;
 	}
 	template <class T1, class T2>
 	bool operator> (const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		return (x.first > y.first ||
-			(!(y.first > x.first) && x.second > y.second));
+		return ((x.first > y.first) ||
+			(!(y.first > x.first) && (x.second > y.second)));
 	}
 	template <class T1, class T2>
 	bool operator>=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		return (x.first >= y.first ||
-			(!(y.first >= x.first) && x.second >= y.second));
+		return ((x.first >= y.first) ||
+			(!(y.first >= x.first) && (x.second >= y.second)));
 	}
 	template <class T1, class T2>
 	bool operator<=(const pair<T1,T2> & x, const pair<T1,T2> & y) {
-		return (x.first <= y.first ||
-			(!(y.first <= x.first) && x.second <= y.second));
+		return ((x.first <= y.first) ||
+			(!(y.first <= x.first) && (x.second <= y.second)));
 	}
 	template <class T1, class T2> pair<T1,T2>
 	make_pair(const T1 & x, const T2 & y) {

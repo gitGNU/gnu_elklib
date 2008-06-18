@@ -212,13 +212,13 @@ namespace ktl {
 			return current;
 		}
 		iter_list & operator+=(unsigned int n) {
-			for(unsigned int i = 0; i < n; ++i) {
+			for (unsigned int i = 0; i < n; ++i) {
 				current = current->next;
 			}
 			return *this;
 		}
 		iter_list & operator-=(unsigned int n) {
-			for(unsigned int i = 0; i < n; ++i) {
+			for (unsigned int i = 0; i < n; ++i) {
 				current = current->previous;
 			}
 			return *this;
@@ -244,7 +244,7 @@ namespace ktl {
 		list_start = new node();
 		list_end   = list_start;
 
-		for(typename Allocator::size_type i = 0; i < n ; ++i) {
+		for (typename Allocator::size_type i = 0; i < n ; ++i) {
 			push_back(value);
 		}
 	}
@@ -355,12 +355,12 @@ namespace ktl {
 	}
 	template<class T, class Allocator> void list<T, Allocator>::resize(typename Allocator::size_type sz, T c) {
 		//		if (sz > elements) {
-		for(typename Allocator::size_type i = elements; i < sz; ++i) {
+		for (typename Allocator::size_type i = elements; i < sz; ++i) {
 			push_back(c);
 		}
 		//		}
 		//		if (sz < elements) {
-		for(typename Allocator::size_type i = elements; i > sz; --i) {
+		for (typename Allocator::size_type i = elements; i > sz; --i) {
 			pop_back();
 		}
 		//		}
@@ -401,35 +401,33 @@ namespace ktl {
 
 	template<class T, class Allocator> void list<T, Allocator>::push_back(const T & x) {
 		if (elements == 0) {
-			//The list is completely empty
-			list_start = new node(x);
-			list_end->previous = list_start;
-			list_start->previous = 0;
-			list_start->next = list_end;
-			elements = 1;
+			list_start               = new node(x);
+			list_end->previous       = list_start;
+			list_start->previous     = 0;
+			list_start->next         = list_end;
 		} else {
-			node * temp = new node(x);
-			temp->previous = list_end->previous;
-			temp->next = list_end;
+			node * temp              = new node(x);
+			temp->previous           = list_end->previous;
+			temp->next               = list_end;
 			list_end->previous->next = temp;
-			list_end->previous = temp;
-			++elements;
+			list_end->previous       = temp;
 		}
+		elements++;
 	}
 
 	template<class T, class Allocator> void list<T, Allocator>::pop_back() {
 		if (elements > 0) {
 			node * temp = list_end->previous;
 			if (temp == list_start) {
-				list_end->previous = 0;
-				list_start = list_end;
+				list_end->previous   = 0;
+				list_start           = list_end;
 			} else {
 				temp->previous->next = temp->next;
-				list_end->previous = temp->previous;
+				list_end->previous   = temp->previous;
 			}
 			delete temp->val;
 			delete temp;
-			--elements;
+			elements--;
 		}
 	}
 
@@ -440,7 +438,7 @@ namespace ktl {
 		node * temp = new node(x);
 
 		temp->previous = position.link_struct()->previous;
-		temp->next = position.link_struct();
+		temp->next     = position.link_struct();
 
 		if (temp->previous == 0) {
 			list_start = temp;
@@ -456,7 +454,7 @@ namespace ktl {
 	}
 
 	template<class T, class Allocator> void list<T, Allocator>::insert(iterator position, size_type n, const T & x) {
-		for(typename list<T, Allocator>::size_type i = 0; i < n; ++i) {
+		for (typename list<T, Allocator>::size_type i = 0; i < n; ++i) {
 			position = insert(position, x);
 		}
 	}
