@@ -383,7 +383,7 @@ namespace ktl {
 		}
 
 	protected:
-		T* data;
+		T *       data;
 		size_type data_size;
 		size_type elements;
 		Allocator a;
@@ -396,16 +396,16 @@ namespace ktl {
 			a.destroy(data + i);
 		}
 		a.deallocate(data, data_size);
-		data = 0;
-		elements = 0;
-		data_size=0;
+		data      = 0;
+		elements  = 0;
+		data_size = 0;
 	}
 
 	template<class T, class Allocator>
 	void vector<T, Allocator>::reserve(size_type n)
 	{
 		if (n > data_size) {
-			T * temp_ptr = data;
+			T * temp_ptr        = data;
 			size_type temp_size = data_size;
 
 			data_size = n;

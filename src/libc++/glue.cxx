@@ -33,6 +33,8 @@
 #define dprintf(F,A...)
 #endif
 
+__BEGIN_DECLS
+
 void __do_global_ctors_aux(void)
 {
 	/* C++ Runtime initialization instructions */
@@ -84,3 +86,5 @@ void __do_global_dtors_aux(void)
 
 	dprintf("Completed\n");
 }
+
+__END_DECLS
