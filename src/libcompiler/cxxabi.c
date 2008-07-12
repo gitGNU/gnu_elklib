@@ -24,64 +24,85 @@
 
 #if HAVE_GCC
 
-#if 0
 void __static_initialization_and_destruction_0(int a, int b)
 {
-	panic("__static_initialization_and_destruction_0() function called "
-	      "with a = %d, b = %d\n",
-	      a, b);
+	unused_argument(a);
+	unused_argument(b);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
 void __pure_virtual(void)
 {
-	panic("__pure_virtual() function called");
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
-#endif
 
 void __cxa_pure_virtual(void)
 {
-	panic("__cxa_pure_virtual() function called");
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
-void __cxa_call_unexpected(void* exc_obj_in)
+void __cxa_call_unexpected(void * exc_obj_in)
 {
 	unused_argument(exc_obj_in);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
-void* __cxa_begin_catch(void* exc_obj_in)
+void * __cxa_begin_catch(void * exc_obj_in)
 {
 	unused_argument(exc_obj_in);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 
 	return NULL;
 }
 
 void __cxa_end_catch(void)
 {
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
-void* __cxa_allocate_exception(size_t thrown_size)
+void * __cxa_allocate_exception(size_t thrown_size)
 {
 	unused_argument(thrown_size);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 
 	return NULL;
 }
 
-void __cxa_throw(void* obj,
-		 void* tinfo,
-		 void  (*dest) (void *))
+void __cxa_throw(void * obj,
+		 void * tinfo,
+		 void   (* dest) (void *))
 {
 	unused_argument(obj);
 	unused_argument(tinfo);
 	unused_argument(dest);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
 void __cxa_rethrow(void)
 {
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
-void _Unwind_Resume(struct _Unwind_Exception* exc)
+void _Unwind_Resume(struct _Unwind_Exception * exc)
 {
 	unused_argument(exc);
+
+	panic("Unimplemented %s function called",
+	      __PRETTY_FUNCTION__);
 }
 
 #endif /* HAVE_GCC */
