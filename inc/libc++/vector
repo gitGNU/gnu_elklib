@@ -108,7 +108,7 @@ namespace ktl {
 			data = a.allocate(data_size);
 
 			for (size_type i = 0; i < elements; i++) {
-				a.construct(data+i, x.data[i]);
+				a.construct(data + i, x.data[i]);
 			}
 		}
 
@@ -131,8 +131,8 @@ namespace ktl {
 			}
 
 			if (elements < x.elements) {
-				for (size_t i = elements; i< x.elements; ++i) {
-					a.construct(data+i, x.data[i]);
+				for (size_t i = elements; i < x.elements; ++i) {
+					a.construct(data + i, x.data[i]);
 					++elements;
 				}
 			}
@@ -347,7 +347,7 @@ namespace ktl {
 		{
 			size_type index = first - data;
 			size_type width = last - first;
-			for (size_type i = index; i < (elements - width) ;++i) {
+			for (size_type i = index; i < (elements - width); ++i) {
 				data[i] = data[i+width];
 			}
 			downsize(size() - width);
@@ -411,8 +411,8 @@ namespace ktl {
 			data_size = n;
 			data = a.allocate(data_size);
 
-			for (size_type i = 0; i<elements; ++i) {
-				a.construct(data+i, temp_ptr[i]);
+			for (size_type i = 0; i < elements; ++i) {
+				a.construct(data + i, temp_ptr[i]);
 				a.destroy(temp_ptr+i);
 			}
 			a.deallocate(temp_ptr, temp_size);
@@ -427,11 +427,11 @@ namespace ktl {
 				reserve(sz + KTL_BUFFER_SIZE);
 			}
 
-			for (size_type i = elements; i<sz ; ++i) {
-				a.construct(data+i, c);
+			for (size_type i = elements; i < sz ; ++i) {
+				a.construct(data + i, c);
 			}
 			elements = sz;
-		}else{
+		} else {
 			downsize(sz);
 		}
 	}
@@ -440,8 +440,8 @@ namespace ktl {
 	void vector<T, Allocator>::downsize(size_type sz)
 	{
 		if (sz < elements) {
-			for (size_t i = sz; i< elements; ++i) {
-				a.destroy(data+i);
+			for (size_t i = sz; i < elements; ++i) {
+				a.destroy(data + i);
 			}
 			elements = sz;
 		}
