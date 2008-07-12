@@ -21,15 +21,24 @@
 #include "libc/stdarg.h"
 #include "libc/stdio.h"
 
+#define VERBOSE_PANIC 1
+
 void panic(const char* format, ...)
 {
-        static char buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
+	static char buffer[ELKLIB_PRINTF_BUFFER_LENGTH];
 	va_list     args;
 
+#if VERBOSE_PANIC
+	puts("panic in progress ...");
+#endif
+
 	va_start(args, format);
+
 	/* Secure the callee by placing a terminator */
 	buffer[0] = 0;
-        (void) vsnprintf(buffer, sizeof(buffer), format, args);
+
+	(void) vsnprintf(buffer, sizeof(buffer), format, args);
+
 	va_end(args);
 
 	arch_panic(buffer);
