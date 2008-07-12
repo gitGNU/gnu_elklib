@@ -37,24 +37,26 @@ void _init(void)
 {
 	/* C Runtime initialization instructions */
 
-        void (**callback)();
+	void (** callback)();
 	int  count;
 
 	/* Get the total number of functions to be called */
-        count = &__INIT_END__ - &__INIT_LIST__;
+	count = &__INIT_END__ - &__INIT_LIST__;
 
-	dprintf("Total initializers %d\n", count);
+	dprintf("We have %d initializers to call\n", count);
 
-        callback =  &__INIT_LIST__;
-        while (count) {
-                void (*ptr)() = *callback;
+	callback =  &__INIT_LIST__;
+	while (count) {
+		void (* ptr)() = *callback;
 
 		assert(ptr);
-                ptr();
 
-                count--;
-                callback++;
-        }
+		dprintf("Calling initializer 0x%p\n", ptr);
+		ptr();
+
+		count--;
+		callback++;
+	}
 
 	dprintf("Completed\n");
 }
@@ -63,24 +65,24 @@ void _fini(void)
 {
 	/* C Runtime finalization instructions */
 
-        void (**callback)();
+	void (** callback)();
 	int  count;
 
 	/* Get the total number of functions to be called */
-        count = &__FINI_END__ - &__FINI_LIST__;
+	count = &__FINI_END__ - &__FINI_LIST__;
 
-	dprintf("Total finalizers %d\n", count);
+	dprintf("We have %d finalizers to call\n", count);
 
-        callback =  &__FINI_LIST__;
-        while (count) {
-                void (*ptr)() = *callback;
+	callback =  &__FINI_LIST__;
+	while (count) {
+		void (* ptr)() = *callback;
 
 		assert(ptr);
-                ptr();
+		ptr();
 
-                count--;
-                callback++;
-        }
+		count--;
+		callback++;
+	}
 
 	dprintf("Completed\n");
 }
