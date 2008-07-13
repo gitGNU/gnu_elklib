@@ -22,4 +22,21 @@
 #define ELKLIB_SYMBOLS_DEMANGLING   1
 #define ELKLIB_PRINTF_BUFFER_LENGTH 1024
 
+/* XXX FIXME: We should use the __BEGIN_DECLS and __END_DECLS macros instead */
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+	/* C glue */
+	void elklib_c_init(void);
+	void elklib_c_fini(void);
+
+	/* C++ glue */
+	void elklib_cxx_init(void);
+	void elklib_cxx_fini(void);
+
+#if defined(__cplusplus)
+};
+#endif
+
 #endif /* ELKLIB_H */

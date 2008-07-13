@@ -33,7 +33,8 @@
 #define dprintf(F,A...)
 #endif
 
-void _init(void)
+/* void _init(void) */
+void elklib_c_init(void)
 {
 	/* C Runtime initialization instructions */
 
@@ -58,10 +59,11 @@ void _init(void)
 		callback++;
 	}
 
-	dprintf("Completed\n");
+	dprintf("Initializers calls completed\n");
 }
 
-void _fini(void)
+/* void _fini(void) */
+void elklib_c_fini(void)
 {
 	/* C Runtime finalization instructions */
 
@@ -84,5 +86,5 @@ void _fini(void)
 		callback++;
 	}
 
-	dprintf("Completed\n");
+	dprintf("Finalizers calls completed\n");
 }

@@ -35,7 +35,8 @@
 
 __BEGIN_DECLS
 
-void __do_global_ctors_aux(void)
+// void __do_global_ctors_aux(void)
+void elklib_cxx_init(void)
 {
 	// C++ Runtime initialization instructions
 
@@ -60,10 +61,11 @@ void __do_global_ctors_aux(void)
 		callback++;
 	}
 
-	dprintf("Completed\n");
+	dprintf("Constructors calls completed\n");
 }
 
-void __do_global_dtors_aux(void)
+// void __do_global_dtors_aux(void)
+void elklib_cxx_fini(void)
 {
 	// C++ Runtime finalization instructions
 
@@ -86,7 +88,7 @@ void __do_global_dtors_aux(void)
 		callback++;
 	}
 
-	dprintf("Completed\n");
+	dprintf("Destructors calls completed\n");
 }
 
 __END_DECLS
