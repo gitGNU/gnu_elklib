@@ -24,27 +24,53 @@
 
 #if HAVE_GCC
 
+typedef char __guard;
+
+int __cxa_guard_acquire (__guard * g)
+{
+	unused_argument(g);
+
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
+
+	/* return !*(char *)(g); */
+
+	return 0;
+}
+
+void __cxa_guard_release (__guard * g)
+{
+	unused_argument(g);
+
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
+
+	/* *(char *) g = 1; */
+}
+
+void __cxa_guard_abort (__guard * g)
+{
+	unused_argument(g);
+
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
+}
+
 void __static_initialization_and_destruction_0(int a, int b)
 {
 	unused_argument(a);
 	unused_argument(b);
 
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void __cxa_pure_virtual(void)
 {
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void __cxa_call_unexpected(void * exc_obj_in)
 {
 	unused_argument(exc_obj_in);
 
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void * __cxa_begin_catch(void * exc_obj_in)
@@ -59,16 +85,14 @@ void * __cxa_begin_catch(void * exc_obj_in)
 
 void __cxa_end_catch(void)
 {
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void * __cxa_allocate_exception(size_t thrown_size)
 {
 	unused_argument(thrown_size);
 
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 
 	return NULL;
 }
@@ -81,22 +105,19 @@ void __cxa_throw(void * obj,
 	unused_argument(tinfo);
 	unused_argument(dest);
 
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void __cxa_rethrow(void)
 {
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 void _Unwind_Resume(struct _Unwind_Exception * exc)
 {
 	unused_argument(exc);
 
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
+	panic("Unimplemented %s function called", __PRETTY_FUNCTION__);
 }
 
 #endif /* HAVE_GCC */
