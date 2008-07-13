@@ -31,8 +31,8 @@
 #include "libcompiler/macro.h"
 #include "libcompiler/compiler.h"
 
-long strtol(const char*	 cp,
-	    char**	 endp,
+long strtol(const char * cp,
+	    char **	 endp,
 	    unsigned int base)
 {
 	if (*cp == '-') {
@@ -42,9 +42,9 @@ long strtol(const char*	 cp,
 	return strtoul(cp, endp, base);
 }
 
-long long strtoll(const char*  cp,
-		  char**       endp,
-		  unsigned int base)
+long long strtoll(const char *  cp,
+		  char **       endp,
+		  unsigned int  base)
 {
 	if (*cp=='-') {
 		return (-1 * strtoull(cp + 1, endp, base));
@@ -53,9 +53,9 @@ long long strtoll(const char*  cp,
 	return strtoull(cp, endp, base);
 }
 
-unsigned long strtoul(const char*  cp,
-		      char**	   endp,
-		      unsigned int base)
+unsigned long strtoul(const char *  cp,
+		      char **       endp,
+		      unsigned int  base)
 {
 	unsigned long result = 0;
 	unsigned long value;
@@ -86,8 +86,8 @@ unsigned long strtoul(const char*  cp,
 	return result;
 }
 
-unsigned long long strtoull(const char*	 cp,
-			    char**	 endp,
+unsigned long long strtoull(const char * cp,
+			    char **	 endp,
 			    unsigned int base)
 {
 	unsigned long long result = 0,value;
@@ -117,8 +117,8 @@ unsigned long long strtoull(const char*	 cp,
 	return result;
 }
 
-double strtod(const char* s,
-	      char**	  scan_end)
+double strtod(const char * s,
+	      char **	  scan_end)
 {
 	int	       sign;
 	int	       i;
@@ -219,29 +219,29 @@ long labs(long n)
 	return (n >= 0 ? n : -n);
 }
 
-int atoi(const char* s)
+int atoi(const char * s)
 {
 	return strtol(s, (char **) NULL, 10);
 }
 
-long atol(const char* s)
+long atol(const char * s)
 {
 	return strtol(s, (char **) NULL, 10);
 }
 
 #if 0 /* Reenable when needed */
-unsigned long atoul(const char* s)
+unsigned long atoul(const char * s)
 {
 	return strtoul(s, (char **) NULL, 10);
 }
 #endif /* 0 */
 
-long long atoll(const char* s)
+long long atoll(const char * s)
 {
 	return strtoll(s, (char **) NULL, 10);
 }
 
-double atof(const char* s)
+double atof(const char * s)
 {
 	return strtod(s, (char **) NULL);
 }
@@ -340,10 +340,10 @@ lldiv_t lldiv(long long num,
 #define SIGNATURE_FOOTER 0x0220DEAD
 #define SIGNATURE_NONE	 0x00000000
 
-static void* signed_alloc(unsigned int size)
+static void * signed_alloc(unsigned int size)
 {
 	unsigned int real_size;
-	void*	     ptr;
+	void *	     ptr;
 
 	/* Add signature */
 
@@ -379,7 +379,7 @@ static void* signed_alloc(unsigned int size)
 	return ptr;
 }
 
-static void signed_free(void* address)
+static void signed_free(void * address)
 {
 	void * real_address;
 
@@ -447,7 +447,7 @@ static void signed_free(void* address)
 }
 #endif
 
-void* malloc(size_t size)
+void * malloc(size_t size)
 {
 	if (__malloc_hook) {
 		/* XXX FIXME: Add code here */
@@ -466,7 +466,7 @@ void* malloc(size_t size)
 #endif
 }
 
-void free(void* address)
+void free(void * address)
 {
 	if (__free_hook) {
 		/* XXX FIXME: Add code here */
@@ -486,7 +486,8 @@ void free(void* address)
 #endif
 }
 
-void* calloc(size_t nmemb, size_t size)
+void * calloc(size_t nmemb,
+	      size_t size)
 {
 	void*  p;
 	size_t s;
@@ -503,7 +504,8 @@ void* calloc(size_t nmemb, size_t size)
 	return p;
 }
 
-void* realloc(void* ptr, size_t size)
+void * realloc(void * ptr,
+	       size_t size)
 {
 	void* p;
 
@@ -531,7 +533,8 @@ void* realloc(void* ptr, size_t size)
 	return p;
 }
 
-void* memalign(size_t boundary, size_t size)
+void * memalign(size_t boundary,
+		size_t size)
 {
 	unused_argument(boundary);
 	unused_argument(size);
@@ -546,7 +549,7 @@ void* memalign(size_t boundary, size_t size)
 
 static int pagesize = 0;
 
-void* valloc(size_t size)
+void * valloc(size_t size)
 {
 	if (!pagesize) {
 		pagesize = getpagesize();
@@ -559,15 +562,15 @@ void* valloc(size_t size)
 #define CALGO_SORT_SUPPORT   1
 
 #if CALGO_SEARCH_SUPPORT
-void* bsearch(const void* key,
-	      const void* base,
-	      size_t	  nmemb,
-	      size_t	  size,
-	      int	  (* compar)(const void* , const void* ))
+void * bsearch(const void * key,
+	       const void * base,
+	       size_t	    nmemb,
+	       size_t	    size,
+	      int	    (* compar)(const void * , const void * ))
 {
-	char*	     lo;
-	char*	     hi;
-	char*	     mid;
+	char *	     lo;
+	char *	     hi;
+	char *	     mid;
 	unsigned int half;
 	int	     result;
 
@@ -602,10 +605,10 @@ void* bsearch(const void* key,
 #endif
 
 #if CALGO_SORT_SUPPORT
-void qsort(void*  base,
+void qsort(void * base,
 	   size_t nmemb,
 	   size_t size,
-	   int (*compar)(const void *, const void *))
+	   int    (* compar)(const void *, const void *))
 {
 	size_t wgap;
 	size_t i;
@@ -645,8 +648,8 @@ void qsort(void*  base,
 			do {
 				j = i;
 				do {
-					char* a;
-					char* b;
+					char * a;
+					char * b;
 
 					j -= wgap;
 					a  = j + ((char *) base);
@@ -691,7 +694,7 @@ int rand(void)
 	return 0;
 }
 
-int rand_r(unsigned int* seedp)
+int rand_r(unsigned int * seedp)
 {
 	assert(seedp);
 
@@ -711,7 +714,7 @@ int rand_r(unsigned int* seedp)
  *     __dso_handle should be defined as extern here and should be present on
  *     each module
  */
-void* __dso_handle;
+void * __dso_handle;
 
 struct exit_function {
 	enum {
@@ -736,13 +739,13 @@ struct exit_function {
 };
 
 struct exit_function_list {
-	struct exit_function_list *next;
-	size_t			   idx;
-	struct exit_function	   fns[ATEXIT_MAX];
+	struct exit_function_list * next;
+	size_t			    idx;
+	struct exit_function	    fns[ATEXIT_MAX];
 };
 
-static struct exit_function_list  initial;
-static struct exit_function_list* __exit_funcs = &initial;
+static struct exit_function_list   initial;
+static struct exit_function_list * __exit_funcs = &initial;
 
 void exit(int status) /* __attribute__ ((noreturn)) */
 {
@@ -794,7 +797,7 @@ void exit(int status) /* __attribute__ ((noreturn)) */
 	_exit(status);
 }
 
-static struct exit_function* __new_exitfn(void)
+static struct exit_function * __new_exitfn(void)
 {
 	struct exit_function_list* l;
 	size_t			   i;
@@ -839,9 +842,9 @@ static struct exit_function* __new_exitfn(void)
 	return (l == NULL ? NULL : &l->fns[i]);
 }
 
-int __cxa_atexit(void  (*func) (void *),
-		 void* arg,
-		 void* dso_handle)
+int __cxa_atexit(void   (* func) (void *),
+		 void * arg,
+		 void * dso_handle)
 {
 	struct exit_function* new;
 
@@ -899,9 +902,9 @@ int on_exit(void (*func)(int status, void *arg),
 }
 
 
-void __cxa_finalize(void* d)
+void __cxa_finalize(void * d)
 {
-	struct exit_function_list* funcs;
+	struct exit_function_list * funcs;
 
 	/*
 	 * NOTE:
@@ -937,14 +940,14 @@ void __cxa_finalize(void* d)
 }
 
 typedef struct {
-	char* name;
-	char* value;
+	char * name;
+	char * value;
 } env_t;
 
 #define MAX_ENV 32
 env_t environment[MAX_ENV];
 
-static int find_env(const char* name)
+static int find_env(const char * name)
 {
 	unsigned int i;
 	for (i = 0; i < MAX_ENV; i++) {
@@ -959,8 +962,8 @@ static int find_env(const char* name)
 }
 
 static int assign_env(unsigned int i,
-		      const char*  name,
-		      const char*  value)
+		      const char * name,
+		      const char * value)
 {
 	assert(i < MAX_ENV);
 	assert(name);
@@ -987,9 +990,9 @@ static int assign_env(unsigned int i,
 	return 1;
 }
 
-int setenv(const char* name,
-	   const char* value,
-	   int	       overwrite)
+int setenv(const char * name,
+	   const char * value,
+	   int	        overwrite)
 {
 	int i;
 
@@ -1028,7 +1031,7 @@ int setenv(const char* name,
 	return 0;
 }
 
-int unsetenv(const char *name)
+int unsetenv(const char * name)
 {
 	int i;
 
@@ -1048,7 +1051,7 @@ int unsetenv(const char *name)
 	return 0;
 }
 
-char* getenv(const char *name)
+char * getenv(const char * name)
 {
 	int i;
 
@@ -1057,10 +1060,10 @@ char* getenv(const char *name)
 	return ((i != -1) ? environment[i].value : NULL);
 }
 
-int putenv(char *string)
+int putenv(char * string)
 {
-	char* equal;
-	int   rval;
+	char * equal;
+	int    rval;
 
 	if ((equal = index(string, '=')) == NULL) {
 		return -1;

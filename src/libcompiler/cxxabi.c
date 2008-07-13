@@ -33,12 +33,6 @@ void __static_initialization_and_destruction_0(int a, int b)
 	      __PRETTY_FUNCTION__);
 }
 
-void __pure_virtual(void)
-{
-	panic("Unimplemented %s function called",
-	      __PRETTY_FUNCTION__);
-}
-
 void __cxa_pure_virtual(void)
 {
 	panic("Unimplemented %s function called",
