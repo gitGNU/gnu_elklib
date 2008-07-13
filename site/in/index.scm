@@ -10,7 +10,7 @@
 ;(p "The libraries provides the following features (not updated):"
 ;   (ul
 ;    (li "C Support:")
-;    (ul 
+;    (ul
 ;     (li "The usual functions / macros available from ")
 ;     (li "ctype.h")
 ;     (li "assert.h")
@@ -21,7 +21,7 @@
 ;     (li "malloc.h")
 ;     )
 ;    (li "C++ Support:")
-;    (ul 
+;    (ul
 ;     (li "iterators")
 ;     (li "algorithms")
 ;     (li "vectors")
@@ -31,22 +31,48 @@
 ;    )
 ;   )
 
-(h3 "Copying")
-(p
- "ELKlib is licensed under the "
- (a (@ (href "http://www.gnu.org/licenses/licenses.html"))
-    "GNU General Public License, version 2")
+(h3 "USAGE")
+(h4 "Installation")
+(p "ELKlib use the autoconf/automake facilities. The simplest way to install "
+   "the package in your system is:")
+(ul
+ (li "`cd' to the directory containing the package's source code and type "
+     "`./configure' to configure the package for your system. "
+     "Running `configure' might take a while. While running, it prints "
+     "some messages telling which features it is checking for")
+ (li "Type `make' to compile the package")
+ (li "Optionally, type `make check' to run any self-tests that come with "
+     "the package")
+ (li "Type `make install' to install the programs and any data files and "
+     "documentation")
  )
+
+(p "Use `./configure --help' to get a brief help of all configuration tweaks "
+   "available.")
+(br)
+(p "You can remove the program binaries and object files from the "
+   "source code directory by typing `make clean'. To also remove the "
+   "files that `configure' created (so you can compile the package for "
+   "a different architecture), type `make distclean'.")
+(br)
+(p "You can also type `make uninstall' to remove the installed files")
+(br)
+(p "Note that the --prefix option allows installation in a different path than "
+   "the usual system path, this option enables sandbox installations")
+
+(h4 "Use")
+(p (i "... ASAP ...") )
+
+(h3 "COPYING")
+(p "ELKlib is licensed under the "
+   (a (@ (href "http://www.gnu.org/licenses/licenses.html"))
+      "GNU General Public License, version 2"))
 
 (h3 "MAINTAINERS")
-(p
- "Francesco Salvestrini <salvestrini AT gmail DOT com>"
- )
+(p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
 
 (h3 "AUTHORS")
-(p
- "Francesco Salvestrini <salvestrini AT gmail DOT com>"
- )
+(p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
 
 (h3 "RELEASES")
 (p "Sorry, no public release available at the moment.")
@@ -72,15 +98,14 @@
 
 (h3 "DEVELOPMENT")
 (h4 "Browsing sources")
-(p
- "You can Browse the "
- (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git"))
-    "Git repository")
- " of this project with your web browser. This gives you a good
- picture of the current status of the source files. You may also view
- the complete histories of any file in the repository as well as
- differences among two versions."
- )
+(p "You can Browse the "
+   (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git"))
+      "Git repository")
+   " of this project with your web browser. This gives you a good "
+   "picture of the current status of the source files. You may also view "
+   "the complete histories of any file in the repository as well as "
+   "differences among two versions.")
+
 (h4 "Getting a Copy of the Git Repository")
 (p "Anonymous checkout:")
 (br)
