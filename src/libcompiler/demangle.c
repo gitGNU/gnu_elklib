@@ -104,7 +104,7 @@ static char char_get(demangle_data_t* data)
 		data->input.position++;
 	}
 
-	/* dprintf("got value = '%c'\n", c); */
+	dprintf("got value = '%c'\n", c);
 	return c;
 }
 
@@ -120,7 +120,7 @@ static char char_peek(demangle_data_t* data)
 		c = data->input.buffer[data->input.position];
 	}
 
-	/* dprintf("peek value = '%c'\n", c); */
+	dprintf("peek value = '%c'\n", c);
 	return c;
 }
 
@@ -573,6 +573,8 @@ int demangle(const char* mangled_name,
 	demangle_data_t data;
 
 	assert(mangled_name);
+
+	dprintf("Demangling '%s'\n", mangled_name);
 
 	data.input.buffer    = mangled_name;
 	data.input.length    = strlen(mangled_name);
