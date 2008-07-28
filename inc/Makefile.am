@@ -96,14 +96,19 @@ libcompile_HDRS =				\
 	libcompiler/linker.h			\
 	libcompiler/macro.h
 
+libbfd_HDRS =					\
+	libbfd/bfd.h				\
+	libbfd/elf.h				\
+	libbfd/elf-format.h
+
 nobase_incdest_HEADERS  =			\
 	elklib.h				\
 	externals.h				\
 	$(libc_HDRS)				\
 	$(libcxx_HDRS)				\
 	$(libm_HDRS)				\
-	$(libcompile_HDRS)
-#	$(libbfd_HDRS)
+	$(libcompile_HDRS)			\
+	$(libbfd_HDRS)
 
 check-includes: Makefile
 	for i in $(nobase_incdest_HEADERS) ; do \

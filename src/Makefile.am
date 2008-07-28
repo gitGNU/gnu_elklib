@@ -65,8 +65,8 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
 	$(libm_SRCS)				\
-	$(libcompiler_SRCS)
-#	$(libbfd_SRCS)
+	$(libcompiler_SRCS)			\
+	$(libbfd_SRCS)
 
 ##
 ## Maintainer related targets
