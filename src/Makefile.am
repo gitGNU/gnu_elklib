@@ -33,12 +33,10 @@ libc_SRCS =					\
 	libc/unistd.c				\
 	libc/panic.c				\
 	libc/bits/byteswap.c			\
-	libc/bits/fcntl.c			\
 	libc/execinfo.c				\
 	libc/malloc.c				\
 	libc/errno.c				\
 	libc/stdio.c				\
-	libc/fcntl.c				\
 	libc/string.c				\
 	libc/mcheck.c				\
 	libc/ctype.c
@@ -57,6 +55,10 @@ libcompiler_SRCS =				\
 	libcompiler/intmath.c			\
 	libcompiler/eh_personality.cxx
 
+libbfd_SRCS =					\
+	libbfd/bfd.c				\
+	libbfd/elf.c
+
 libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
 libelk_@target_cpu@_a_SOURCES  =		\
@@ -64,6 +66,7 @@ libelk_@target_cpu@_a_SOURCES  =		\
 	$(libcxx_SRCS)				\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)
+#	$(libbfd_SRCS)
 
 ##
 ## Maintainer related targets

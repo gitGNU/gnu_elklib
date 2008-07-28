@@ -103,6 +103,7 @@ nobase_incdest_HEADERS  =			\
 	$(libcxx_HDRS)				\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)
+#	$(libbfd_HDRS)
 
 check-includes: Makefile
 	for i in $(nobase_incdest_HEADERS) ; do \

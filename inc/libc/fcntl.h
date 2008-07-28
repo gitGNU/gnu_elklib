@@ -21,13 +21,6 @@
 
 #include "elklib.h"
 #include "libcompiler/cdefs.h"
-
-__BEGIN_DECLS
-
-int fcntl(int fd,
-	  int cmd,
-	  ...);
-
-__END_DECLS
+#include "libc/bits/fcntl.h"
 
 #endif /* ELKLIB_LIBC_FCNTL_H */
