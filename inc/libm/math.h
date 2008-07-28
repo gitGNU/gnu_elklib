@@ -30,4 +30,3 @@ double pow(double x,
 __END_DECLS
 
 #endif /* ELKLIB_LIBC_MATH_H */
-
