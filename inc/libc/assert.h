@@ -21,6 +21,7 @@
 
 #include "elklib.h"
 #include "libcompiler/cdefs.h"
+#include "libcompiler/macro.h"
 
 __BEGIN_DECLS
 
