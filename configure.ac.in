@@ -431,6 +431,7 @@ AC_CONFIG_FILES([
 	docs/info/Makefile
 
 	inc/Makefile
+	inc/elklib.h
 	src/Makefile
 	tests/Makefile
 
