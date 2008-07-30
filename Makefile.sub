@@ -40,9 +40,11 @@ COMMONCFLAGS =					\
         $(HOST_CFLAGS)				\
         -nostdinc
 
+#COMMONCXXFLAGS =				\
+#        $(HOST_CXXFLAGS)			\
+#        -nostdinc -nostdinc++
 COMMONCXXFLAGS =				\
-        $(HOST_CXXFLAGS)			\
-        -nostdinc -nostdinc++
+        $(HOST_CXXFLAGS)
 
 ##
 ## NOTE:
