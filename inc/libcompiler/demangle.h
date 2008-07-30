@@ -25,9 +25,7 @@
 
 __BEGIN_DECLS
 
-int demangle(const char* mangled_name,
-	     char*       output_buffer,
-	     size_t      output_lenght);
+char * demangle(const char * mangled_name);
 
 __END_DECLS
 
