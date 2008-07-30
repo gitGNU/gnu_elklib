@@ -102,7 +102,11 @@
 #include "config.h"
 #endif
 
-#if 0
+#ifdef ELKLIB_PORTED
+#include "libc/stdlib.h"
+#include "libc/stdio.h"
+#include "libc/string.h"
+#else
 #include <stdio.h>
 
 #ifdef HAVE_STDLIB_H
@@ -123,10 +127,6 @@ extern char *alloca ();
 #  endif /* __GNUC__ */
 # endif /* alloca */
 #endif /* HAVE_ALLOCA_H */
-#else
-#include "libc/stdlib.h"
-#include "libc/stdio.h"
-#include "libc/string.h"
 #endif
 
 #include "ansidecl.h"

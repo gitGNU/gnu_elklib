@@ -45,7 +45,12 @@ Boston, MA 02110-1301, USA.  */
 
 #include "safe-ctype.h"
 
-#if 0
+#ifdef ELKLIB_PORTED
+#include "libc/types.h"
+#include "libc/string.h"
+#include "libc/stdio.h"
+#include "libc/stdlib.h"
+#else
 #include <sys/types.h>
 #include <string.h>
 #include <stdio.h>
@@ -56,17 +61,12 @@ Boston, MA 02110-1301, USA.  */
 char * malloc ();
 char * realloc ();
 #endif
-#else
-#include "libc/types.h"
-#include "libc/string.h"
-#include "libc/stdio.h"
-#include "libc/stdlib.h"
 #endif
 
-#if 0
-#include <demangle.h>
-#else
+#ifdef ELKLIB_PORTED
 #include "libcompiler/demangle/demangle.h"
+#else
+#include <demangle.h>
 #endif
 #undef CURRENT_DEMANGLING_STYLE
 #define CURRENT_DEMANGLING_STYLE work->options

@@ -39,7 +39,12 @@
 extern "C" {
 #endif
 
-#if 0
+#ifdef ELKLIB_PORTED
+#include "libcompiler/demangle/ansidecl.h"
+#include "libc/stddef.h"
+#include "libc/stdarg.h"
+#include "libc/stdio.h"
+#else
 #include "ansidecl.h"
 
 /* Get a definition for size_t.  */
@@ -48,11 +53,6 @@ extern "C" {
 #include <stdarg.h>
 
 #include <stdio.h>
-#else
-#include "libcompiler/demangle/ansidecl.h"
-#include "libc/stddef.h"
-#include "libc/stdarg.h"
-#include "libc/stdio.h"
 #endif
 
 /* If the OS supports it, ensure that the supplied stream is setup to

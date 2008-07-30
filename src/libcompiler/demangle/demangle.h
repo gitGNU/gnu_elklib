@@ -30,10 +30,10 @@
 #if !defined (DEMANGLE_H)
 #define DEMANGLE_H
 
-#if 0
-#include "libiberty.h"
-#else
+#ifdef ELKLIB_PORTED
 #include "libcompiler/demangle/libiberty.h"
+#else
+#include "libiberty.h"
 #endif
 
 #ifdef __cplusplus

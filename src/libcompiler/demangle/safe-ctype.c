@@ -115,14 +115,14 @@ sets of characters:
 
 */
 
-#if 0
-#include "ansidecl.h"
-#include <safe-ctype.h>
-#include <stdio.h>  /* for EOF */
-#else
+#ifdef ELKLIB_PORTED
 #include "libcompiler/demangle/ansidecl.h"
 #include "libcompiler/demangle/safe-ctype.h"
 #include "libc/stdio.h"
+#else
+#include "ansidecl.h"
+#include <safe-ctype.h>
+#include <stdio.h>  /* for EOF */
 #endif
 
 #if EOF != -1

@@ -51,16 +51,28 @@ libm_SRCS =					\
 
 libcompiler_SRCS =				\
 	libcompiler/cxxabi.c			\
-	libcompiler/demangle.c			\
 	libcompiler/intmath.c			\
-	libcompiler/eh_personality.cxx
+	libcompiler/eh_personality.cxx		\
+	libcompiler/demangle.c			\
+	libcompiler/demangle/ansidecl.h		\
+	libcompiler/demangle/demangle.h		\
+	libcompiler/demangle/cplus-dem.c	\
+	libcompiler/demangle/cp-demangle.c	\
+	libcompiler/demangle/cp-demangle.h	\
+	libcompiler/demangle/safe-ctype.c	\
+	libcompiler/demangle/safe-ctype.h	\
+	libcompiler/demangle/xmalloc.x
 
 libbfd_SRCS =					\
 	libbfd/bfd.c				\
 	libbfd/elf.c
 
-libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+COMMONCPPFLAGS += -DELKLIB_PORTED
+
+libelk_@target_cpu@_a_ASFLAGS  = $(COMMONASFLAGS)
 libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_@target_cpu@_a_CXXFLAGS = $(COMMONCXXFLAGS)
 libelk_@target_cpu@_a_SOURCES  =		\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
