@@ -3,11 +3,11 @@
    "to kernel level development. ELKlib mimics GNU libc and the Standard "
    "Template Library.")
 (br)
-(p "The library is under heavy development and is not yet usable, from the "
-   "user point of view.")
+(p (i "The library is under heavy development and is not yet usable, from the "
+   "user point of view.") )
 
 ;(h4 "Features")
-;(p "The libraries provides the following features (not updated):"
+;(p "The library provides the following features (not updated):"
 ;   (ul
 ;    (li "C Support:")
 ;    (ul
@@ -28,6 +28,9 @@
 ;     (li "lists")
 ;     (li "strings")
 ;     )
+;    (li "BFD support (through libiberty:")
+;     (li "Symbolic stack backtrace")
+;     (li "Symbols demangling")
 ;    )
 ;   )
 
@@ -57,11 +60,34 @@
 (br)
 (p "You can also type `make uninstall' to remove the installed files")
 (br)
-(p "Note that the --prefix option allows installation in a different path than "
-   "the usual system path, this option enables sandbox installations")
+(p "Note that the --prefix option allows installation using different paths "
+   "than the default ones, this option enables sandbox installations")
 
 (h4 "Use")
-(p (i "... ASAP ...") )
+(p "To easily detect the presence of elklib in a system the following "
+   "scripts come handy:" )
+
+(pre
+ (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
+ (br) ""
+ (br) "OPTIONS:"
+ (br) "    [-h|--help]"
+ (br) "    [--version]"
+ (br) "    [--show-archs]" )
+(br)
+
+(pre
+ (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
+ (br) ""
+ (br) "OPTIONS:"
+ (br) "    [-h|--help]"
+ (br) "    [--version]"
+ (br) "    [--static-libs]"
+ (br) "    [--cppflags]"
+ (br) "    [--cflags]"
+ (br) "    [--cxxcppflags]"
+ (br) "    [--cxxflags]"
+ (br) "    [--ldflags]" )
 
 (h3 "COPYING")
 (p "ELKlib is licensed under the "
