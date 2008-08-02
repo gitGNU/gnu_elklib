@@ -23,38 +23,43 @@
 
 (h3 "USAGE")
 (h4 "Installation")
-(p "ELKlib use the autoconf/automake facilities. The simplest way to install "
+(p "ELKlib uses the autoconf/automake facilities. The simplest way to install "
    "the package in your system is:")
 (ul
- (li "`cd' to the directory containing the package's source code and type "
-     "`./configure' to configure the package for your system. "
-     "Running `configure' might take a while. While running, it prints "
-     "some messages telling which features it is checking for")
- (li "Type `make' to compile the package")
- (li "Optionally, type `make check' to run any self-tests that come with "
-     "the package")
- (li "Type `make install' to install the programs and any data files and "
-     "documentation")
+ (li "`" (tt "cd") "' to the directory containing the package's source code "
+     "and type `" (tt "./configure") "' to configure the package for your "
+     "system. "
+     "Running `" (tt "configure") "' might take a while. While running, "
+     "it prints some messages telling which features it is checking for")
+ (li "Type `" (tt "make") "' to compile the package")
+ (li "Optionally, type `"(tt "make") " check' to run any self-tests that come "
+     "with the package")
+ (li "Type `" (tt "make install") "' to install the programs and any data "
+     "files and documentation")
  )
 
-(p "Use `./configure --help' to get a brief help of all configuration tweaks "
-   "available.")
+(p "Use `" (tt "./configure --help") "' to get a brief help of all "
+   "configuration tweaks available.")
 (br)
 (p "You can remove the program binaries and object files from the "
-   "source code directory by typing `make clean'. To also remove the "
-   "files that `configure' created (so you can compile the package for "
-   "a different architecture), type `make distclean'.")
+   "source code directory by typing `" (tt "make clean") "'. "
+   "To also remove the files that `" (tt "configure") "' created (so you can "
+   "compile the package for a different architecture), type `"
+   (tt "make distclean") "'.")
 (br)
-(p "You can also type `make uninstall' to remove the installed files")
+(p "You can also type `" (tt "make uninstall") "' to remove the installed "
+   "files.")
 (br)
-(p "Note that the --prefix option allows installation using different paths "
-   "than the default ones, this option enables sandbox installations")
+(p "Note that the `" (tt "--prefix") "' option allows installation using "
+   "different paths than the default ones, this option enables sandbox "
+   "installations.")
 
 (h4 "Use")
 (p "To easily detect the presence of elklib in a host system, the following "
    "scripts come handy:" )
 (ul
- (li "elklib-config: It should be used to list the available ports in the host machine"
+ (li (tt "elklib-config") ": "
+     "It should be used to list the available ports in the host machine"
      (pre
       (br) "Usage: elklib-config [OPTIONS]"
       (br) ""
@@ -64,7 +69,9 @@
       (br) "    [--target-cpus]" )
      (br)
      )
- (li "elklib-config-<target-cpu>: It should be used to query a port for compilation or linking related flags"
+ (li (tt "elklib-config-<target-cpu>") ": "
+     "It should be used to query a port for compilation or linking related "
+     "flags"
      (pre
       (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
       (br) ""
