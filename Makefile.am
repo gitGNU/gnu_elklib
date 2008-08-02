@@ -45,9 +45,19 @@ AUTOMAKE_OPTIONS = check-news
 ##
 ## Place handy configuration tool somewhere in the system
 ##
-bin_SCRIPTS = elklib-config-@target_cpu@
+bin_SCRIPTS = elklib-config elklib-config-@target_cpu@
 
-all-local: elklib-config-@target_cpu@
+all-local: elklib-config elklib-config-@target_cpu@
+
+elklib-config: $(srcdir)/elklib-config.in Makefile
+	( rm -f $@ $@.tmp && \
+	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
+	   chmod +x $@.tmp && \
+	   chmod a-w $@.tmp && \
+	   mv -f $@.tmp $@ ) || { \
+	         rm -f $@ $@.tmp ; \
+	         exit 1 ; \
+	}
 
 elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
 	( rm -f $@ $@.tmp && \
@@ -59,7 +69,7 @@ elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
 	         exit 1 ; \
 	}
 
-CLEANFILES = elklib-config-@target_cpu@
+CLEANFILES = elklib-config elklib-config-@target_cpu@
 
 
 ##
