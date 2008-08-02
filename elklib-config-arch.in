@@ -1,7 +1,7 @@
 #! @SHELL@
 
 #
-# elk-config
+# elk-config-@target_cpu@
 #
 # Copyright (C) 2007, 2008 Francesco Salvestrini
 #
@@ -39,9 +39,9 @@ function hint {
 
 function usage {
     cat <<EOF 1>&2
-Usage: elklib-config [OPTIONS]
+Usage: elklib-config-@target_cpu@ [OPTIONS]
 
-Options:
+OPTIONS:
     [-h|--help]
     [--version]
     [--static-libs]
@@ -50,6 +50,8 @@ Options:
     [--cxxcppflags]
     [--cxxflags]
     [--ldflags]
+
+Report bugs to <@PACKAGE_BUGREPORT@>.
 EOF
 }
 
