@@ -4,35 +4,22 @@
    "Template Library.")
 (br)
 (p (i "The library is under heavy development and is not yet usable, from the "
-   "user point of view.") )
+      "user point of view.") )
 
-;(h4 "Features")
-;(p "The library provides the following features (not updated):"
-;   (ul
-;    (li "C Support:")
-;    (ul
-;     (li "The usual functions / macros available from ")
-;     (li "ctype.h")
-;     (li "assert.h")
-;     (li "stdio.h")
-;     (li "stdlib.h")
-;     (li "string.h")
-;     (li "unistd.h")
-;     (li "malloc.h")
-;     )
-;    (li "C++ Support:")
-;    (ul
-;     (li "iterators")
-;     (li "algorithms")
-;     (li "vectors")
-;     (li "lists")
-;     (li "strings")
-;     )
-;    (li "BFD support (through libiberty:")
-;     (li "Symbolic stack backtrace")
-;     (li "Symbols demangling")
-;    )
-;   )
+(h4 "Features")
+(p "The library provides the following features:"
+   (ul
+    (li (b "C Support") ": "
+	"The usual functions and macros available from libc are available" )
+    (li (b "C++ Support") ": "
+	"STL-like iterators, algorithms, vectors, lists and strings" )
+    (li (b "BFD support") " (through libiberty): "
+	"C++ Symbols demangling" )
+    )
+   )
+
+(h4 "Ports")
+(p "The only available port is for the x86 architecture")
 
 (h3 "USAGE")
 (h4 "Installation")
@@ -64,30 +51,34 @@
    "than the default ones, this option enables sandbox installations")
 
 (h4 "Use")
-(p "To easily detect the presence of elklib in a system the following "
+(p "To easily detect the presence of elklib in a host system, the following "
    "scripts come handy:" )
-
-(pre
- (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
- (br) ""
- (br) "OPTIONS:"
- (br) "    [-h|--help]"
- (br) "    [--version]"
- (br) "    [--show-archs]" )
-(br)
-
-(pre
- (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
- (br) ""
- (br) "OPTIONS:"
- (br) "    [-h|--help]"
- (br) "    [--version]"
- (br) "    [--static-libs]"
- (br) "    [--cppflags]"
- (br) "    [--cflags]"
- (br) "    [--cxxcppflags]"
- (br) "    [--cxxflags]"
- (br) "    [--ldflags]" )
+(ul
+ (li "elklib-config: It should be used to list the available ports in the host machine"
+     (pre
+      (br) "Usage: elklib-config [OPTIONS]"
+      (br) ""
+      (br) "OPTIONS:"
+      (br) "    [-h|--help]"
+      (br) "    [--version]"
+      (br) "    [--target-cpus]" )
+     (br)
+     )
+ (li "elklib-config-<target-cpu>: It should be used to query a port for compilation or linking related flags"
+     (pre
+      (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
+      (br) ""
+      (br) "OPTIONS:"
+      (br) "    [-h|--help]"
+      (br) "    [--version]"
+      (br) "    [--static-libs]"
+      (br) "    [--cppflags]"
+      (br) "    [--cflags]"
+      (br) "    [--cxxcppflags]"
+      (br) "    [--cxxflags]"
+      (br) "    [--ldflags]" )
+     )
+ )
 
 (h3 "COPYING")
 (p "ELKlib is licensed under the "
@@ -107,7 +98,7 @@
 (p "ELKlib has a single moderated mailing list, with an archive. "
    "In order to post a message to the mailing list you must be subscribed. "
    "Please consult the "
-   (a (@ (href "http://lists.nongnu.org/mailman/listinfo/elklib-generic"))
+   (a (@ (href "http://lists.nongnu.org/mailman/listinfo/elklib-generic") )
       "ELKlib mailing list page")
    " for more information on subscribing to the mailing list.")
 
@@ -125,7 +116,7 @@
 (h3 "DEVELOPMENT")
 (h4 "Browsing sources")
 (p "You can Browse the "
-   (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git"))
+   (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git") )
       "Git repository")
    " of this project with your web browser. This gives you a good "
    "picture of the current status of the source files. You may also view "
@@ -137,3 +128,15 @@
 (br)
 (p (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) git)
    " clone git://git.savannah.nongnu.org/elklib.git")
+
+(h4 "Contribute")
+(p "If you have time and programming skills, you can help us by developing "
+   "missing features, regression tests or bug-fixing the present codebase. "
+   "Subscribe to the "
+   (a (@ (href "http://lists.nongnu.org/mailman/listinfo/elklib-generic") )
+      "mailing list")
+   ", drop us a mail and start coding. Send your code to the "
+   "mailing list under the form of patches for the current revision system.")
+(br)
+(p "If you have time but no programming skills, you can help with "
+   "documentation,  packaging, tests before releases etc ...")
