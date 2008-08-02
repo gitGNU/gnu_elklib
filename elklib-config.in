@@ -44,7 +44,7 @@ Usage: elklib-config [OPTIONS]
 OPTIONS:
     [-h|--help]
     [--version]
-    [--show-archs]
+    [--target-cpus]
 
 Report bugs to <@PACKAGE_BUGREPORT@>.
 EOF
@@ -60,7 +60,7 @@ if test $# -eq 0 ; then
 fi
 
 missing_action="yes"
-echo_show_archs="no"
+echo_target_cpus="no"
 while test $# -gt 0 ; do
     case "$1" in
 	-*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
@@ -76,8 +76,8 @@ while test $# -gt 0 ; do
 	    echo @PACKAGE_VERSION@
 	    exit 0
 	    ;;
-	--show-archs)
-	    echo_show_archs="yes"
+	--target-cpus)
+	    echo_target_cpus="yes"
 	    ;;
 	*)
 	    error "Unknown option \`$1'"
@@ -88,7 +88,7 @@ while test $# -gt 0 ; do
     shift
 done
 
-if test "$echo_show_archs" == "yes" ; then
+if test "$echo_target_cpus" == "yes" ; then
     missing_action="no"
     for i in `find @bindir@ -name "elklib-config-*"` ; do
     	echo "$i" | sed -e 's,@bindir@/elklib-config-,,' ;
