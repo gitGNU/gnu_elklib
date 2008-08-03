@@ -60,29 +60,31 @@
  (li (tt "elklib-config") ": "
      "It should be used to list the available ports in the host machine"
      (pre
-      (br) "Usage: elklib-config [OPTIONS]"
-      (br) ""
-      (br) "OPTIONS:"
-      (br) "    [-h|--help]"
-      (br) "    [--version]"
-      (br) "    [--target-cpus]")
+      "Usage: elklib-config [OPTIONS]" (br)
+      "" (br)
+      "OPTIONS:" (br)
+      "    [-h|--help]" (br)
+      "    [--version]" (br)
+      "    [--target-cpus]" (br)
+      )
      (br)
      )
  (li (tt "elklib-config-<target-cpu>") ": "
      "It should be used to query a port for compilation or linking related "
      "flags"
      (pre
-      (br) "Usage: elklib-config-<target-cpu> [OPTIONS]"
-      (br) ""
-      (br) "OPTIONS:"
-      (br) "    [-h|--help]"
-      (br) "    [--version]"
-      (br) "    [--static-libs]"
-      (br) "    [--cppflags]"
-      (br) "    [--cflags]"
-      (br) "    [--cxxcppflags]"
-      (br) "    [--cxxflags]"
-      (br) "    [--ldflags]")
+      "Usage: elklib-config-<target-cpu> [OPTIONS]" (br)
+      "" (br)
+      "OPTIONS:" (br)
+      "    [-h|--help]" (br)
+      "    [--version]" (br)
+      "    [--static-libs]" (br)
+      "    [--cppflags]" (br)
+      "    [--cflags]" (br)
+      "    [--cxxcppflags]" (br)
+      "    [--cxxflags]" (br)
+      "    [--ldflags]" (br)
+      )
      )
  )
 
@@ -121,7 +123,7 @@
 
 (h3 "DEVELOPMENT")
 (h4 "Browsing sources")
-(p "You can Browse the "
+(p "You can browse the "
    (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git") )
       "Git repository")
    " of this project with your web browser. This gives you a good "
@@ -129,7 +131,7 @@
    "the complete histories of any file in the repository as well as "
    "differences among two versions.")
 
-(h4 "Getting a Copy of the Git Repository")
+(h4 "Getting a copy of the Git Repository")
 (p "Anonymous checkout:")
 (br)
 (p (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) git)
