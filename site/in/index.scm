@@ -7,16 +7,15 @@
       "user point of view.") )
 
 (h4 "Features")
-(p "The library provides the following features:"
-   (ul
-    (li (b "C Support") ": "
-	"The usual functions and macros available from libc are available" )
-    (li (b "C++ Support") ": "
-	"STL-like iterators, algorithms, vectors, lists and strings" )
-    (li (b "BFD support") " (through libiberty): "
-	"C++ Symbols demangling" )
-    )
-   )
+(p "The library provides the following features:")
+(ul
+ (li (b "C Support") ": "
+     "The usual functions and macros available from libc are available")
+ (li (b "C++ Support") ": "
+     "STL-like iterators, algorithms, vectors, lists and strings")
+ (li (b "BFD support") " (through libiberty): "
+     "C++ Symbols demangling")
+ )
 
 (h4 "Ports")
 (p "The only available port is for the x86 architecture")
@@ -56,7 +55,7 @@
 
 (h4 "Use")
 (p "To easily detect the presence of elklib in a host system, the following "
-   "scripts come handy:" )
+   "scripts come handy:")
 (ul
  (li (tt "elklib-config") ": "
      "It should be used to list the available ports in the host machine"
@@ -66,7 +65,7 @@
       (br) "OPTIONS:"
       (br) "    [-h|--help]"
       (br) "    [--version]"
-      (br) "    [--target-cpus]" )
+      (br) "    [--target-cpus]")
      (br)
      )
  (li (tt "elklib-config-<target-cpu>") ": "
@@ -83,7 +82,7 @@
       (br) "    [--cflags]"
       (br) "    [--cxxcppflags]"
       (br) "    [--cxxflags]"
-      (br) "    [--ldflags]" )
+      (br) "    [--ldflags]")
      )
  )
 
