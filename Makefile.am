@@ -89,6 +89,7 @@ CHANGELOGS =					\
 EXTRA_DIST =							\
 	BUGS TODO README NEWS COPYING AUTHORS INSTALL THANKS	\
 	$(CHANGELOGS)						\
+	bootstrap						\
 	configure.ac.in						\
 	elklib-config-arch.in
 
