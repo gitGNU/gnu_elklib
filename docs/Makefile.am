@@ -23,13 +23,6 @@ include $(top_srcdir)/Makefile.sub
 SUBDIRS =					\
 	info
 
-#
-# NOTE:
-#     ChangeLog-* included in EXTRA_DIST variable in top Makefile.am file.
-#
-
-EXTRA_DIST =
-
 ##
 ## Maintainer related targets
 ##
