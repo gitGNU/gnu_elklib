@@ -66,9 +66,14 @@ function will be called to print an error message and terminate execution.
 #include "ansidecl.h"
 #include "libiberty.h"
 
+#ifdef ELKLIB_PORTED
+#include "libc/stdio.h"
+#include "libc/stddef.h"
+#else
 #include <stdio.h>
 
 #include <stddef.h>
+#endif
 
 #if VMS
 #include <stdlib.h>
