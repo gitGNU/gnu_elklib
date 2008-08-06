@@ -54,6 +54,7 @@ libcompiler_SRCS =				\
 	libcompiler/intmath.c			\
 	libcompiler/eh_personality.cxx		\
 	libcompiler/demangle.c			\
+	libcompiler/demangle/libiberty.h	\
 	libcompiler/demangle/ansidecl.h		\
 	libcompiler/demangle/demangle.h		\
 	libcompiler/demangle/cplus-dem.c	\
@@ -61,7 +62,7 @@ libcompiler_SRCS =				\
 	libcompiler/demangle/cp-demangle.h	\
 	libcompiler/demangle/safe-ctype.c	\
 	libcompiler/demangle/safe-ctype.h	\
-	libcompiler/demangle/xmalloc.x
+	libcompiler/demangle/xmalloc.c
 
 libbfd_SRCS =					\
 	libbfd/bfd.c				\
