@@ -108,7 +108,7 @@ namespace ktl {
 		template<class U, class V> pair(const pair<U, V> & p);
 	};
 
-	
+
 	template <class T1, class T2>
 	pair<T1, T2>::pair() :
 		first(), second() {  }
