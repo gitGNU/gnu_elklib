@@ -279,7 +279,7 @@ int memcmp(const void*  source,
 	const unsigned char* su2;
 	int                  result = 0;
 
-	for (su1 = (unsigned char *)source, su2 = (unsigned char* )destination;
+	for (su1 = (unsigned char *)source, su2 = (unsigned char *)destination;
 	     0 < count;
 	     ++su1, ++su2, count--) {
 
@@ -300,7 +300,7 @@ void* memset(void*        s,
 	char* xs = (char *) s;
 
 	while (count--) {
-		*xs++ = c;
+		*xs++ = (char) c;
 	}
 
 	return s;
