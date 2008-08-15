@@ -30,25 +30,9 @@ EXTRA_DIST =					\
 	map.as					\
 	pages.as				\
 	site.as					\
-	site.css				\
-	Doxyfile.in
+	site.css
 
-CLEANFILES =					\
-	Doxyfile
-
-Doxyfile: $(srcdir)/Doxyfile.in Makefile
-	( rm -f $@ $@.tmp && \
-	  $(do_subst) < $(srcdir)/Doxyfile.in > $@.tmp && \
-	  chmod a-w $@.tmp && \
-	  mv -f $@.tmp $@ ) || { \
-		rm -f $@ $@.tmp ; \
-		exit 1 ; \
-	}
-
-site: Doxyfile
-	$(DOXYGEN) Doxyfile || { \
-		exit 1 ; \
-	} ; \
+site:
 	$(SITETOOL) -v --mode initialize && \
 	$(SITETOOL) -v --mode build && \
 	touch site.stamp || { \

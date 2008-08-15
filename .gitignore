@@ -48,6 +48,8 @@ tools/autotools/config.sub
 
 docs/man/sitetool.1
 docs/info/elklib.info
+docs/doxygen
+docs/Doxyfile
 
 site/in/.sitetool
 site/in/site.stamp

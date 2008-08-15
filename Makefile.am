@@ -72,6 +72,21 @@ elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
 CLEANFILES = elklib-config elklib-config-@target_cpu@
 
 ##
+## help related target
+##
+help:
+	@echo ""
+	@echo "  Targets:"
+	@echo ""
+	@echo "    doxygen -- Build doxygen documentation (in docs directory)"
+	@echo ""
+	@echo "    *automake*          -- Standard automake targets"
+	@echo ""
+
+doxygen: all
+	(cd docs && $(MAKE) $(AM_MAKEFLAGS) doxygen)
+
+##
 ## NOTE:
 ##     Makefile.sub is automatically distributed by automake rules
 ##
