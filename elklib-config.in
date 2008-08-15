@@ -73,7 +73,7 @@ while test $# -gt 0 ; do
 	    exit 0
 	    ;;
 	--version)
-	    echo @PACKAGE_VERSION@
+	    echo "@PACKAGE_VERSION@"
 	    exit 0
 	    ;;
 	--target-cpus)
