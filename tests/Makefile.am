@@ -21,12 +21,14 @@
 include $(top_srcdir)/Makefile.sub
 
 TESTS =						\
+	test-c++-algorithm-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
 	test-c++-vector-1			\
 	test-c++-clibrary-1
 
 check_PROGRAMS =				\
+	test-c++-algorithm-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
 	test-c++-vector-1			\
@@ -35,33 +37,40 @@ check_PROGRAMS =				\
 TEST_CFLAGS =  -I$(top_srcdir)/inc -I$(top_builddir)/inc
 TEST_CXXCPPFLAGS = -I$(top_srcdir)/inc -I$(top_builddir)/inc
 
-test_c___string_1_SOURCES     = test-c++-string-1.cxx
-test_c___string_1_LDADD       = $(TARGET_LDFLAGS)
-test_c___string_1_CFLAGS      = $(TARGET_CFLAGS)
-test_c___string_1_CXXFLAGS    = $(TARGET_CXXFLAGS)
-test_c___string_1_CPPFLAGS    = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
-test_c___string_1_CXXCPPFLAGS = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+test_c___algorithm_1_SOURCES     = test-c++-algorithm-1.cxx
+test_c___algorithm_1_LDADD       = $(TARGET_LDFLAGS)
+test_c___algorithm_1_CFLAGS      = $(TARGET_CFLAGS)
+test_c___algorithm_1_CXXFLAGS    = $(TARGET_CXXFLAGS)
+test_c___algorithm_1_CPPFLAGS    = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___algorithm_1_CXXCPPFLAGS = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
-test_c___list_1_SOURCES       = test-c++-list-1.cxx
-test_c___list_1_LDADD         = $(TARGET_LDFLAGS)
-test_c___list_1_CFLAGS        = $(TARGET_CFLAGS)
-test_c___list_1_CXXFLAGS      = $(TARGET_CXXFLAGS)
-test_c___list_1_CPPFLAGS      = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
-test_c___list_1_CXXCPPFLAGS   = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+test_c___string_1_SOURCES        = test-c++-string-1.cxx
+test_c___string_1_LDADD          = $(TARGET_LDFLAGS)
+test_c___string_1_CFLAGS         = $(TARGET_CFLAGS)
+test_c___string_1_CXXFLAGS       = $(TARGET_CXXFLAGS)
+test_c___string_1_CPPFLAGS       = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___string_1_CXXCPPFLAGS    = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
-test_c___vector_1_SOURCES     = test-c++-vector-1.cxx
-test_c___vector_1_LDADD       = $(TARGET_LDFLAGS)
-test_c___vector_1_CFLAGS      = $(TARGET_CFLAGS)
-test_c___vector_1_CXXFLAGS    = $(TARGET_CXXFLAGS)
-test_c___vector_1_CPPFLAGS    = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
-test_c___vector_1_CXXCPPFLAGS = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+test_c___list_1_SOURCES          = test-c++-list-1.cxx
+test_c___list_1_LDADD            = $(TARGET_LDFLAGS)
+test_c___list_1_CFLAGS           = $(TARGET_CFLAGS)
+test_c___list_1_CXXFLAGS         = $(TARGET_CXXFLAGS)
+test_c___list_1_CPPFLAGS         = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___list_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
-test_c___clibrary_1_SOURCES     = test-c++-clibrary-1.cxx
-test_c___clibrary_1_LDADD       = $(TARGET_LDFLAGS)
-test_c___clibrary_1_CFLAGS      = $(TARGET_CFLAGS)
-test_c___clibrary_1_CXXFLAGS    = $(TARGET_CXXFLAGS)
-test_c___clibrary_1_CPPFLAGS    = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
-test_c___clibrary_1_CXXCPPFLAGS = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+test_c___vector_1_SOURCES        = test-c++-vector-1.cxx
+test_c___vector_1_LDADD          = $(TARGET_LDFLAGS)
+test_c___vector_1_CFLAGS         = $(TARGET_CFLAGS)
+test_c___vector_1_CXXFLAGS       = $(TARGET_CXXFLAGS)
+test_c___vector_1_CPPFLAGS       = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___vector_1_CXXCPPFLAGS    = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___clibrary_1_SOURCES      = test-c++-clibrary-1.cxx
+test_c___clibrary_1_LDADD        = $(TARGET_LDFLAGS)
+test_c___clibrary_1_CFLAGS       = $(TARGET_CFLAGS)
+test_c___clibrary_1_CXXFLAGS     = $(TARGET_CXXFLAGS)
+test_c___clibrary_1_CPPFLAGS     = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___clibrary_1_CXXCPPFLAGS  = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 ##
 ## Maintainer related targets
