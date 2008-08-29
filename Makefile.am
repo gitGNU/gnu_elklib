@@ -101,10 +101,19 @@ EXTRA_DIST =							\
 ## Maintainer related targets
 ##
 
-dist-hook: 
-	$(top_srcdir)/tools/scripts/gitlog-to-changelog > $(distdir)/ChangeLog || {	\
-		rm -f ChangeLog ;							\
-		exit 1 ;								\
+announcement:
+	$(ANNOUNCE_GEN)				\
+	  --release-type=alpha			\
+	  --package=$(PACKAGE_TARNAME)		\
+	  --prev=$(PACKAGE_VERSION).test	\
+	  --curr=$(PACKAGE_VERSION)		\
+	  --gpg-key-id=TEST			\
+	  --url-dir=TEST
+
+dist-hook:
+	$(GITLOG_TO_CHANGELOG) > $(distdir)/ChangeLog || {	\
+		rm -f ChangeLog ;				\
+		exit 1 ;					\
 	}
 
 site: all
