@@ -35,8 +35,6 @@ tests/test-c++-list-1
 tests/test-c++-vector-1
 tests/test-c++-clibrary-1
 
-tools/scripts/gitlog2ChangeLog
-tools/scripts/NEWS-query
 tools/scripts/fetch
 tools/scripts/whitespace-detect
 
