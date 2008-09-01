@@ -18,6 +18,79 @@
 ## 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ##
 
+##
+## NOTE:
+##     Don't use `/' in sed expression(s) since most likely the variables
+##     we're using, such as `$(pkgdatadir)', will contain some of them ...
+
+do_subst_AUTOTOOLS = \
+  -e 's,[@]PACKAGE[@],$(PACKAGE),g' \
+  -e 's,[@]PACKAGE_NAME[@],$(PACKAGE_NAME),g' \
+  -e 's,[@]PACKAGE_BUGREPORT[@],$(PACKAGE_BUGREPORT),g' \
+  -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
+  -e 's,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g' \
+  -e 's,[@]SHELL[@],$(SHELL),g' \
+  \
+  -e 's,[@]bindir[@],$(bindir),g' \
+  -e 's,[@]builddir[@],$(builddir),g' \
+  -e 's,[@]abs_builddir[@],$(abs_builddir),g' \
+  -e 's,[@]abs_top_builddir[@],$(abs_top_builddir),g' \
+  -e 's,[@]abs_top_srcdir[@],$(abs_top_srcdir),g' \
+  -e 's,[@]top_srcdir[@],$(top_srcdir),g' \
+  -e 's,[@]libdir[@],$(libdir),g' \
+  -e 's,[@]includedir[@],$(includedir),g'
+
+do_subst_GENERIC = \
+  -e 's,[@]configure_input[@],Generated from $@.in; do not edit by hand.,g' \
+  -e 's,[@]makefile_input[@],Generated from $@.am; do not edit by hand.,g' \
+  -e 's,[@]VERSION[@],$(VERSION),g' \
+  -e 's,[@]API_VERSION[@],$(API_VERSION),g' \
+  -e 's,[@]pkgvincludedir[@],$(pkgvincludedir),g' \
+  -e 's,[@]pkgvbindir[@],$(pkgvbindir),g' \
+  -e 's,[@]pkgvlibsdir[@],$(pkgvlibsdir),g' \
+  -e 's,[@]pkgvdatadir[@],$(pkgvdatadir),g'
+
+do_subst_MAINTAINER = \
+  -e 's,[@]WGET[@],$(WGET),g'
+
+do_subst_SPECIFIC = \
+  -e 's,[@]GREP[@],$(GREP),g' \
+  -e 's,[@]SED[@],$(SED),g' \
+  -e 's,[@]PERL[@],$(PERL),g' \
+  \
+  -e 's,[@]target_cpu[@],$(target_cpu),g' \
+  \
+  -e 's,[@]TARGET_ASFLAGS[@],$(TARGET_ASFLAGS),g' \
+  -e 's,[@]TARGET_CPPFLAGS[@],$(TARGET_CPPFLAGS),g' \
+  -e 's,[@]TARGET_CFLAGS[@],$(TARGET_CFLAGS),g' \
+  -e 's,[@]TARGET_CXXCPPFLAGS[@],$(TARGET_CXXCPPFLAGS),g' \
+  -e 's,[@]TARGET_CXXFLAGS[@],$(TARGET_CXXFLAGS),g' \
+  -e 's,[@]TARGET_LDFLAGS[@],$(TARGET_LDFLAGS),g' \
+  -e 's,[@]TARGET_LIBADD[@],$(TARGET_LIBADD),g' \
+  \
+  -e 's,[@]HOST_ASFLAGS[@],$(HOST_ASFLAGS),g' \
+  -e 's,[@]HOST_CPPFLAGS[@],$(HOST_CPPFLAGS),g' \
+  -e 's,[@]HOST_CFLAGS[@],$(HOST_CFLAGS),g' \
+  -e 's,[@]HOST_CXXCPPFLAGS[@],$(HOST_CXXCPPFLAGS),g' \
+  -e 's,[@]HOST_CXXFLAGS[@],$(HOST_CXXFLAGS),g' \
+  -e 's,[@]HOST_LDFLAGS[@],$(HOST_LDFLAGS),g' \
+  -e 's,[@]HOST_LIBADD[@],$(HOST_LIBADD),g' \
+  \
+  -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
+  -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g'
+
+do_subst = $(SED) \
+  $(do_subst_AUTOTOOLS) \
+  $(do_subst_GENERIC) \
+  $(do_subst_MAINTAINER) \
+  $(do_subst_SPECIFIC)
+
+WHITESPACE_DETECT   = $(top_builddir)/tools/scripts/whitespace-detect
+FETCH               = $(top_builddir)/tools/scripts/fetch
+GITLOG_TO_CHANGELOG = $(top_srcdir)/tools/scripts/gitlog-to-changelog
+GIT_VERSION_GEN     = $(top_srcdir)/tools/scripts/git-version-gen
+ANNOUNCE_GEN        = $(top_srcdir)/tools/scripts/announce-gen
+
 # Add default flags
 COMMONLDFLAGS =                                 \
         -nostdlib                               \
@@ -45,62 +118,6 @@ COMMONCFLAGS =					\
 #        -nostdinc -nostdinc++
 COMMONCXXFLAGS =				\
         $(HOST_CXXFLAGS)
-
-##
-## NOTE:
-##     Don't use `/' in the sed expression(s) since most likely the
-##     variables we're using, such as `$(pkgdatadir)', will contain some ...
-do_subst = sed \
-  -e 's,[@]PACKAGE[@],$(PACKAGE),g' \
-  -e 's,[@]PACKAGE_NAME[@],$(PACKAGE_NAME),g' \
-  -e 's,[@]PACKAGE_BUGREPORT[@],$(PACKAGE_BUGREPORT),g' \
-  -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
-  -e 's,[@]VERSION[@],$(VERSION),g' \
-  -e 's,[@]API_VERSION[@],$(API_VERSION),g' \
-  -e 's,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g' \
-  -e 's,[@]PERL[@],$(PERL),g' \
-  -e 's,[@]SHELL[@],$(SHELL),g' \
-  \
-  -e 's,[@]TARGET_ASFLAGS[@],$(TARGET_ASFLAGS),g' \
-  -e 's,[@]TARGET_CPPFLAGS[@],$(TARGET_CPPFLAGS),g' \
-  -e 's,[@]TARGET_CFLAGS[@],$(TARGET_CFLAGS),g' \
-  -e 's,[@]TARGET_CXXCPPFLAGS[@],$(TARGET_CXXCPPFLAGS),g' \
-  -e 's,[@]TARGET_CXXFLAGS[@],$(TARGET_CXXFLAGS),g' \
-  -e 's,[@]TARGET_LDFLAGS[@],$(TARGET_LDFLAGS),g' \
-  -e 's,[@]TARGET_LIBADD[@],$(TARGET_LIBADD),g' \
-  \
-  -e 's,[@]HOST_ASFLAGS[@],$(HOST_ASFLAGS),g' \
-  -e 's,[@]HOST_CPPFLAGS[@],$(HOST_CPPFLAGS),g' \
-  -e 's,[@]HOST_CFLAGS[@],$(HOST_CFLAGS),g' \
-  -e 's,[@]HOST_CXXCPPFLAGS[@],$(HOST_CXXCPPFLAGS),g' \
-  -e 's,[@]HOST_CXXFLAGS[@],$(HOST_CXXFLAGS),g' \
-  -e 's,[@]HOST_LDFLAGS[@],$(HOST_LDFLAGS),g' \
-  -e 's,[@]HOST_LIBADD[@],$(HOST_LIBADD),g' \
-  \
-  -e 's,[@]GXX_LIBGCC_EH[@],$(GXX_LIBGCC_EH),g' \
-  -e 's,[@]GXX_LIBSUPCXX[@],$(GXX_LIBSUPCXX),g' \
-  -e 's,[@]WGET[@],$(WGET),g' \
-  -e 's,[@]target_cpu[@],$(target_cpu),g' \
-  -e 's,[@]configure_input[@],Generated from $@.in; do not edit by hand.,g' \
-  -e 's,[@]makefile_input[@],Generated from $@.am; do not edit by hand.,g' \
-  -e 's,[@]bindir[@],$(bindir),g' \
-  -e 's,[@]builddir[@],$(builddir),g' \
-  -e 's,[@]abs_builddir[@],$(abs_builddir),g' \
-  -e 's,[@]abs_top_builddir[@],$(abs_top_builddir),g' \
-  -e 's,[@]abs_top_srcdir[@],$(abs_top_srcdir),g' \
-  -e 's,[@]top_srcdir[@],$(top_srcdir),g' \
-  -e 's,[@]pkgvincludedir[@],$(pkgvincludedir),g' \
-  -e 's,[@]pkgvbindir[@],$(pkgvbindir),g' \
-  -e 's,[@]pkgvlibsdir[@],$(pkgvlibsdir),g' \
-  -e 's,[@]pkgvdatadir[@],$(pkgvdatadir),g' \
-  -e 's,[@]libdir[@],$(libdir),g' \
-  -e 's,[@]includedir[@],$(includedir),g'
-
-WHITESPACE_DETECT   = $(top_builddir)/tools/scripts/whitespace-detect
-FETCH               = $(top_builddir)/tools/scripts/fetch
-GITLOG_TO_CHANGELOG = $(top_srcdir)/tools/scripts/gitlog-to-changelog
-GIT_VERSION_GEN     = $(top_srcdir)/tools/scripts/git-version-gen
-ANNOUNCE_GEN        = $(top_srcdir)/tools/scripts/announce-gen
 
 ##
 ## Maintainer related targets
