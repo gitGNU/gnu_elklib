@@ -24,9 +24,6 @@
 namespace ktl {
 	template<typename T> class set {
 	public:
-		set();
-		set(const set & c);
-		~set();
 
 	protected:
 
@@ -35,9 +32,6 @@ namespace ktl {
 
 	template<typename T> class multiset {
 	public:
-		multiset();
-		multiset(const multiset & c);
-		~multiset();
 
 	protected:
 

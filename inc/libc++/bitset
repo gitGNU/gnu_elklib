@@ -24,8 +24,6 @@
 namespace ktl {
 	template<typename T> class bitset {
 	public:
-		bitset();
-		bitset(unsigned long val);
 
 	protected:
 

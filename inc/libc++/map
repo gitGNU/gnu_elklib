@@ -25,12 +25,6 @@
 namespace ktl {
 	template<typename T> class map {
 	public:
-		map();
-		map(const map & m);
-		map(iterator start, iterator end);
-		map(iterator start, iterator end, const key_compare & cmp);
-		map(const key_compare & cmp);
-		~map();
 
 	protected:
 
@@ -39,13 +33,6 @@ namespace ktl {
 
 	template<typename T> class multimap {
 	public:
-		multimap();
-		multimap(const multimap & c);
-		multimap(iterator            begin,
-			 iterator            end,
-			 const key_compare & cmp = Compare(),
-			 const allocator &   alloc = Allocator());
-		~multimap();
 
 	protected:
 
