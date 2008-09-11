@@ -367,15 +367,15 @@ AX_STRING_CLEAN(HOST_LIBADD)
 #
 # Make an alias of the current target cpu (it will be useful later)
 AS_CASE([$target],
-  [ i?86-*-* ],[ architecture="ia32"  ],
+  [ i?86-*-* ],[ architecture="x86"  ],
   [ AC_MSG_ERROR([unknown target $target]) ]
 )
 
 # Use the alias defined before in order to define the architecture
 AS_CASE([$architecture],
-  [ ia32  ],[
-    AC_DEFINE(ARCH_IA32,  1, [ 32 bit Intel architecture ])
-    architecture_flags="-DARCH_IA32"
+  [ x86  ],[
+    AC_DEFINE(ARCH_X86,  1, [ 32 bit x86 architecture ])
+    architecture_flags="-DARCH_X86"
   ],
   [ AC_MSG_ERROR([unknown architecture $architecture]) ]
 )

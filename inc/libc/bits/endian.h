@@ -23,9 +23,9 @@
 
 __BEGIN_DECLS
 
-#if ARCH_IA32
+#if ARCH_X86
 #define __BYTE_ORDER __LITTLE_ENDIAN
-#endif /* ARCH_IA32 */
+#endif /* ARCH_X86 */
 
 __END_DECLS
 
