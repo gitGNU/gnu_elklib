@@ -122,7 +122,7 @@
    "configuration procedure."
    (br)
    (br)
-   "If you have a patch for a bug in Hybrid that hasn't yet been fixed in the "
+   "If you have a patch for a bug in ELKlib that hasn't yet been fixed in the "
    "latest repository sources, please be so kind to create it using the "
    "repository sources, not the release sources.")
 
