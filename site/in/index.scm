@@ -1,10 +1,7 @@
 (h3 "DESCRIPTION")
 (p "ELKlib is an embeddable library that provides C/C++ support oriented "
    "to kernel level development. ELKlib mimics GNU libc and the Standard "
-   "Template Library."
-   (br)
-   (i "The library is under heavy development and is not yet usable, from the "
-      "user point of view."))
+   "Template Library.")
 
 (h4 "Features")
 (p "The library provides the following features:")
