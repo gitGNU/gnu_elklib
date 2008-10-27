@@ -139,10 +139,10 @@
    "differences among two versions.")
 
 (h4 "Getting a copy of the Git Repository")
-(p "Anonymous checkout: "
-   (p (@ class "terminal")
-      (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) "git")
-      " clone git://git.savannah.nongnu.org/elklib.git"))
+(p "Anonymous checkout: ")
+(p (@ class "terminal")
+   (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) "git")
+   " clone git://git.savannah.nongnu.org/elklib.git")
 
 (h4 "Contribute")
 (p "If you have time and programming skills, you can help us by developing "
