@@ -63,8 +63,9 @@
 (h5 "elklib-config")
 (p "The script should be used to list the available ports "
    "installed in the host machine")
-(p (@ class "terminal")
-"
+(pre (@ class "terminal")
+     "
+
      Usage: elklib-config [OPTIONS]
 
      OPTIONS:
@@ -77,8 +78,9 @@
 (h5 "elklib-config-<target-cpu>")
 (p "The script should be used to query a port for compilation or linking "
    "related flags")
-(p (@ class "terminal")
-"
+(pre (@ class "terminal")
+     "
+
      Usage: elklib-config-<target-cpu> [OPTIONS]
 
      OPTIONS:
@@ -140,9 +142,9 @@
 
 (h4 "Getting a copy of the Git Repository")
 (p "Anonymous checkout: ")
-(p (@ class "terminal")
-   (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) "git")
-   " clone git://git.savannah.nongnu.org/elklib.git")
+(pre (@ class "terminal")
+     (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) "git")
+     " clone git://git.savannah.nongnu.org/elklib.git")
 
 (h4 "Contribute")
 (p "If you have time and programming skills, you can help us by developing "
