@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<todo version="0.1.20">
+    <note priority="medium" time="1226608292" done="1226608606">
+        Fix the long-C++ names demangling (&gt; 1 numbers entries)
+        <comment>
+            Check again
+        </comment>
+    </note>
+    <note priority="medium" time="1226608303" done="1226608582">
+        Rearrange the BFD related code
+        <comment>
+            Check again
+        </comment>
+    </note>
+    <note priority="medium" time="1226608247">
+        Import ax_prog_doxygen.m4 macro from autoconf-archive
+    </note>
+    <note priority="medium" time="1226608274">
+        We should use AC_CHECK_TOOL instead of AC_PATH_PROG machineries that we have. This approach should handle cross-compilation cases
+    </note>
+    <note priority="medium" time="1226608726">
+        Fix eof and error indicator in streams (src/libs/c/stdio.c)
+    </note>
+    <note priority="medium" time="1226608821">
+        Fix all return values (and all the referencing functions) in src/libs/c/stdio.c
+    </note>
+</todo>
