@@ -26,8 +26,8 @@
     </note>
     <note priority="medium" time="1226608274">
         We should use AC_CHECK_TOOL instead of AC_PATH_PROG machineries that we have. This approach should handle cross-compilation cases
-    </note>
-    <note priority="medium" time="1226869938">
-        Add all the needed tests in configure.ac.in in order to check for required GCC features (like __builtin_* for stdarg.h macros)
+        <note priority="medium" time="1226869938">
+            Add all the needed tests in configure.ac.in in order to check for required GCC features (like __builtin_* for stdarg.h macros)
+        </note>
     </note>
 </todo>
