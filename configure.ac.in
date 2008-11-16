@@ -401,11 +401,6 @@ AC_SUBST(TARGET_LDFLAGS)
 AC_SUBST(TARGET_LIBADD)
 
 #
-# Checks for miscellaneous programs
-#
-AC_PATH_PROG([WGET],[wget])
-
-#
 # The API version is the base version.  We must guarantee
 # compatibility for all releases with the same API version.
 # Our current rule is that:
