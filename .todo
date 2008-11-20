@@ -33,4 +33,7 @@
             Add all the needed tests in configure.ac.in in order to check for required GCC features (like __builtin_* for stdarg.h macros)
         </note>
     </note>
+    <note priority="low" time="1227122754">
+        Rearrange the build process in order to use EXEEXT (if needed)
+    </note>
 </todo>
