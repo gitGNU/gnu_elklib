@@ -95,7 +95,8 @@ EXTRA_DIST =							\
 	bootstrap						\
 	configure.ac.in						\
 	elklib-config.in					\
-	elklib-config-arch.in
+	elklib-config-arch.in					\
+	.todo
 
 ##
 ## Maintainer related targets
