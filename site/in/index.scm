@@ -1,9 +1,9 @@
-(h3 "DESCRIPTION")
+(h2 "DESCRIPTION")
 (p "ELKlib is an embeddable library that provides C/C++ support oriented "
    "to kernel level development. ELKlib mimics GNU libc and the Standard "
    "Template Library.")
 
-(h4 "Features")
+(h3 "Features")
 (p "The library provides the following features:")
 (ul
  (li (b "C Support") ": "
@@ -13,17 +13,17 @@
  (li (b "BFD support") " (through libiberty): "
      "C++ Symbols demangling"))
 
-(h4 "Ports")
+(h3 "Ports")
 (p "The only available port is for the x86 architecture")
 
-(h4 "Testimonials")
+(h3 "Testimonials")
 (p "ELKlib is used in the "
    (a (@ (href "http://www.nongnu.org/hybrid")) "Hybrid")
    " kernel.")
 
-(h3 "USAGE")
+(h2 "USAGE")
 
-(h4 "Installation")
+(h3 "Installation")
 (p "ELKlib uses the autoconf/automake facilities. The simplest way to install "
    "the package in your system is:")
 (ul
@@ -51,7 +51,7 @@
    "different paths than the default ones, this option enables sandbox "
    "installations.")
 
-(h4 "Use")
+(h3 "Use")
 (p "To easily detect the presence of elklib in a host system, the following "
    "scripts come handy:")
 
@@ -59,52 +59,48 @@
 (p "The script should be used to list the available ports "
    "installed in the host machine")
 (pre (@ class "terminal")
-     "
+"
+Usage: elklib-config [OPTIONS]
 
-     Usage: elklib-config [OPTIONS]
-
-     OPTIONS:
-	  [-h|--help]
-	  [--version]
-	  [--target-cpus]
-
+OPTIONS:
+    [-h|--help]
+    [--version]
+    [--target-cpus]
 ")
 
 (h5 "elklib-config-<target-cpu>")
 (p "The script should be used to query a port for compilation or linking "
    "related flags")
 (pre (@ class "terminal")
-     "
+"
+Usage: elklib-config-<target-cpu> [OPTIONS]
 
-     Usage: elklib-config-<target-cpu> [OPTIONS]
-
-     OPTIONS:
-	  [-h|--help]
-	  [--version]
-	  [--static-libs]
-	  [--cppflags]
-	  [--cflags]
-	  [--cxxcppflags]
-	  [--cxxflags]
-	  [--ldflags]
-
+OPTIONS:
+    [-h|--help]
+    [--version]
+    [--static-libs]
+    [--cppflags]
+    [--cflags]
+    [--cxxcppflags]
+    [--cxxflags]
+    [--ldflags]
 ")
 
-(h3 "COPYING")
+(h2 "COPYING")
 (p "The project is licensed under the "
    (a (@ (href "http://www.gnu.org/licenses/licenses.html"))
       "GNU General Public License, version 2"))
 
-(h3 "MAINTAINERS")
+(h2 "MAINTAINERS")
 (p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
 
-(h3 "AUTHORS")
+(h2 "AUTHORS")
 (p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
 
-(h3 "RELEASES")
+(h2 "RELEASES")
 (p "Sorry, no public release available at the moment.")
 
-(h3 "MAILING LISTS")
+(h2 "MAILING LISTS")
 (p "The project has a single moderated mailing list, with an archive. "
    "In order to post a message to the mailing list you must be subscribed. "
    "Please consult the "
@@ -112,7 +108,7 @@
       "mailing list page")
    " for more information on subscribing to the mailing list.")
 
-(h3 "REPORT A BUG")
+(h2 "REPORT A BUG")
 (p "If you think you have found a bug then please send as complete a report "
    "as possible to "
    "<elklib-generic AT nongnu DOT org>. "
@@ -123,9 +119,9 @@
    "latest repository sources, please be so kind to create it using the "
    "repository sources, not the release sources.")
 
-(h3 "DEVELOPMENT")
+(h2 "DEVELOPMENT")
 
-(h4 "Browsing sources")
+(h3 "Browsing sources")
 (p "You can browse the "
    (a (@ (href "http://git.savannah.nongnu.org/gitweb/?p=elklib.git"))
       "Git repository")
@@ -134,13 +130,13 @@
    "the complete histories of any file in the repository as well as "
    "differences among two versions.")
 
-(h4 "Getting a copy of the Git Repository")
+(h3 "Getting a copy of the Git Repository")
 (p "Anonymous checkout:")
 (pre (@ class "terminal")
      (a (@ (href "http://savannah.gnu.org/maintenance/UsingGit")) "git")
      " clone git://git.savannah.nongnu.org/elklib.git")
 
-(h4 "Contribute")
+(h3 "Contribute")
 (p "If you have time and programming skills, you can help us by developing "
    "missing features, regression tests or bug-fixing the present codebase. "
    "Subscribe to the "
