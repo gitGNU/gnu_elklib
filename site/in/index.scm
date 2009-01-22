@@ -23,8 +23,12 @@
 
 (h2 "USAGE")
 
+(h3 "Prerequisites")
+(p "In order to install ELKlib into your system you will need a relatively "
+   "recent C/C++ compiler.")
+
 (h3 "Installation")
-(p "ELKlib uses the autoconf/automake facilities. The simplest way to install "
+(p "ELKlib uses the autotools facilities. The simplest way to install "
    "the package in your system is:")
 (ul
  (li (kbd "cd") " to the directory containing the package's source code "
@@ -33,7 +37,7 @@
      "Running " (kbd "configure") " might take a while. While running, "
      "it prints some messages telling which features it is checking for")
  (li "Type " (kbd "make") " to compile the package")
- (li "Optionally, type " (kbd "make check") " to run any self-tests that "
+ (li "Optionally, type " (kbd "make check") " to run all self-tests that "
      "come with the package")
  (li "Type " (kbd "make install") " to install the programs and any data "
      "files and documentation"))
