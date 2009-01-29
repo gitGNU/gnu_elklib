@@ -54,10 +54,10 @@ AC_PROG_RANLIB
 AX_PATH_MISSING([DOXYGEN],  [doxygen])
 AX_PATH_MISSING([SITETOOL], [sitetool])
 AX_PATH_MISSING([WGET],     [wget])
+AX_PATH_MISSING([DNT],      [dnt])
 AX_PATH_MISSING([PERL],     [perl])
 AX_PATH_MISSING([NM],	    [nm])
 AX_PATH_MISSING([CXXFILT],  [c++filt])
-AX_PATH_MISSING([DEVTODO],  [devtodo])
 
 # Gather supported flags while checking programs and their features
 HOST_ASFLAGS=""
