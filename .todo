@@ -20,8 +20,11 @@
                 Check again
             </comment>
         </note>
-        <note priority="veryhigh" time="1235495497">
+        <note priority="veryhigh" time="1235495497" done="1235682731">
             Fix the NEWS and TODOs site pages generation in site/in directory
+            <comment>
+                Done
+            </comment>
         </note>
         <note priority="high" time="1226608726">
             Fix EOF and error indicator in streams (src/libs/c/stdio.c)
