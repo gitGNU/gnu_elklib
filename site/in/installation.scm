@@ -1,7 +1,7 @@
 (h2 "INSTALLATION")
 
 (h3 "Prerequisites")
-(p "In order to install " ,as_site_variable_PROGRAMNAME " into your system "
+(p "In order to install the package into your system "
    "you will need:"
    (ul
     (li "A relatively recent C/C++ compiler")
@@ -40,4 +40,3 @@
 (p "Note that the " (samp "--prefix") " option allows installation using "
    "different paths than the default ones, this option enables sandbox "
    "installations.")
-
