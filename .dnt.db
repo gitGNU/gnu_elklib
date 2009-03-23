@@ -7,9 +7,9 @@
             Fix the long-C++ names demangling (&gt; 1 numbers entries)
             </entry><entry priority="medium" start="1226608303" end="1226608582">
             Rearrange the BFD related code
-            </entry><entry priority="veryhigh" start="1235495497">
+            </entry><entry priority="veryhigh" start="1235495497" end="1235682731">
             Fix the NEWS and TODOs site pages generation in site/in directory
-        </entry><entry priority="high" start="1226608726">
+            </entry><entry priority="high" start="1226608726">
             Fix EOF and error indicator in streams (src/libs/c/stdio.c)
         </entry><entry priority="high" start="1226608821">
             Fix all return values (and all the referencing functions) in src/libs/c/stdio.c
