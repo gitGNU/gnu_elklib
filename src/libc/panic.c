@@ -21,7 +21,7 @@
 #include "libc/stdarg.h"
 #include "libc/stdio.h"
 
-#define VERBOSE_PANIC 1
+#define VERBOSE_PANIC 0
 
 void panic(const char* format, ...)
 {
