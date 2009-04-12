@@ -22,7 +22,7 @@ include $(top_srcdir)/Makefile.sub
 
 AUTOMAKE_OPTIONS = subdir-objects
 
-lib_LIBRARIES =	libelk-@target_cpu@.a
+lib_LIBRARIES =
 
 noinst_HEADERS =				\
 	debug.h
@@ -40,14 +40,20 @@ libc_SRCS =					\
 	libc/string.c				\
 	libc/mcheck.c				\
 	libc/ctype.c
+lib_LIBRARIES +=				\
+	libelk-c-@target_cpu@.a
 
 libcxx_SRCS =					\
 	libc++/glue.cxx				\
 	libc++/new.cxx				\
 	libc++/exception.cxx
+lib_LIBRARIES +=				\
+	libelk-cxx-@target_cpu@.a
 
 libm_SRCS =					\
 	libm/math.c
+lib_LIBRARIES +=				\
+	libelk-m-@target_cpu@.a
 
 libcompiler_SRCS =				\
 	libcompiler/cxxabi.c			\
@@ -63,18 +69,48 @@ libcompiler_SRCS =				\
 	libcompiler/demangle/safe-ctype.c	\
 	libcompiler/demangle/safe-ctype.h	\
 	libcompiler/demangle/xmalloc.c
+lib_LIBRARIES +=				\
+	libelk-compiler-@target_cpu@.a
 
 libbfd_SRCS =					\
 	libbfd/bfd.c				\
 	libbfd/elf.c
+lib_LIBRARIES +=				\
+	libelk-bfd-@target_cpu@.a
 
 COMMONCPPFLAGS += -DELKLIB_PORTED
 
-libelk_@target_cpu@_a_ASFLAGS  = $(COMMONASFLAGS)
-libelk_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
-libelk_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
-libelk_@target_cpu@_a_CXXFLAGS = $(COMMONCXXFLAGS)
-libelk_@target_cpu@_a_SOURCES  =		\
+libelk_c_@target_cpu@_a_ASFLAGS         = $(COMMONASFLAGS)
+libelk_c_@target_cpu@_a_CPPFLAGS        = $(COMMONCPPFLAGS)
+libelk_c_@target_cpu@_a_CFLAGS          = $(COMMONCFLAGS)
+libelk_c_@target_cpu@_a_CXXFLAGS        = $(COMMONCXXFLAGS)
+libelk_c_@target_cpu@_a_SOURCES         = $(libc_SRCS)
+
+libelk_cxx_@target_cpu@_a_ASFLAGS       = $(COMMONASFLAGS)
+libelk_cxx_@target_cpu@_a_CPPFLAGS      = $(COMMONCPPFLAGS)
+libelk_cxx_@target_cpu@_a_CFLAGS        = $(COMMONCFLAGS)
+libelk_cxx_@target_cpu@_a_CXXFLAGS      = $(COMMONCXXFLAGS)
+libelk_cxx_@target_cpu@_a_SOURCES       = $(libcxx_SRCS)
+
+libelk_m_@target_cpu@_a_ASFLAGS         = $(COMMONASFLAGS)
+libelk_m_@target_cpu@_a_CPPFLAGS        = $(COMMONCPPFLAGS)
+libelk_m_@target_cpu@_a_CFLAGS          = $(COMMONCFLAGS)
+libelk_m_@target_cpu@_a_CXXFLAGS        = $(COMMONCXXFLAGS)
+libelk_m_@target_cpu@_a_SOURCES         = $(libm_SRCS)
+
+libelk_compiler_@target_cpu@_a_ASFLAGS  = $(COMMONASFLAGS)
+libelk_compiler_@target_cpu@_a_CPPFLAGS = $(COMMONCPPFLAGS)
+libelk_compiler_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
+libelk_compiler_@target_cpu@_a_CXXFLAGS = $(COMMONCXXFLAGS)
+libelk_compiler_@target_cpu@_a_SOURCES  = $(libcompiler_SRCS)
+
+libelk_bfd_@target_cpu@_a_ASFLAGS       = $(COMMONASFLAGS)
+libelk_bfd_@target_cpu@_a_CPPFLAGS      = $(COMMONCPPFLAGS)
+libelk_bfd_@target_cpu@_a_CFLAGS        = $(COMMONCFLAGS)
+libelk_bfd_@target_cpu@_a_CXXFLAGS      = $(COMMONCXXFLAGS)
+libelk_bfd_@target_cpu@_a_SOURCES       = $(libbfd_SRCS)
+
+libelk_SRCS =					\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
 	$(libm_SRCS)				\
@@ -86,7 +122,7 @@ libelk_@target_cpu@_a_SOURCES  =		\
 ##
 update-local: Makefile
 
-maintainer-check-whitespaces: $(libelk_@target_cpu@_a_SOURCES)
-	$(WHITESPACE_DETECT) $(libelk_@target_cpu@_a_SOURCES)
+maintainer-check-whitespaces: $(libelk_SRCS)
+	$(WHITESPACE_DETECT) $(libelk_SRCS)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces
