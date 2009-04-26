@@ -225,14 +225,14 @@ namespace ktl {
 
 		const_reference at(size_type n) const {
 			if (n >= elements) {
-				__throw_out_of_range("Invalid subscript");
+				ktl::__throw_out_of_range();
 			}
 			return data[n];
 		}
 
 		reference at(size_type n) {
 			if (n >= elements) {
-				__throw_out_of_range("Invalid subscript");
+				ktl::__throw_out_of_range();
 			}
 			return data[n];
 		}
