@@ -21,6 +21,7 @@
 #include "externals.h"
 #include "libcompiler/compiler.h"
 #include "libc++/exception"
+#include "libc++/bits/funct_exception"
 
 using namespace ktl;
 
@@ -68,4 +69,41 @@ void unexpected()
 bool uncaught_exception()
 {
 	return true;
+}
+
+// XXX FIXME: Move the following functions elsewhere
+void __throw_bad_alloc() {
+        panic("Bad alloc");
+}
+
+void ktl::__throw_out_of_range(const char * message)
+{
+        if (!message) {
+                message = "Out of range";
+        }
+        panic(message);
+}
+
+void ktl::__throw_overflow_error(const char * message)
+{
+        if (!message) {
+                message = "Overflow";
+        }
+        panic(message);
+}
+
+void ktl::__throw_length_error(const char * message)
+{
+        if (!message) {
+                message = "Length error";
+        }
+        panic(message);
+}
+
+void ktl::__throw_invalid_argument(const char * message)
+{
+        if (!message) {
+                message = "Invalid argument";
+        }
+        panic(message);
 }
