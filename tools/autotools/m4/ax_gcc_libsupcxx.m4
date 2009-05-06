@@ -1,5 +1,5 @@
 # ===========================================================================
-#            http://autoconf-archive.cryp.to/ax_gcc_libsupcxx.html
+#        http://www.nongnu.org/autoconf-archive/ax_gcc_libsupcxx.html
 # ===========================================================================
 #
 # SYNOPSIS
@@ -11,13 +11,9 @@
 #   AX_GCC_LIBSUPCXX defines VARIABLE as the absolute path to libsupc++.a if
 #   it is available on the system, empty otherwise
 #
-# LAST MODIFICATION
+# LICENSE
 #
-#   2008-04-23
-#
-# COPYLEFT
-#
-#   Copyright (c) 2008 Francesco Salvestrini <salvestrini@users.sourceforge.net>
+#   Copyright (c) 2009 Francesco Salvestrini <salvestrini@users.sourceforge.net>
 #
 #   This program is free software; you can redistribute it and/or modify it
 #   under the terms of the GNU General Public License as published by the
@@ -41,9 +37,9 @@
 #   all other use of the material that constitutes the Autoconf Macro.
 #
 #   This special exception to the GPL applies to versions of the Autoconf
-#   Macro released by the Autoconf Macro Archive. When you make and
-#   distribute a modified version of the Autoconf Macro, you may extend this
-#   special exception to the GPL to apply to your modified version as well.
+#   Macro released by the Autoconf Archive. When you make and distribute a
+#   modified version of the Autoconf Macro, you may extend this special
+#   exception to the GPL to apply to your modified version as well.
 
 AC_DEFUN([AX_GCC_LIBSUPCXX], [
 	AX_GCC_LIB([libsupc++.a],[
