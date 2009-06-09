@@ -21,17 +21,17 @@
             <comment>
                 Check again
             </comment></entry>
+    <entry end="1238532415" priority="verylow" start="1238244124">
+            Update all copyright dates
+            <comment>
+                Done
+            </comment></entry>
     <entry priority="high" start="1226608726">
             Fix EOF and error indicator in streams (src/libs/c/stdio.c)
         </entry>
     <entry priority="high" start="1226608821">
             Fix all return values (and all the referencing functions) in src/libs/c/stdio.c
         </entry>
-    <entry end="1238532415" priority="verylow" start="1238244124">
-            Update all copyright dates
-            <comment>
-                Done
-            </comment></entry>
     </entry>
     <entry priority="high" start="1233771424">
         Release 0.2.0
@@ -50,5 +50,11 @@
     <entry priority="low" start="1227122754">
             Rearrange the build process in order to use EXEEXT (if needed)
         </entry>
+    </entry>
+    <entry priority="medium" start="1243950866">
+        Release 0.3.0
+    </entry>
+    <entry priority="low" start="1243950870">
+        Release 0.4.0
     </entry>
     </root>
