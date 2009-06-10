@@ -62,5 +62,8 @@
     </note>
     <note priority="low" time="1243950870">
         Release 0.4.0
+        <note priority="medium" time="1244669264">
+            Fix bootstrap in order to exit when a missing program is called
+        </note>
     </note>
 </todo>
