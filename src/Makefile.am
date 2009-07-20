@@ -78,6 +78,18 @@ libbfd_SRCS =					\
 lib_LIBRARIES +=				\
 	libelk-bfd-@target_cpu@.a
 
+libterm_SRCS =					\
+	libterm/teken.c				\
+	libterm/teken.h				\
+	libterm/teken_scs.h			\
+	libterm/teken_stress.c			\
+	libterm/teken_subr.h			\
+	libterm/teken_subr_compat.h		\
+	libterm/teken_wcwidth.h
+
+lib_LIBRARIES +=				\
+	libelk-term-@target_cpu@.a
+
 COMMONCPPFLAGS += -DELKLIB_PORTED
 
 libelk_c_@target_cpu@_a_ASFLAGS         = $(COMMONASFLAGS)
@@ -104,6 +116,12 @@ libelk_compiler_@target_cpu@_a_CFLAGS   = $(COMMONCFLAGS)
 libelk_compiler_@target_cpu@_a_CXXFLAGS = $(COMMONCXXFLAGS)
 libelk_compiler_@target_cpu@_a_SOURCES  = $(libcompiler_SRCS)
 
+libelk_term_@target_cpu@_a_ASFLAGS      = $(COMMONASFLAGS)
+libelk_term_@target_cpu@_a_CPPFLAGS     = $(COMMONCPPFLAGS)
+libelk_term_@target_cpu@_a_CFLAGS       = $(COMMONCFLAGS)
+libelk_term_@target_cpu@_a_CXXFLAGS     = $(COMMONCXXFLAGS)
+libelk_term_@target_cpu@_a_SOURCES      = $(libcompiler_SRCS)
+
 libelk_bfd_@target_cpu@_a_ASFLAGS       = $(COMMONASFLAGS)
 libelk_bfd_@target_cpu@_a_CPPFLAGS      = $(COMMONCPPFLAGS)
 libelk_bfd_@target_cpu@_a_CFLAGS        = $(COMMONCFLAGS)
@@ -115,6 +133,7 @@ libelk_SRCS =					\
 	$(libcxx_SRCS)				\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)			\
+	$(libterm_SRCS)				\
 	$(libbfd_SRCS)
 
 ##
