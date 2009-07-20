@@ -1,0 +1,7 @@
+libteken, copyright (c) Ed Schouten <ed@FreeBSD.org>
+
+libteken is released under the FreeBSD license terms, it is available
+at the following addresses:
+
+  * http://80386.nl/projects/libteken
+  * svn co svn://svn.FreeBSD.org/base/head/sys/dev/syscons/teken
