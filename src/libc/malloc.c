@@ -28,3 +28,12 @@ __free_hook              = NULL;
 __malloc_initialize_hook = NULL;
 __after_morecore_hook    = NULL;
 #endif
+
+struct mallinfo mallinfo(void)
+{
+        struct mallinfo temp;
+
+        /* XXX FIXME: fill temp appropriately ... */
+
+        return temp;
+}

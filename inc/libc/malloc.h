@@ -38,6 +38,21 @@ void  (*__free_hook)(void*       ptr,
 void  (*__malloc_initialize_hook)(void);
 void  (*__after_morecore_hook)(void);
 
+struct mallinfo {
+        int arena;
+        int ordblks;
+        int smblks;
+        int hblks;
+        int hblkhd;
+        int usmblks;
+        int fsmblks;
+        int uordblks;
+        int fordblks;
+        int keepcost;
+};
+
+struct mallinfo mallinfo(void);
+
 __END_DECLS
 
 #endif /* ELKLIB_LIBC_MALLOC_H */
