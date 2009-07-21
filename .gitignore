@@ -39,6 +39,7 @@ tests/test-c++-string-1
 tests/test-c++-list-1
 tests/test-c++-vector-1
 tests/test-c++-clibrary-1
+tests/test-term-1
 
 tools/maint/fetch
 tools/maint/whitespace-detect
