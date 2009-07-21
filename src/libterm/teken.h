@@ -44,6 +44,17 @@
 #include "opt_teken.h"
 #endif /* __FreeBSD__ && _KERNEL */
 
+#ifdef HAVE___ATTRIBUTE___UNUSED
+#define __unused __attribute__((unused))
+#else
+#define __unused
+#endif
+
+#ifdef ELKLIB_PORTED
+#undef TEKEN_UTF8
+#undef TEKEN_XTERM
+#endif
+
 #ifdef TEKEN_UTF8
 typedef uint32_t teken_char_t;
 #else /* !TEKEN_UTF8 */

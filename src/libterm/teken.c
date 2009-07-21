@@ -26,6 +26,21 @@
  * $FreeBSD$
  */
 
+#ifdef ELKLIB_PORTED
+
+#include "libc/types.h"
+#include "libc/assert.h"
+#include "libc/stdio.h"
+#include "libc/string.h"
+#define	teken_assert(x)		assert(x)
+#define	teken_printf(x,...)	do { \
+	if (df != NULL) \
+		fprintf(df, x, ## __VA_ARGS__); \
+} while (0)
+/* debug messages */
+static FILE *df;
+
+#else /* !ELKLIB_PORTED */
 #include <sys/cdefs.h>
 #if defined(__FreeBSD__) && defined(_KERNEL)
 #include <sys/param.h>
@@ -47,6 +62,7 @@
 /* debug messages */
 static FILE *df;
 #endif /* __FreeBSD__ && _KERNEL */
+#endif /* ELKLIB_PORTED */
 
 #include "teken.h"
 
@@ -192,7 +208,7 @@ teken_init(teken_t *t, const teken_funcs_t *tf, void *softc)
 {
 	teken_pos_t tp = { .tp_row = 24, .tp_col = 80 };
 
-#if !(defined(__FreeBSD__) && defined(_KERNEL))
+#if !((defined(__FreeBSD__) && defined(_KERNEL)) || defined(ELKLIB_PORTED))
 	df = fopen("teken.log", "w");
 	if (df != NULL)
 		setvbuf(df, NULL, _IOLBF, BUFSIZ);
