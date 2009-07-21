@@ -28,6 +28,8 @@ TESTS =						\
 	test-c++-list-1				\
 	test-c++-vector-1			\
 	test-c++-clibrary-1
+#TESTS +=					\
+#	test-term-1
 
 check_PROGRAMS =				\
 	test-c++-iterator-1			\
@@ -37,6 +39,8 @@ check_PROGRAMS =				\
 	test-c++-list-1				\
 	test-c++-vector-1			\
 	test-c++-clibrary-1
+#check_PROGRAMS +=				\
+#	test-term-1
 
 TEST_CFLAGS =  -I$(top_srcdir)/inc -I$(top_builddir)/inc
 TEST_CXXCPPFLAGS = -I$(top_srcdir)/inc -I$(top_builddir)/inc
@@ -89,6 +93,27 @@ test_c___clibrary_1_CFLAGS        = $(TARGET_CFLAGS)
 test_c___clibrary_1_CXXFLAGS      = $(TARGET_CXXFLAGS)
 test_c___clibrary_1_CPPFLAGS      = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
 test_c___clibrary_1_CXXCPPFLAGS   = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_term_1_SOURCES               =			\
+	$(top_srcdir)/src/libterm/teken_demo.c		\
+	$(top_srcdir)/src/libterm/teken.c		\
+	$(top_srcdir)/src/libterm/teken.h		\
+	$(top_srcdir)/src/libterm/teken_scs.h		\
+	$(top_srcdir)/src/libterm/teken_subr.h		\
+	$(top_srcdir)/src/libterm/teken_subr_compat.h	\
+	$(top_srcdir)/src/libterm/teken_state.h		\
+	$(top_srcdir)/src/libterm/teken_wcwidth.h
+test_term_1_LDADD                 =		\
+	$(TARGET_LDFLAGS)			\
+	$(CURSES_LIBS)				\
+	-lutil
+test_term_1_CFLAGS                =					\
+	$(TARGET_CFLAGS)						\
+	-I$(top_srcdir)/inc/libterm -I$(top_builddir)/inc/libterm	\
+	$(CURSES_CFLAGS)
+test_term_1_CXXFLAGS              = $(TARGET_CXXFLAGS)
+test_term_1_CPPFLAGS              = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_term_1_CXXCPPFLAGS           = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 ##
 ## Maintainer related targets
