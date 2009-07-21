@@ -23,7 +23,7 @@ include $(top_srcdir)/Makefile.sub
 ##
 ## Maintainer related targets
 ##
-HOST="http://autoconf-archive.cryp.to"
+HOST = "http://git.savannah.gnu.org/cgit/autoconf-archive.git/plain"
 
 DOWNLOAD =					\
 	ax_split_version.m4			\
@@ -71,7 +71,8 @@ MACROS =					\
 	ax_cxx_exceptions.m4			\
 	ax_cxx_dynamic_cast.m4			\
 	ax_cxx_dtor_after_atexit.m4		\
-	ax_cxx_bool.m4
+	ax_cxx_bool.m4				\
+	ax_check_curses.m4
 
 update-local: Makefile
 	rm -r -f fetch-dir && \
