@@ -423,6 +423,11 @@ AC_SUBST(pkgvbindir,     ["\${datadir}/${PACKAGE}-${API_VERSION}/bin"])
 AC_SUBST(pkgvdatadir,    ["\${datadir}/${PACKAGE}-${API_VERSION}/data"])
 AC_SUBST(pkgvlibsdir,    ["\${datadir}/${PACKAGE}-${API_VERSION}/libs"])
 
+# Check for libraries required in the test directory
+AX_CHECK_CURSES
+AC_SUBST(CURSES_LIBS)
+AC_SUBST(CURSES_CFLAGS)
+
 AC_CONFIG_FILES([
 	Makefile
 
