@@ -71,8 +71,7 @@ MACROS =					\
 	ax_cxx_exceptions.m4			\
 	ax_cxx_dynamic_cast.m4			\
 	ax_cxx_dtor_after_atexit.m4		\
-	ax_cxx_bool.m4				\
-	ax_check_curses.m4
+	ax_cxx_bool.m4
 
 update-local: Makefile
 	rm -r -f fetch-dir && \
@@ -84,7 +83,8 @@ update-local: Makefile
 		} \
 	done && \
 	for i in $(DOWNLOAD) ; do \
-		mv fetch-dir/$$i $$i || { \
+		mv fetch-dir/$$i $$i && \
+		touch $$i || { \
 			exit 1 ; \
 		} \
 	done && \
