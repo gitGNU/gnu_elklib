@@ -39,35 +39,6 @@ SUBDIRS =					\
 AUTOMAKE_OPTIONS = check-news
 
 ##
-## Place handy configuration tool somewhere in the system
-##
-bin_SCRIPTS = elklib-config elklib-config-@target_cpu@
-
-all-local: elklib-config elklib-config-@target_cpu@
-
-elklib-config: $(srcdir)/elklib-config.in Makefile
-	( rm -f $@ $@.tmp && \
-	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
-	   chmod +x $@.tmp && \
-	   chmod a-w $@.tmp && \
-	   mv -f $@.tmp $@ ) || { \
-		 rm -f $@ $@.tmp ; \
-		 exit 1 ; \
-	}
-
-elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
-	( rm -f $@ $@.tmp && \
-	   $(do_subst) < $(srcdir)/elklib-config-arch.in > $@.tmp && \
-	   chmod +x $@.tmp && \
-	   chmod a-w $@.tmp && \
-	   mv -f $@.tmp $@ ) || { \
-		 rm -f $@ $@.tmp ; \
-		 exit 1 ; \
-	}
-
-CLEANFILES = elklib-config elklib-config-@target_cpu@
-
-##
 ## help related target
 ##
 help:
@@ -91,8 +62,6 @@ EXTRA_DIST =						\
 	BUGS README COPYING AUTHORS INSTALL THANKS	\
 	bootstrap					\
 	configure.ac.in					\
-	elklib-config.in				\
-	elklib-config-arch.in				\
 	.todo
 
 ##

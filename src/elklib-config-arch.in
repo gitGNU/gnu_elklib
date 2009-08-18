@@ -1,0 +1,155 @@
+#! @SHELL@
+
+#
+# elk-config-@target_cpu@
+#
+# Copyright (C) 2008, 2009 Francesco Salvestrini
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+me="elklib-config-@target_cpu@"
+debug="no"
+
+function debug {
+    if test "$debug" == "yes" ; then
+	echo "$me: DEBUG: $1"
+    fi
+}
+
+function error {
+    echo "$me: $1"
+}
+
+function hint {
+    echo "Try \`$me -h' for more information."
+}
+
+function usage {
+    cat <<EOF
+Usage: elklib-config-@target_cpu@ [OPTIONS]
+
+OPTIONS:
+    [-h|--help]
+    [--version]
+    [--static-libs]
+    [--cppflags]
+    [--cflags]
+    [--cxxcppflags]
+    [--cxxflags]
+    [--ldflags]
+
+Report bugs to <@PACKAGE_BUGREPORT@>.
+EOF
+}
+
+#
+# Main
+#
+if test $# -eq 0 ; then
+    error "Missing parameter"
+    hint
+    exit 1
+fi
+
+missing_action="yes"
+echo_static_libs="no"
+echo_cppflags="no"
+echo_cflags="no"
+echo_cxxflags="no"
+echo_cxxcppflags="no"
+echo_ldflags="no"
+while test $# -gt 0 ; do
+    case $1 in
+	-h|--help)
+	    usage
+	    exit 0
+	    ;;
+	--version)
+	    echo "@PACKAGE_VERSION@"
+	    exit 0
+	    ;;
+	--static-libs)
+	    echo_static_libs="yes"
+	    ;;
+	--cppflags)
+	    echo_cppflags="yes"
+	    ;;
+	--cflags)
+	    echo_cflags="yes"
+	    ;;
+	--cxxflags)
+	    echo_cxxflags="yes"
+	    ;;
+	--cxxcppflags)
+	    echo_cxxcppflags="yes"
+	    ;;
+	--ldflags)
+	    echo_ldflags="yes"
+	    ;;
+	*)
+	    error "Unknown option \`$1'"
+	    hint
+	    exit 1
+	    ;;
+    esac
+    shift
+done
+
+if test "$echo_static_libs" == "yes" ; then
+    missing_action="no"
+    echo                                                \
+         "@libdir@/libelk-c-@target_cpu@.a "            \
+         "@libdir@/libelk-cxx-@target_cpu@.a "          \
+         "@libdir@/libelk-m-@target_cpu@.a "            \
+         "@libdir@/libelk-compiler-@target_cpu@.a "     \
+         "@libdir@/libelk-term-@target_cpu@.a "         \
+         "@libdir@/libelk-bfd-@target_cpu@.a "          \
+         "@TARGET_LIBADD@ "                             \
+         "$output"
+fi
+
+if test "$echo_cppflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@pkgvincludedir@ @TARGET_CPPFLAGS@"
+fi
+
+if test "$echo_cflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@pkgvincludedir@ @TARGET_CFLAGS@"
+fi
+
+if test "$echo_cxxcppflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@pkgvincludedir@ @TARGET_CXXCPPFLAGS@"
+fi
+
+if test "$echo_cxxflags" == "yes" ; then
+    missing_action="no"
+    echo "-I@pkgvincludedir@ @TARGET_CXXFLAGS@"
+fi
+
+if test "$echo_ldflags" == "yes" ; then
+    missing_action="no"
+    echo "@TARGET_LDFLAGS@"
+fi
+
+if test "$missing_action" == "yes" ; then
+    error "Missing parameter(s)"
+    hint
+    exit 1
+fi
+
+exit 0

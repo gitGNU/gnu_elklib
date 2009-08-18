@@ -1,0 +1,99 @@
+#! @SHELL@
+
+#
+# elk-config
+#
+# Copyright (C) 2008, 2009 Francesco Salvestrini
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+me="elklib-config"
+debug="no"
+
+function debug {
+    if test "$debug" == "yes" ; then
+	echo "$me: DEBUG: $1"
+    fi
+}
+
+function error {
+    echo "$me: $1"
+}
+
+function hint {
+    echo "Try \`$me -h' for more information."
+}
+
+function usage {
+    cat <<EOF
+Usage: elklib-config [OPTIONS]
+
+OPTIONS:
+    [-h|--help]
+    [--version]
+    [--target-cpus]
+
+Report bugs to <@PACKAGE_BUGREPORT@>.
+EOF
+}
+
+#
+# Main
+#
+if test $# -eq 0 ; then
+    error "Missing parameter"
+    hint
+    exit 1
+fi
+
+missing_action="yes"
+echo_target_cpus="no"
+while test $# -gt 0 ; do
+    case $1 in
+	-h|--help)
+	    usage
+	    exit 0
+	    ;;
+	--version)
+	    echo "@PACKAGE_VERSION@"
+	    exit 0
+	    ;;
+	--target-cpus)
+	    echo_target_cpus="yes"
+	    ;;
+	*)
+	    error "Unknown option \`$1'"
+	    hint
+	    exit 1
+	    ;;
+    esac
+    shift
+done
+
+if test "$echo_target_cpus" == "yes" ; then
+    missing_action="no"
+    for i in `find @bindir@ -name "elklib-config-*"` ; do
+    	echo "$i" | @SED@ -e 's,@bindir@/elklib-config-,,' ;
+    done
+fi
+
+if test "$missing_action" == "yes" ; then
+    error "Missing parameter(s)"
+    hint
+    exit 1
+fi
+
+exit 0
