@@ -198,7 +198,14 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
 	        fi ; \
 	done
 
+our_SRCS =					\
+	$(libc_SRCS)				\
+	$(libcxx_SRCS)				\
+	$(libm_SRCS)				\
+	$(libcompiler_SRCS)			\
+	$(libbfd_SRCS)
+
 maintainer-check-whitespaces: Makefile
-	$(WHITESPACE_DETECT) $(libelk_SRCS)
+	$(WHITESPACE_DETECT) $(our_SRCS)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
