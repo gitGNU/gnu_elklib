@@ -23,21 +23,21 @@
 #include "libc++/iterator"
 
 namespace ktl {
-	template<typename T> class map {
-	public:
+        template<typename T> class map {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 
-	template<typename T> class multimap {
-	public:
+        template<typename T> class multimap {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 }
 
 #endif // ELKLIB_LIBCXX_MAP

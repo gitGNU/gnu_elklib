@@ -25,9 +25,9 @@
 __BEGIN_DECLS
 
 int    backtrace(void** buffer,
-		 int    size);
+                 int    size);
 char** backtrace_symbols(void* const* buffer,
-			 int          size);
+                         int          size);
 
 __END_DECLS
 

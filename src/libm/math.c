@@ -21,10 +21,10 @@
 #include "libcompiler/compiler.h"
 
 double pow(double x,
-	   double y)
+           double y)
 {
-	unused_argument(x);
-	unused_argument(y);
+        unused_argument(x);
+        unused_argument(y);
 
-	return 0;
+        return 0;
 }

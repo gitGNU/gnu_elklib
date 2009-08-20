@@ -38,57 +38,57 @@ __BEGIN_DECLS
 // void __do_global_ctors_aux(void)
 void elklib_cxx_init(void)
 {
-	// C++ Runtime initialization instructions
+        // C++ Runtime initialization instructions
 
-	void (** callback)();
-	int  count;
+        void (** callback)();
+        int  count;
 
-	// Get the total number of functions to be called
-	count = &__CTOR_END__ - &__CTOR_LIST__;
+        // Get the total number of functions to be called
+        count = &__CTOR_END__ - &__CTOR_LIST__;
 
-	dprintf("We have %d constructors to call\n", count);
+        dprintf("We have %d constructors to call\n", count);
 
-	callback =  &__CTOR_LIST__;
-	while (count) {
-		void (* ptr)() = *callback;
+        callback =  &__CTOR_LIST__;
+        while (count) {
+                void (* ptr)() = *callback;
 
-		assert(ptr);
+                assert(ptr);
 
-		dprintf("Calling constructor 0x%p\n", ptr);
-		ptr();
+                dprintf("Calling constructor 0x%p\n", ptr);
+                ptr();
 
-		count--;
-		callback++;
-	}
+                count--;
+                callback++;
+        }
 
-	dprintf("Constructors calls completed\n");
+        dprintf("Constructors calls completed\n");
 }
 
 // void __do_global_dtors_aux(void)
 void elklib_cxx_fini(void)
 {
-	// C++ Runtime finalization instructions
+        // C++ Runtime finalization instructions
 
-	void (** callback)();
-	int  count;
+        void (** callback)();
+        int  count;
 
-	// Get the total number of functions to be called
-	count = &__DTOR_END__ - &__DTOR_LIST__;
+        // Get the total number of functions to be called
+        count = &__DTOR_END__ - &__DTOR_LIST__;
 
-	dprintf("We have %d destructors %d to call\n", count);
+        dprintf("We have %d destructors %d to call\n", count);
 
-	callback =  &__DTOR_LIST__;
-	while (count) {
-		void (* ptr)() = *callback;
+        callback =  &__DTOR_LIST__;
+        while (count) {
+                void (* ptr)() = *callback;
 
-		assert(ptr);
-		ptr();
+                assert(ptr);
+                ptr();
 
-		count--;
-		callback++;
-	}
+                count--;
+                callback++;
+        }
 
-	dprintf("Destructors calls completed\n");
+        dprintf("Destructors calls completed\n");
 }
 
 __END_DECLS

@@ -30,17 +30,17 @@ void panic(const char* format, ...);
 #ifdef NDEBUG
 #define assert(EXPRESSION)
 #else
-#define assert(EXPRESSION)				\
-	__BEGIN_MACRO					\
-	if (!(EXPRESSION)) {				\
-		panic("Assertion `%s' failed in "	\
-		      "file %s, function %s, line %d",	\
-		      #EXPRESSION,			\
-		      __FILE__,				\
-		      __PRETTY_FUNCTION__,		\
-		      __LINE__);			\
-	}						\
-	__END_MACRO
+#define assert(EXPRESSION)                              \
+        __BEGIN_MACRO                                   \
+        if (!(EXPRESSION)) {                            \
+                panic("Assertion `%s' failed in "       \
+                      "file %s, function %s, line %d",  \
+                      #EXPRESSION,                      \
+                      __FILE__,                         \
+                      __PRETTY_FUNCTION__,              \
+                      __LINE__);                        \
+        }                                               \
+        __END_MACRO
 #endif
 
 __END_DECLS

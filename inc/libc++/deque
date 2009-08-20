@@ -23,13 +23,13 @@
 #include "libc++/iterator"
 
 namespace ktl {
-	template<typename T> class deque {
-	public:
+        template<typename T> class deque {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 }
 
 #endif // ELKLIB_LIBCXX_DEQUE

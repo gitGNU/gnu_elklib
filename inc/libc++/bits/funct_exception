@@ -22,14 +22,14 @@
 #include "elklib.h"
 
 namespace ktl {
-	void __throw_bad_alloc();
-	void __throw_out_of_range(const char * message =
+        void __throw_bad_alloc();
+        void __throw_out_of_range(const char * message =
                                   "Out of range");
-	void __throw_overflow_error(const char * message =
+        void __throw_overflow_error(const char * message =
                                     "Overflow");
-	void __throw_length_error(const char * message =
+        void __throw_length_error(const char * message =
                                   "Length error");
-	void __throw_invalid_argument(const char * message =
+        void __throw_invalid_argument(const char * message =
                                       "Invalid argument");
 }
 

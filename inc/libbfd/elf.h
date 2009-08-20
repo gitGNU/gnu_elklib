@@ -27,15 +27,15 @@
 __BEGIN_DECLS
 
 typedef struct {
-	Elf32_Shdr * sh;
-	int          num;
-	int          shndx;
+        Elf32_Shdr * sh;
+        int          num;
+        int          shndx;
 
-	Elf32_Sym *  symtab_start;
-	Elf32_Sym *  symtab_end;
+        Elf32_Sym *  symtab_start;
+        Elf32_Sym *  symtab_end;
 
-	char *       strtab_start;
-	char *       strtab_end;
+        char *       strtab_start;
+        char *       strtab_end;
 } bfd_elf_t;
 
 __END_DECLS

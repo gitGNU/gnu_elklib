@@ -24,13 +24,13 @@
 #include "libc++/exception"
 
 namespace ktl {
-	class bad_alloc : public exception { };
+        class bad_alloc : public exception { };
 
-	struct nothrow_t { };
-	extern const nothrow_t nothrow;
+        struct nothrow_t { };
+        extern const nothrow_t nothrow;
 
-	typedef void (* new_handler)();
-	new_handler set_new_handler(new_handler h) throw();
+        typedef void (* new_handler)();
+        new_handler set_new_handler(new_handler h) throw();
 }
 
 // Throw operators

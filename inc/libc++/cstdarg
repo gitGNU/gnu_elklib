@@ -23,7 +23,7 @@
 #include "libc/stdarg.h"
 
 namespace ktl {
-	using ::va_list;
+        using ::va_list;
 }
 
 #endif // ELKLIB_LIBCXX_CSTDARG

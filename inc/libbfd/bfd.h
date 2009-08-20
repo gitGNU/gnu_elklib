@@ -27,29 +27,29 @@
 __BEGIN_DECLS
 
 typedef enum {
-	BFD_ELF,
+        BFD_ELF,
 } bfd_type_t;
 
 struct bfd_image {
-	bfd_type_t         type;
-	union {
-		bfd_elf_t  elf;
-	} data;
+        bfd_type_t         type;
+        union {
+                bfd_elf_t  elf;
+        } data;
 
-	struct bfd_image * next;
+        struct bfd_image * next;
 };
 typedef struct bfd_image bfd_image_t;
 
 int  bfd_init(void);
 int  bfd_image_elf_add(bfd_image_t * image,
-		       Elf32_Shdr *  sh,
-		       int           num,
-		       int           shndx);
+                       Elf32_Shdr *  sh,
+                       int           num,
+                       int           shndx);
 int  bfd_image_remove(bfd_image_t * image);
 int  bfd_symbol_reverse_lookup(void *  address,
-			       char *  buffer,
-			       size_t  length,
-			       void ** base);
+                               char *  buffer,
+                               size_t  length,
+                               void ** base);
 void bfd_fini(void);
 
 __END_DECLS

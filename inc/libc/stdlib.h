@@ -27,14 +27,14 @@
 __BEGIN_DECLS
 
 void*              bsearch(const void* key,
-			   const void* base,
-			   size_t      nmemb,
-			   size_t      size,
-			   int         (* compar)(const void*, const void *));
+                           const void* base,
+                           size_t      nmemb,
+                           size_t      size,
+                           int         (* compar)(const void*, const void *));
 void               qsort(void*  base,
-			 size_t nmemb,
-			 size_t size,
-			 int    (*compar)(const void *, const void *));
+                         size_t nmemb,
+                         size_t size,
+                         int    (*compar)(const void *, const void *));
 
 int                atoi(const char* num);
 long               atol(const char* s);
@@ -52,22 +52,22 @@ unsigned long long strtoull(const char* cp, char** endp,unsigned int base);
 double             strtod(const char* s, char** scan_end);
 
 typedef struct div_t {
-	int quot;
-	int rem;
+        int quot;
+        int rem;
 } div_t;
 
 div_t              div(int num, int denom);
 
 typedef struct ldiv_t {
-	long quot;
-	long rem;
+        long quot;
+        long rem;
 } ldiv_t;
 
 ldiv_t             ldiv(long num, long denom);
 
 typedef struct lldiv_t {
-	long long quot;
-	long long rem;
+        long long quot;
+        long long rem;
 } lldiv_t;
 
 lldiv_t            lldiv(long long num, long long denom);

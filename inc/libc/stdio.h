@@ -28,12 +28,12 @@
 __BEGIN_DECLS
 
 typedef struct {
-	int  error;
-	int  eof;
-	int  (* putchar)(int character);
-	int  (* getchar)(void);
-	int  (* fseek)(long offset, int whence);
-	long (* ftell)(void);
+        int  error;
+        int  eof;
+        int  (* putchar)(int character);
+        int  (* getchar)(void);
+        int  (* fseek)(long offset, int whence);
+        long (* ftell)(void);
 } FILE;
 
 #define FILE_INITIALIZER { 0, 0, NULL, NULL, NULL, NULL }
@@ -45,10 +45,10 @@ typedef struct {
  *
  */
 void   FILE_set(FILE * stream,
-		int    (* putchar)(int character),
-		int    (* getchar)(void),
-		int    (* fseek)(long offset, int whence),
-		long   (* ftell)(void));
+                int    (* putchar)(int character),
+                int    (* getchar)(void),
+                int    (* fseek)(long offset, int whence),
+                long   (* ftell)(void));
 
 /*
  * NOTE:
@@ -57,10 +57,10 @@ void   FILE_set(FILE * stream,
  *
  */
 void   FILE_get(FILE * stream,
-		int    (** putchar)(int character),
-		int    (** getchar)(void),
-		int    (** fseek)(long offset, int whence),
-		long   (** ftell)(void));
+                int    (** putchar)(int character),
+                int    (** getchar)(void),
+                int    (** fseek)(long offset, int whence),
+                long   (** ftell)(void));
 
 /*
  * NOTE:
@@ -69,10 +69,10 @@ void   FILE_get(FILE * stream,
  *
  */
 void   FILE_update(FILE * stream,
-		   int    (* putchar)(int character),
-		   int    (* getchar)(void),
-		   int    (* fseek)(long offset, int whence),
-		   long   (* ftell)(void));
+                   int    (* putchar)(int character),
+                   int    (* getchar)(void),
+                   int    (* fseek)(long offset, int whence),
+                   long   (* ftell)(void));
 
 extern FILE * stdout;
 extern FILE * stdin;

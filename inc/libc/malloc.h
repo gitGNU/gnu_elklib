@@ -26,15 +26,15 @@
 __BEGIN_DECLS
 
 void* (*__malloc_hook)(size_t      size,
-		       const void* caller);
+                       const void* caller);
 void* (*__realloc_hook)(void*  ptr,
-			size_t size,
-			const void* caller);
+                        size_t size,
+                        const void* caller);
 void* (*__memalign_hook)(size_t      alignment,
-			 size_t      size,
-			 const void* caller);
+                         size_t      size,
+                         const void* caller);
 void  (*__free_hook)(void*       ptr,
-		     const void* caller);
+                     const void* caller);
 void  (*__malloc_initialize_hook)(void);
 void  (*__after_morecore_hook)(void);
 

@@ -22,13 +22,13 @@
 #include "elklib.h"
 
 namespace ktl {
-	template<typename T> class bitset {
-	public:
+        template<typename T> class bitset {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 }
 
 #endif // ELKLIB_LIBCXX_BITSET

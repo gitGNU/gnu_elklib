@@ -32,16 +32,16 @@ __BEGIN_DECLS
 
 void    _exit(int status);
 void    swab(const void* from,
-	     void*       to,
-	     ssize_t     n);
+             void*       to,
+             ssize_t     n);
 int     getpagesize(void);
 int     close(int fd);
 ssize_t read(int    fildes,
-	     void*  buf,
-	     size_t nbyte);
+             void*  buf,
+             size_t nbyte);
 ssize_t write(int        fildes,
-	      const void* buf,
-	      size_t      nbyte);
+              const void* buf,
+              size_t      nbyte);
 int     fsync(int fd);
 
 __END_DECLS

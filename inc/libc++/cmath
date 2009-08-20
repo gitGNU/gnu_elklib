@@ -23,7 +23,7 @@
 #include "libm/math.h"
 
 namespace ktl {
-	using ::pow;
+        using ::pow;
 }
 
 #endif // ELKLIB_LIBCXX_CMATH

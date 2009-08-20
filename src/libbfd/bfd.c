@@ -32,98 +32,98 @@
 static bfd_image_t * head;
 
 extern int elf_symbol_reverse_lookup(bfd_elf_t * image,
-				     void *      address,
-				     char *      buffer,
-				     size_t      length,
-				     void **     base);
+                                     void *      address,
+                                     char *      buffer,
+                                     size_t      length,
+                                     void **     base);
 
 
 int  bfd_image_elf_add(bfd_image_t * image,
-		       Elf32_Shdr *  sh,
-		       int           num,
-		       int           shndx)
+                       Elf32_Shdr *  sh,
+                       int           num,
+                       int           shndx)
 {
-	assert(image);
-	assert(sh);
+        assert(image);
+        assert(sh);
 
-	memset(image, 0, sizeof(bfd_image_t));
+        memset(image, 0, sizeof(bfd_image_t));
 
-	image->type = BFD_ELF;
+        image->type = BFD_ELF;
 
-	if (!bfd_image_elf_config(&image->data.elf, sh, num, shndx)) {
-		return 0;
-	}
+        if (!bfd_image_elf_config(&image->data.elf, sh, num, shndx)) {
+                return 0;
+        }
 
-	image->next = head;
-	head        = image;
+        image->next = head;
+        head        = image;
 
-	return 1;
+        return 1;
 }
 
 int bfd_image_remove(bfd_image_t * image)
 {
-	bfd_image_t * p, * q;
+        bfd_image_t * p, * q;
 
-	assert(image);
+        assert(image);
 
-	p = NULL;
-	q = head;
-	while (q) {
-		if (q == image) {
-			break;
-		}
-		p = q;
-		q = q->next;
-	}
+        p = NULL;
+        q = head;
+        while (q) {
+                if (q == image) {
+                        break;
+                }
+                p = q;
+                q = q->next;
+        }
 
-	if (!p) {
-		head    = head->next;
-	} else {
-		p->next = q->next;
-	}
+        if (!p) {
+                head    = head->next;
+        } else {
+                p->next = q->next;
+        }
 
-	return 0;
+        return 0;
 }
 
 int bfd_symbol_reverse_lookup(void *  address,
-			      char *  buffer,
-			      size_t  length,
-			      void ** base)
+                              char *  buffer,
+                              size_t  length,
+                              void ** base)
 {
-	bfd_image_t * p;
+        bfd_image_t * p;
 
-	p = head;
-	while (p) {
-		switch (p->type) {
-			case BFD_ELF:
-				if (elf_symbol_reverse_lookup(&(p->data.elf),
-							      address,
-							      buffer,
-							      length,
-							      base)) {
-					return 1;
-				}
-				break;
+        p = head;
+        while (p) {
+                switch (p->type) {
+                        case BFD_ELF:
+                                if (elf_symbol_reverse_lookup(&(p->data.elf),
+                                                              address,
+                                                              buffer,
+                                                              length,
+                                                              base)) {
+                                        return 1;
+                                }
+                                break;
 
-			default:
-				assert(0);
-				break;
-		}
+                        default:
+                                assert(0);
+                                break;
+                }
 
-		p = p->next;
-	}
+                p = p->next;
+        }
 
-	return 0;
+        return 0;
 }
 
 int bfd_init(void)
 {
-	head = NULL;
+        head = NULL;
 
-	return 1;
+        return 1;
 }
 
 void bfd_fini(void)
 {
-	head = NULL;
+        head = NULL;
 }

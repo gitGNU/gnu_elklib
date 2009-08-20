@@ -29,753 +29,753 @@
 #include "libc++/bits/funct_exception"
 
 namespace ktl {
-	typedef signed int char_traits_off_type;
+        typedef signed int char_traits_off_type;
 
-	template<class charT> struct char_traits { };
+        template<class charT> struct char_traits { };
 
-	template<> struct char_traits<char> {
-		typedef char                 char_type;
-		typedef short int            int_type;
-		typedef char_traits_off_type off_type;
-		typedef char_traits_off_type pos_type;
-		typedef char                 state_type;
+        template<> struct char_traits<char> {
+                typedef char                 char_type;
+                typedef short int            int_type;
+                typedef char_traits_off_type off_type;
+                typedef char_traits_off_type pos_type;
+                typedef char                 state_type;
 
-		inline static void assign(char_type & c,
-					  char_type & d) { c = d; }
+                inline static void assign(char_type & c,
+                                          char_type & d) { c = d; }
 
-		static bool eq(const char_type & c1, const char_type & c2);
+                static bool eq(const char_type & c1, const char_type & c2);
 
-		static char_type to_char_type(const int_type & i);
+                static char_type to_char_type(const int_type & i);
 
-		inline static int_type to_int_type(const char_type & c) {
-			return (short int)(unsigned char) c;
-		}
+                inline static int_type to_int_type(const char_type & c) {
+                        return (short int)(unsigned char) c;
+                }
 
-		inline static bool eq_int_type(const int_type & a,
-					       const int_type & b) {
-			if (a == b) {
-				return true;
-			}
-			return false;
-		}
+                inline static bool eq_int_type(const int_type & a,
+                                               const int_type & b) {
+                        if (a == b) {
+                                return true;
+                        }
+                        return false;
+                }
 
 
-		inline static bool lt(const char_type & c1,
-				      const char_type & c2) {
-			if (strncmp(&c1, &c2, 1) < 0) {
-				return true;
-			}
-			return false;
-		}
+                inline static bool lt(const char_type & c1,
+                                      const char_type & c2) {
+                        if (strncmp(&c1, &c2, 1) < 0) {
+                                return true;
+                        }
+                        return false;
+                }
 
-		inline static char_type * move(char_type *       s1,
-					       const char_type * s2,
-					       size_t            n) {
-			return (char*) memmove(s1, s2, n);
-		}
+                inline static char_type * move(char_type *       s1,
+                                               const char_type * s2,
+                                               size_t            n) {
+                        return (char*) memmove(s1, s2, n);
+                }
 
-		inline static char_type * copy(char_type *       s1,
-					       const char_type * s2,
-					       size_t            n) {
-			return strncpy(s1, s2, n);
-		}
+                inline static char_type * copy(char_type *       s1,
+                                               const char_type * s2,
+                                               size_t            n) {
+                        return strncpy(s1, s2, n);
+                }
 
-		inline static char_type * assign(char_type * s,
-						 size_t      n,
-						 char_type   a) {
-			return (char *) memset(s, a, n);
-		}
+                inline static char_type * assign(char_type * s,
+                                                 size_t      n,
+                                                 char_type   a) {
+                        return (char *) memset(s, a, n);
+                }
 
-		inline static int compare(const char_type * s1,
-					  const char_type * s2,
-					  size_t            n) {
-			return strncmp(s1, s2, n);
-		}
+                inline static int compare(const char_type * s1,
+                                          const char_type * s2,
+                                          size_t            n) {
+                        return strncmp(s1, s2, n);
+                }
 
-		inline static size_t length(const char_type * s) {
-			return strlen(s);
-		}
+                inline static size_t length(const char_type * s) {
+                        return strlen(s);
+                }
 
-		static const char_type * find(const char_type * s,
-					      int               n,
-					      const char_type & a);
+                static const char_type * find(const char_type * s,
+                                              int               n,
+                                              const char_type & a);
 
-		inline static char_type eos() { return 0;  }
-		inline static int_type  eof() { return -1; }
-		inline static int_type  not_eof(const int_type & i) {
-			if (i == -1) {
-				return 0;
-			} else {
-				return i;
-			}
-		}
-		static state_type get_state(pos_type p) {
-			p = p;
-			state_type a;
-			return a;
-		}
-	};
+                inline static char_type eos() { return 0;  }
+                inline static int_type  eof() { return -1; }
+                inline static int_type  not_eof(const int_type & i) {
+                        if (i == -1) {
+                                return 0;
+                        } else {
+                                return i;
+                        }
+                }
+                static state_type get_state(pos_type p) {
+                        p = p;
+                        state_type a;
+                        return a;
+                }
+        };
 
-	template<class Ch,
-		 class Tr = char_traits<Ch>,
-		 class A = allocator<Ch> > class basic_string;
+        template<class Ch,
+                 class Tr = char_traits<Ch>,
+                 class A = allocator<Ch> > class basic_string;
 
 typedef basic_string<char> string;
 typedef basic_string<wchar_t> wstring;
 
 template<class Ch, class Tr, class A> class basic_string
-	: public ktl::vector<Ch, A>
+        : public ktl::vector<Ch, A>
 {
 public:
-	typedef Tr                          traits_type;
-	typedef typename Tr::char_type      value_type;
-	typedef A                           allocator_type;
-	typedef typename A::size_type       size_type;
-	typedef typename A::difference_type difference_type;
-	typedef typename A::reference       reference;
-	typedef typename A::const_reference const_reference;
-	typedef typename A::pointer         pointer;
-	typedef typename A::const_pointer   const_pointer;
+        typedef Tr                          traits_type;
+        typedef typename Tr::char_type      value_type;
+        typedef A                           allocator_type;
+        typedef typename A::size_type       size_type;
+        typedef typename A::difference_type difference_type;
+        typedef typename A::reference       reference;
+        typedef typename A::const_reference const_reference;
+        typedef typename A::pointer         pointer;
+        typedef typename A::const_pointer   const_pointer;
 
-	typedef typename vector<Ch, A>::iterator               iterator;
-	typedef typename vector<Ch, A>::const_iterator         const_iterator;
-	typedef typename vector<Ch, A>::reverse_iterator       reverse_iterator;
-	typedef typename vector<Ch, A>::const_reverse_iterator const_reverse_iterator;
+        typedef typename vector<Ch, A>::iterator               iterator;
+        typedef typename vector<Ch, A>::const_iterator         const_iterator;
+        typedef typename vector<Ch, A>::reverse_iterator       reverse_iterator;
+        typedef typename vector<Ch, A>::const_reverse_iterator const_reverse_iterator;
 
-	static const size_type npos = -1;
+        static const size_type npos = -1;
 
-	explicit basic_string(const A & al = A()) : vector<Ch, A>(al) {
-		return;
-	}
+        explicit basic_string(const A & al = A()) : vector<Ch, A>(al) {
+                return;
+        }
 
-	basic_string(const basic_string & str,
-		     size_type            pos = 0,
-		     size_type            n = npos,
-		     const A &            al = A());
+        basic_string(const basic_string & str,
+                     size_type            pos = 0,
+                     size_type            n = npos,
+                     const A &            al = A());
 
-	basic_string(const Ch * s,
-		     size_type  n,
-		     const A &  al = A())
-		: vector<Ch, A>(al)
-	{
-		if (n == npos) {
-			ktl::__throw_out_of_range();
-		}
-		if (s > 0) {
-			resize(n);
-			Tr::copy(vector<Ch, A>::data,
-				 s,
-				 vector<Ch, A>::elements);
-		}
-	}
+        basic_string(const Ch * s,
+                     size_type  n,
+                     const A &  al = A())
+                : vector<Ch, A>(al)
+        {
+                if (n == npos) {
+                        ktl::__throw_out_of_range();
+                }
+                if (s > 0) {
+                        resize(n);
+                        Tr::copy(vector<Ch, A>::data,
+                                 s,
+                                 vector<Ch, A>::elements);
+                }
+        }
 
-	basic_string(const Ch * s, const A & al = A());
+        basic_string(const Ch * s, const A & al = A());
 
-	basic_string(size_type n, Ch c, const A & al = A())
-		: vector<Ch, A>(n, c, al)
-	{
-	}
+        basic_string(size_type n, Ch c, const A & al = A())
+                : vector<Ch, A>(n, c, al)
+        {
+        }
 
-	template<class InputIterator> basic_string(InputIterator begin,
-						   InputIterator end,
-						   const A &    a = A())
-		:vector<Ch, A>(begin, end)
-	{
-	}
+        template<class InputIterator> basic_string(InputIterator begin,
+                                                   InputIterator end,
+                                                   const A &    a = A())
+                :vector<Ch, A>(begin, end)
+        {
+        }
 
-	~basic_string() {
-		return;
-	}
+        ~basic_string() {
+                return;
+        }
 
-	basic_string & operator=(const basic_string & str);
+        basic_string & operator=(const basic_string & str);
 
-	basic_string & operator=(const Ch * s) {
-		vector<Ch, A>::clear();
-		if (s != 0) {
-			size_type len = Tr::length(s);
-			resize(len);
-			Tr::copy(vector<Ch, A>::data, s, len);
-		}
-		return * this;
-	}
+        basic_string & operator=(const Ch * s) {
+                vector<Ch, A>::clear();
+                if (s != 0) {
+                        size_type len = Tr::length(s);
+                        resize(len);
+                        Tr::copy(vector<Ch, A>::data, s, len);
+                }
+                return * this;
+        }
 
-	basic_string & operator=(Ch c) {
-		vector<Ch, A>::clear();
-		vector<Ch, A>::push_back(c);
-		return *this;
-	}
+        basic_string & operator=(Ch c) {
+                vector<Ch, A>::clear();
+                vector<Ch, A>::push_back(c);
+                return *this;
+        }
 
-	inline size_type length() const { return vector<Ch, A>::size(); }
+        inline size_type length() const { return vector<Ch, A>::size(); }
 
-	void resize(size_type n) {
-		vector<Ch, A>::resize(n, Ch());
-	}
+        void resize(size_type n) {
+                vector<Ch, A>::resize(n, Ch());
+        }
 
-	basic_string & operator+=(const basic_string & str) {
-		return append(str);
-	}
+        basic_string & operator+=(const basic_string & str) {
+                return append(str);
+        }
 
-	basic_string & operator+=(const Ch * s) {
-		return append(s);
-	}
+        basic_string & operator+=(const Ch * s) {
+                return append(s);
+        }
 
-	basic_string & operator+=(Ch c) {
-		vector<Ch, A>::push_back(c);
-		return *this;
-	}
+        basic_string & operator+=(Ch c) {
+                vector<Ch, A>::push_back(c);
+                return *this;
+        }
 
-	basic_string & append(const basic_string & str) {
-		size_t temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + str.elements);
-		Tr::copy(vector<Ch, A>::data + temp,
+        basic_string & append(const basic_string & str) {
+                size_t temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + str.elements);
+                Tr::copy(vector<Ch, A>::data + temp,
                          str.vector<Ch, A>::data,
                          str.elements);
 
-		return *this;
-	}
+                return *this;
+        }
 
-	basic_string & append(const basic_string & str,
-			      size_type            pos,
-			      size_type            n) {
-		if (pos > str.size()) {
-			ktl::__throw_out_of_range();
-		}
+        basic_string & append(const basic_string & str,
+                              size_type            pos,
+                              size_type            n) {
+                if (pos > str.size()) {
+                        ktl::__throw_out_of_range();
+                }
 
-		size_type rlen = str.elements - pos;
-		if (rlen > n) {
-			rlen = n;
-		}
-		if (vector<Ch, A>::elements > npos - rlen) {
-			ktl::__throw_length_error();
-		}
-		size_t temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + rlen);
-		Tr::copy(vector<Ch, A>::data + temp,
-			 str.vector<Ch, A>::data + pos, rlen);
-		return *this;
-	}
+                size_type rlen = str.elements - pos;
+                if (rlen > n) {
+                        rlen = n;
+                }
+                if (vector<Ch, A>::elements > npos - rlen) {
+                        ktl::__throw_length_error();
+                }
+                size_t temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + rlen);
+                Tr::copy(vector<Ch, A>::data + temp,
+                         str.vector<Ch, A>::data + pos, rlen);
+                return *this;
+        }
 
-	basic_string & append(const Ch* s, size_type n) {
-		size_t temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + n);
-		Tr::copy(vector<Ch, A>::data + temp, s, n);
-		return *this;
-	}
+        basic_string & append(const Ch* s, size_type n) {
+                size_t temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + n);
+                Tr::copy(vector<Ch, A>::data + temp, s, n);
+                return *this;
+        }
 
-	basic_string & append(const Ch* s) {
-		size_type strLen = Tr::length(s);
-		size_t temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + strLen);
-		Tr::copy(vector<Ch, A>::data + temp, s, strLen);
-		return *this;
-	}
+        basic_string & append(const Ch* s) {
+                size_type strLen = Tr::length(s);
+                size_t temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + strLen);
+                Tr::copy(vector<Ch, A>::data + temp, s, strLen);
+                return *this;
+        }
 
-	basic_string & append(size_type n, Ch c) {
-		vector<Ch, A>::resize(vector<Ch, A>::elements + n, c);
-		return *this;
-	}
+        basic_string & append(size_type n, Ch c) {
+                vector<Ch, A>::resize(vector<Ch, A>::elements + n, c);
+                return *this;
+        }
 
-	basic_string & assign(const basic_string & str) {
-		operator=(str);
-		return *this;
-	}
+        basic_string & assign(const basic_string & str) {
+                operator=(str);
+                return *this;
+        }
 
-	basic_string & assign(const basic_string & str,
-			      size_type            pos,
-			      size_type            n) {
-		if (pos > str.elements) {
-			ktl::__throw_out_of_range();
-		}
-		size_type r = str.elements - pos;
-		if (r > n) {
-			r = n;
-		}
-		resize(r);
-		Tr::copy(vector<Ch, A>::data,
+        basic_string & assign(const basic_string & str,
+                              size_type            pos,
+                              size_type            n) {
+                if (pos > str.elements) {
+                        ktl::__throw_out_of_range();
+                }
+                size_type r = str.elements - pos;
+                if (r > n) {
+                        r = n;
+                }
+                resize(r);
+                Tr::copy(vector<Ch, A>::data,
                          str.vector<Ch, A>::data + pos,
                          r);
-		//		vector<Ch, A>::elements = r;
-		return *this;
-	}
+                //              vector<Ch, A>::elements = r;
+                return *this;
+        }
 
-	basic_string & assign(const Ch* s, size_type n) {
-		resize(n);
-		//		vector<Ch, A>::elements = n;
-		Tr::copy(vector<Ch, A>::data, s, n);
-		return *this;
-	}
+        basic_string & assign(const Ch* s, size_type n) {
+                resize(n);
+                //              vector<Ch, A>::elements = n;
+                Tr::copy(vector<Ch, A>::data, s, n);
+                return *this;
+        }
 
-	basic_string & assign(const Ch* s) {
-		size_type len = Tr::length(s);
-		return assign(s, len);
-	}
+        basic_string & assign(const Ch* s) {
+                size_type len = Tr::length(s);
+                return assign(s, len);
+        }
 
-	basic_string & assign(size_type n, Ch c) {
-		vector<Ch, A>::clear();
-		vector<Ch, A>::resize(n, Ch());
-		return *this;
-	}
+        basic_string & assign(size_type n, Ch c) {
+                vector<Ch, A>::clear();
+                vector<Ch, A>::resize(n, Ch());
+                return *this;
+        }
 
-	//	template<class InputIterator> basic_string & assign(InputIterator first, InputIterator last);
+        //      template<class InputIterator> basic_string & assign(InputIterator first, InputIterator last);
 
-	basic_string & insert(size_type            pos1,
-			      const basic_string & str,
-			      size_type            pos2 = 0,
-			      size_type            n = npos) {
-		if (pos1 > vector<Ch, A>::elements || pos2 > str.elements) {
-			ktl::__throw_out_of_range();
-		}
-		size_type r = str.elements - pos2;
-		if (r > n) {
-			r = n;
-		}
-		if (vector<Ch, A>::elements > npos - r) {
-			ktl::__throw_length_error();
-		}
-		size_type temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + r);
-		Tr::move(vector<Ch, A>::data + pos1 + r,
-			 vector<Ch, A>::data + pos1,
-			 temp - pos1);
-		Tr::copy(vector<Ch, A>::data + pos1,
-			 str.vector<Ch, A>::data + pos2, r);
-		//		vector<Ch, A>::elements+=r;
-		return *this;
-	}
+        basic_string & insert(size_type            pos1,
+                              const basic_string & str,
+                              size_type            pos2 = 0,
+                              size_type            n = npos) {
+                if (pos1 > vector<Ch, A>::elements || pos2 > str.elements) {
+                        ktl::__throw_out_of_range();
+                }
+                size_type r = str.elements - pos2;
+                if (r > n) {
+                        r = n;
+                }
+                if (vector<Ch, A>::elements > npos - r) {
+                        ktl::__throw_length_error();
+                }
+                size_type temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + r);
+                Tr::move(vector<Ch, A>::data + pos1 + r,
+                         vector<Ch, A>::data + pos1,
+                         temp - pos1);
+                Tr::copy(vector<Ch, A>::data + pos1,
+                         str.vector<Ch, A>::data + pos2, r);
+                //              vector<Ch, A>::elements+=r;
+                return *this;
+        }
 
-	basic_string & insert(size_type pos, const Ch * s, size_type n) {
-		if (pos > vector<Ch, A>::elements) {
-			ktl::__throw_out_of_range();
-		}
-		if (vector<Ch, A>::elements > npos - n) {
-			ktl::__throw_length_error();
-		}
-		size_type temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + n);
-		Tr::move(vector<Ch, A>::data + pos + n,
-			 vector<Ch, A>::data + pos,
-			 temp - pos);
-		Tr::copy(vector<Ch, A>::data + pos, s, n);
-		//		vector<Ch, A>::elements+=n;
-		return *this;
-	}
+        basic_string & insert(size_type pos, const Ch * s, size_type n) {
+                if (pos > vector<Ch, A>::elements) {
+                        ktl::__throw_out_of_range();
+                }
+                if (vector<Ch, A>::elements > npos - n) {
+                        ktl::__throw_length_error();
+                }
+                size_type temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + n);
+                Tr::move(vector<Ch, A>::data + pos + n,
+                         vector<Ch, A>::data + pos,
+                         temp - pos);
+                Tr::copy(vector<Ch, A>::data + pos, s, n);
+                //              vector<Ch, A>::elements+=n;
+                return *this;
+        }
 
-	inline basic_string & insert(size_type pos, const Ch* s) {
-		size_type len = Tr::length(s);
-		return insert(pos, s, len);
-	}
+        inline basic_string & insert(size_type pos, const Ch* s) {
+                size_type len = Tr::length(s);
+                return insert(pos, s, len);
+        }
 
-	basic_string & insert(size_type pos, size_type n, Ch c) {
-		if (pos > vector<Ch, A>::elements) {
-			ktl::__throw_out_of_range();
-		}
-		if (vector<Ch, A>::elements > npos - n) {
-			ktl::__throw_length_error();
-		}
-		size_type temp = vector<Ch, A>::elements;
-		resize(vector<Ch, A>::elements + n);
-		Tr::move(vector<Ch, A>::data + pos + n,
-			 vector<Ch, A>::data + pos,
-			 temp - pos);
-		Tr::assign(vector<Ch, A>::data + pos, n, c);
-		//		vector<Ch, A>::elements+=n;
-		return *this;
-	}
+        basic_string & insert(size_type pos, size_type n, Ch c) {
+                if (pos > vector<Ch, A>::elements) {
+                        ktl::__throw_out_of_range();
+                }
+                if (vector<Ch, A>::elements > npos - n) {
+                        ktl::__throw_length_error();
+                }
+                size_type temp = vector<Ch, A>::elements;
+                resize(vector<Ch, A>::elements + n);
+                Tr::move(vector<Ch, A>::data + pos + n,
+                         vector<Ch, A>::data + pos,
+                         temp - pos);
+                Tr::assign(vector<Ch, A>::data + pos, n, c);
+                //              vector<Ch, A>::elements+=n;
+                return *this;
+        }
 
-	//	iterator insert(iterator p, charT c = charT());
-	//	void insert(iterator p, size_type n, charT c);
-	//	template<class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
+        //      iterator insert(iterator p, charT c = charT());
+        //      void insert(iterator p, size_type n, charT c);
+        //      template<class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
 
-	basic_string & erase(size_type pos = 0, size_type n = npos) {
-		size_type xlen = vector<Ch, A>::elements - pos;
+        basic_string & erase(size_type pos = 0, size_type n = npos) {
+                size_type xlen = vector<Ch, A>::elements - pos;
 
-		if (xlen > n) {
-			xlen = n;
-		}
-		size_type temp = vector<Ch, A>::elements;
+                if (xlen > n) {
+                        xlen = n;
+                }
+                size_type temp = vector<Ch, A>::elements;
 
-		Tr::move(vector<Ch, A>::data + pos,
-			 vector<Ch, A>::data + pos + xlen,
-			 temp - pos - xlen);
-		resize(temp - xlen);
-		return *this;
-	}
+                Tr::move(vector<Ch, A>::data + pos,
+                         vector<Ch, A>::data + pos + xlen,
+                         temp - pos - xlen);
+                resize(temp - xlen);
+                return *this;
+        }
 
-	iterator erase(iterator position) {
-		if (position == vector<Ch, A>::end()) {
-			return position;
-		}
+        iterator erase(iterator position) {
+                if (position == vector<Ch, A>::end()) {
+                        return position;
+                }
 
-		++position;
+                ++position;
 
-		iterator temp = position;
+                iterator temp = position;
 
-		while(position != vector<Ch, A>::end()) {
-			*(position-1) = *position;
-			++position;
-		}
-		//		--vector<Ch, A>::elements;
-		vector<Ch, A>::pop_back();
-		return temp;
-	}
+                while(position != vector<Ch, A>::end()) {
+                        *(position-1) = *position;
+                        ++position;
+                }
+                //              --vector<Ch, A>::elements;
+                vector<Ch, A>::pop_back();
+                return temp;
+        }
 
-	iterator erase(iterator first, iterator last) {
-		size_t count = last - first;
+        iterator erase(iterator first, iterator last) {
+                size_t count = last - first;
 
-		iterator temp = last;
+                iterator temp = last;
 
-		while(last != vector<Ch, A>::end()) {
-			*(last - count) = *last;
-			++last;
-		}
+                while(last != vector<Ch, A>::end()) {
+                        *(last - count) = *last;
+                        ++last;
+                }
 
-		resize(	vector<Ch, A>::elements-count);
+                resize( vector<Ch, A>::elements-count);
 
-		return temp;
-	}
+                return temp;
+        }
 
-	basic_string &
-	replace(size_type            pos1,
-		size_type            n1,
-		const basic_string & str,
-		size_type            pos2 = 0,
-		size_type            n2 = npos)
-	{
-		if (pos1 > vector<Ch, A>::elements) {
-			ktl::__throw_out_of_range();
-		}
-		size_type xlen = vector<Ch, A>::elements - pos1;
-		if (xlen >  n1) {
-			xlen = n1;
-		}
-		size_type rlen = str.elements - pos2;
-		if (rlen > n2) {
-			rlen = n2;
-		}
-		if ((vector<Ch, A>::elements - xlen) >= (npos - rlen)) {
-			ktl::__throw_length_error();
-		}
+        basic_string &
+        replace(size_type            pos1,
+                size_type            n1,
+                const basic_string & str,
+                size_type            pos2 = 0,
+                size_type            n2 = npos)
+        {
+                if (pos1 > vector<Ch, A>::elements) {
+                        ktl::__throw_out_of_range();
+                }
+                size_type xlen = vector<Ch, A>::elements - pos1;
+                if (xlen >  n1) {
+                        xlen = n1;
+                }
+                size_type rlen = str.elements - pos2;
+                if (rlen > n2) {
+                        rlen = n2;
+                }
+                if ((vector<Ch, A>::elements - xlen) >= (npos - rlen)) {
+                        ktl::__throw_length_error();
+                }
 
-		size_t temp = vector<Ch, A>::elements;
+                size_t temp = vector<Ch, A>::elements;
 
-		if (rlen > xlen) {		//Only if making larger
-			resize(temp - xlen + rlen);
-		}
+                if (rlen > xlen) {              //Only if making larger
+                        resize(temp - xlen + rlen);
+                }
 
-		//Final length = vector<Ch, A>::elements - xlen + rlen
-		//Initial block is of size pos1
-		//Block 2 is of size len
+                //Final length = vector<Ch, A>::elements - xlen + rlen
+                //Initial block is of size pos1
+                //Block 2 is of size len
 
-		Tr::move(vector<Ch, A>::data + pos1 + rlen,
-			 vector<Ch, A>::data + pos1 + xlen,
-			 temp - pos1 - xlen);
-		Tr::copy(vector<Ch, A>::data + pos1,
-			 str.vector<Ch, A>::data + pos2,
-			 rlen);
-		//		vector<Ch, A>::elements = vector<Ch, A>::elements - xlen + rlen;
-		resize(temp - xlen + rlen);
-		return *this;
-	}
+                Tr::move(vector<Ch, A>::data + pos1 + rlen,
+                         vector<Ch, A>::data + pos1 + xlen,
+                         temp - pos1 - xlen);
+                Tr::copy(vector<Ch, A>::data + pos1,
+                         str.vector<Ch, A>::data + pos2,
+                         rlen);
+                //              vector<Ch, A>::elements = vector<Ch, A>::elements - xlen + rlen;
+                resize(temp - xlen + rlen);
+                return *this;
+        }
 
-	basic_string & replace(size_type  pos,
-			       size_type  n1,
-			       const Ch * s,
-			       size_type  n2) {
-		return replace(pos,n1,basic_string<Ch,Tr,A>(s,n2));
+        basic_string & replace(size_type  pos,
+                               size_type  n1,
+                               const Ch * s,
+                               size_type  n2) {
+                return replace(pos,n1,basic_string<Ch,Tr,A>(s,n2));
 
-	}
+        }
 
-	inline basic_string & replace(size_type  pos,
-				      size_type  n1,
-				      const Ch * s) {
-		return replace(pos,n1,basic_string<Ch,Tr,A>(s));
-	}
+        inline basic_string & replace(size_type  pos,
+                                      size_type  n1,
+                                      const Ch * s) {
+                return replace(pos,n1,basic_string<Ch,Tr,A>(s));
+        }
 
-	basic_string & replace(size_type pos,
-			       size_type n1,
-			       size_type n2,
-			       Ch        c) {
-		return replace(pos,n1,basic_string<Ch, Tr, A>(n2,c));
-	}
-	//	basic_string & replace(iterator i1, iterator i2, const basic_string & str);
-	//	basic_string & replace(iterator i1, iterator i2, const Ch* s, size_type n);
-	//	basic_string & replace(iterator i1, iterator i2, const Ch* s);
-	//	basic_string & replace(iterator i1, iterator i2, size_type n, Ch c);
-	/*	template<class InputIterator> basic_string & replace(iterator i1, iterator i2,
-		InputIterator j1, InputIterator j2);*/
+        basic_string & replace(size_type pos,
+                               size_type n1,
+                               size_type n2,
+                               Ch        c) {
+                return replace(pos,n1,basic_string<Ch, Tr, A>(n2,c));
+        }
+        //      basic_string & replace(iterator i1, iterator i2, const basic_string & str);
+        //      basic_string & replace(iterator i1, iterator i2, const Ch* s, size_type n);
+        //      basic_string & replace(iterator i1, iterator i2, const Ch* s);
+        //      basic_string & replace(iterator i1, iterator i2, size_type n, Ch c);
+        /*      template<class InputIterator> basic_string & replace(iterator i1, iterator i2,
+                InputIterator j1, InputIterator j2);*/
 
-	size_type copy(Ch* s, size_type n, size_type pos = 0) const {
-		if (pos > vector<Ch, A>::elements) {
-			ktl::__throw_out_of_range();
-		}
-		size_type r = vector<Ch, A>::elements - pos;
-		if (r > n) {
-			r = n;
-		}
-		Tr::copy(s, vector<Ch, A>::data + pos, r);
-		return r;
-	}
+        size_type copy(Ch* s, size_type n, size_type pos = 0) const {
+                if (pos > vector<Ch, A>::elements) {
+                        ktl::__throw_out_of_range();
+                }
+                size_type r = vector<Ch, A>::elements - pos;
+                if (r > n) {
+                        r = n;
+                }
+                Tr::copy(s, vector<Ch, A>::data + pos, r);
+                return r;
+        }
 
-	void swap(basic_string<Ch,Tr,A>& s) {
-		//Data pointers
+        void swap(basic_string<Ch,Tr,A>& s) {
+                //Data pointers
 
-		vector<Ch, A>::swap(s);
-	}
+                vector<Ch, A>::swap(s);
+        }
 
-	const Ch * c_str() const {
-		const_cast<basic_string<Ch,Tr,A> *>(this)->reserve(vector<Ch, A>::elements+1);
-		vector<Ch, A>::data[vector<Ch, A>::elements] = 0;
-		return vector<Ch, A>::data;
-	}
+        const Ch * c_str() const {
+                const_cast<basic_string<Ch,Tr,A> *>(this)->reserve(vector<Ch, A>::elements+1);
+                vector<Ch, A>::data[vector<Ch, A>::elements] = 0;
+                return vector<Ch, A>::data;
+        }
 
-	const Ch * data() const {
-		return vector<Ch, A>::data;
-	}
-	allocator_type get_allocator() const {
-		return vector<Ch, A>::a;
-	}
+        const Ch * data() const {
+                return vector<Ch, A>::data;
+        }
+        allocator_type get_allocator() const {
+                return vector<Ch, A>::a;
+        }
 
-	size_type find (const basic_string & str, size_type pos = 0) const;
+        size_type find (const basic_string & str, size_type pos = 0) const;
 
-	size_type find (const Ch* s, size_type pos, size_type n) const {
-		return find(basic_string<Ch, Tr, A>(s,n), pos);
-	}
-	size_type find (const Ch* s, size_type pos = 0) const {
-		return find(basic_string<Ch, Tr, A>(s), pos);
-	}
-	size_type find (Ch c, size_type pos = 0) const {
-		for(size_type i = pos; i < length(); ++i) {
-			if (operator[](i) == c) {
-				return i;
-			}
-		}
-		return npos;
-	}
-	size_type rfind(const basic_string & str, size_type pos = npos) const {
-		if (pos >= length()) {
-			pos = length();
-		}
-		for(size_type i = pos; i > 0; --i) {
-			if (str == substr(i-1, str.length())) {
-				return i-1;
-			}
-		}
-		return npos;
-	}
-	size_type rfind(const Ch* s, size_type pos, size_type n) const {
-		return rfind(basic_string<Ch, Tr, A>(s,n),pos);
-	}
-	size_type rfind(const Ch* s, size_type pos = npos) const {
-		return rfind(basic_string<Ch, Tr, A>(s),pos);
-	}
-	size_type rfind(Ch c, size_type pos = npos) const {
-		return rfind(basic_string<Ch, Tr, A>(1,c),pos);
-	}
+        size_type find (const Ch* s, size_type pos, size_type n) const {
+                return find(basic_string<Ch, Tr, A>(s,n), pos);
+        }
+        size_type find (const Ch* s, size_type pos = 0) const {
+                return find(basic_string<Ch, Tr, A>(s), pos);
+        }
+        size_type find (Ch c, size_type pos = 0) const {
+                for(size_type i = pos; i < length(); ++i) {
+                        if (operator[](i) == c) {
+                                return i;
+                        }
+                }
+                return npos;
+        }
+        size_type rfind(const basic_string & str, size_type pos = npos) const {
+                if (pos >= length()) {
+                        pos = length();
+                }
+                for(size_type i = pos; i > 0; --i) {
+                        if (str == substr(i-1, str.length())) {
+                                return i-1;
+                        }
+                }
+                return npos;
+        }
+        size_type rfind(const Ch* s, size_type pos, size_type n) const {
+                return rfind(basic_string<Ch, Tr, A>(s,n),pos);
+        }
+        size_type rfind(const Ch* s, size_type pos = npos) const {
+                return rfind(basic_string<Ch, Tr, A>(s),pos);
+        }
+        size_type rfind(Ch c, size_type pos = npos) const {
+                return rfind(basic_string<Ch, Tr, A>(1,c),pos);
+        }
 
-	size_type find_first_of(const basic_string & str, size_type pos = 0) const {
-		for(size_type i = pos; i < length(); ++i) {
-			for(size_type j = 0; j < str.length() ; ++j) {
-				if (str[j] == operator[](i)) {
-					return i;
-				}
-			}
-		}
-		return npos;
-	}
+        size_type find_first_of(const basic_string & str, size_type pos = 0) const {
+                for(size_type i = pos; i < length(); ++i) {
+                        for(size_type j = 0; j < str.length() ; ++j) {
+                                if (str[j] == operator[](i)) {
+                                        return i;
+                                }
+                        }
+                }
+                return npos;
+        }
 
-	size_type find_first_of(const Ch* s, size_type pos, size_type n) const {
-		return find_first_of(basic_string<Ch, Tr, A>(s,n),pos);
-	}
-	size_type find_first_of(const Ch* s, size_type pos = 0) const {
-		return find_first_of(basic_string<Ch, Tr, A>(s),pos);
-	}
-	size_type find_first_of(Ch c, size_type pos = 0) const {
-		for(size_type i = pos; i< length(); ++i) {
-			if (operator[](i) == c) {
-				return i;
-			}
-		}
-		return npos;
-	}
+        size_type find_first_of(const Ch* s, size_type pos, size_type n) const {
+                return find_first_of(basic_string<Ch, Tr, A>(s,n),pos);
+        }
+        size_type find_first_of(const Ch* s, size_type pos = 0) const {
+                return find_first_of(basic_string<Ch, Tr, A>(s),pos);
+        }
+        size_type find_first_of(Ch c, size_type pos = 0) const {
+                for(size_type i = pos; i< length(); ++i) {
+                        if (operator[](i) == c) {
+                                return i;
+                        }
+                }
+                return npos;
+        }
 
-	size_type find_last_of (const basic_string & str, size_type pos = npos) const {
-		if (pos > length()) {
-			pos = length();
-		}
-		for(size_type i = pos; i >0 ; --i) {
-			for(size_type j = 0 ; j < str.length(); ++j) {
-				if (operator[](i-1) == str[j]) {
-					return i-1;
-				}
-			}
-		}
-		return npos;
-	}
-	size_type find_last_of (const Ch* s, size_type pos, size_type n) const {
-		return find_last_of(basic_string<Ch, Tr, A>(s,n),pos);
-	}
-	size_type find_last_of (const Ch* s, size_type pos = npos) const {
-		return find_last_of(basic_string<Ch, Tr, A>(s),pos);
-	}
-	size_type find_last_of (Ch c, size_type pos = npos) const {
-		if (pos > length()) {
-			pos = length();
-		}
-		for(size_type i = pos; i >0 ; --i) {
-			if (operator[](i-1) == c) {
-				return i-1;
-			}
-		}
-		return npos;
-	}
+        size_type find_last_of (const basic_string & str, size_type pos = npos) const {
+                if (pos > length()) {
+                        pos = length();
+                }
+                for(size_type i = pos; i >0 ; --i) {
+                        for(size_type j = 0 ; j < str.length(); ++j) {
+                                if (operator[](i-1) == str[j]) {
+                                        return i-1;
+                                }
+                        }
+                }
+                return npos;
+        }
+        size_type find_last_of (const Ch* s, size_type pos, size_type n) const {
+                return find_last_of(basic_string<Ch, Tr, A>(s,n),pos);
+        }
+        size_type find_last_of (const Ch* s, size_type pos = npos) const {
+                return find_last_of(basic_string<Ch, Tr, A>(s),pos);
+        }
+        size_type find_last_of (Ch c, size_type pos = npos) const {
+                if (pos > length()) {
+                        pos = length();
+                }
+                for(size_type i = pos; i >0 ; --i) {
+                        if (operator[](i-1) == c) {
+                                return i-1;
+                        }
+                }
+                return npos;
+        }
 
-	size_type find_first_not_of(const basic_string & str, size_type pos = 0) const {
-		bool foundCharacter;
-		for(size_type i = pos; i < length(); ++i) {
-			foundCharacter = false;
-			for(size_type j = 0; j < str.length() ; ++j) {
-				if (str[j] == operator[](i)) {
-					foundCharacter = true;
-				}
-			}
-			if (foundCharacter == false) {
-				return i;
-			}
-		}
-		return npos;
-	}
+        size_type find_first_not_of(const basic_string & str, size_type pos = 0) const {
+                bool foundCharacter;
+                for(size_type i = pos; i < length(); ++i) {
+                        foundCharacter = false;
+                        for(size_type j = 0; j < str.length() ; ++j) {
+                                if (str[j] == operator[](i)) {
+                                        foundCharacter = true;
+                                }
+                        }
+                        if (foundCharacter == false) {
+                                return i;
+                        }
+                }
+                return npos;
+        }
 
-	size_type find_first_not_of(const Ch* s, size_type pos, size_type n) const {
-		return find_first_not_of(basic_string<Ch, Tr, A>(s,n),pos);
-	}
-	size_type find_first_not_of(const Ch* s, size_type pos = 0) const {
-		return find_first_not_of(basic_string<Ch, Tr, A>(s),pos);
-	}
-	size_type find_first_not_of(Ch c, size_type pos = 0) const {
-		for(size_type i = pos; i < length() ; ++i) {
-			if (operator[](i) != c) {
-				return i;
-			}
-		}
-		return npos;
-	}
-	/*	size_type find_last_not_of (const basic_string & str, size_type pos = npos) const;
-		size_type find_last_not_of (const charT* s, size_type pos, size_type n) const;
-		size_type find_last_not_of (const charT* s, size_type pos = npos) const;
-		size_type find_last_not_of (charT c, size_type pos = npos) const;
-	*/
+        size_type find_first_not_of(const Ch* s, size_type pos, size_type n) const {
+                return find_first_not_of(basic_string<Ch, Tr, A>(s,n),pos);
+        }
+        size_type find_first_not_of(const Ch* s, size_type pos = 0) const {
+                return find_first_not_of(basic_string<Ch, Tr, A>(s),pos);
+        }
+        size_type find_first_not_of(Ch c, size_type pos = 0) const {
+                for(size_type i = pos; i < length() ; ++i) {
+                        if (operator[](i) != c) {
+                                return i;
+                        }
+                }
+                return npos;
+        }
+        /*      size_type find_last_not_of (const basic_string & str, size_type pos = npos) const;
+                size_type find_last_not_of (const charT* s, size_type pos, size_type n) const;
+                size_type find_last_not_of (const charT* s, size_type pos = npos) const;
+                size_type find_last_not_of (charT c, size_type pos = npos) const;
+        */
 
-	basic_string substr(size_type pos = 0, size_type n = npos) const;
+        basic_string substr(size_type pos = 0, size_type n = npos) const;
 
-	int compare(const basic_string & str) const {
-		size_type rlen = vector<Ch, A>::elements;
-		if (rlen >  str.elements) {
-			rlen = str.elements;
-		}
-		int retval = Tr::compare(vector<Ch, A>::data, str.vector<Ch, A>::data, rlen);
-		if (retval == 0) {
-			if (vector<Ch, A>::elements < str.elements) {
-				retval = -1;
-			}
-			if (vector<Ch, A>::elements > str.elements) {
-				retval = 1;
-			}
-		}
-		return retval;
-	}
+        int compare(const basic_string & str) const {
+                size_type rlen = vector<Ch, A>::elements;
+                if (rlen >  str.elements) {
+                        rlen = str.elements;
+                }
+                int retval = Tr::compare(vector<Ch, A>::data, str.vector<Ch, A>::data, rlen);
+                if (retval == 0) {
+                        if (vector<Ch, A>::elements < str.elements) {
+                                retval = -1;
+                        }
+                        if (vector<Ch, A>::elements > str.elements) {
+                                retval = 1;
+                        }
+                }
+                return retval;
+        }
 
-	int compare(size_type pos1, size_type n1, const basic_string & str) const {
-		size_type rlen = vector<Ch, A>::elements - pos1;
-		if (rlen > n1) {
-			rlen = n1;
-		}
-		if (rlen > str.elements) {
-			rlen = str.elements;
-		}
-		int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data, rlen);
-		if (retval == 0) {
-			if (vector<Ch, A>::elements - pos1 < str.elements) {
-				retval = -1;
-			}
-			if (vector<Ch, A>::elements - pos1 > str.elements) {
-				retval = 1;
-			}
-		}
-		return retval;
-	}
+        int compare(size_type pos1, size_type n1, const basic_string & str) const {
+                size_type rlen = vector<Ch, A>::elements - pos1;
+                if (rlen > n1) {
+                        rlen = n1;
+                }
+                if (rlen > str.elements) {
+                        rlen = str.elements;
+                }
+                int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data, rlen);
+                if (retval == 0) {
+                        if (vector<Ch, A>::elements - pos1 < str.elements) {
+                                retval = -1;
+                        }
+                        if (vector<Ch, A>::elements - pos1 > str.elements) {
+                                retval = 1;
+                        }
+                }
+                return retval;
+        }
 
-	int compare(size_type pos1, size_type n1, const basic_string & str,
-		    size_type pos2=0, size_type n2=npos) const {
-		size_type len1 = vector<Ch, A>::elements - pos1;
-		if (len1 > n1) {
-			len1 = n1;
-		}
-		size_type len2 = vector<Ch, A>::elements - pos2;
-		if (len2 > n2) {
-			len2 = n2;
-		}
-		size_type rlen = len1;
-		if (rlen > len2) {
-			rlen = len2;
-		}
-		int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data + pos2, rlen);
-		if (retval == 0) {
-			if (len1 < len2) {
-				retval = -1;
-			}
-			if (len1 > len2) {
-				retval = 1;
-			}
-		}
-		return retval;
-	}
+        int compare(size_type pos1, size_type n1, const basic_string & str,
+                    size_type pos2=0, size_type n2=npos) const {
+                size_type len1 = vector<Ch, A>::elements - pos1;
+                if (len1 > n1) {
+                        len1 = n1;
+                }
+                size_type len2 = vector<Ch, A>::elements - pos2;
+                if (len2 > n2) {
+                        len2 = n2;
+                }
+                size_type rlen = len1;
+                if (rlen > len2) {
+                        rlen = len2;
+                }
+                int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data + pos2, rlen);
+                if (retval == 0) {
+                        if (len1 < len2) {
+                                retval = -1;
+                        }
+                        if (len1 > len2) {
+                                retval = 1;
+                        }
+                }
+                return retval;
+        }
 
-	int compare(const Ch* s) const {
-		size_type slen = Tr::length(s);
-		size_type rlen = slen;
-		if (rlen > vector<Ch, A>::elements) {
-			rlen=vector<Ch, A>::elements;
-		}
-		int retval = Tr::compare(vector<Ch, A>::data, s, rlen);
-		if (retval==0) {
-			if (vector<Ch, A>::elements < slen) {
-				retval = -1;
-			}
-			if (vector<Ch, A>::elements > slen) {
-				retval = 1;
-			}
-		}
-		return retval;
-	}
+        int compare(const Ch* s) const {
+                size_type slen = Tr::length(s);
+                size_type rlen = slen;
+                if (rlen > vector<Ch, A>::elements) {
+                        rlen=vector<Ch, A>::elements;
+                }
+                int retval = Tr::compare(vector<Ch, A>::data, s, rlen);
+                if (retval==0) {
+                        if (vector<Ch, A>::elements < slen) {
+                                retval = -1;
+                        }
+                        if (vector<Ch, A>::elements > slen) {
+                                retval = 1;
+                        }
+                }
+                return retval;
+        }
 
-	int compare(size_type  pos1,
-		    size_type  n1,
-		    const Ch * s,
-		    size_type  n2 = npos) const {
-		size_type len1 = vector<Ch, A>::elements - pos1;
-		if (len1 > n1) {
-			len1 = n1;
-		}
-		size_type slen = Tr::length(s);
-		size_type len2 = slen;
-		if (len2 > n2) {
-			len2 = n2;
-		}
-		size_type rlen = len1;
-		if (rlen > len2) {
-			rlen = len2;
-		}
-		int retval  = Tr::compare(vector<Ch, A>::data + pos1, s, rlen);
-		if (retval == 0) {
-			if (len1 < len2) {
-				retval = -1;
-			}
-			if (len1 > len2) {
-				retval = 1;
-			}
-		}
-		return retval;
-	}
+        int compare(size_type  pos1,
+                    size_type  n1,
+                    const Ch * s,
+                    size_type  n2 = npos) const {
+                size_type len1 = vector<Ch, A>::elements - pos1;
+                if (len1 > n1) {
+                        len1 = n1;
+                }
+                size_type slen = Tr::length(s);
+                size_type len2 = slen;
+                if (len2 > n2) {
+                        len2 = n2;
+                }
+                size_type rlen = len1;
+                if (rlen > len2) {
+                        rlen = len2;
+                }
+                int retval  = Tr::compare(vector<Ch, A>::data + pos1, s, rlen);
+                if (retval == 0) {
+                        if (len1 < len2) {
+                                retval = -1;
+                        }
+                        if (len1 > len2) {
+                                retval = 1;
+                        }
+                }
+                return retval;
+        }
 
 };
 
@@ -783,70 +783,70 @@ public:
 //Functions
 
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::basic_string(const Ch* s, const A& al)
-	: vector<Ch, A>(al)
+        : vector<Ch, A>(al)
 {
-	if (s!=0) {
-		size_type temp = Tr::length(s);
-		append(s, temp);
-	}
+        if (s!=0) {
+                size_type temp = Tr::length(s);
+                append(s, temp);
+        }
 }
 
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::
 basic_string(const basic_string & str, size_type pos, size_type n, const A& al)
-	: vector<Ch, A>(al)
+        : vector<Ch, A>(al)
 {
-	if (pos>str.size()) {
-		ktl::__throw_out_of_range();
-	}
-	size_type rlen = str.size() - pos;
-	if (rlen > n) {
-		rlen = n;
-	}
-	resize(rlen);
-	Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data + pos, vector<Ch, A>::elements);
+        if (pos>str.size()) {
+                ktl::__throw_out_of_range();
+        }
+        size_type rlen = str.size() - pos;
+        if (rlen > n) {
+                rlen = n;
+        }
+        resize(rlen);
+        Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data + pos, vector<Ch, A>::elements);
 }
 
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>&
 basic_string<Ch,Tr,A>::operator=(const basic_string<Ch,Tr,A> & str)
 {
-	if (&str == this) {	//Check if we are doing a=a
-		return *this;
-	}
-	vector<Ch, A>::clear();
-	resize(str.elements);
-	Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data, str.elements);
-	//	vector<Ch, A>::elements = str.elements;
-	return *this;
+        if (&str == this) {     //Check if we are doing a=a
+                return *this;
+        }
+        vector<Ch, A>::clear();
+        resize(str.elements);
+        Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data, str.elements);
+        //      vector<Ch, A>::elements = str.elements;
+        return *this;
 }
 
 
 template<class Ch,class Tr,class A> typename basic_string<Ch,Tr,A>::size_type
 basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A>& str, size_type pos) const
 {
-	if (str.length() > length()) {
-		return npos;
-	}
-	size_type max_string_start = 1 + length() - str.length();
-	for(size_type i = pos; i < max_string_start; ++i) {
-		if (str == substr(i, str.length())) {
-			return i;
-		}
-	}
-	return npos;
+        if (str.length() > length()) {
+                return npos;
+        }
+        size_type max_string_start = 1 + length() - str.length();
+        for(size_type i = pos; i < max_string_start; ++i) {
+                if (str == substr(i, str.length())) {
+                        return i;
+                }
+        }
+        return npos;
 }
 
 
 template<class Ch,class Tr,class A>
 basic_string<Ch, Tr, A> basic_string<Ch,Tr,A>::substr(size_type pos, size_type n) const
 {
-	if (pos > vector<Ch, A>::elements) {
-		ktl::__throw_out_of_range();
-	}
-	size_type rlen = vector<Ch, A>::elements - pos;
-	if (rlen > n) {
-		rlen = n;
-	}
-	return basic_string<Ch,Tr,A>(vector<Ch, A>::data + pos,rlen);
+        if (pos > vector<Ch, A>::elements) {
+                ktl::__throw_out_of_range();
+        }
+        size_type rlen = vector<Ch, A>::elements - pos;
+        if (rlen > n) {
+                rlen = n;
+        }
+        return basic_string<Ch,Tr,A>(vector<Ch, A>::data + pos,rlen);
 }
 
 //typedef basic_string<char> string;
@@ -854,236 +854,236 @@ basic_string<Ch, Tr, A> basic_string<Ch,Tr,A>::substr(size_type pos, size_type n
 template<class charT, class traits, class Allocator>
 basic_string<charT,traits,Allocator>
 operator+(const basic_string<charT,traits,Allocator> & lhs,
-	  const basic_string<charT,traits,Allocator> & rhs)
+          const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	temp.append(rhs);
-	return temp;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        temp.append(rhs);
+        return temp;
 }
 
 template<class charT, class traits, class Allocator>
 basic_string<charT,traits,Allocator>
 operator+(const charT *                                lhs,
-	  const basic_string<charT,traits,Allocator> & rhs)
+          const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	temp.append(rhs);
-	return temp;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        temp.append(rhs);
+        return temp;
 }
 
 
 template<class charT, class traits, class Allocator>
 basic_string<charT,traits,Allocator>
 operator+(charT                                        lhs,
-	  const basic_string<charT,traits,Allocator> & rhs)
+          const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	temp.append(rhs);
-	return temp;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        temp.append(rhs);
+        return temp;
 }
 
 template<class charT, class traits, class Allocator> basic_string<charT,traits,Allocator>
 operator+(const basic_string<charT,traits,Allocator>& lhs, const charT* rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	temp.append(rhs);
-	return temp;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        temp.append(rhs);
+        return temp;
 }
 
 template<class charT, class traits, class Allocator> basic_string<charT,traits,Allocator>
 operator+(const basic_string<charT,traits,Allocator>& lhs, charT rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	temp+=rhs;
-	return temp;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        temp+=rhs;
+        return temp;
 }
 
 template<class charT, class traits, class Allocator> bool
 operator==(const basic_string<charT,traits,Allocator>& lhs, const basic_string<charT,traits,Allocator>& rhs)
 {
-	if (lhs.compare(rhs) == 0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) == 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator> bool
 operator==(const charT* lhs, const basic_string<charT,traits,Allocator>& rhs)
 {
-	if (rhs.compare(lhs) == 0) {
-		return true;
-	}
-	return false;
+        if (rhs.compare(lhs) == 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator> bool
 operator==(const basic_string<charT,traits,Allocator>& lhs, const charT* rhs)
 {
-	if (lhs.compare(rhs)==0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs)==0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool
 operator!=(const basic_string<charT,traits,Allocator>& lhs, const basic_string<charT,traits,Allocator>& rhs)
 {
-	if (lhs.compare(rhs) !=0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) !=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool
 operator!=(const charT* lhs, const basic_string<charT,traits,Allocator>& rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	return (temp != rhs);
+        basic_string<charT,traits,Allocator> temp(lhs);
+        return (temp != rhs);
 }
 
 template<class charT, class traits, class Allocator>
 bool operator!=(const basic_string<charT,traits,Allocator> & lhs,
-		const charT *                                rhs)
+                const charT *                                rhs)
 {
-	basic_string<charT,traits,Allocator> temp(rhs);
-	return (lhs != temp);
+        basic_string<charT,traits,Allocator> temp(rhs);
+        return (lhs != temp);
 }
 
 template<class charT, class traits, class Allocator>
 bool operator< (const basic_string<charT,traits,Allocator> & lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	if (lhs.compare(rhs) < 0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) < 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator< (const basic_string<charT,traits,Allocator> & lhs,
-		const charT *                                rhs)
+                const charT *                                rhs)
 {
-	basic_string<charT,traits,Allocator> temp(rhs);
-	if (lhs.compare(rhs) < 0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(rhs);
+        if (lhs.compare(rhs) < 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator< (const charT *                                lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	if (temp.compare(rhs) < 0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        if (temp.compare(rhs) < 0) {
+                return true;
+        }
+        return false;
 }
 
 
 template<class charT, class traits, class Allocator>
 bool operator> (const basic_string<charT,traits,Allocator> & lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	if (lhs.compare(rhs) > 0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) > 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator> (const basic_string<charT,traits,Allocator>& lhs,
-	   const charT* rhs)
+           const charT* rhs)
 {
-	basic_string<charT,traits,Allocator> temp(rhs);
-	if (lhs.compare(rhs) > 0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(rhs);
+        if (lhs.compare(rhs) > 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator> (const charT* lhs,
-		const basic_string<charT,traits,Allocator>& rhs)
+                const basic_string<charT,traits,Allocator>& rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	if (temp.compare(rhs) > 0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        if (temp.compare(rhs) > 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator<=(const basic_string<charT,traits,Allocator>& lhs,
-	   const basic_string<charT,traits,Allocator>& rhs)
+           const basic_string<charT,traits,Allocator>& rhs)
 {
-	if (lhs.compare(rhs) <=0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) <=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool
 operator<=(const basic_string<charT,traits,Allocator>& lhs,
-	   const charT* rhs)
+           const charT* rhs)
 {
-	basic_string<charT,traits,Allocator> temp(rhs);
-	if (lhs.compare(temp) <=0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(rhs);
+        if (lhs.compare(temp) <=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator<=(const charT *                                lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	if (temp.compare(rhs) <= 0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        if (temp.compare(rhs) <= 0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	if (lhs.compare(rhs) >=0) {
-		return true;
-	}
-	return false;
+        if (lhs.compare(rhs) >=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
-		const charT *                                rhs)
+                const charT *                                rhs)
 {
-	basic_string<charT,traits,Allocator> temp(rhs);
-	if (lhs.compare(temp) >=0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(rhs);
+        if (lhs.compare(temp) >=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 bool operator>=(const charT *                                lhs,
-		const basic_string<charT,traits,Allocator> & rhs)
+                const basic_string<charT,traits,Allocator> & rhs)
 {
-	basic_string<charT,traits,Allocator> temp(lhs);
-	if (temp.compare(rhs) >=0) {
-		return true;
-	}
-	return false;
+        basic_string<charT,traits,Allocator> temp(lhs);
+        if (temp.compare(rhs) >=0) {
+                return true;
+        }
+        return false;
 }
 
 template<class charT, class traits, class Allocator>
 void swap(basic_string<charT,traits,Allocator> & lhs,
-	  basic_string<charT,traits,Allocator> & rhs);
+          basic_string<charT,traits,Allocator> & rhs);
 }
 
 #endif // ELKLIB_LIBCXX_STRING

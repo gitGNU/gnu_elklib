@@ -22,29 +22,29 @@
 
 uint16_t bswap_16(uint16_t x)
 {
-	uint16_t res;
+        uint16_t res;
 
-	swab((void*) &x, (void*) &res, sizeof(uint16_t));
+        swab((void*) &x, (void*) &res, sizeof(uint16_t));
 
-	return res;
+        return res;
 }
 
 uint32_t bswap_32(uint32_t x)
 {
-	uint32_t res;
+        uint32_t res;
 
-	swab((void*) &x, (void*) &res, sizeof(uint32_t));
+        swab((void*) &x, (void*) &res, sizeof(uint32_t));
 
-	return res;
+        return res;
 }
 
 #if 0
 uint64_t bswap_64(uint64_t x)
 {
-	uint64_t res;
+        uint64_t res;
 
-	swab((void*) &x, (void*) &res, sizeof(uint64_t));
+        swab((void*) &x, (void*) &res, sizeof(uint64_t));
 
-	return res;
+        return res;
 }
 #endif

@@ -22,13 +22,13 @@
 #include "elklib.h"
 
 namespace ktl {
-	template<typename T> class stack {
-	public:
+        template<typename T> class stack {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 }
 
 #endif // ELKLIB_LIBCXX_STACK

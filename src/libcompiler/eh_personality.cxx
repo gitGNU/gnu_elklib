@@ -23,16 +23,16 @@
 
 extern "C" _Unwind_Reason_Code
 __gxx_personality_v0(int                        version,
-		     _Unwind_Action             actions,
-		     _Unwind_Exception_Class    exception_class,
-		     struct _Unwind_Exception * ue_header,
-		     struct _Unwind_Context *   context)
+                     _Unwind_Action             actions,
+                     _Unwind_Exception_Class    exception_class,
+                     struct _Unwind_Exception * ue_header,
+                     struct _Unwind_Context *   context)
 {
-	unused_argument(version);
-	unused_argument(actions);
-	unused_argument(exception_class);
-	unused_argument(ue_header);
-	unused_argument(context);
+        unused_argument(version);
+        unused_argument(actions);
+        unused_argument(exception_class);
+        unused_argument(ue_header);
+        unused_argument(context);
 
-	return _URC_INSTALL_CONTEXT;
+        return _URC_INSTALL_CONTEXT;
 }

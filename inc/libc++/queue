@@ -23,21 +23,21 @@
 #include "libc++/iterator"
 
 namespace ktl {
-	template<typename T> class queue {
-	public:
+        template<typename T> class queue {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 
-	template<typename T> class priority_queue {
-	public:
+        template<typename T> class priority_queue {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 
 }
 

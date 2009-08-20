@@ -22,19 +22,19 @@
 #include "libcompiler/compiler.h"
 
 int backtrace(void** buffer,
-	      int    size)
+              int    size)
 {
-	unused_argument(buffer);
-	unused_argument(size);
+        unused_argument(buffer);
+        unused_argument(size);
 
-	return 0;
+        return 0;
 }
 
 char** backtrace_symbols(void* const* buffer,
-			 int          size)
+                         int          size)
 {
-	unused_argument(buffer);
-	unused_argument(size);
+        unused_argument(buffer);
+        unused_argument(size);
 
-	return NULL;
+        return NULL;
 }

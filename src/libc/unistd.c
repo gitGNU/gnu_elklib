@@ -26,70 +26,70 @@
 
 void _exit(int status)
 {
-	unused_argument(status);
+        unused_argument(status);
 
-	panic("Unimplemented");
+        panic("Unimplemented");
 
-	// halt();
+        // halt();
 }
 
 void swab(const void* from, void* to, ssize_t n)
 {
-	const uint8_t * source;
-	const uint8_t * source_end;
-	uint8_t         junk;
-	uint8_t *       dest;
+        const uint8_t * source;
+        const uint8_t * source_end;
+        uint8_t         junk;
+        uint8_t *       dest;
 
-	assert(from);
-	assert(to);
+        assert(from);
+        assert(to);
 
-	source     = from;
-	source_end = source + (n >> 1);
-	dest       = to;
+        source     = from;
+        source_end = source + (n >> 1);
+        dest       = to;
 
-	while (source < source_end) {
-		junk    = *source++;
-		*dest++ = bswap_16(junk);
-	}
+        while (source < source_end) {
+                junk    = *source++;
+                *dest++ = bswap_16(junk);
+        }
 }
 
 int getpagesize(void)
 {
-	return arch_vm_pagesize();
+        return arch_vm_pagesize();
 }
 
 int close(int fd)
 {
-	unused_argument(fd);
+        unused_argument(fd);
 
-	return 0;
+        return 0;
 }
 
 ssize_t read(int    fildes,
-	     void*  buf,
-	     size_t nbyte)
+             void*  buf,
+             size_t nbyte)
 {
-	unused_argument(fildes);
-	unused_argument(buf);
-	unused_argument(nbyte);
+        unused_argument(fildes);
+        unused_argument(buf);
+        unused_argument(nbyte);
 
-	return 0;
+        return 0;
 }
 
 ssize_t write(int         fildes,
-	      const void* buf,
-	      size_t      nbyte)
+              const void* buf,
+              size_t      nbyte)
 {
-	unused_argument(fildes);
-	unused_argument(buf);
-	unused_argument(nbyte);
+        unused_argument(fildes);
+        unused_argument(buf);
+        unused_argument(nbyte);
 
-	return 0;
+        return 0;
 }
 
 int fsync(int fd)
 {
-	unused_argument(fd);
+        unused_argument(fd);
 
-	return 0;
+        return 0;
 }

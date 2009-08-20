@@ -31,12 +31,12 @@ new_handler __new_handler = 0;
 
 new_handler set_new_handler(new_handler h)
 {
-	new_handler tmp;
+        new_handler tmp;
 
-	tmp           = __new_handler;
-	__new_handler = h;
+        tmp           = __new_handler;
+        __new_handler = h;
 
-	return tmp;
+        return tmp;
 }
 
 //
@@ -45,41 +45,41 @@ new_handler set_new_handler(new_handler h)
 
 void * operator new(ktl::size_t size) throw(ktl::bad_alloc)
 {
-	void * tmp;
+        void * tmp;
 
-	tmp = ktl::malloc(size);
-	if (!tmp) {
-		throw(ktl::bad_alloc());
-	}
+        tmp = ktl::malloc(size);
+        if (!tmp) {
+                throw(ktl::bad_alloc());
+        }
 
-	return tmp;
+        return tmp;
 }
 
 
 void * operator new[](ktl::size_t size) throw(ktl::bad_alloc)
 {
-	void * tmp;
+        void * tmp;
 
-	tmp = ktl::malloc(size);
-	if (!tmp) {
-		throw(ktl::bad_alloc());
-	}
+        tmp = ktl::malloc(size);
+        if (!tmp) {
+                throw(ktl::bad_alloc());
+        }
 
-	return tmp;
+        return tmp;
 }
 
 void operator delete(void * pointer) throw()
 {
-	if (pointer) {
-		ktl::free(pointer);
-	}
+        if (pointer) {
+                ktl::free(pointer);
+        }
 }
 
 void operator delete[](void * pointer) throw()
 {
-	if (pointer) {
-		ktl::free(pointer);
-	}
+        if (pointer) {
+                ktl::free(pointer);
+        }
 }
 
 //
@@ -88,20 +88,20 @@ void operator delete[](void * pointer) throw()
 
 void * operator new(ktl::size_t s, const ktl::nothrow_t &) throw()
 {
-	return ktl::malloc(s);
+        return ktl::malloc(s);
 }
 
 void * operator new[](ktl::size_t s, const ktl::nothrow_t &) throw()
 {
-	return ktl::malloc(s);
+        return ktl::malloc(s);
 }
 
 void operator delete(void * p, const ktl::nothrow_t &) throw()
 {
-	ktl::free(p);
+        ktl::free(p);
 }
 
 void operator delete[](void * p, const ktl::nothrow_t &) throw()
 {
-	ktl::free(p);
+        ktl::free(p);
 }

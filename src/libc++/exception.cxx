@@ -30,45 +30,45 @@ unexpected_handler __unexpected_handler = 0;
 
 terminate_handler set_terminate(terminate_handler handler)
 {
-	terminate_handler tmp;
+        terminate_handler tmp;
 
-	tmp                 = __terminate_handler;
-	__terminate_handler = handler;
+        tmp                 = __terminate_handler;
+        __terminate_handler = handler;
 
-	return tmp;
+        return tmp;
 }
 
 unexpected_handler set_unexpected(unexpected_handler handler)
 {
-	unexpected_handler tmp;
+        unexpected_handler tmp;
 
-	tmp                  = __unexpected_handler;
-	__unexpected_handler = handler;
+        tmp                  = __unexpected_handler;
+        __unexpected_handler = handler;
 
-	return tmp;
+        return tmp;
 }
 
 void terminate()
 {
-	if (__terminate_handler) {
-		__terminate_handler();
-	}
+        if (__terminate_handler) {
+                __terminate_handler();
+        }
 
-	panic("terminate() exception handler called");
+        panic("terminate() exception handler called");
 }
 
 void unexpected()
 {
-	if (__unexpected_handler) {
-		__unexpected_handler();
-	}
+        if (__unexpected_handler) {
+                __unexpected_handler();
+        }
 
-	panic("unexpected() exception handler called");
+        panic("unexpected() exception handler called");
 }
 
 bool uncaught_exception()
 {
-	return true;
+        return true;
 }
 
 // XXX FIXME: Move the following functions elsewhere

@@ -23,29 +23,29 @@
 #include "libcompiler/compiler.h"
 
 namespace ktl {
-	typedef void       (* terminate_handler) ();
-	typedef void       (* unexpected_handler) ();
+        typedef void       (* terminate_handler) ();
+        typedef void       (* unexpected_handler) ();
 
-	terminate_handler  set_terminate(terminate_handler h) throw();
-	void               terminate() ATTRIBUTE(__noreturn__);
-	unexpected_handler set_unexpected(unexpected_handler h) throw();
-	void               unexpected() ATTRIBUTE(__noreturn__);
-	bool               uncaught_exception() throw();
+        terminate_handler  set_terminate(terminate_handler h) throw();
+        void               terminate() ATTRIBUTE(__noreturn__);
+        unexpected_handler set_unexpected(unexpected_handler h) throw();
+        void               unexpected() ATTRIBUTE(__noreturn__);
+        bool               uncaught_exception() throw();
 
-	class exception {
-	public:
-		exception() throw()                       { };
-		virtual ~exception() throw()              { };
-		virtual const char * what() const throw() {
-			return "exception";
-		};
-	};
+        class exception {
+        public:
+                exception() throw()                       { };
+                virtual ~exception() throw()              { };
+                virtual const char * what() const throw() {
+                        return "exception";
+                };
+        };
 
-	class bad_exception : public exception {
-	public:
-		bad_exception() throw()          { };
-		virtual ~bad_exception() throw() { };
-	};
+        class bad_exception : public exception {
+        public:
+                bad_exception() throw()          { };
+                virtual ~bad_exception() throw() { };
+        };
 }
 
 #endif // ELKLIB_LIBCXX_EXCEPTION

@@ -36,55 +36,55 @@
 /* void _init(void) */
 void elklib_c_init(void)
 {
-	/* C Runtime initialization instructions */
+        /* C Runtime initialization instructions */
 
-	void (** callback)();
-	int  count;
+        void (** callback)();
+        int  count;
 
-	/* Get the total number of functions to be called */
-	count = &__INIT_END__ - &__INIT_LIST__;
+        /* Get the total number of functions to be called */
+        count = &__INIT_END__ - &__INIT_LIST__;
 
-	dprintf("We have %d initializers to call\n", count);
+        dprintf("We have %d initializers to call\n", count);
 
-	callback =  &__INIT_LIST__;
-	while (count) {
-		void (* ptr)() = *callback;
+        callback =  &__INIT_LIST__;
+        while (count) {
+                void (* ptr)() = *callback;
 
-		assert(ptr);
+                assert(ptr);
 
-		dprintf("Calling initializer 0x%p\n", ptr);
-		ptr();
+                dprintf("Calling initializer 0x%p\n", ptr);
+                ptr();
 
-		count--;
-		callback++;
-	}
+                count--;
+                callback++;
+        }
 
-	dprintf("Initializers calls completed\n");
+        dprintf("Initializers calls completed\n");
 }
 
 /* void _fini(void) */
 void elklib_c_fini(void)
 {
-	/* C Runtime finalization instructions */
+        /* C Runtime finalization instructions */
 
-	void (** callback)();
-	int  count;
+        void (** callback)();
+        int  count;
 
-	/* Get the total number of functions to be called */
-	count = &__FINI_END__ - &__FINI_LIST__;
+        /* Get the total number of functions to be called */
+        count = &__FINI_END__ - &__FINI_LIST__;
 
-	dprintf("We have %d finalizers to call\n", count);
+        dprintf("We have %d finalizers to call\n", count);
 
-	callback =  &__FINI_LIST__;
-	while (count) {
-		void (* ptr)() = *callback;
+        callback =  &__FINI_LIST__;
+        while (count) {
+                void (* ptr)() = *callback;
 
-		assert(ptr);
-		ptr();
+                assert(ptr);
+                ptr();
 
-		count--;
-		callback++;
-	}
+                count--;
+                callback++;
+        }
 
-	dprintf("Finalizers calls completed\n");
+        dprintf("Finalizers calls completed\n");
 }

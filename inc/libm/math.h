@@ -25,7 +25,7 @@
 __BEGIN_DECLS
 
 double pow(double x,
-	   double y);
+           double y);
 
 __END_DECLS
 

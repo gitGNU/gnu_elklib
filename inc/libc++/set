@@ -22,21 +22,21 @@
 #include "elklib.h"
 
 namespace ktl {
-	template<typename T> class set {
-	public:
+        template<typename T> class set {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 
-	template<typename T> class multiset {
-	public:
+        template<typename T> class multiset {
+        public:
 
-	protected:
+        protected:
 
-	private:
-	};
+        private:
+        };
 }
 
 #endif // ELKLIB_LIBCXX_SET

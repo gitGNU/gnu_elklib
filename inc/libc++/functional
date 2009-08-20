@@ -22,173 +22,173 @@
 #include "elklib.h"
 
 namespace ktl {
-	template <class A, class R>
-	struct unary_function {
-		typedef A argument_type;
-		typedef R result_type;
-	};
+        template <class A, class R>
+        struct unary_function {
+                typedef A argument_type;
+                typedef R result_type;
+        };
 
-	template <class A1, class A2, class R>
-	struct binary_function {
-		typedef A1 first_argument_type;
-		typedef A2 second_argument_type;
-		typedef R  result_type;
-	};
+        template <class A1, class A2, class R>
+        struct binary_function {
+                typedef A1 first_argument_type;
+                typedef A2 second_argument_type;
+                typedef R  result_type;
+        };
 
-	//
-	// Arithmetic
-	//
+        //
+        // Arithmetic
+        //
 
-	template <class T>
-	struct plus : public binary_function<T, T, T> {
-		T operator()(const T & x, const T & y) const {
-			return x + y;
-		}
-	};
+        template <class T>
+        struct plus : public binary_function<T, T, T> {
+                T operator()(const T & x, const T & y) const {
+                        return x + y;
+                }
+        };
 
-	template <class T>
-	struct minus : public binary_function<T, T, T> {
-		T operator()(const T & x, const T & y) const {
-			return x - y;
-		}
-	};
+        template <class T>
+        struct minus : public binary_function<T, T, T> {
+                T operator()(const T & x, const T & y) const {
+                        return x - y;
+                }
+        };
 
-	template <class T>
-	struct multiplies : public binary_function<T, T, T> {
-		T operator()(const T & x, const T & y) const {
-			return x * y;
-		}
-	};
+        template <class T>
+        struct multiplies : public binary_function<T, T, T> {
+                T operator()(const T & x, const T & y) const {
+                        return x * y;
+                }
+        };
 
-	template <class T>
-	struct divides : public binary_function<T, T, T> {
-		T operator()(const T & x, const T & y) const {
-			return x / y;
-		}
-	};
+        template <class T>
+        struct divides : public binary_function<T, T, T> {
+                T operator()(const T & x, const T & y) const {
+                        return x / y;
+                }
+        };
 
-	template <class T>
-	struct modulus : public binary_function<T, T, T> {
-		T operator()(const T & x, const T & y) const {
-			return x % y;
-		}
-	};
+        template <class T>
+        struct modulus : public binary_function<T, T, T> {
+                T operator()(const T & x, const T & y) const {
+                        return x % y;
+                }
+        };
 
-	template <class T>
-	struct negate : public unary_function<T, T> {
-		T operator()(const T & x) const {
-			return -x;
-		}
-	};
+        template <class T>
+        struct negate : public unary_function<T, T> {
+                T operator()(const T & x) const {
+                        return -x;
+                }
+        };
 
-	//
-	// Comparisons
-	//
+        //
+        // Comparisons
+        //
 
-	template <class T>
-	struct equal_to : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const {
-			return x == y;
-		}
-	};
+        template <class T>
+        struct equal_to : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x == y;
+                }
+        };
 
-	template <class T>
-	struct not_equal_to : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const {
-			return x != y;
-		}
-	};
+        template <class T>
+        struct not_equal_to : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x != y;
+                }
+        };
 
-	template <class T>
-	struct greater : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const {
-			return x > y;
-		}
-	};
+        template <class T>
+        struct greater : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x > y;
+                }
+        };
 
-	template <class T>
-	struct less : public binary_function<T, T, bool> {
-		bool  operator()(const T & x, const T & y) const {
-			return x < y;
-		}
-	};
+        template <class T>
+        struct less : public binary_function<T, T, bool> {
+                bool  operator()(const T & x, const T & y) const {
+                        return x < y;
+                }
+        };
 
-	template <class T>
-	struct greater_equal : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const	{
-			return x >= y;
-		}
-	};
+        template <class T>
+        struct greater_equal : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x >= y;
+                }
+        };
 
-	template <class T>
-	struct less_equal : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const	{
-			return x <= y;
-		}
-	};
+        template <class T>
+        struct less_equal : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x <= y;
+                }
+        };
 
-	//
-	// Logical
-	//
+        //
+        // Logical
+        //
 
-	template <class T>
-	struct logical_and : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const {
-			return x && y;
-		}
-	};
+        template <class T>
+        struct logical_and : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x && y;
+                }
+        };
 
-	template <class T>
-	struct logical_or : public binary_function<T, T, bool> {
-		bool operator()(const T & x, const T & y) const {
-			return x || y;
-		}
-	};
+        template <class T>
+        struct logical_or : public binary_function<T, T, bool> {
+                bool operator()(const T & x, const T & y) const {
+                        return x || y;
+                }
+        };
 
-	template <class T>
-	struct logical_not : public unary_function<T, bool> {
-		bool operator()(const T & x) const {
-			return !x;
-		}
-	};
+        template <class T>
+        struct logical_not : public unary_function<T, bool> {
+                bool operator()(const T & x) const {
+                        return !x;
+                }
+        };
 
-	//
-	// Negators
-	//
+        //
+        // Negators
+        //
 
-	template <class P> class unary_negate :
-		public unary_function<typename P::argument_type, bool> {
-	protected:
-		P predicate_;
-	public:
-		explicit unary_negate(const P & x) : predicate_(x) { }
-		bool operator()(const typename P::argument_type & x) const {
-			return !predicate_(x);
-		}
-	};
+        template <class P> class unary_negate :
+                public unary_function<typename P::argument_type, bool> {
+        protected:
+                P predicate_;
+        public:
+                explicit unary_negate(const P & x) : predicate_(x) { }
+                bool operator()(const typename P::argument_type & x) const {
+                        return !predicate_(x);
+                }
+        };
 
-	template <class P> inline unary_negate<P> not1(const P & p) {
-		return unary_negate<P>(p);
-	}
+        template <class P> inline unary_negate<P> not1(const P & p) {
+                return unary_negate<P>(p);
+        }
 
-	template <class P> class binary_negate :
-		public binary_function<typename P::first_argument_type,
-				       typename P::second_argument_type,
-				       bool> {
-	protected:
-		P predicate_;
-	public:
-		explicit binary_negate(const P & x) : predicate_(x) { }
-		bool operator()(const typename P::first_argument_type &  x,
-				const typename P::second_argument_type & y)
-			const {
-			return !predicate_(x, y);
-		}
-	};
+        template <class P> class binary_negate :
+                public binary_function<typename P::first_argument_type,
+                                       typename P::second_argument_type,
+                                       bool> {
+        protected:
+                P predicate_;
+        public:
+                explicit binary_negate(const P & x) : predicate_(x) { }
+                bool operator()(const typename P::first_argument_type &  x,
+                                const typename P::second_argument_type & y)
+                        const {
+                        return !predicate_(x, y);
+                }
+        };
 
-	template <class P> inline binary_negate<P> not2(const P & p) {
-		return binary_negate<P>(p);
-	}
+        template <class P> inline binary_negate<P> not2(const P & p) {
+                return binary_negate<P>(p);
+        }
 }
 
 #endif // ELKLIB_LIBCXX_FUNCTIONAL

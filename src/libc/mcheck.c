@@ -25,15 +25,15 @@
 #include "libcompiler/cdefs.h"
 
 static void* (*old_malloc_hook)(size_t      size,
-				const void* caller)   = 0;
+                                const void* caller)   = 0;
 static void* (*old_realloc_hook)(void*  ptr,
-				 size_t size,
-				 const void* caller)  = 0;
+                                 size_t size,
+                                 const void* caller)  = 0;
 static void* (*old_memalign_hook)(size_t      alignment,
-				  size_t      size,
-				  const void* caller) = 0;
+                                  size_t      size,
+                                  const void* caller) = 0;
 static void  (*old_free_hook)(void*       ptr,
-			      const void* caller)     = 0;
+                              const void* caller)     = 0;
 static void  (*old_malloc_initialize_hook)(void)      = 0;
 static void  (*old_after_morecore_hook)(void)         = 0;
 
@@ -42,100 +42,100 @@ static void  (*old_after_morecore_hook)(void)         = 0;
 #define SET_HOOK(X)     __CONCAT3(__,X,_hook)   = __CONCAT3(mtrace_,X,_hook)
 
 static void* mtrace_malloc_hook(size_t      size,
-				const void* caller)
+                                const void* caller)
 {
-	void* result;
+        void* result;
 
-	RESTORE_HOOK(malloc);
-	result = malloc(size);
-	SAVE_HOOK(malloc);
-	printf("malloc(%u) called from %p returns %p",
-	       (unsigned int) size, caller, result);
-	SET_HOOK(malloc);
+        RESTORE_HOOK(malloc);
+        result = malloc(size);
+        SAVE_HOOK(malloc);
+        printf("malloc(%u) called from %p returns %p",
+               (unsigned int) size, caller, result);
+        SET_HOOK(malloc);
 
-	return result;
+        return result;
 }
 
 static void* mtrace_realloc_hook(void*       ptr,
-				 size_t      size,
-				 const void* caller)
+                                 size_t      size,
+                                 const void* caller)
 {
-	void* result;
+        void* result;
 
-	RESTORE_HOOK(realloc);
-	result = realloc(ptr, size);
-	SAVE_HOOK(realloc);
-	printf("realloc(%p,%u) called from %p returns %p",
-	       ptr, (unsigned int) size, caller, result);
+        RESTORE_HOOK(realloc);
+        result = realloc(ptr, size);
+        SAVE_HOOK(realloc);
+        printf("realloc(%p,%u) called from %p returns %p",
+               ptr, (unsigned int) size, caller, result);
 
-	SET_HOOK(realloc);
+        SET_HOOK(realloc);
 
-	return result;
+        return result;
 }
 
 static void* mtrace_memalign_hook(size_t      alignment,
-				  size_t      size,
-				  const void* caller)
+                                  size_t      size,
+                                  const void* caller)
 {
-	void* result;
+        void* result;
 
-	RESTORE_HOOK(memalign);
-	result = memalign(alignment, size);
-	SAVE_HOOK(memalign);
-	printf("memalign(%u,%u) called from %p returns %p",
-	       alignment, size, caller, result);
-	SET_HOOK(memalign);
+        RESTORE_HOOK(memalign);
+        result = memalign(alignment, size);
+        SAVE_HOOK(memalign);
+        printf("memalign(%u,%u) called from %p returns %p",
+               alignment, size, caller, result);
+        SET_HOOK(memalign);
 
-	return result;
+        return result;
 }
 
 static void mtrace_free_hook(void*       ptr,
-			     const void* caller)
+                             const void* caller)
 {
-	RESTORE_HOOK(free);
-	free(ptr);
-	SAVE_HOOK(free);
-	printf("free(%p) called from %p",
-	       ptr, caller);
-	SET_HOOK(free);
+        RESTORE_HOOK(free);
+        free(ptr);
+        SAVE_HOOK(free);
+        printf("free(%p) called from %p",
+               ptr, caller);
+        SET_HOOK(free);
 }
 
 static void mtrace_malloc_initialize_hook(void)
 {
-	panic("Unimplemented");
+        panic("Unimplemented");
 }
 
 static void mtrace_after_morecore_hook(void)
 {
-	panic("Unimplemented");
+        panic("Unimplemented");
 }
 
 void mtrace(void)
 {
-	/* Save old hooks */
-	old_malloc_hook	   = __malloc_hook;
-	old_realloc_hook           = __realloc_hook;
-	old_memalign_hook          = __memalign_hook;
-	old_free_hook              = __free_hook;
-	old_malloc_initialize_hook = __malloc_initialize_hook;
-	old_after_morecore_hook    = __after_morecore_hook;
+        /* Save old hooks */
+        old_malloc_hook            = __malloc_hook;
+        old_realloc_hook           = __realloc_hook;
+        old_memalign_hook          = __memalign_hook;
+        old_free_hook              = __free_hook;
+        old_malloc_initialize_hook = __malloc_initialize_hook;
+        old_after_morecore_hook    = __after_morecore_hook;
 
-	/* Install new hooks */
-	__malloc_hook            = mtrace_malloc_hook;
-	__realloc_hook           = mtrace_realloc_hook;
-	__memalign_hook          = mtrace_memalign_hook;
-	__free_hook              = mtrace_free_hook;
-	__malloc_initialize_hook = mtrace_malloc_initialize_hook;
-	__after_morecore_hook    = mtrace_after_morecore_hook;
+        /* Install new hooks */
+        __malloc_hook            = mtrace_malloc_hook;
+        __realloc_hook           = mtrace_realloc_hook;
+        __memalign_hook          = mtrace_memalign_hook;
+        __free_hook              = mtrace_free_hook;
+        __malloc_initialize_hook = mtrace_malloc_initialize_hook;
+        __after_morecore_hook    = mtrace_after_morecore_hook;
 }
 
 void muntrace(void)
 {
-	/* Restore old hooks */
-	__malloc_hook            = old_malloc_hook;
-	__realloc_hook           = old_realloc_hook;
-	__memalign_hook          = old_memalign_hook;
-	__free_hook              = old_free_hook;
-	__malloc_initialize_hook = old_malloc_initialize_hook;
-	__after_morecore_hook    = old_after_morecore_hook;
+        /* Restore old hooks */
+        __malloc_hook            = old_malloc_hook;
+        __realloc_hook           = old_realloc_hook;
+        __memalign_hook          = old_memalign_hook;
+        __free_hook              = old_free_hook;
+        __malloc_initialize_hook = old_malloc_initialize_hook;
+        __after_morecore_hook    = old_after_morecore_hook;
 }
