@@ -198,7 +198,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
 	        fi ; \
 	done
 
-maintainer-check-whitespaces: $(libelk_SRCS)
+maintainer-check-whitespaces: Makefile
 	$(WHITESPACE_DETECT) $(libelk_SRCS)
 
-maintainer-check-local: Makefile maintainer-check-parameters maintainer-check-whitespaces
+maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
