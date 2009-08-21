@@ -21,12 +21,13 @@ Makefile
 /config.log
 /config.status
 
+/elklib-config
+/elklib-config-i686
+
 /inc/elklib.h
 /src/config.h
 /src/config.h.in
 /src/stamp-h1
-/src/elklib-config
-/src/elklib-config-i686
 
 /tests/test-c++-iterator-1
 /tests/test-c++-algorithm-1
