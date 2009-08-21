@@ -25,39 +25,6 @@ AUTOMAKE_OPTIONS = subdir-objects
 EXTRA_DIST =
 
 ##
-## Place handy configuration tool somewhere in the system
-##
-EXTRA_DIST +=					\
-	elklib-config.in			\
-	elklib-config-arch.in
-
-bin_SCRIPTS = elklib-config elklib-config-@target_cpu@
-
-all-local: elklib-config elklib-config-@target_cpu@
-
-elklib-config: $(srcdir)/elklib-config.in Makefile
-	( rm -f $@ $@.tmp && \
-	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
-	   chmod +x $@.tmp && \
-	   chmod a-w $@.tmp && \
-	   mv -f $@.tmp $@ ) || { \
-		 rm -f $@ $@.tmp ; \
-		 exit 1 ; \
-	}
-
-elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
-	( rm -f $@ $@.tmp && \
-	   $(do_subst) < $(srcdir)/elklib-config-arch.in > $@.tmp && \
-	   chmod +x $@.tmp && \
-	   chmod a-w $@.tmp && \
-	   mv -f $@.tmp $@ ) || { \
-		 rm -f $@ $@.tmp ; \
-		 exit 1 ; \
-	}
-
-CLEANFILES = elklib-config elklib-config-@target_cpu@
-
-##
 ## Library sources
 ##
 lib_LIBRARIES =
@@ -185,7 +152,6 @@ libelk_SRCS =					\
 ## Maintainer related targets
 ##
 update-local: Makefile
-
 
 maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
 	for i in $(bin_PROGRAMS) $(bin_SCRIPTS) ; do \

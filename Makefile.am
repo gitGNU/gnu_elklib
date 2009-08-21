@@ -22,6 +22,8 @@ include $(top_srcdir)/Makefile.sub
 
 ACLOCAL_AMFLAGS = -I tools/autotools/m4
 
+EXTRA_DIST =
+
 SUBDIRS =					\
 	tools					\
 	inc					\
@@ -37,6 +39,39 @@ SUBDIRS =					\
 ##     per-`Makefile' basis.
 ##
 AUTOMAKE_OPTIONS = check-news
+
+##
+## Place handy configuration tool somewhere in the system
+##
+EXTRA_DIST +=					\
+	elklib-config.in			\
+	elklib-config-arch.in
+
+bin_SCRIPTS = elklib-config elklib-config-@target_cpu@
+
+all-local: elklib-config elklib-config-@target_cpu@
+
+elklib-config: $(srcdir)/elklib-config.in Makefile
+	( rm -f $@ $@.tmp && \
+	   $(do_subst) < $(srcdir)/elklib-config.in > $@.tmp && \
+	   chmod +x $@.tmp && \
+	   chmod a-w $@.tmp && \
+	   mv -f $@.tmp $@ ) || { \
+		 rm -f $@ $@.tmp ; \
+		 exit 1 ; \
+	}
+
+elklib-config-@target_cpu@: $(srcdir)/elklib-config-arch.in Makefile
+	( rm -f $@ $@.tmp && \
+	   $(do_subst) < $(srcdir)/elklib-config-arch.in > $@.tmp && \
+	   chmod +x $@.tmp && \
+	   chmod a-w $@.tmp && \
+	   mv -f $@.tmp $@ ) || { \
+		 rm -f $@ $@.tmp ; \
+		 exit 1 ; \
+	}
+
+CLEANFILES = elklib-config elklib-config-@target_cpu@
 
 ##
 ## help related target
@@ -57,7 +92,7 @@ doxygen: all
 ## NOTE:
 ##     Makefile.sub is automatically distributed by automake rules
 ##
-EXTRA_DIST =						\
+EXTRA_DIST +=						\
 	TODO NEWS 					\
 	BUGS README COPYING AUTHORS INSTALL THANKS	\
 	bootstrap					\
@@ -204,4 +239,18 @@ update-download:
 
 update-local: Makefile update-download
 
-maintainer-check-local: Makefile
+maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
+	for i in $(bin_PROGRAMS) $(bin_SCRIPTS) ; do \
+	        echo @ECHO_N@ "Checking standard parameters for $$i... " ; \
+	        if ( ./$$i -h 2>&1 > /dev/null ) ; then \
+	                echo "@ECHO_T@ok" ; \
+	        else \
+	                echo "@ECHO_T@error" ; \
+	                exit 1 ; \
+	        fi ; \
+	done
+
+maintainer-check-whitespaces: Makefile
+	$(WHITESPACE_DETECT) $(bin_SCRIPTS)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
