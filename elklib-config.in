@@ -25,7 +25,7 @@ debug="no"
 
 function debug {
     if test "$debug" == "yes" ; then
-	echo "$me: DEBUG: $1"
+        echo "$me: DEBUG: $1"
     fi
 }
 
@@ -63,22 +63,22 @@ missing_action="yes"
 echo_target_cpus="no"
 while test $# -gt 0 ; do
     case $1 in
-	-h|--help)
-	    usage
-	    exit 0
-	    ;;
-	--version)
-	    echo "@PACKAGE_VERSION@"
-	    exit 0
-	    ;;
-	--target-cpus)
-	    echo_target_cpus="yes"
-	    ;;
-	*)
-	    error "Unknown option \`$1'"
-	    hint
-	    exit 1
-	    ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --version)
+            echo "@PACKAGE_VERSION@"
+            exit 0
+            ;;
+        --target-cpus)
+            echo_target_cpus="yes"
+            ;;
+        *)
+            error "Unknown option \`$1'"
+            hint
+            exit 1
+            ;;
     esac
     shift
 done
@@ -86,7 +86,7 @@ done
 if test "$echo_target_cpus" == "yes" ; then
     missing_action="no"
     for i in `find @bindir@ -name "elklib-config-*"` ; do
-    	echo "$i" | @SED@ -e 's,@bindir@/elklib-config-,,' ;
+        echo "$i" | @SED@ -e 's,@bindir@/elklib-config-,,' ;
     done
 fi
 

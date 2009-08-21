@@ -25,7 +25,7 @@ debug="no"
 
 function debug {
     if test "$debug" == "yes" ; then
-	echo "$me: DEBUG: $1"
+        echo "$me: DEBUG: $1"
     fi
 }
 
@@ -73,37 +73,37 @@ echo_cxxcppflags="no"
 echo_ldflags="no"
 while test $# -gt 0 ; do
     case $1 in
-	-h|--help)
-	    usage
-	    exit 0
-	    ;;
-	--version)
-	    echo "@PACKAGE_VERSION@"
-	    exit 0
-	    ;;
-	--static-libs)
-	    echo_static_libs="yes"
-	    ;;
-	--cppflags)
-	    echo_cppflags="yes"
-	    ;;
-	--cflags)
-	    echo_cflags="yes"
-	    ;;
-	--cxxflags)
-	    echo_cxxflags="yes"
-	    ;;
-	--cxxcppflags)
-	    echo_cxxcppflags="yes"
-	    ;;
-	--ldflags)
-	    echo_ldflags="yes"
-	    ;;
-	*)
-	    error "Unknown option \`$1'"
-	    hint
-	    exit 1
-	    ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --version)
+            echo "@PACKAGE_VERSION@"
+            exit 0
+            ;;
+        --static-libs)
+            echo_static_libs="yes"
+            ;;
+        --cppflags)
+            echo_cppflags="yes"
+            ;;
+        --cflags)
+            echo_cflags="yes"
+            ;;
+        --cxxflags)
+            echo_cxxflags="yes"
+            ;;
+        --cxxcppflags)
+            echo_cxxcppflags="yes"
+            ;;
+        --ldflags)
+            echo_ldflags="yes"
+            ;;
+        *)
+            error "Unknown option \`$1'"
+            hint
+            exit 1
+            ;;
     esac
     shift
 done
