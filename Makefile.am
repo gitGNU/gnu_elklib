@@ -95,7 +95,7 @@ doxygen: all
 EXTRA_DIST +=						\
 	TODO NEWS 					\
 	BUGS README COPYING AUTHORS INSTALL THANKS	\
-	bootstrap					\
+	bootstrap .bootstrap				\
 	configure.ac.in					\
 	.todo
 
