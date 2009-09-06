@@ -125,7 +125,7 @@ check-local: check-includes
 ##
 update-local: Makefile
 
-maintainer-check-whitespaces: Makefile
+maintainer-check-whitespaces: Makefile $(nobase_incdest_HEADERS)
 	$(WHITESPACE_DETECT) $(nobase_incdest_HEADERS)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces

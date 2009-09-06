@@ -171,7 +171,7 @@ our_SRCS =					\
 	$(libcompiler_SRCS)			\
 	$(libbfd_SRCS)
 
-maintainer-check-whitespaces: Makefile
+maintainer-check-whitespaces: Makefile $(our_SRCS)
 	$(WHITESPACE_DETECT) $(our_SRCS)
 
 maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
