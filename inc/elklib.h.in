@@ -27,13 +27,13 @@
 extern "C" {
 #endif
 
-	/* C glue */
-	void elklib_c_init(void);
-	void elklib_c_fini(void);
+        /* C glue */
+        void elklib_c_init(void);
+        void elklib_c_fini(void);
 
-	/* C++ glue */
-	void elklib_cxx_init(void);
-	void elklib_cxx_fini(void);
+        /* C++ glue */
+        void elklib_cxx_init(void);
+        void elklib_cxx_fini(void);
 
 #if defined(__cplusplus)
 };
