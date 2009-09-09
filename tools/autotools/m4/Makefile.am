@@ -23,26 +23,26 @@ include $(top_srcdir)/Makefile.sub
 ##
 ## Maintainer related targets
 ##
-HOST = "http://git.savannah.gnu.org/cgit/autoconf-archive.git/plain/m4"
+URL_AA = "http://git.savannah.gnu.org/cgit/autoconf-archive.git/plain/m4"
+URL_BU = "http://github.com/salvestrini/build-utils/tree/master/m4"
 
-DOWNLOAD =					\
-	ax_split_version.m4			\
-	ax_gcc_install_dir.m4			\
-	ax_gcc_libgcc_eh.m4			\
-	ax_gcc_libsupcxx.m4			\
-	ax_gcc_option.m4			\
-	ax_c___attribute__.m4			\
-	ax_c_check_flag.m4			\
-	ax_cpp_check_flag.m4			\
-	ax_cxx_check_flag.m4			\
-	ax_cxxcpp_check_flag.m4			\
-	ax_path_missing.m4			\
-	ax_gcc_version.m4			\
-	ax_gxx_version.m4			\
-	ax_missing_prog.m4
+EXTERNAL =					\
+	$(URL_BU)/ax_split_version.m4		\
+	$(URL_AA)/ax_gcc_install_dir.m4		\
+	$(URL_AA)/ax_gcc_libgcc_eh.m4		\
+	$(URL_AA)/ax_gcc_libsupcxx.m4		\
+	$(URL_AA)/ax_gcc_option.m4		\
+	$(URL_AA)/ax_c___attribute__.m4		\
+	$(URL_AA)/ax_c_check_flag.m4		\
+	$(URL_AA)/ax_cpp_check_flag.m4		\
+	$(URL_AA)/ax_cxx_check_flag.m4		\
+	$(URL_AA)/ax_cxxcpp_check_flag.m4	\
+	$(URL_AA)/ax_path_missing.m4		\
+	$(URL_AA)/ax_gcc_version.m4		\
+	$(URL_AA)/ax_gxx_version.m4		\
+	$(URL_AA)/ax_missing_prog.m4
 
-MACROS =					\
-	$(DOWNLOAD)				\
+INTERNAL =					\
 	ax_gcc_lib.m4				\
 	ax_c___asm__.m4				\
 	ax_asm_uscore.m4			\
@@ -73,20 +73,21 @@ MACROS =					\
 	ax_cxx_dtor_after_atexit.m4		\
 	ax_cxx_bool.m4
 
+MACROS =					\
+	$(EXTERNAL)				\
+	$(INTERNAL)
+
 update-local: Makefile
 	rm -r -f fetch-dir && \
 	mkdir fetch-dir && \
-	for i in $(DOWNLOAD) ; do \
-		$(FETCH) $(HOST)/$$i fetch-dir/$$i || { \
-			rm -f fetch-dir/$$i ; \
-			exit 1 ; \
-		} \
-	done && \
-	for i in $(DOWNLOAD) ; do \
-		mv fetch-dir/$$i $$i && \
-		touch $$i || { \
-			exit 1 ; \
-		} \
+	for i in $(EXTERNAL) ; do \
+	        URL="$$i" ; \
+	        NAME=`echo "$$i" | $(SED) -e 's,^.*/,,'` ; \
+	        $(FETCH) $$URL?raw=true fetch-dir/$$NAME && \
+	        mv fetch-dir/$$NAME $$NAME || { \
+	                rm -f fetch-dir/$$NAME ; \
+	                exit 1 ; \
+	        } \
 	done && \
 	rm -r -f fetch-dir
 
