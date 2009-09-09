@@ -20,7 +20,7 @@
 
 include $(top_srcdir)/Makefile.sub
 
-ACLOCAL_AMFLAGS = -I tools/autotools/m4
+ACLOCAL_AMFLAGS = -I tools/autotools/m4 --install
 
 EXTRA_DIST =
 
@@ -92,10 +92,10 @@ doxygen: all
 ## NOTE:
 ##     Makefile.sub is automatically distributed by automake rules
 ##
-EXTRA_DIST +=						\
-	TODO NEWS 					\
-	BUGS README COPYING AUTHORS INSTALL THANKS	\
-	bootstrap .bootstrap				\
+EXTRA_DIST +=					\
+	TODO NEWS				\
+	README COPYING AUTHORS INSTALL THANKS	\
+	bootstrap .bootstrap			\
 	.todo
 
 ##
