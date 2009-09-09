@@ -26,6 +26,9 @@
             <comment>
                 Done
             </comment></entry>
+    <entry priority="veryhigh" start="1252443516">
+            Rearrange the build-related code (macros, makefiles, bootstrap, gnulib-use)
+        </entry>
     <entry priority="high" start="1226608726">
             Fix EOF and error indicator in streams (src/libs/c/stdio.c)
         </entry>
