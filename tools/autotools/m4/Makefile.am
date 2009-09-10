@@ -43,6 +43,7 @@ EXTERNAL =					\
 	$(URL_AA)/ax_missing_prog.m4
 
 INTERNAL =					\
+	gnulib-cache.m4				\
 	ax_gcc_lib.m4				\
 	ax_c___asm__.m4				\
 	ax_asm_uscore.m4			\
