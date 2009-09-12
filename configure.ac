@@ -55,14 +55,11 @@ AC_PROG_SED
 AC_PROG_GREP
 AC_PROG_RANLIB
 
-AX_PATH_MISSING([DOXYGEN],        [doxygen])
-AX_PATH_MISSING([SITETOOL],       [sitetool])
-AX_PATH_MISSING([PERL],           [perl])
-AX_PATH_MISSING([NM],	          [nm])
-AX_PATH_MISSING([CXXFILT],        [c++filt])
-AX_PATH_MISSING([WGET],           [wget])
-AX_PATH_MISSING([DNT],            [dnt])
-AX_PATH_MISSING([DEVTODO_TO_DNT], [devtodo-to-dnt])
+AX_PATH_MISSING([DOXYGEN],  [doxygen])
+AX_PATH_MISSING([SITETOOL], [sitetool])
+AX_PATH_MISSING([PERL],     [perl])
+AX_PATH_MISSING([WGET],     [wget])
+AX_PATH_MISSING([DNT],      [dnt])
 
 # Gather supported flags while checking programs and their features
 HOST_ASFLAGS=""
