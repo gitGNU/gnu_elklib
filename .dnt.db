@@ -1,66 +1,73 @@
-<?xml version="1.0"?>
-<root><entry priority="veryhigh" start="1233771421">
-        Release 0.1.0
-        <entry end="1235682731" priority="veryhigh" start="1235495497">
-            Fix the NEWS and TODOs site pages generation in site/in directory
-            <comment>
-                Done
-            </comment></entry>
-    <entry end="1233306197" priority="high" start="1226871208">
-            Rearrange the site in order to be multi-page
-            <comment>
-                Done
-            </comment></entry>
-    <entry end="1226608606" priority="medium" start="1226608292">
-            Fix the long-C++ names demangling (&gt; 1 numbers entries)
-            <comment>
-                Check again
-            </comment></entry>
-    <entry end="1226608582" priority="medium" start="1226608303">
-            Rearrange the BFD related code
-            <comment>
-                Check again
-            </comment></entry>
-    <entry end="1238532415" priority="verylow" start="1238244124">
-            Update all copyright dates
-            <comment>
-                Done
-            </comment></entry>
-    <entry priority="veryhigh" start="1252443516">
-            Rearrange the build-related code (macros, makefiles, bootstrap, gnulib-use)
-        </entry>
-    <entry priority="high" start="1226608726">
-            Fix EOF and error indicator in streams (src/libs/c/stdio.c)
-        </entry>
-    <entry priority="high" start="1226608821">
-            Fix all return values (and all the referencing functions) in src/libs/c/stdio.c
-        </entry>
-    </entry>
-    <entry priority="high" start="1233771424">
-        Release 0.2.0
-        <entry priority="medium" start="1226608247">
-            Import ax_prog_doxygen.m4 macro from autoconf-archive
-            <entry priority="medium" start="1226869826">
-                Add Doxygen related checks in configure.ac.in
-            </entry>
-    </entry>
-    <entry priority="medium" start="1226608274">
-            We should use AC_CHECK_TOOL instead of AC_PATH_PROG machineries that we have. This approach should handle cross-compilation cases
-            <entry priority="medium" start="1226869938">
-                Add all the needed tests in configure.ac.in in order to check for required GCC features (like __builtin_* for stdarg.h macros)
-            </entry>
-    </entry>
-    <entry priority="low" start="1227122754">
-            Rearrange the build process in order to use EXEEXT (if needed)
-        </entry>
-    </entry>
-    <entry priority="medium" start="1243950866">
-        Release 0.3.0
-    </entry>
-    <entry priority="low" start="1243950870">
-        Release 0.4.0
-        <entry priority="medium" start="1244669264">
-            Fix bootstrap in order to exit when a missing program is called
-        </entry>
-    </entry>
-    </root>
+<?xml version="1.0" ?>
+<root>
+	Default DB name
+	<entry priority="veryhigh" start="1233771421">
+		Release 0.1.0
+		<entry end="1235682731" priority="veryhigh" start="1235495497">
+			Fix the NEWS and TODOs site pages generation in site/in directory
+			<comment>
+				Done
+			</comment>
+		</entry>
+		<entry end="1233306197" priority="high" start="1226871208">
+			Rearrange the site in order to be multi-page
+			<comment>
+				Done
+			</comment>
+		</entry>
+		<entry end="1226608606" priority="medium" start="1226608292">
+			Fix the long-C++ names demangling (&gt; 1 numbers entries)
+			<comment>
+				Check again
+			</comment>
+		</entry>
+		<entry end="1226608582" priority="medium" start="1226608303">
+			Rearrange the BFD related code
+			<comment>
+				Check again
+			</comment>
+		</entry>
+		<entry end="1238532415" priority="verylow" start="1238244124">
+			Update all copyright dates
+			<comment>
+				Done
+			</comment>
+		</entry>
+		<entry priority="veryhigh" start="1252443516">
+			Rearrange the build-related code (macros, makefiles, bootstrap, gnulib-use)
+		</entry>
+		<entry priority="high" start="1226608726">
+			Fix EOF and error indicator in streams (src/libs/c/stdio.c)
+		</entry>
+		<entry priority="high" start="1226608821">
+			Fix all return values (and all the referencing functions) in src/libs/c/stdio.c
+		</entry>
+	</entry>
+	<entry priority="high" start="1233771424">
+		Release 0.2.0
+		<entry priority="medium" start="1226608247">
+			Import ax_prog_doxygen.m4 macro from autoconf-archive
+			<entry priority="medium" start="1226869826">
+				Add Doxygen related checks in configure.ac.in
+			</entry>
+		</entry>
+		<entry priority="medium" start="1226608274">
+			We should use AC_CHECK_TOOL instead of AC_PATH_PROG machineries that we have. This approach should handle cross-compilation cases
+			<entry priority="medium" start="1226869938">
+				Add all the needed tests in configure.ac.in in order to check for required GCC features (like __builtin_* for stdarg.h macros)
+			</entry>
+		</entry>
+		<entry priority="low" start="1227122754">
+			Rearrange the build process in order to use EXEEXT (if needed)
+		</entry>
+	</entry>
+	<entry priority="medium" start="1243950866">
+		Release 0.3.0
+	</entry>
+	<entry priority="low" start="1243950870">
+		Release 0.4.0
+		<entry priority="medium" start="1244669264">
+			Fix bootstrap in order to exit when a missing program is called
+		</entry>
+	</entry>
+</root>
