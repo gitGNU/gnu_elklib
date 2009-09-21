@@ -29,9 +29,9 @@ URL_BS = "http://github.com/salvestrini/build-utils/tree/master/m4/staging"
 
 EXTERNAL =					\
 	$(URL_BU)/ax_split_version.m4		\
-	$(URL_BS)/ax_gcc_install_dir.m4		\
-	$(URL_BS)/ax_gcc_libraries_dir.m4	\
-	$(URL_BS)/ax_gcc_libsupcxx.m4		\
+	$(URL_AA)/ax_gcc_install_dir.m4		\
+	$(URL_AA)/ax_gcc_libraries_dir.m4	\
+	$(URL_AA)/ax_gcc_libsupcxx.m4		\
 	$(URL_AA)/ax_gcc_libgcc_eh.m4		\
 	$(URL_AA)/ax_gcc_option.m4		\
 	$(URL_AA)/ax_c___attribute__.m4		\
