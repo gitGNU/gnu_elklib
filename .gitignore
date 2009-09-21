@@ -31,6 +31,8 @@ Makefile
 /src/config.h.in
 /src/stamp-h1
 
+/src/libterm/teken_state.h
+
 /tests/test-c++-iterator-1
 /tests/test-c++-algorithm-1
 /tests/test-c++-functional-1

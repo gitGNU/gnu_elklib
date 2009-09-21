@@ -83,11 +83,13 @@ libbfd_SRCS =					\
 lib_LIBRARIES +=				\
 	libelk-bfd-@target_cpu@.a
 
-libterm/teken_state.h: $(srcdir)/libterm/sequences
-	$(srcdir)/genstates $(srcdir)/sequences > libterm/teken_state.h || {
-		rm -f libterm/teken_state.h
-		exit 1 ;
+libterm/teken_state.h: Makefile $(srcdir)/libterm/gensequences $(srcdir)/libterm/sequences
+	$(AWK) -f $(srcdir)/libterm/gensequences \
+		$(srcdir)/libterm/sequences > libterm/teken_state.h || { \
+		rm -f libterm/teken_state.h ; \
+		exit 1 ; \
 	}
+BUILT_SOURCES        = libterm/teken_state.h
 MAINTAINERCLEANFILES = libterm/teken_state.h
 
 libterm_SRCS =					\
@@ -129,7 +131,7 @@ libelk_compiler_@target_cpu@_a_CXXFLAGS = $(COMMONCXXFLAGS)
 libelk_compiler_@target_cpu@_a_SOURCES  = $(libcompiler_SRCS)
 
 libelk_term_@target_cpu@_a_ASFLAGS      = $(COMMONASFLAGS)
-libelk_term_@target_cpu@_a_CPPFLAGS     = $(COMMONCPPFLAGS)
+libelk_term_@target_cpu@_a_CPPFLAGS     = $(COMMONCPPFLAGS) -I$(srcdir)/libterm -I$(builddir)/libterm
 libelk_term_@target_cpu@_a_CFLAGS       = $(COMMONCFLAGS)
 libelk_term_@target_cpu@_a_CXXFLAGS     = $(COMMONCXXFLAGS)
 libelk_term_@target_cpu@_a_SOURCES      = $(libterm_SRCS)
