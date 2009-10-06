@@ -458,13 +458,13 @@ public:
 
                 size_t temp = vector<Ch, A>::elements;
 
-                if (rlen > xlen) {              //Only if making larger
+                if (rlen > xlen) { // Only if making larger
                         resize(temp - xlen + rlen);
                 }
 
-                //Final length = vector<Ch, A>::elements - xlen + rlen
-                //Initial block is of size pos1
-                //Block 2 is of size len
+                // Final length = vector<Ch, A>::elements - xlen + rlen
+                // Initial block is of size pos1
+                // Block 2 is of size len
 
                 Tr::move(vector<Ch, A>::data + pos1 + rlen,
                          vector<Ch, A>::data + pos1 + xlen,
@@ -517,7 +517,7 @@ public:
         }
 
         void swap(basic_string<Ch,Tr,A>& s) {
-                //Data pointers
+                // Data pointers
 
                 vector<Ch, A>::swap(s);
         }
@@ -780,7 +780,7 @@ public:
 };
 
 
-//Functions
+// Functions
 
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::basic_string(const Ch* s, const A& al)
         : vector<Ch, A>(al)
@@ -809,7 +809,7 @@ basic_string(const basic_string & str, size_type pos, size_type n, const A& al)
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>&
 basic_string<Ch,Tr,A>::operator=(const basic_string<Ch,Tr,A> & str)
 {
-        if (&str == this) {     //Check if we are doing a=a
+        if (&str == this) { // Check if we are doing a=a
                 return *this;
         }
         vector<Ch, A>::clear();
@@ -849,7 +849,7 @@ basic_string<Ch, Tr, A> basic_string<Ch,Tr,A>::substr(size_type pos, size_type n
         return basic_string<Ch,Tr,A>(vector<Ch, A>::data + pos,rlen);
 }
 
-//typedef basic_string<char> string;
+//      typedef basic_string<char> string;
 
 template<class charT, class traits, class Allocator>
 basic_string<charT,traits,Allocator>

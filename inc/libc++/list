@@ -518,7 +518,7 @@ namespace ktl {
         void list<T, Allocator>::splice(iterator position, list<T,Allocator>& x)
         {
 
-                //Can't add non-existant elements
+                // Can't add non-existant elements
                 if (x.elements == 0) {
                         return;
                 }
@@ -527,7 +527,7 @@ namespace ktl {
                 x.elements = 0;
 
 
-                //Chaining to the begining
+                // Chaining to the begining
                 if (position == begin()) {
                         x.list_end->previous->next = list_start;
                         list_start->previous = x.list_end->previous;
@@ -540,14 +540,14 @@ namespace ktl {
                         return;
                 }
 
-                //Link everything we need
+                // Link everything we need
                 x.list_start->previous = position.link_struct()->previous;
                 position.link_struct()->previous->next = x.list_start;
 
                 position.link_struct()->previous = x.list_end->previous;
                 x.list_end->previous->next = position.link_struct();
 
-                //Clean up the other list
+                // Clean up the other list
 
                 x.list_start = x.list_end;
                 x.list_end->previous=0;
@@ -557,20 +557,20 @@ namespace ktl {
         template<class T, class Allocator>
         void list<T, Allocator>::splice(iterator position, list<T,Allocator>& x, iterator i)
         {
-                //Invalid conditions
+                // Invalid conditions
                 if ( x.elements == 0 || i == position || position.link_struct() == i.link_struct()->next) {
                         return;
                 }
 
 
-                //Do we need to adjust the begining pointer?
+                // Do we need to adjust the begining pointer?
                 if (i == x.begin()) {
                         x.list_start = x.list_start->next;
                         x.list_start->previous = 0;
                 }
 
 
-                //Insert at begining special case
+                // Insert at begining special case
                 if (position == begin()) {
 
                         i.link_struct()->previous->next = i.link_struct()->next;
@@ -709,7 +709,7 @@ namespace ktl {
                         source = temp;
                 }
 
-                //Fix up x;
+                // Fix up x;
                 x.list_start = x.list_end;
                 x.list_start->previous = 0;
         }
@@ -724,7 +724,7 @@ namespace ktl {
         {
                 typename list<T, Allocator>::iterator i, j, k;
 
-                //FIXME - bubble sort
+                // FIXME - bubble sort
 
                 if (elements == 0) {
                         return;
@@ -757,7 +757,7 @@ namespace ktl {
                 node * following;
                 node * temp;
 
-                //Need to move the list_end element to the begining
+                // Need to move the list_end element to the begining
 
                 temp = list_end;
                 list_end = temp->previous;
@@ -773,7 +773,7 @@ namespace ktl {
                 while (current != list_end) {
                         following = current->next;
 
-                        //Swap the values pointed to/at with the current node
+                        // Swap the values pointed to/at with the current node
                         temp = current->next;
                         current->next = current->previous;
                         current->previous = temp;
@@ -781,13 +781,13 @@ namespace ktl {
                         current = following;
                 }
 
-                //Swap pointers on the end node
+                // Swap pointers on the end node
                 temp = list_end->next;
                 list_end->next = list_end->previous;
                 list_end->previous = temp;
 
 
-                //Swap the fixed pointers
+                // Swap the fixed pointers
                 temp = list_start;
                 list_start = list_end;
                 list_end = temp;

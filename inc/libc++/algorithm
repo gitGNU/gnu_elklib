@@ -856,7 +856,7 @@ namespace ktl {
                          BidirectionalIterator last,
                          Predicate             pred)
         {
-                //first now points to the first non-desired element
+                // first now points to the first non-desired element
                 while (first != last && pred(*first)) {
                         ++first;
                 }
@@ -865,23 +865,23 @@ namespace ktl {
                 BidirectionalIterator tempe = first;
 
                 while (tempe != last) {
-                        //Find the next desired element
+                        // Find the next desired element
                         while (!pred(*tempe)) {
                                 ++tempe;
 
-                                //See if we should exit
+                                // See if we should exit
                                 if (tempe == last) {
                                         return first;
                                 }
                         }
 
-                        //Rotate the element back to the begining
+                        // Rotate the element back to the begining
                         tempb = tempe;
                         while (tempb != first) {
                                 iter_swap(tempb, tempb-1 );
                                 --tempb;
                         }
-                        //First now has a desired element
+                        // First now has a desired element
                         ++first;
                 }
 
@@ -911,7 +911,7 @@ namespace ktl {
         template<class RandomAccessIterator, class Compare>
         void stable_sort(RandomAccessIterator first, RandomAccessIterator last, Compare comp)
         {
-                //FIXME - bubble sort
+                // FIXME - bubble sort
                 RandomAccessIterator temp;
                 --last;
                 while (last - first > 0) {
@@ -936,7 +936,7 @@ namespace ktl {
         void partial_sort(RandomAccessIterator first, RandomAccessIterator middle,
                           RandomAccessIterator last, Compare comp)
         {
-                //Fixme - partial bubble sort
+                // Fixme - partial bubble sort
                 RandomAccessIterator temp;
                 --last;
                 while (first < middle) {
@@ -1017,22 +1017,22 @@ namespace ktl {
                 if (first == last) {
                         return last;
                 }
-                //If below or equal to the first element
+                // If below or equal to the first element
                 if (comp(*first, value) == false) {
                         return first;
                 }
                 ForwardIterator middle;
 
-                //If greater than the top element
+                // If greater than the top element
                 middle = first;
                 advance(middle, distance(first, last) - 1);
                 if (comp(*middle, value)) {
                         return last;
                 }
 
-                //Now begin the actual search for the begining
+                // Now begin the actual search for the begining
                 while (distance(first, last) > 1) {
-                        //Find middle
+                        // Find middle
                         middle = first;
                         advance(middle, (distance(first, last)/2));
                         if (!comp(*middle, value)) {
@@ -1064,23 +1064,23 @@ namespace ktl {
                 if (first == last) {
                         return last;
                 }
-                //If below the first element
+                // If below the first element
                 if (comp(value, *first) == true) {
                         return first;
                 }
 
                 ForwardIterator middle;
 
-                //If greater than the top element
+                // If greater than the top element
                 middle = first;
                 advance(middle, distance(first, last) - 1);
                 if (comp(*middle, value)) {
                         return last;
                 }
 
-                //Now begin the actual search for the end
+                // Now begin the actual search for the end
                 while (distance(first, last) > 1) {
-                        //Find middle
+                        // Find middle
                         middle = first;
                         advance(middle, (distance(first, last)/2));
                         if (comp(value, *middle)) {
@@ -1111,7 +1111,7 @@ namespace ktl {
         {
                 pair<ForwardIterator, ForwardIterator> retval;
                 retval.first = lower_bound(first, last, value, comp);
-                //Reuse retval.first in order to (possibly) save a few comparisons
+                // Reuse retval.first in order to (possibly) save a few comparisons
                 retval.second = upper_bound(retval.first, last, value, comp);
                 return retval;
 
@@ -1136,7 +1136,7 @@ namespace ktl {
                 ForwardIterator middle;
 
                 while (distance(first, last) > 1) {
-                        //Set middle between first and last
+                        // Set middle between first and last
                         middle = first;
                         advance(middle, distance(first, last)/2 );
 
@@ -1172,7 +1172,7 @@ namespace ktl {
               InputIterator2 first2, InputIterator2 last2, OutputIterator result, Compare comp)
         {
                 while (first1 != last1 && first2 != last2) {
-                        //If in this order so first1 elements which are equal come first
+                        // If in this order so first1 elements which are equal come first
                         if (comp(*first2, *first1)) {
                                 *result = *first2;
                                 ++first2;
@@ -1182,7 +1182,7 @@ namespace ktl {
                         }
                         ++result;
                 }
-                //Clean up remaining elements
+                // Clean up remaining elements
                 while (first1 != last1) {
                         *result = *first1;
                         ++first1;
@@ -1206,7 +1206,7 @@ namespace ktl {
         void inplace_merge(BidirectionalIterator first,
                            BidirectionalIterator middle, BidirectionalIterator last, Compare comp)
         {
-                //FIXME - using a bubble exchange method
+                // FIXME - using a bubble exchange method
                 while (first != middle && middle !=last) {
                         if (comp(*middle, *first)) {
                                 BidirectionalIterator temp(middle);
@@ -1234,19 +1234,21 @@ namespace ktl {
                       InputIterator2 first2, InputIterator2 last2, Compare comp)
         {
                 while (first2 != last2) {
-                        //Advance the large set until no longer smaller than the element we are looking for
+                        // Advance the large set until no longer smaller
+                        // than the element we are looking for
                         while (comp(*first1, *first2)) {
                                 ++first1;
-                                //If we are at the end of the list, we don't have the desired element
+                                // If we are at the end of the list, we don't have
+                                // the desired element
                                 if (first1 == last1) {
                                         return false;
                                 }
                         }
-                        //If we are past the element we want, it isn't here
+                        // If we are past the element we want, it isn't here
                         if (comp(*first2, *first1)) {
                                 return false;
                         }
-                        ++first2;       //Move to next element
+                        ++first2; // Move to next element
                 }
                 return true;
         }
@@ -1267,7 +1269,7 @@ namespace ktl {
                         if (comp(*first2, *first1)) {
                                 *result = *first2;
 
-                                //Elliminate duplicates
+                                // Eliminate duplicates
                                 InputIterator2 temp = first2;
                                 while (first1 != last1 && !comp( *temp, *first1)) {
                                         ++first1;
@@ -1277,7 +1279,7 @@ namespace ktl {
                                 }
                         } else {
                                 *result = *first1;
-                                //Elliminate duplicates
+                                // Eliminate duplicates
                                 InputIterator1 temp = first1;
                                 while (first1 != last1 && !comp( *temp, *first1)) {
                                         ++first1;
@@ -1289,7 +1291,7 @@ namespace ktl {
                         ++result;
                 }
 
-                //Clean up remaining elements
+                // Clean up remaining elements
                 while (first1 != last1) {
                         *result = *first1;
                         ++result;
@@ -1354,21 +1356,21 @@ namespace ktl {
                                 *result = *first1;
                                 ++result;
 
-                                //Elliminate duplicates
+                                // Eliminate duplicates
                                 InputIterator1 temp = first1;
                                 while (first1 != last1 && !comp( *temp, *first1)) {
                                         ++first1;
                                 }
                         }else if (comp(*first2, *first1)) {
 
-                                //Elliminate duplicates
+                                // Eliminate duplicates
                                 InputIterator2 temp = first2;
                                 while (first2 != last2 && !comp( *temp, *first2)) {
                                         ++first2;
                                 }
 
-                        } else {        //They are identical - skip
-                                //Elliminate duplicates
+                        } else {        // They are identical - skip
+                                // Eliminate duplicates
                                 InputIterator1 temp = first1;
                                 while (first1 != last1 && !comp( *temp, *first1)) {
                                         ++first1;
@@ -1379,7 +1381,7 @@ namespace ktl {
                         }
                 }
 
-                //Clean up remaining elements
+                // Clean up remaining elements
                 while (first1 != last1) {
                         *result = *first1;
                         ++result;
