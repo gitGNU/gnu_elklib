@@ -40,6 +40,15 @@ Makefile
 /tests/test-c++-list-1
 /tests/test-c++-vector-1
 /tests/test-c++-clibrary-1
+/tests/test-c++-bitset-1
+/tests/test-c++-deque-1
+/tests/test-c++-exception-1
+/tests/test-c++-map-1
+/tests/test-c++-memory-1
+/tests/test-c++-queue-1
+/tests/test-c++-set-1
+/tests/test-c++-stack-1
+
 /tests/test-term-1
 
 /tools/maint/fetch
@@ -60,6 +69,7 @@ Makefile
 /docs/info/elklib.info
 /docs/doxygen
 /docs/Doxyfile
+/docs/Doxyfile.bak
 
 /site/in/.sitetool
 /site/in/site.stamp
