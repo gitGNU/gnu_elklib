@@ -21,24 +21,42 @@
 include $(top_srcdir)/Makefile.sub
 
 TESTS =						\
+	test-c++-stack-1			\
+	test-c++-map-1				\
+	test-c++-set-1				\
+	test-c++-bitset-1			\
+	test-c++-deque-1			\
+	test-c++-queue-1			\
+	test-c++-exception-1			\
 	test-c++-iterator-1			\
 	test-c++-algorithm-1			\
 	test-c++-functional-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
 	test-c++-vector-1			\
+	test-c++-memory-1			\
 	test-c++-clibrary-1
+
 #TESTS +=					\
 #	test-term-1
 
 check_PROGRAMS =				\
+	test-c++-stack-1			\
+	test-c++-map-1				\
+	test-c++-set-1				\
+	test-c++-bitset-1			\
+	test-c++-deque-1			\
+	test-c++-queue-1			\
+	test-c++-exception-1			\
 	test-c++-iterator-1			\
 	test-c++-algorithm-1			\
 	test-c++-functional-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
 	test-c++-vector-1			\
+	test-c++-memory-1			\
 	test-c++-clibrary-1
+
 #check_PROGRAMS +=				\
 #	test-term-1
 
@@ -93,6 +111,62 @@ test_c___clibrary_1_CFLAGS        = $(TARGET_CFLAGS)
 test_c___clibrary_1_CXXFLAGS      = $(TARGET_CXXFLAGS)
 test_c___clibrary_1_CPPFLAGS      = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
 test_c___clibrary_1_CXXCPPFLAGS   = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___bitset_1_SOURCES         = test-c++-bitset-1.cxx
+test_c___bitset_1_LDADD           = $(TARGET_LDFLAGS)
+test_c___bitset_1_CFLAGS          = $(TARGET_CFLAGS)
+test_c___bitset_1_CXXFLAGS        = $(TARGET_CXXFLAGS)
+test_c___bitset_1_CPPFLAGS        = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___bitset_1_CXXCPPFLAGS     = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___deque_1_SOURCES          = test-c++-deque-1.cxx
+test_c___deque_1_LDADD            = $(TARGET_LDFLAGS)
+test_c___deque_1_CFLAGS           = $(TARGET_CFLAGS)
+test_c___deque_1_CXXFLAGS         = $(TARGET_CXXFLAGS)
+test_c___deque_1_CPPFLAGS         = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___deque_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___exception_1_SOURCES      = test-c++-exception-1.cxx
+test_c___exception_1_LDADD        = $(TARGET_LDFLAGS)
+test_c___exception_1_CFLAGS       = $(TARGET_CFLAGS)
+test_c___exception_1_CXXFLAGS     = $(TARGET_CXXFLAGS)
+test_c___exception_1_CPPFLAGS     = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___exception_1_CXXCPPFLAGS  = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___map_1_SOURCES            = test-c++-map-1.cxx
+test_c___map_1_LDADD              = $(TARGET_LDFLAGS)
+test_c___map_1_CFLAGS             = $(TARGET_CFLAGS)
+test_c___map_1_CXXFLAGS           = $(TARGET_CXXFLAGS)
+test_c___map_1_CPPFLAGS           = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___map_1_CXXCPPFLAGS        = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___memory_1_SOURCES         = test-c++-memory-1.cxx
+test_c___memory_1_LDADD           = $(TARGET_LDFLAGS)
+test_c___memory_1_CFLAGS          = $(TARGET_CFLAGS)
+test_c___memory_1_CXXFLAGS        = $(TARGET_CXXFLAGS)
+test_c___memory_1_CPPFLAGS        = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___memory_1_CXXCPPFLAGS     = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___queue_1_SOURCES          = test-c++-queue-1.cxx
+test_c___queue_1_LDADD            = $(TARGET_LDFLAGS)
+test_c___queue_1_CFLAGS           = $(TARGET_CFLAGS)
+test_c___queue_1_CXXFLAGS         = $(TARGET_CXXFLAGS)
+test_c___queue_1_CPPFLAGS         = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___queue_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___set_1_SOURCES            = test-c++-set-1.cxx
+test_c___set_1_LDADD              = $(TARGET_LDFLAGS)
+test_c___set_1_CFLAGS             = $(TARGET_CFLAGS)
+test_c___set_1_CXXFLAGS           = $(TARGET_CXXFLAGS)
+test_c___set_1_CPPFLAGS           = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___set_1_CXXCPPFLAGS        = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___stack_1_SOURCES          = test-c++-stack-1.cxx
+test_c___stack_1_LDADD            = $(TARGET_LDFLAGS)
+test_c___stack_1_CFLAGS           = $(TARGET_CFLAGS)
+test_c___stack_1_CXXFLAGS         = $(TARGET_CXXFLAGS)
+test_c___stack_1_CPPFLAGS         = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___stack_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 #test_term_1_SOURCES               =			\
 #	$(top_srcdir)/src/libterm/teken_demo.c		\
