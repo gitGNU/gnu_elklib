@@ -22,7 +22,7 @@
 
 AC_INIT([ELKlib],
         m4_esyscmd([tools/maint/git-version-gen .tarball-version]),
-        [salvestrini@gmail.com],
+        [elklib-generic@nongnu.org],
         [elklib],
         [http://savannah.nongnu.org/projects/elklib])
 
