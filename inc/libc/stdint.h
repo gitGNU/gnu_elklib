@@ -30,17 +30,18 @@ typedef short int          int16_t;
 typedef unsigned short     uint16_t;
 typedef int                int32_t;
 typedef unsigned int       uint32_t;
-typedef long long          int64_t;
-typedef unsigned long long uint64_t;
-
-typedef uint_t             size_t;
 
 #if __WORDSIZE == 64
-#define SIZE_MAX (18446744073709551615UL)
+typedef long int           int64_t;
+typedef unsigned long int  uint64_t;
 #else
-#define SIZE_MAX (4294967295U)
+typedef long long          int64_t;
+typedef unsigned long long uint64_t;
 #endif
 
+typedef uint_t             size_t;
 typedef int_t              ssize_t;
+
+#define SIZE_MAX           ((size_t) -1)
 
 #endif /* ELKLIB_LIBC_STDINT_H */
