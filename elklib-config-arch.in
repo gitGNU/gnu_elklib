@@ -47,7 +47,6 @@ OPTIONS:
     [--static-libs]
     [--cppflags]
     [--cflags]
-    [--cxxcppflags]
     [--cxxflags]
     [--ldflags]
 
@@ -69,7 +68,6 @@ echo_static_libs="no"
 echo_cppflags="no"
 echo_cflags="no"
 echo_cxxflags="no"
-echo_cxxcppflags="no"
 echo_ldflags="no"
 while test $# -gt 0 ; do
     case $1 in
@@ -92,9 +90,6 @@ while test $# -gt 0 ; do
             ;;
         --cxxflags)
             echo_cxxflags="yes"
-            ;;
-        --cxxcppflags)
-            echo_cxxcppflags="yes"
             ;;
         --ldflags)
             echo_ldflags="yes"
@@ -129,11 +124,6 @@ fi
 if test "$echo_cflags" == "yes" ; then
     missing_action="no"
     echo "-I@pkgvincludedir@ @TARGET_CFLAGS@"
-fi
-
-if test "$echo_cxxcppflags" == "yes" ; then
-    missing_action="no"
-    echo "-I@pkgvincludedir@ @TARGET_CXXCPPFLAGS@"
 fi
 
 if test "$echo_cxxflags" == "yes" ; then
