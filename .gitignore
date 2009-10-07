@@ -71,7 +71,9 @@ Makefile
 /docs/Doxyfile
 /docs/Doxyfile.bak
 
+/site/out/*
 /site/in/.sitetool
+/site/in/site.as
 /site/in/site.stamp
 /site/in/todos.sxml
 /site/in/todos.dump
@@ -79,4 +81,3 @@ Makefile
 /site/in/news.dump
 /site/in/Doxyfile
 /site/in/doxygen
-/site/out/*
