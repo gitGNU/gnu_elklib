@@ -14,49 +14,12 @@
      "C++ Symbols demangling"))
 
 (h3 "Ports")
-(p "The only available port is for the x86 architecture")
+(p "The only available port at the moment is for the x86 architecture.")
 
 (h3 "Testimonials")
 (p "ELKlib is used in the "
    (a (@ (href "http://www.nongnu.org/hybrid")) "Hybrid")
    " kernel.")
-
-(h2 "USAGE")
-
-(h3 "Use")
-(p "To easily detect the presence of elklib in a host system, the following "
-   "scripts come handy:")
-
-(h5 "elklib-config")
-(p "The script should be used to list the available ports "
-   "installed in the host machine")
-(pre (@ class "terminal")
-"
-Usage: elklib-config [OPTIONS]
-
-OPTIONS:
-    [-h|--help]
-    [--version]
-    [--target-cpus]
-")
-
-(h5 "elklib-config-<target-cpu>")
-(p "The script should be used to query a port for compilation or linking "
-   "related flags")
-(pre (@ class "terminal")
-"
-Usage: elklib-config-<target-cpu> [OPTIONS]
-
-OPTIONS:
-    [-h|--help]
-    [--version]
-    [--static-libs]
-    [--cppflags]
-    [--cflags]
-    [--cxxcppflags]
-    [--cxxflags]
-    [--ldflags]
-")
 
 (h2 "COPYING")
 (p "The project is licensed under the "
@@ -64,10 +27,10 @@ OPTIONS:
       "GNU General Public License, version 2"))
 
 (h2 "MAINTAINERS")
-(p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
+(p "Francesco Salvestrini")
 
 (h2 "AUTHORS")
-(p "Francesco Salvestrini <salvestrini AT gmail DOT com>")
+(p "Francesco Salvestrini")
 
 (h2 "MAILING LISTS")
 (p "The project has a single moderated mailing list, with an archive. "
@@ -79,8 +42,7 @@ OPTIONS:
 
 (h2 "REPORT A BUG")
 (p "If you think you have found a bug then please send as complete a report "
-   "as possible to "
-   "<elklib-generic AT nongnu DOT org>. "
+   "as possible to <" ,PACKAGE_BUGREPORT ">. "
    "An easy way to collect all the required information, such as platform and "
    "compiler, is to include in your report the config.log file available at "
    "the end of the configuration procedure.")
