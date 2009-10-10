@@ -76,18 +76,28 @@ TARGET_CXXFLAGS=""
 TARGET_LDFLAGS=""
 TARGET_LIBADD=""
 
+#
 # Parameters
-AC_ARG_ENABLE([cxx_support],
-  AS_HELP_STRING([--disable-c++-support],
-                 [disable C++ support]),[
-  enable_cxx_support=no
-],[
-  enable_cxx_support=yes
-])
-AS_IF([test x"$enable_cxx_support" = x"no"],[
-  AC_MSG_NOTICE([C++ support disabled])
-],[
+#
+
+# C++ Support
+AC_ARG_ENABLE([cxx],
+  AS_HELP_STRING([--disable-cxx],[disable C++ support]),[],[])
+AM_CONDITIONAL([WANT_CXX_SUPPORT],[ test "x$enable_cxx" != "xno"])
+AM_COND_IF([WANT_CXX_SUPPORT],[
   AC_MSG_NOTICE([C++ support enabled])
+],[
+  AC_MSG_NOTICE([C++ support disabled])
+])
+
+# C++x0 Support
+AC_ARG_ENABLE([cxxx0],
+  AS_HELP_STRING([--disable-cxxx0],[disable C++x0 support]),[],[])
+AM_CONDITIONAL([WANT_CXXX0_SUPPORT],[ test "x$enable_cxxx0" != "xno"])
+AM_COND_IF([WANT_CXXX0_SUPPORT],[
+  AC_MSG_NOTICE([C++x0 support enabled])
+],[
+  AC_MSG_NOTICE([C++x0 support disabled])
 ])
 
 # Assembler

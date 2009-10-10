@@ -48,12 +48,24 @@ libc_SRCS =					\
 lib_LIBRARIES +=				\
 	libelk-c-@target_cpu@.a
 
-libcxx_SRCS =					\
+libcxx_SRCS =
+if WANT_CXX_SUPPORT
+libcxx_SRCS +=					\
 	libc++/glue.cxx				\
 	libc++/new.cxx				\
 	libc++/exception.cxx
 lib_LIBRARIES +=				\
 	libelk-cxx-@target_cpu@.a
+endif
+
+libcxxx0_SRCS =
+if WANT_CXXX0_SUPPORT
+libcxxx0_SRCS +=				\
+	libc++x0/thread.cxx			\
+	libc++x0/mutex.cxx
+lib_LIBRARIES +=				\
+	libelk-cxxx0-@target_cpu@.a
+endif
 
 libm_SRCS =					\
 	libm/math.c
@@ -118,6 +130,12 @@ libelk_cxx_@target_cpu@_a_CFLAGS        = $(COMMONCFLAGS)
 libelk_cxx_@target_cpu@_a_CXXFLAGS      = $(COMMONCXXFLAGS)
 libelk_cxx_@target_cpu@_a_SOURCES       = $(libcxx_SRCS)
 
+libelk_cxxx0_@target_cpu@_a_ASFLAGS     = $(COMMONASFLAGS)
+libelk_cxxx0_@target_cpu@_a_CPPFLAGS    = $(COMMONCPPFLAGS)
+libelk_cxxx0_@target_cpu@_a_CFLAGS      = $(COMMONCFLAGS)
+libelk_cxxx0_@target_cpu@_a_CXXFLAGS    = $(COMMONCXXFLAGS)
+libelk_cxxx0_@target_cpu@_a_SOURCES     = $(libcxxx0_SRCS)
+
 libelk_m_@target_cpu@_a_ASFLAGS         = $(COMMONASFLAGS)
 libelk_m_@target_cpu@_a_CPPFLAGS        = $(COMMONCPPFLAGS)
 libelk_m_@target_cpu@_a_CFLAGS          = $(COMMONCFLAGS)
@@ -145,6 +163,7 @@ libelk_bfd_@target_cpu@_a_SOURCES       = $(libbfd_SRCS)
 libelk_SRCS =					\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
+	$(libcxxx0_SRCS)			\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)			\
 	$(libterm_SRCS)				\
@@ -169,6 +188,7 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
 our_SRCS =					\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
+	$(libcxxx0_SRCS)			\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)			\
 	$(libbfd_SRCS)
