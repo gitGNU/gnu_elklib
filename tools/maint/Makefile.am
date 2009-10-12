@@ -26,9 +26,11 @@ EXTRA_DIST =					\
 	announce-gen
 
 scripts =					\
-	git-version-gen				\
-	gitlog-to-changelog			\
-	announce-gen				\
+	fetch					\
+	whitespace-detect			\
+	gitlog-to-committers			\
+	gittag-to-date				\
+	guards-check				\
 	$(EXTRA_DIST)
 
 ##
@@ -36,11 +38,12 @@ scripts =					\
 ##
 URL_BU = "http://github.com/salvestrini/build-utils/tree/master/maint"
 
-EXTERNAL =                                      \
-        $(URL_BU)/fetch.in                      \
-        $(URL_BU)/whitespace-detect.in          \
-        $(URL_BU)/gitlog-to-committers.in       \
-        $(URL_BU)/gittag-to-date.in
+EXTERNAL =					\
+        $(URL_BU)/fetch.in			\
+        $(URL_BU)/whitespace-detect.in		\
+        $(URL_BU)/gitlog-to-committers.in	\
+        $(URL_BU)/gittag-to-date.in		\
+        $(URL_BU)/guards-check.in
 
 update-local: Makefile
 	rm -r -f fetch-dir && \
