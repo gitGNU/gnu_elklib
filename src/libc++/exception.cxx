@@ -23,7 +23,7 @@
 #include "libc++/exception"
 #include "libc++/bits/funct_exception"
 
-using namespace ktl;
+using namespace std;
 
 terminate_handler  __terminate_handler  = 0;
 unexpected_handler __unexpected_handler = 0;
@@ -76,7 +76,7 @@ void __throw_bad_alloc() {
         panic("Bad alloc");
 }
 
-void ktl::__throw_out_of_range(const char * message)
+void std::__throw_out_of_range(const char * message)
 {
         if (!message) {
                 message = "Out of range";
@@ -84,7 +84,7 @@ void ktl::__throw_out_of_range(const char * message)
         panic(message);
 }
 
-void ktl::__throw_overflow_error(const char * message)
+void std::__throw_overflow_error(const char * message)
 {
         if (!message) {
                 message = "Overflow";
@@ -92,7 +92,7 @@ void ktl::__throw_overflow_error(const char * message)
         panic(message);
 }
 
-void ktl::__throw_length_error(const char * message)
+void std::__throw_length_error(const char * message)
 {
         if (!message) {
                 message = "Length error";
@@ -100,7 +100,7 @@ void ktl::__throw_length_error(const char * message)
         panic(message);
 }
 
-void ktl::__throw_invalid_argument(const char * message)
+void std::__throw_invalid_argument(const char * message)
 {
         if (!message) {
                 message = "Invalid argument";
