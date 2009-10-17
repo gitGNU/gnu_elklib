@@ -9,6 +9,7 @@
 #define ELKLIB_LIBC_FLOAT_H
 
 #include "elklib.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 
