@@ -21,11 +21,11 @@
 
 int main(int argc, char * argv[])
 {
-	std::vector<int>           t;
-	std::vector<int>::iterator i;
-	for (i = t.begin(); i != t.end(); i++) {
-		// Nothing
-	}
+        std::vector<int>           t;
+        std::vector<int>::iterator i;
+        for (i = t.begin(); i != t.end(); i++) {
+                // Nothing
+        }
 
-	return 0;
+        return 0;
 }

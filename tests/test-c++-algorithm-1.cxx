@@ -26,5 +26,5 @@ int main(int argc, char * argv[])
 
         std::map<int,int>::iterator i = find(x.begin(), x.end(), 3);
 
-	return 0;
+        return 0;
 }

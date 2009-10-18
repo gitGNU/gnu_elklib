@@ -69,5 +69,5 @@ int main(int argc, char * argv[])
                 tmp = l3(2);
         }
 
-	return 0;
+        return 0;
 }

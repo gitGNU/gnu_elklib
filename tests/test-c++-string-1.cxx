@@ -21,7 +21,7 @@
 
 int main(int argc, char * argv[])
 {
-	std::string s;
+        std::string s;
 
-	return 0;
+        return 0;
 }

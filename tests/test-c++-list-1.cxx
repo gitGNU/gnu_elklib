@@ -21,11 +21,11 @@
 
 int main(int argc, char * argv[])
 {
-	std::list<int>           t;
-	std::list<int>::iterator i;
-	for (i = t.begin(); i != t.end(); i++) {
-		// Nothing
-	}
+        std::list<int>           t;
+        std::list<int>::iterator i;
+        for (i = t.begin(); i != t.end(); i++) {
+                // Nothing
+        }
 
-	return 0;
+        return 0;
 }
