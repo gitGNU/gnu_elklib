@@ -21,6 +21,9 @@
 
 #include "elklib.h"
 #include "libc/stdint.h"
+#include "libcompiler/cdefs.h"
+
+__BEGIN_DECLS
 
 /*
  * NOTE:
@@ -39,5 +42,7 @@ typedef long int     ptrdiff_t; /* XXX FIXME: This typedef needs an update */
 typedef int          intptr_t;  /* XXX FIXME: Find a proper place ... */
 typedef unsigned int uintptr_t; /* XXX FIXME: Find a proper place ... */
 typedef size_t	     uoff_t;    /* XXX FIXME: Find a proper place ... */
+
+__END_DECLS
 
 #endif /* ELKLIB_LIBC_STDDEF_H */

@@ -20,6 +20,7 @@
 #define ELKLIB_LIBC_ENDIAN_H
 
 #include "elklib.h"
+#include "libcompiler/cdefs.h"
 
 __BEGIN_DECLS
 

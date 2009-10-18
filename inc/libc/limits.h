@@ -24,6 +24,8 @@
 #include "libc/bits/wordsize.h"
 #include "libcompiler/cdefs.h"
 
+__BEGIN_DECLS
+
 /*
  * Type  Minsize Minval (signed)  Maxval (signed)  Maxval (unsigned)
  * char  8       -127             127              255
@@ -79,5 +81,7 @@
 #define ULLONG_MAX  18446744073709551615ULL
 
 #define PATH_MAX    4096
+
+__END_DECLS
 
 #endif /* ELKLIB_LIBC_LIMITS_H */

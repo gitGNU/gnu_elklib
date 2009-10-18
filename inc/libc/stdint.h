@@ -21,6 +21,9 @@
 
 #include "elklib.h"
 #include "libc/bits/wordsize.h"
+#include "libcompiler/cdefs.h"
+
+__BEGIN_DECLS
 
 typedef int                int_t;
 typedef unsigned int       uint_t;
@@ -43,5 +46,7 @@ typedef uint_t             size_t;
 typedef int_t              ssize_t;
 
 #define SIZE_MAX           ((size_t) -1)
+
+__END_DECLS
 
 #endif /* ELKLIB_LIBC_STDINT_H */

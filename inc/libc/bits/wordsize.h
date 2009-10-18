@@ -20,7 +20,12 @@
 #define ELKLIB_LIBC_WORDSIZE_H
 
 #include "elklib.h"
+#include "libcompiler/cdefs.h"
+
+__BEGIN_DECLS
 
 #define __WORDSIZE 32
+
+__END_DECLS
 
 #endif /* ELKLIB_LIBC_WORDSIZE_H */
