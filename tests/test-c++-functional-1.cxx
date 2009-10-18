@@ -21,5 +21,53 @@
 
 int main(int argc, char * argv[])
 {
+        {
+                std::plus<int>       a1;
+                std::minus<int>      a2;
+                std::multiplies<int> a3;
+                std::divides<int>    a4;
+                std::modulus<int>    a5;
+                std::negate<int>     a6;
+
+                int tmp;
+
+                tmp = a1(1,2);
+                tmp = a2(1,2);
+                tmp = a3(1,2);
+                tmp = a4(1,2);
+                tmp = a5(1,2);
+                tmp = a6(1);
+        }
+
+        {
+                std::equal_to<int>      c1;
+                std::not_equal_to<int>  c2;
+                std::greater<int>       c3;
+                std::less<int>          c4;
+                std::greater_equal<int> c5;
+                std::less_equal<int>    c6;
+
+                bool tmp;
+
+                tmp = c1(1,2);
+                tmp = c2(1,2);
+                tmp = c3(1,2);
+                tmp = c4(1,2);
+                tmp = c5(1,2);
+                tmp = c6(1,2);
+        }
+
+        {
+                std::logical_and<int>  l1;
+                std::logical_or<int>   l2;
+                std::logical_not<int>  l3;
+
+                bool tmp;
+
+                tmp = l1(1,2);
+                tmp = l2(1,2);
+                tmp = l3(2);
+        }
+
 	return 0;
 }

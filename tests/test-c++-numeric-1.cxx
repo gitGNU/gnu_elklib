@@ -17,15 +17,9 @@
 //
 
 #include "elklib.h"
-#include "libc++/list"
+#include "libc++/numeric"
 
 int main(int argc, char * argv[])
 {
-	std::list<int>           t;
-	std::list<int>::iterator i;
-	for (i = t.begin(); i != t.end(); i++) {
-		// Nothing
-	}
-
 	return 0;
 }

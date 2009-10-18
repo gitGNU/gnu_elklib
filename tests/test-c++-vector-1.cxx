@@ -21,8 +21,8 @@
 
 int main(int argc, char * argv[])
 {
-	ktl::vector<int>           t;
-	ktl::vector<int>::iterator i;
+	std::vector<int>           t;
+	std::vector<int>::iterator i;
 	for (i = t.begin(); i != t.end(); i++) {
 		// Nothing
 	}

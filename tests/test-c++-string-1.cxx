@@ -21,7 +21,7 @@
 
 int main(int argc, char * argv[])
 {
-	ktl::string s;
+	std::string s;
 
 	return 0;
 }

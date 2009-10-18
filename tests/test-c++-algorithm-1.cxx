@@ -18,8 +18,13 @@
 
 #include "elklib.h"
 #include "libc++/algorithm"
+#include "libc++/map"
 
 int main(int argc, char * argv[])
 {
+        std::map<int,int> x;
+
+        std::map<int,int>::iterator i = find(x.begin(), x.end(), 3);
+
 	return 0;
 }

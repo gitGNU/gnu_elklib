@@ -21,41 +21,31 @@
 include $(top_srcdir)/Makefile.sub
 
 TESTS =						\
+	test-c++-clibrary-1			\
+	test-c++-string-1			\
+	test-c++-list-1				\
+	test-c++-vector-1			\
+	test-c++-memory-1			\
 	test-c++-stack-1			\
 	test-c++-map-1				\
 	test-c++-set-1				\
 	test-c++-bitset-1			\
 	test-c++-deque-1			\
 	test-c++-queue-1			\
+						\
 	test-c++-exception-1			\
+						\
 	test-c++-iterator-1			\
-	test-c++-algorithm-1			\
+						\
 	test-c++-functional-1			\
-	test-c++-string-1			\
-	test-c++-list-1				\
-	test-c++-vector-1			\
-	test-c++-memory-1			\
-	test-c++-clibrary-1
+	test-c++-algorithm-1			\
+	test-c++-numeric-1
 
 #TESTS +=					\
 #	test-term-1
 
 check_PROGRAMS =				\
-	test-c++-stack-1			\
-	test-c++-map-1				\
-	test-c++-set-1				\
-	test-c++-bitset-1			\
-	test-c++-deque-1			\
-	test-c++-queue-1			\
-	test-c++-exception-1			\
-	test-c++-iterator-1			\
-	test-c++-algorithm-1			\
-	test-c++-functional-1			\
-	test-c++-string-1			\
-	test-c++-list-1				\
-	test-c++-vector-1			\
-	test-c++-memory-1			\
-	test-c++-clibrary-1
+	$(TESTS)
 
 #check_PROGRAMS +=				\
 #	test-term-1
@@ -83,6 +73,13 @@ test_c___functional_1_CFLAGS      = $(TARGET_CFLAGS)
 test_c___functional_1_CXXFLAGS    = $(TARGET_CXXFLAGS)
 test_c___functional_1_CPPFLAGS    = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
 test_c___functional_1_CXXCPPFLAGS = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___numeric_1_SOURCES        = test-c++-numeric-1.cxx
+test_c___numeric_1_LDADD          = $(TARGET_LDFLAGS)
+test_c___numeric_1_CFLAGS         = $(TARGET_CFLAGS)
+test_c___numeric_1_CXXFLAGS       = $(TARGET_CXXFLAGS)
+test_c___numeric_1_CPPFLAGS       = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___numeric_1_CXXCPPFLAGS    = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 test_c___string_1_SOURCES         = test-c++-string-1.cxx
 test_c___string_1_LDADD           = $(TARGET_LDFLAGS)
@@ -194,4 +191,25 @@ test_c___stack_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 ##
 update-local: Makefile
 
-maintainer-check-local: Makefile
+TESTS_SRCS =					\
+	$(test_c___clibrary_1_SOURCES)		\
+	$(test_c___string_1_SOURCES)		\
+	$(test_c___list_1_SOURCES)		\
+	$(test_c___vector_1_SOURCES)		\
+	$(test_c___memory_1_SOURCES)		\
+	$(test_c___stack_1_SOURCES)		\
+	$(test_c___map_1_SOURCES)		\
+	$(test_c___set_1_SOURCES)		\
+	$(test_c___bitset_1_SOURCES)		\
+	$(test_c___deque_1_SOURCES)		\
+	$(test_c___queue_1_SOURCES)		\
+	$(test_c___exception_1_SOURCES)		\
+	$(test_c___iterator_1_SOURCES)		\
+	$(test_c___functional_1_SOURCES)	\
+	$(test_c___algorithm_1_SOURCES)		\
+	$(test_c___numeric_1_SOURCES)
+
+maintainer-check-whitespaces: Makefile $(TESTS_SRCS)
+	$(WHITESPACE_DETECT) $(TESTS_SRCS)
+
+maintainer-check-local: Makefile maintainer-check-whitespaces
