@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/string.h"
 
-namespace ktl {
+namespace std {
         using ::strlen;
         using ::strnlen;
         using ::strcmp;

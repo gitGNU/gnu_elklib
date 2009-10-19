@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libm/math.h"
 
-namespace ktl {
+namespace std {
         using ::pow;
 }
 

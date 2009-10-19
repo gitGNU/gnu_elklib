@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "cstddef"
 
-namespace ktl {
+namespace std {
         template<class Iterator> struct iterator_traits;
         template<class T>        struct iterator_traits<T *>;
         template<class Category,

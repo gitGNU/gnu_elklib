@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc++/new"
 
-namespace ktl {
+namespace std {
         template <class T> class allocator;
 
         template <> class allocator<void> {

@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/stdarg.h"
 
-namespace ktl {
+namespace std {
         using ::va_list;
 }
 

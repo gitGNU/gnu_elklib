@@ -26,9 +26,9 @@
 #include "libc++/bits/type_traits"
 #include "libc++/bits/funct_exception"
 
-#define KTL_BUFFER_SIZE 32
+#define STD_BUFFER_SIZE 32
 
-namespace ktl {
+namespace std {
         template <class T, class Allocator = allocator<T> > class vector;
         template <class T, class Allocator>
         bool operator==(const vector<T,Allocator> & x,
@@ -65,12 +65,12 @@ namespace ktl {
                 typedef const T *                             const_iterator;
                 typedef T                                     value_type;
                 typedef Allocator                             allocator_type;
-                typedef ktl::reverse_iterator<iterator>       reverse_iterator;
-                typedef ktl::reverse_iterator<const_iterator> const_reverse_iterator;
+                typedef std::reverse_iterator<iterator>       reverse_iterator;
+                typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
                 explicit vector(const Allocator & al = Allocator()) :
                         data(0),
-                        data_size(KTL_BUFFER_SIZE),
+                        data_size(STD_BUFFER_SIZE),
                         elements(0),
                         a(al)
                 {
@@ -83,7 +83,7 @@ namespace ktl {
                         data(0),
                         data_size(0), elements(0), a(al)
                 {
-                        data_size = n + KTL_BUFFER_SIZE;
+                        data_size = n + STD_BUFFER_SIZE;
                         data = a.allocate(data_size);
 
                         resize(n, value);
@@ -93,7 +93,7 @@ namespace ktl {
                 vector(InputIterator     first,
                        InputIterator     last,
                        const Allocator & al = Allocator()):
-                        data(0), data_size(KTL_BUFFER_SIZE), elements(0), a(al)
+                        data(0), data_size(STD_BUFFER_SIZE), elements(0), a(al)
                 {
                         data = a.allocate(data_size);
                         assign(first, last);
@@ -104,7 +104,7 @@ namespace ktl {
                         a = x.a;
 
                         elements  = x.elements;
-                        data_size = elements + KTL_BUFFER_SIZE;
+                        data_size = elements + STD_BUFFER_SIZE;
                         data = a.allocate(data_size);
 
                         for (size_type i = 0; i < elements; i++) {
@@ -158,43 +158,43 @@ namespace ktl {
                         resize(n, u);
                 }
 
-                inline allocator_type get_allocator() const {
+                allocator_type get_allocator() const {
                         return a;
                 }
 
-                inline iterator begin() {
+                iterator begin() {
                         return data;
                 }
 
-                inline const_iterator begin() const {
+                const_iterator begin() const {
                         return data;
                 }
 
-                inline iterator end() {
+                iterator end() {
                         return (data + elements);
                 }
 
-                inline const_iterator end() const {
+                const_iterator end() const {
                         return (data + elements);
                 }
 
-                inline reverse_iterator rbegin() {
+                reverse_iterator rbegin() {
                         return reverse_iterator(end());
                 }
 
-                inline const_reverse_iterator rbegin() const {
+                const_reverse_iterator rbegin() const {
                         return const_reverse_iterator(end());
                 }
 
-                inline reverse_iterator rend() {
+                reverse_iterator rend() {
                         return reverse_iterator(begin());
                 }
 
-                inline const_reverse_iterator rend() const {
+                const_reverse_iterator rend() const {
                         return const_reverse_iterator(begin());
                 }
 
-                inline size_type size() const {
+                size_type size() const {
                         return elements;
                 }
 
@@ -205,59 +205,59 @@ namespace ktl {
                 void downsize(size_type sz);
                 void resize(size_type sz, const T & c);
 
-                inline size_type capacity() const {
+                size_type capacity() const {
                         return data_size;
                 }
 
-                inline bool empty() const {
+                bool empty() const {
                         return (size() == 0);
                 }
 
                 void reserve(size_type n);
 
-                inline reference operator[](size_type n) {
+                reference operator[](size_type n) {
                         return data[n];
                 }
 
-                inline const_reference operator[](size_type n) const {
+                const_reference operator[](size_type n) const {
                         return data[n];
                 }
 
                 const_reference at(size_type n) const {
                         if (n >= elements) {
-                                ktl::__throw_out_of_range();
+                                std::__throw_out_of_range();
                         }
                         return data[n];
                 }
 
                 reference at(size_type n) {
                         if (n >= elements) {
-                                ktl::__throw_out_of_range();
+                                std::__throw_out_of_range();
                         }
                         return data[n];
                 }
 
-                inline reference front() {
+                reference front() {
                         return data[0];
                 }
 
-                inline const_reference front() const {
+                const_reference front() const {
                         return data[0];
                 }
 
-                inline reference back() {
+                reference back() {
                         return data[size() - 1];
                 }
 
-                inline const_reference back() const {
+                const_reference back() const {
                         return data[size() - 1 ];
                 }
 
-                inline void push_back(const T & x) {
+                void push_back(const T & x) {
                         resize(size() + 1, x);
                 }
 
-                inline void pop_back() {
+                void pop_back() {
                         downsize(size() - 1);
                 }
 
@@ -302,33 +302,33 @@ namespace ktl {
                 }
 
                 template <class InputIterator>
-                inline void _dispatch_insert(iterator      position,
-                                             InputIterator first,
-                                             InputIterator last,
-                                             __true_type)
+                void _dispatch_insert(iterator      position,
+                                      InputIterator first,
+                                      InputIterator last,
+                                      __true_type)
                 {
                         _insert_fill(position, first, last);
                 }
 
                 template <class InputIterator>
-                inline void _dispatch_insert(iterator      position,
-                                             InputIterator first,
-                                             InputIterator last,
-                                             __false_type)
+                void _dispatch_insert(iterator      position,
+                                      InputIterator first,
+                                      InputIterator last,
+                                      __false_type)
                 {
                         _insert_from_iterator(position, first, last);
                 }
 
-                inline void insert(iterator  position,
-                                   size_type n,
-                                   const T & x) {
+                void insert(iterator  position,
+                            size_type n,
+                            const T & x) {
                         _insert_fill(position, n, x);
                 }
 
                 template <class InputIterator>
-                inline void insert(iterator      position,
-                                   InputIterator first,
-                                   InputIterator last) {
+                void insert(iterator      position,
+                            InputIterator first,
+                            InputIterator last) {
                         typedef typename __is_integer<InputIterator>::value __some_type;
                         _dispatch_insert(position, first, last, __some_type());
                 }
@@ -424,7 +424,7 @@ namespace ktl {
         {
                 if (sz > elements) {
                         if (sz > data_size) {
-                                reserve(sz + KTL_BUFFER_SIZE);
+                                reserve(sz + STD_BUFFER_SIZE);
                         }
 
                         for (size_type i = elements; i < sz ; ++i) {

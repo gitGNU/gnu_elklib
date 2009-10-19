@@ -53,7 +53,35 @@ if WANT_CXX_SUPPORT
 libcxx_SRCS +=					\
 	libc++/glue.cxx				\
 	libc++/new.cxx				\
-	libc++/exception.cxx
+	libc++/exception.cxx			\
+	libc++/bitset.cxx			\
+	libc++/cassert.cxx			\
+	libc++/cctype.cxx			\
+	libc++/cerrno.cxx			\
+	libc++/cfloat.cxx			\
+	libc++/climits.cxx			\
+	libc++/cmath.cxx			\
+	libc++/cstdarg.cxx			\
+	libc++/cstddef.cxx			\
+	libc++/cstdio.cxx			\
+	libc++/cstdlib.cxx			\
+	libc++/cstring.cxx			\
+	libc++/deque.cxx			\
+	libc++/functional.cxx			\
+	libc++/algorithm.cxx			\
+	libc++/numeric.cxx			\
+	libc++/iterator.cxx			\
+	libc++/limits.cxx			\
+	libc++/list.cxx				\
+	libc++/map.cxx				\
+	libc++/memory.cxx			\
+	libc++/queue.cxx			\
+	libc++/set.cxx				\
+	libc++/stack.cxx			\
+	libc++/stdexcept.cxx			\
+	libc++/string.cxx			\
+	libc++/utility.cxx			\
+	libc++/vector.cxx
 lib_LIBRARIES +=				\
 	libelk-cxx-@target_cpu@.a
 endif

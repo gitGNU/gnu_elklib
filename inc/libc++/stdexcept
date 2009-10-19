@@ -1,0 +1,121 @@
+//
+// Copyright (C) 2008, 2009 Francesco Salvestrini
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+
+#ifndef ELKLIB_LIBCXX_LIST
+#define ELKLIB_LIBCXX_LIST
+
+#include "elklib.h"
+#include "libc++/exception"
+#include "libc++/string"
+
+namespace std {
+        class logic_error : public exception {
+        public:
+                logic_error() :
+                        mstring() { }
+                logic_error(const string & what_arg) :
+                        mstring(what_arg) { }
+
+                virtual ~logic_error() throw();
+                virtual const char * what() const throw()
+                { return mstring.c_str(); }
+
+        protected:
+                string mstring;
+        };
+
+        class domain_error : public logic_error {
+        public:
+                domain_error() :
+                        logic_error() { }
+                domain_error(const string& what_arg) :
+                        logic_error(what_arg) { }
+                virtual ~domain_error() throw() { }
+        };
+
+        class invalid_argument : public logic_error {
+        public:
+                invalid_argument() :
+                        logic_error() { }
+                invalid_argument(const string& what_arg) :
+                        logic_error(what_arg) { }
+                virtual ~invalid_argument() throw() { }
+        };
+
+        class length_error : public logic_error {
+        public:
+                length_error() :
+                        logic_error() { }
+                length_error(const string & what_arg) :
+                        logic_error(what_arg) { }
+                virtual ~length_error() throw() { }
+        };
+
+        class out_of_range : public logic_error {
+        public:
+                out_of_range() :
+                        logic_error() { }
+                out_of_range(const string & what_arg) :
+                        logic_error(what_arg) { }
+                virtual ~out_of_range() throw() { }
+        };
+
+        class runtime_error : public exception {
+        public:
+                runtime_error() :
+                        mstring() { }
+                runtime_error(const string & what_arg) :
+                        mstring(what_arg) { }
+
+                virtual ~runtime_error() throw();
+                virtual const char * what() const throw()
+                { return mstring.c_str(); }
+
+        protected:
+                string mstring;
+        };
+
+        class range_error : public runtime_error {
+        public:
+                range_error() :
+                        runtime_error() { }
+                range_error(const string & what_arg) :
+                        runtime_error(what_arg) { }
+                virtual ~range_error() throw() { }
+        };
+
+        class overflow_error : public runtime_error {
+        public:
+                overflow_error() :
+                        runtime_error() { }
+                overflow_error(const string& what_arg) :
+                        runtime_error(what_arg) { }
+                virtual ~overflow_error() throw() { }
+        };
+
+        class underflow_error : public runtime_error {
+        public:
+                underflow_error() :
+                        runtime_error() { }
+                underflow_error(const string & what_arg) :
+                        runtime_error(what_arg) { }
+                virtual ~underflow_error() throw() { }
+        };
+}
+
+#endif // ELKLIB_LIBCXX_STDEXCEPT

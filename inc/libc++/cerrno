@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/errno.h"
 
-namespace ktl {
+namespace std {
 }
 
 #endif // ELKLIB_LIBCXX_CERRNO

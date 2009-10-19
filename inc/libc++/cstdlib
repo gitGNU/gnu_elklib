@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/stdlib.h"
 
-namespace ktl {
+namespace std {
         using ::bsearch;
         using ::qsort;
         using ::atoi;

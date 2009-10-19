@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/float.h"
 
-namespace ktl {
+namespace std {
 }
 
 #endif // ELKLIB_LIBCXX_CFLOAT

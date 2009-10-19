@@ -21,7 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl {
+namespace std {
         struct __true_type  { };
         struct __false_type { };
 

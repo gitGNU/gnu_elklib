@@ -21,7 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl {
+namespace std {
         void __throw_bad_alloc();
         void __throw_out_of_range(const char * message =
                                   "Out of range");

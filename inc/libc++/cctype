@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libc/ctype.h"
 
-namespace ktl {
+namespace std {
         using ::isalnum;
         using ::isalpha;
         using ::iscntrl;

@@ -23,7 +23,7 @@
 #include "libc/stdint.h"
 #include "libc/stddef.h"
 
-namespace ktl {
+namespace std {
         using ::ptrdiff_t;
         using ::size_t;
 }

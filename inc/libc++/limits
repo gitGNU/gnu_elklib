@@ -21,7 +21,7 @@
 
 #include "elklib.h"
 
-namespace ktl {
+namespace std {
 }
 
 #endif // ELKLIB_LIBCXX_LIMITS

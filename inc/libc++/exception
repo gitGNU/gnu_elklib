@@ -22,7 +22,7 @@
 #include "elklib.h"
 #include "libcompiler/compiler.h"
 
-namespace ktl {
+namespace std {
         typedef void       (* terminate_handler) ();
         typedef void       (* unexpected_handler) ();
 
@@ -34,17 +34,20 @@ namespace ktl {
 
         class exception {
         public:
-                exception() throw()                       { };
-                virtual ~exception() throw()              { };
-                virtual const char * what() const throw() {
-                        return "exception";
-                };
+                exception() throw()          { }
+                virtual ~exception() throw() { }
+
+                virtual const char * what() const throw()
+                { return "exception"; }
         };
 
         class bad_exception : public exception {
         public:
-                bad_exception() throw()          { };
-                virtual ~bad_exception() throw() { };
+                bad_exception() throw()          { }
+                virtual ~bad_exception() throw() { }
+
+                // virtual const char * what() const throw()
+                // { return "bad_exception"; }
         };
 }
 

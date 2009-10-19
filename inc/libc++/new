@@ -23,7 +23,7 @@
 #include "libc++/cstddef"
 #include "libc++/exception"
 
-namespace ktl {
+namespace std {
         class bad_alloc : public exception { };
 
         struct nothrow_t { };
@@ -34,20 +34,20 @@ namespace ktl {
 }
 
 // Throw operators
-void * operator new(ktl::size_t s)   throw (ktl::bad_alloc);
-void * operator new[](ktl::size_t s) throw (ktl::bad_alloc);
+void * operator new(std::size_t s)   throw (std::bad_alloc);
+void * operator new[](std::size_t s) throw (std::bad_alloc);
 void   operator delete(void * p)     throw();
 void   operator delete[](void * p)   throw();
 
 // No-throws operators
-void * operator new(ktl::size_t s,   const ktl::nothrow_t & e) throw();
-void * operator new[](ktl::size_t s, const ktl::nothrow_t & e) throw();
-void   operator delete(void * p,     const ktl::nothrow_t & e) throw();
-void   operator delete[](void * p,   const ktl::nothrow_t & e) throw();
+void * operator new(std::size_t s,   const std::nothrow_t & e) throw();
+void * operator new[](std::size_t s, const std::nothrow_t & e) throw();
+void   operator delete(void * p,     const std::nothrow_t & e) throw();
+void   operator delete[](void * p,   const std::nothrow_t & e) throw();
 
 // Placement operators
-inline void * operator new(ktl::size_t,   void * p) throw() { return p; }
-inline void * operator new[](ktl::size_t, void * p) throw() { return p; }
+inline void * operator new(std::size_t,   void * p) throw() { return p; }
+inline void * operator new[](std::size_t, void * p) throw() { return p; }
 inline void   operator delete  (void *, void *) throw() { }
 inline void   operator delete[](void *, void *) throw() { }
 

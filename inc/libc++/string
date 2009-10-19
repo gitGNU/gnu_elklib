@@ -28,7 +28,7 @@
 #include "libc++/bits/char_traits"
 #include "libc++/bits/funct_exception"
 
-namespace ktl {
+namespace std {
         typedef signed int char_traits_off_type;
 
         template<class charT> struct char_traits { };
@@ -40,59 +40,58 @@ namespace ktl {
                 typedef char_traits_off_type pos_type;
                 typedef char                 state_type;
 
-                inline static void assign(char_type & c,
-                                          char_type & d) { c = d; }
+                static void assign(char_type & c,
+                                   char_type & d) { c = d; }
 
                 static bool eq(const char_type & c1, const char_type & c2);
 
                 static char_type to_char_type(const int_type & i);
 
-                inline static int_type to_int_type(const char_type & c) {
+                static int_type to_int_type(const char_type & c) {
                         return (short int)(unsigned char) c;
                 }
 
-                inline static bool eq_int_type(const int_type & a,
-                                               const int_type & b) {
+                static bool eq_int_type(const int_type & a,
+                                        const int_type & b) {
                         if (a == b) {
                                 return true;
                         }
                         return false;
                 }
 
-
-                inline static bool lt(const char_type & c1,
-                                      const char_type & c2) {
+                static bool lt(const char_type & c1,
+                               const char_type & c2) {
                         if (strncmp(&c1, &c2, 1) < 0) {
                                 return true;
                         }
                         return false;
                 }
 
-                inline static char_type * move(char_type *       s1,
-                                               const char_type * s2,
-                                               size_t            n) {
+                static char_type * move(char_type *       s1,
+                                        const char_type * s2,
+                                        size_t            n) {
                         return (char*) memmove(s1, s2, n);
                 }
 
-                inline static char_type * copy(char_type *       s1,
-                                               const char_type * s2,
-                                               size_t            n) {
+                static char_type * copy(char_type *       s1,
+                                        const char_type * s2,
+                                        size_t            n) {
                         return strncpy(s1, s2, n);
                 }
 
-                inline static char_type * assign(char_type * s,
-                                                 size_t      n,
-                                                 char_type   a) {
+                static char_type * assign(char_type * s,
+                                          size_t      n,
+                                          char_type   a) {
                         return (char *) memset(s, a, n);
                 }
 
-                inline static int compare(const char_type * s1,
-                                          const char_type * s2,
-                                          size_t            n) {
+                static int compare(const char_type * s1,
+                                   const char_type * s2,
+                                   size_t            n) {
                         return strncmp(s1, s2, n);
                 }
 
-                inline static size_t length(const char_type * s) {
+                static size_t length(const char_type * s) {
                         return strlen(s);
                 }
 
@@ -100,9 +99,9 @@ namespace ktl {
                                               int               n,
                                               const char_type & a);
 
-                inline static char_type eos() { return 0;  }
-                inline static int_type  eof() { return -1; }
-                inline static int_type  not_eof(const int_type & i) {
+                static char_type eos() { return 0;  }
+                static int_type  eof() { return -1; }
+                static int_type  not_eof(const int_type & i) {
                         if (i == -1) {
                                 return 0;
                         } else {
@@ -123,8 +122,8 @@ namespace ktl {
 typedef basic_string<char> string;
 typedef basic_string<wchar_t> wstring;
 
-template<class Ch, class Tr, class A> class basic_string
-        : public ktl::vector<Ch, A>
+template<class Ch, class Tr, class A> class basic_string :
+        public std::vector<Ch, A>
 {
 public:
         typedef Tr                          traits_type;
@@ -159,7 +158,7 @@ public:
                 : vector<Ch, A>(al)
         {
                 if (n == npos) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 if (s > 0) {
                         resize(n);
@@ -205,7 +204,7 @@ public:
                 return *this;
         }
 
-        inline size_type length() const { return vector<Ch, A>::size(); }
+        size_type length() const { return vector<Ch, A>::size(); }
 
         void resize(size_type n) {
                 vector<Ch, A>::resize(n, Ch());
@@ -238,7 +237,7 @@ public:
                               size_type            pos,
                               size_type            n) {
                 if (pos > str.size()) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
 
                 size_type rlen = str.elements - pos;
@@ -246,7 +245,7 @@ public:
                         rlen = n;
                 }
                 if (vector<Ch, A>::elements > npos - rlen) {
-                        ktl::__throw_length_error();
+                        std::__throw_length_error();
                 }
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + rlen);
@@ -284,7 +283,7 @@ public:
                               size_type            pos,
                               size_type            n) {
                 if (pos > str.elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 size_type r = str.elements - pos;
                 if (r > n) {
@@ -323,14 +322,14 @@ public:
                               size_type            pos2 = 0,
                               size_type            n = npos) {
                 if (pos1 > vector<Ch, A>::elements || pos2 > str.elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 size_type r = str.elements - pos2;
                 if (r > n) {
                         r = n;
                 }
                 if (vector<Ch, A>::elements > npos - r) {
-                        ktl::__throw_length_error();
+                        std::__throw_length_error();
                 }
                 size_type temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + r);
@@ -345,10 +344,10 @@ public:
 
         basic_string & insert(size_type pos, const Ch * s, size_type n) {
                 if (pos > vector<Ch, A>::elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 if (vector<Ch, A>::elements > npos - n) {
-                        ktl::__throw_length_error();
+                        std::__throw_length_error();
                 }
                 size_type temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + n);
@@ -360,17 +359,17 @@ public:
                 return *this;
         }
 
-        inline basic_string & insert(size_type pos, const Ch* s) {
+        basic_string & insert(size_type pos, const Ch* s) {
                 size_type len = Tr::length(s);
                 return insert(pos, s, len);
         }
 
         basic_string & insert(size_type pos, size_type n, Ch c) {
                 if (pos > vector<Ch, A>::elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 if (vector<Ch, A>::elements > npos - n) {
-                        ktl::__throw_length_error();
+                        std::__throw_length_error();
                 }
                 size_type temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + n);
@@ -442,7 +441,7 @@ public:
                 size_type            n2 = npos)
         {
                 if (pos1 > vector<Ch, A>::elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 size_type xlen = vector<Ch, A>::elements - pos1;
                 if (xlen >  n1) {
@@ -453,7 +452,7 @@ public:
                         rlen = n2;
                 }
                 if ((vector<Ch, A>::elements - xlen) >= (npos - rlen)) {
-                        ktl::__throw_length_error();
+                        std::__throw_length_error();
                 }
 
                 size_t temp = vector<Ch, A>::elements;
@@ -485,9 +484,9 @@ public:
 
         }
 
-        inline basic_string & replace(size_type  pos,
-                                      size_type  n1,
-                                      const Ch * s) {
+        basic_string & replace(size_type  pos,
+                               size_type  n1,
+                               const Ch * s) {
                 return replace(pos,n1,basic_string<Ch,Tr,A>(s));
         }
 
@@ -506,7 +505,7 @@ public:
 
         size_type copy(Ch* s, size_type n, size_type pos = 0) const {
                 if (pos > vector<Ch, A>::elements) {
-                        ktl::__throw_out_of_range();
+                        std::__throw_out_of_range();
                 }
                 size_type r = vector<Ch, A>::elements - pos;
                 if (r > n) {
@@ -531,6 +530,7 @@ public:
         const Ch * data() const {
                 return vector<Ch, A>::data;
         }
+
         allocator_type get_allocator() const {
                 return vector<Ch, A>::a;
         }
@@ -540,9 +540,11 @@ public:
         size_type find (const Ch* s, size_type pos, size_type n) const {
                 return find(basic_string<Ch, Tr, A>(s,n), pos);
         }
+
         size_type find (const Ch* s, size_type pos = 0) const {
                 return find(basic_string<Ch, Tr, A>(s), pos);
         }
+
         size_type find (Ch c, size_type pos = 0) const {
                 for(size_type i = pos; i < length(); ++i) {
                         if (operator[](i) == c) {
@@ -551,6 +553,7 @@ public:
                 }
                 return npos;
         }
+
         size_type rfind(const basic_string & str, size_type pos = npos) const {
                 if (pos >= length()) {
                         pos = length();
@@ -562,12 +565,15 @@ public:
                 }
                 return npos;
         }
+
         size_type rfind(const Ch* s, size_type pos, size_type n) const {
                 return rfind(basic_string<Ch, Tr, A>(s,n),pos);
         }
+
         size_type rfind(const Ch* s, size_type pos = npos) const {
                 return rfind(basic_string<Ch, Tr, A>(s),pos);
         }
+
         size_type rfind(Ch c, size_type pos = npos) const {
                 return rfind(basic_string<Ch, Tr, A>(1,c),pos);
         }
@@ -586,9 +592,11 @@ public:
         size_type find_first_of(const Ch* s, size_type pos, size_type n) const {
                 return find_first_of(basic_string<Ch, Tr, A>(s,n),pos);
         }
+
         size_type find_first_of(const Ch* s, size_type pos = 0) const {
                 return find_first_of(basic_string<Ch, Tr, A>(s),pos);
         }
+
         size_type find_first_of(Ch c, size_type pos = 0) const {
                 for(size_type i = pos; i< length(); ++i) {
                         if (operator[](i) == c) {
@@ -611,12 +619,15 @@ public:
                 }
                 return npos;
         }
+
         size_type find_last_of (const Ch* s, size_type pos, size_type n) const {
                 return find_last_of(basic_string<Ch, Tr, A>(s,n),pos);
         }
+
         size_type find_last_of (const Ch* s, size_type pos = npos) const {
                 return find_last_of(basic_string<Ch, Tr, A>(s),pos);
         }
+
         size_type find_last_of (Ch c, size_type pos = npos) const {
                 if (pos > length()) {
                         pos = length();
@@ -779,7 +790,6 @@ public:
 
 };
 
-
 // Functions
 
 template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::basic_string(const Ch* s, const A& al)
@@ -796,7 +806,7 @@ basic_string(const basic_string & str, size_type pos, size_type n, const A& al)
         : vector<Ch, A>(al)
 {
         if (pos>str.size()) {
-                ktl::__throw_out_of_range();
+                std::__throw_out_of_range();
         }
         size_type rlen = str.size() - pos;
         if (rlen > n) {
@@ -819,8 +829,8 @@ basic_string<Ch,Tr,A>::operator=(const basic_string<Ch,Tr,A> & str)
         return *this;
 }
 
-
-template<class Ch,class Tr,class A> typename basic_string<Ch,Tr,A>::size_type
+template<class Ch,class Tr,class A>
+typename basic_string<Ch,Tr,A>::size_type
 basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A>& str, size_type pos) const
 {
         if (str.length() > length()) {
@@ -835,12 +845,11 @@ basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A>& str, size_type pos) co
         return npos;
 }
 
-
 template<class Ch,class Tr,class A>
 basic_string<Ch, Tr, A> basic_string<Ch,Tr,A>::substr(size_type pos, size_type n) const
 {
         if (pos > vector<Ch, A>::elements) {
-                ktl::__throw_out_of_range();
+                std::__throw_out_of_range();
         }
         size_type rlen = vector<Ch, A>::elements - pos;
         if (rlen > n) {
@@ -871,7 +880,6 @@ operator+(const charT *                                lhs,
         return temp;
 }
 
-
 template<class charT, class traits, class Allocator>
 basic_string<charT,traits,Allocator>
 operator+(charT                                        lhs,
@@ -882,24 +890,30 @@ operator+(charT                                        lhs,
         return temp;
 }
 
-template<class charT, class traits, class Allocator> basic_string<charT,traits,Allocator>
-operator+(const basic_string<charT,traits,Allocator>& lhs, const charT* rhs)
+template<class charT, class traits, class Allocator>
+basic_string<charT,traits,Allocator>
+operator+(const basic_string<charT,traits,Allocator>& lhs,
+          const charT*                                rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         temp.append(rhs);
         return temp;
 }
 
-template<class charT, class traits, class Allocator> basic_string<charT,traits,Allocator>
-operator+(const basic_string<charT,traits,Allocator>& lhs, charT rhs)
+template<class charT, class traits, class Allocator>
+basic_string<charT,traits,Allocator>
+operator+(const basic_string<charT,traits,Allocator>& lhs,
+          charT                                       rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         temp+=rhs;
         return temp;
 }
 
-template<class charT, class traits, class Allocator> bool
-operator==(const basic_string<charT,traits,Allocator>& lhs, const basic_string<charT,traits,Allocator>& rhs)
+template<class charT, class traits, class Allocator>
+bool
+operator==(const basic_string<charT,traits,Allocator>& lhs,
+           const basic_string<charT,traits,Allocator>& rhs)
 {
         if (lhs.compare(rhs) == 0) {
                 return true;
@@ -907,8 +921,10 @@ operator==(const basic_string<charT,traits,Allocator>& lhs, const basic_string<c
         return false;
 }
 
-template<class charT, class traits, class Allocator> bool
-operator==(const charT* lhs, const basic_string<charT,traits,Allocator>& rhs)
+template<class charT, class traits, class Allocator>
+bool
+operator==(const charT*                                lhs,
+           const basic_string<charT,traits,Allocator>& rhs)
 {
         if (rhs.compare(lhs) == 0) {
                 return true;
@@ -916,8 +932,10 @@ operator==(const charT* lhs, const basic_string<charT,traits,Allocator>& rhs)
         return false;
 }
 
-template<class charT, class traits, class Allocator> bool
-operator==(const basic_string<charT,traits,Allocator>& lhs, const charT* rhs)
+template<class charT, class traits, class Allocator>
+bool
+operator==(const basic_string<charT,traits,Allocator>& lhs,
+           const charT*                                rhs)
 {
         if (lhs.compare(rhs)==0) {
                 return true;
@@ -927,7 +945,8 @@ operator==(const basic_string<charT,traits,Allocator>& lhs, const charT* rhs)
 
 template<class charT, class traits, class Allocator>
 bool
-operator!=(const basic_string<charT,traits,Allocator>& lhs, const basic_string<charT,traits,Allocator>& rhs)
+operator!=(const basic_string<charT,traits,Allocator>& lhs,
+           const basic_string<charT,traits,Allocator>& rhs)
 {
         if (lhs.compare(rhs) !=0) {
                 return true;
@@ -937,23 +956,26 @@ operator!=(const basic_string<charT,traits,Allocator>& lhs, const basic_string<c
 
 template<class charT, class traits, class Allocator>
 bool
-operator!=(const charT* lhs, const basic_string<charT,traits,Allocator>& rhs)
+operator!=(const charT*                                lhs,
+           const basic_string<charT,traits,Allocator>& rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         return (temp != rhs);
 }
 
 template<class charT, class traits, class Allocator>
-bool operator!=(const basic_string<charT,traits,Allocator> & lhs,
-                const charT *                                rhs)
+bool
+operator!=(const basic_string<charT,traits,Allocator> & lhs,
+           const charT *                                rhs)
 {
         basic_string<charT,traits,Allocator> temp(rhs);
         return (lhs != temp);
 }
 
 template<class charT, class traits, class Allocator>
-bool operator< (const basic_string<charT,traits,Allocator> & lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator< (const basic_string<charT,traits,Allocator> & lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         if (lhs.compare(rhs) < 0) {
                 return true;
@@ -962,8 +984,9 @@ bool operator< (const basic_string<charT,traits,Allocator> & lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator< (const basic_string<charT,traits,Allocator> & lhs,
-                const charT *                                rhs)
+bool
+operator< (const basic_string<charT,traits,Allocator> & lhs,
+           const charT *                                rhs)
 {
         basic_string<charT,traits,Allocator> temp(rhs);
         if (lhs.compare(rhs) < 0) {
@@ -973,8 +996,9 @@ bool operator< (const basic_string<charT,traits,Allocator> & lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator< (const charT *                                lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator< (const charT *                                lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         if (temp.compare(rhs) < 0) {
@@ -983,10 +1007,10 @@ bool operator< (const charT *                                lhs,
         return false;
 }
 
-
 template<class charT, class traits, class Allocator>
-bool operator> (const basic_string<charT,traits,Allocator> & lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator> (const basic_string<charT,traits,Allocator> & lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         if (lhs.compare(rhs) > 0) {
                 return true;
@@ -995,7 +1019,8 @@ bool operator> (const basic_string<charT,traits,Allocator> & lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator> (const basic_string<charT,traits,Allocator>& lhs,
+bool
+operator> (const basic_string<charT,traits,Allocator>& lhs,
            const charT* rhs)
 {
         basic_string<charT,traits,Allocator> temp(rhs);
@@ -1006,8 +1031,9 @@ bool operator> (const basic_string<charT,traits,Allocator>& lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator> (const charT* lhs,
-                const basic_string<charT,traits,Allocator>& rhs)
+bool
+operator> (const charT* lhs,
+           const basic_string<charT,traits,Allocator>& rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         if (temp.compare(rhs) > 0) {
@@ -1017,7 +1043,8 @@ bool operator> (const charT* lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator<=(const basic_string<charT,traits,Allocator>& lhs,
+bool
+operator<=(const basic_string<charT,traits,Allocator>& lhs,
            const basic_string<charT,traits,Allocator>& rhs)
 {
         if (lhs.compare(rhs) <=0) {
@@ -1039,8 +1066,9 @@ operator<=(const basic_string<charT,traits,Allocator>& lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator<=(const charT *                                lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator<=(const charT *                                lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         if (temp.compare(rhs) <= 0) {
@@ -1050,8 +1078,9 @@ bool operator<=(const charT *                                lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator>=(const basic_string<charT,traits,Allocator> & lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         if (lhs.compare(rhs) >=0) {
                 return true;
@@ -1060,8 +1089,9 @@ bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
-                const charT *                                rhs)
+bool
+operator>=(const basic_string<charT,traits,Allocator> & lhs,
+           const charT *                                rhs)
 {
         basic_string<charT,traits,Allocator> temp(rhs);
         if (lhs.compare(temp) >=0) {
@@ -1071,8 +1101,9 @@ bool operator>=(const basic_string<charT,traits,Allocator> & lhs,
 }
 
 template<class charT, class traits, class Allocator>
-bool operator>=(const charT *                                lhs,
-                const basic_string<charT,traits,Allocator> & rhs)
+bool
+operator>=(const charT *                                lhs,
+           const basic_string<charT,traits,Allocator> & rhs)
 {
         basic_string<charT,traits,Allocator> temp(lhs);
         if (temp.compare(rhs) >=0) {

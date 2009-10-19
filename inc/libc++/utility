@@ -21,34 +21,34 @@
 
 #include "elklib.h"
 
-namespace ktl {
+namespace std {
         namespace rel_ops {
-                template<class T> inline bool operator!=(const T & x,
-                                                         const T & y) {
+                template<class T> bool operator!=(const T & x,
+                                                  const T & y) {
                         if (x < y || y < x) {
                                 return true;
                         }
                         return false;
                 }
 
-                template<class T> inline bool operator> (const T & x,
-                                                         const T & y) {
+                template<class T> bool operator> (const T & x,
+                                                  const T & y) {
                         if (y < x) {
                                 return true;
                         }
                         return false;
                 }
 
-                template<class T> inline bool operator<=(const T & x,
-                                                         const T & y) {
+                template<class T> bool operator<=(const T & x,
+                                                  const T & y) {
                         if (y < x) {
                                 return false;
                         }
                         return true;
                 }
 
-                template<class T> inline bool operator>=(const T & x,
-                                                         const T & y) {
+                template<class T> bool operator>=(const T & x,
+                                                  const T & y) {
                         if (x < y) {
                                 return false;
                         }

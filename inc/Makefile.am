@@ -79,7 +79,9 @@ libcxx_HDRS =					\
 	libc++/set				\
 	libc++/algorithm			\
 	libc++/functional			\
+	libc++/numeric				\
 	libc++/exception			\
+	libc++/stdexcept			\
 	libc++/bits/char_traits			\
 	libc++/bits/type_traits			\
 	libc++/bits/funct_exception
