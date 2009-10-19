@@ -100,6 +100,16 @@ AM_COND_IF([WANT_CXXX0_SUPPORT],[
   AC_MSG_NOTICE([C++x0 support disabled])
 ])
 
+# SGI Support
+AC_ARG_ENABLE([sgi],
+  AS_HELP_STRING([--disable-sgi],[disable SGI extensions]),[],[])
+AM_CONDITIONAL([WANT_SGI_SUPPORT],[ test "x$enable_sgi" != "xno"])
+AM_COND_IF([WANT_SGI_SUPPORT],[
+  AC_MSG_NOTICE([SGI extensions enabled])
+],[
+  AC_MSG_NOTICE([SGI extensions disabled])
+])
+
 # Assembler
 AM_PROG_AS
 
