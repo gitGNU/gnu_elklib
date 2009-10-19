@@ -21,6 +21,8 @@
 include $(top_srcdir)/Makefile.sub
 
 TESTS =						\
+	test-c++-exception-1			\
+						\
 	test-c++-clibrary-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
@@ -33,12 +35,11 @@ TESTS =						\
 	test-c++-deque-1			\
 	test-c++-queue-1			\
 						\
-	test-c++-exception-1			\
-						\
 	test-c++-iterator-1			\
 						\
 	test-c++-functional-1			\
 	test-c++-algorithm-1			\
+	test-c++-algorithm-2			\
 	test-c++-numeric-1
 
 #TESTS +=					\
@@ -66,6 +67,13 @@ test_c___algorithm_1_CFLAGS       = $(TARGET_CFLAGS)
 test_c___algorithm_1_CXXFLAGS     = $(TARGET_CXXFLAGS)
 test_c___algorithm_1_CPPFLAGS     = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
 test_c___algorithm_1_CXXCPPFLAGS  = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___algorithm_2_SOURCES      = test-c++-algorithm-2.cxx
+test_c___algorithm_2_LDADD        = $(TARGET_LDFLAGS)
+test_c___algorithm_2_CFLAGS       = $(TARGET_CFLAGS)
+test_c___algorithm_2_CXXFLAGS     = $(TARGET_CXXFLAGS)
+test_c___algorithm_2_CPPFLAGS     = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___algorithm_2_CXXCPPFLAGS  = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 test_c___functional_1_SOURCES     = test-c++-functional-1.cxx
 test_c___functional_1_LDADD       = $(TARGET_LDFLAGS)

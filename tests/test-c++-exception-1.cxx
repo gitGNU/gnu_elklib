@@ -17,9 +17,26 @@
 //
 
 #include "elklib.h"
-#include "libc++/exception"
+#include "libc++/stdexcept"
 
 int main(int argc, char * argv[])
 {
+        try {
+                throw std::exception();
+                throw std::bad_exception();
+
+                throw std::logic_error("test");
+                throw std::domain_error("test");
+                throw std::invalid_argument("test");
+                throw std::length_error("test");
+                throw std::out_of_range("test");
+                throw std::runtime_error("test");
+                throw std::range_error("test");
+                throw std::overflow_error("test");
+                throw std::underflow_error("test");
+
+        } catch (...) {
+        }
+
         return 0;
 }

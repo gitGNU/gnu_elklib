@@ -18,8 +18,15 @@
 
 #include "elklib.h"
 #include "libc++/iterator"
+#include "libc++/list"
+#include "libc++/map"
+#include "libc++/set"
 
 int main(int argc, char * argv[])
 {
+        std::list<int>::iterator    i1;
+        std::map<int,int>::iterator i2;
+        std::set<int>::iterator     i3;
+
         return 0;
 }
