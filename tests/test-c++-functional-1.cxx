@@ -17,7 +17,11 @@
 //
 
 #include "elklib.h"
+#include "libc++/cstdlib"
 #include "libc++/functional"
+#include "libc++/algorithm"
+#include "libc++/list"
+#include "libc++/vector"
 
 int main(int argc, char * argv[])
 {
@@ -67,6 +71,37 @@ int main(int argc, char * argv[])
                 tmp = l1(1,2);
                 tmp = l2(1,2);
                 tmp = l3(2);
+        }
+
+        {
+                std::vector<double> V(100);
+                std::generate(V.begin(), V.end(), rand);
+        }
+
+        {
+                struct less_mag : public std::binary_function<double, double, bool> {
+                        bool operator()(double x, double y)
+                        { return x < y; }
+                };
+
+                std::vector<double> V(100);
+                std::generate(V.begin(), V.end(), rand);
+
+                std::sort(V.begin(), V.end(), less_mag());
+        }
+
+        {
+                struct adder : public std::unary_function<double, void>
+                {
+                        adder() : sum(0) { }
+                        double sum;
+                        void operator()(double x) { sum += x; }
+                };
+
+                std::vector<double> V(100);
+                std::generate(V.begin(), V.end(), rand);
+
+                adder result = std::for_each(V.begin(), V.end(), adder());
         }
 
         return 0;

@@ -27,5 +27,10 @@ int main(int argc, char * argv[])
                 // Nothing
         }
 
+        std::list<int> L;
+        L.push_back(0);
+        L.push_front(1);
+        L.insert(++L.begin(), 2);
+
         return 0;
 }
