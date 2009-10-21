@@ -70,6 +70,7 @@ libcxx_HDRS =					\
 	libc++/vector				\
 	libc++/string				\
 	libc++/list				\
+	libc++/slist				\
 	libc++/map				\
 	libc++/stack				\
 	libc++/bitset				\
@@ -84,11 +85,9 @@ libcxx_HDRS =					\
 	libc++/stdexcept			\
 	libc++/bits/char_traits			\
 	libc++/bits/type_traits			\
-	libc++/bits/funct_exception
-
-libcxxx0_HDRS =					\
-	libc++x0/thread				\
-	libc++x0/mutex
+	libc++/bits/funct_exception		\
+	libc++/thread				\
+	libc++/mutex
 
 libm_HDRS =					\
 	libm/math.h
@@ -112,7 +111,6 @@ nobase_incdest_HEADERS  =			\
 	externals.h				\
 	$(libc_HDRS)				\
 	$(libcxx_HDRS)				\
-	$(libcxxx0_HDRS)			\
 	$(libm_HDRS)				\
 	$(libcompile_HDRS)			\
 	$(libbfd_HDRS)

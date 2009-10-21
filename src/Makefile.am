@@ -82,17 +82,20 @@ libcxx_SRCS +=					\
 	libc++/string.cxx			\
 	libc++/utility.cxx			\
 	libc++/vector.cxx
-lib_LIBRARIES +=				\
-	libelk-cxx-@target_cpu@.a
+
+if WANT_SGI_SUPPORT
+libcxx_SRCS +=					\
+	libc++/slist.cxx
 endif
 
-libcxxx0_SRCS =
 if WANT_CXXX0_SUPPORT
-libcxxx0_SRCS +=				\
-	libc++x0/thread.cxx			\
-	libc++x0/mutex.cxx
+libcxx_SRCS +=					\
+	libc++/thread.cxx			\
+	libc++/mutex.cxx
+endif
+
 lib_LIBRARIES +=				\
-	libelk-cxxx0-@target_cpu@.a
+	libelk-cxx-@target_cpu@.a
 endif
 
 libm_SRCS =					\

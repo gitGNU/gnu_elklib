@@ -108,7 +108,6 @@ if test "$echo_static_libs" == "yes" ; then
     echo                                                \
          "@libdir@/libelk-c-@target_cpu@.a "            \
          "@libdir@/libelk-cxx-@target_cpu@.a "          \
-         "@libdir@/libelk-cxxx0-@target_cpu@.a "        \
          "@libdir@/libelk-m-@target_cpu@.a "            \
          "@libdir@/libelk-compiler-@target_cpu@.a "     \
          "@libdir@/libelk-term-@target_cpu@.a "         \
