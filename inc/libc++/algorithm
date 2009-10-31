@@ -459,8 +459,10 @@ namespace std {
                  class InputIterator2,
                  class OutputIterator,
                  class BinaryOperation>
-        OutputIterator transform(InputIterator1 first1, InputIterator1 last1,
-                                 InputIterator2 first2, OutputIterator result,
+        OutputIterator transform(InputIterator1  first1,
+                                 InputIterator1  last1,
+                                 InputIterator2  first2,
+                                 OutputIterator  result,
                                  BinaryOperation binary_op)
         {
                 while (first1 != last1) {
@@ -475,8 +477,10 @@ namespace std {
 
         template<class ForwardIterator, class T>
         void
-        replace(ForwardIterator first, ForwardIterator last,
-                const T & old_value, const T & new_value)
+        replace(ForwardIterator first,
+                ForwardIterator last,
+                const T &       old_value,
+                const T &       new_value)
         {
                 while (first != last) {
                         if (*first == old_value) {
@@ -591,7 +595,9 @@ namespace std {
 
         template<class ForwardIterator, class T>
         ForwardIterator
-        remove(ForwardIterator first, ForwardIterator last, const T & value)
+        remove(ForwardIterator first,
+               ForwardIterator last,
+               const T &       value)
         {
                 ForwardIterator temp(first);
                 while (temp !=last) {
@@ -608,7 +614,9 @@ namespace std {
 
         template<class ForwardIterator, class Predicate>
         ForwardIterator
-        remove_if(ForwardIterator first, ForwardIterator last, Predicate pred)
+        remove_if(ForwardIterator first,
+                  ForwardIterator last,
+                  Predicate       pred)
         {
                 ForwardIterator temp(first);
                 while (temp !=last) {
@@ -626,8 +634,10 @@ namespace std {
 
         template<class InputIterator, class OutputIterator, class T>
         OutputIterator
-        remove_copy(InputIterator first, InputIterator last,
-                    OutputIterator result, const T & value)
+        remove_copy(InputIterator  first,
+                    InputIterator  last,
+                    OutputIterator result,
+                    const T &      value)
         {
                 while (first !=last) {
                         if (*first != value) {
@@ -641,8 +651,10 @@ namespace std {
 
         template<class InputIterator, class OutputIterator, class Predicate>
         OutputIterator
-        remove_copy_if(InputIterator first, InputIterator last,
-                       OutputIterator result, Predicate pred)
+        remove_copy_if(InputIterator  first,
+                       InputIterator  last,
+                       OutputIterator result,
+                       Predicate      pred)
         {
                 while (first !=last) {
                         if (!pred(*first)) {
@@ -656,7 +668,8 @@ namespace std {
 
         template<class ForwardIterator>
         ForwardIterator
-        unique(ForwardIterator first, ForwardIterator last)
+        unique(ForwardIterator first,
+               ForwardIterator last)
         {
                 ForwardIterator new_val(first);
                 ForwardIterator old_val(first);
@@ -720,8 +733,10 @@ namespace std {
                  class OutputIterator,
                  class BinaryPredicate>
         OutputIterator
-        unique_copy(InputIterator first, InputIterator last,
-                    OutputIterator result, BinaryPredicate pred)
+        unique_copy(InputIterator   first,
+                    InputIterator   last,
+                    OutputIterator  result,
+                    BinaryPredicate pred)
         {
                 InputIterator temp(first);
                 while (first !=last) {
@@ -751,8 +766,9 @@ namespace std {
 
         template<class BidirectionalIterator, class OutputIterator>
         OutputIterator
-        reverse_copy(BidirectionalIterator first, BidirectionalIterator last,
-                     OutputIterator result)
+        reverse_copy(BidirectionalIterator first,
+                     BidirectionalIterator last,
+                     OutputIterator        result)
         {
                 while (last > first) {
                         --last;
@@ -799,8 +815,10 @@ namespace std {
 
         template<class ForwardIterator, class OutputIterator>
         OutputIterator
-        rotate_copy(ForwardIterator first, ForwardIterator middle,
-                    ForwardIterator last, OutputIterator result)
+        rotate_copy(ForwardIterator first,
+                    ForwardIterator middle,
+                    ForwardIterator last,
+                    OutputIterator  result)
         {
                 ForwardIterator temp(middle);
                 while (temp !=last) {
@@ -819,7 +837,8 @@ namespace std {
 
         template<class RandomAccessIterator>
         void
-        random_shuffle(RandomAccessIterator first, RandomAccessIterator last)
+        random_shuffle(RandomAccessIterator first,
+                       RandomAccessIterator last)
         {
                 --last;
                 while (first != last) {
@@ -830,8 +849,9 @@ namespace std {
 
         template<class RandomAccessIterator, class RandomNumberGenerator>
         void
-        random_shuffle(RandomAccessIterator first, RandomAccessIterator last,
-                       RandomNumberGenerator& rand)
+        random_shuffle(RandomAccessIterator    first,
+                       RandomAccessIterator    last,
+                       RandomNumberGenerator & rand)
         {
                 --last;
                 while (first != last) {
@@ -889,7 +909,8 @@ namespace std {
         }
 
         template<class RandomAccessIterator>
-        void sort(RandomAccessIterator first, RandomAccessIterator last)
+        void sort(RandomAccessIterator first,
+                  RandomAccessIterator last)
         {
                 less<typename iterator_traits<RandomAccessIterator>::value_type> c;
                 sort(first, last, c);
@@ -916,7 +937,10 @@ namespace std {
                          RandomAccessIterator last,
                          Compare              comp)
         {
-                // FIXME - bubble sort
+                //
+                // FIXME:
+                //     This is an ugly bubble sort ... find some time to
+                //     rewrite this code
                 RandomAccessIterator temp;
                 --last;
                 while (last - first > 0) {
@@ -932,11 +956,14 @@ namespace std {
         }
 
         template<class RandomAccessIterator>
-        void partial_sort(RandomAccessIterator first, RandomAccessIterator middle, RandomAccessIterator last)
+        void partial_sort(RandomAccessIterator first,
+                          RandomAccessIterator middle,
+                          RandomAccessIterator last)
         {
                 less<typename iterator_traits<RandomAccessIterator>::value_type> c;
                 partial_sort(first, middle, last, c);
         }
+
         template<class RandomAccessIterator, class Compare>
         void partial_sort(RandomAccessIterator first,
                           RandomAccessIterator middle,
@@ -1031,7 +1058,7 @@ namespace std {
         ForwardIterator lower_bound(ForwardIterator first,
                                     ForwardIterator last,
                                     const T &       value,
-                                    Compare comp)
+                                    Compare         comp)
         {
                 if (first == last) {
                         return last;
@@ -1068,8 +1095,9 @@ namespace std {
         }
 
         template<class ForwardIterator, class T>
-        ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last,
-                                    const T & value)
+        ForwardIterator upper_bound(ForwardIterator first,
+                                    ForwardIterator last,
+                                    const T &       value)
         {
                 less<typename iterator_traits<ForwardIterator>::value_type> c;
                 return upper_bound(first, last, value, c);
@@ -1077,8 +1105,10 @@ namespace std {
 
 
         template<class ForwardIterator, class T, class Compare>
-        ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last,
-                                    const T & value, Compare comp)
+        ForwardIterator upper_bound(ForwardIterator first,
+                                    ForwardIterator last,
+                                    const T &       value,
+                                    Compare         comp)
         {
                 if (first == last) {
                         return last;
@@ -1216,14 +1246,17 @@ namespace std {
         }
         template<class BidirectionalIterator>
         void inplace_merge(BidirectionalIterator first,
-                           BidirectionalIterator middle, BidirectionalIterator last)
+                           BidirectionalIterator middle,
+                           BidirectionalIterator last)
         {
                 less<typename iterator_traits<BidirectionalIterator>::value_type> c;
                 inplace_merge(first, middle, last, c);
         }
         template<class BidirectionalIterator, class Compare>
         void inplace_merge(BidirectionalIterator first,
-                           BidirectionalIterator middle, BidirectionalIterator last, Compare comp)
+                           BidirectionalIterator middle,
+                           BidirectionalIterator last,
+                           Compare               comp)
         {
                 // FIXME - using a bubble exchange method
                 while (first != middle && middle !=last) {

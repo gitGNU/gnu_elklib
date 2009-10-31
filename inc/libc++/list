@@ -152,10 +152,10 @@ namespace std {
 
         template <class T, class Allocator> class list<T, Allocator>::iter_list :
                 public std::iterator<bidirectional_iterator_tag,
-                                       T,
-                                       typename Allocator::difference_type,
-                                       typename Allocator::pointer,
-                                       typename Allocator::reference>
+                                     T,
+                                     typename Allocator::difference_type,
+                                     typename Allocator::pointer,
+                                     typename Allocator::reference>
         {
         private:
                 node * current;
