@@ -20,7 +20,6 @@
 #include "libc++/cstdlib"
 #include "libc++/functional"
 #include "libc++/algorithm"
-#include "libc++/list"
 #include "libc++/vector"
 
 int main(int argc, char * argv[])
@@ -79,7 +78,8 @@ int main(int argc, char * argv[])
         }
 
         {
-                struct less_mag : public std::binary_function<double, double, bool> {
+                struct less_mag : public std::binary_function<double,
+                        double, bool> {
                         bool operator()(double x, double y)
                         { return x < y; }
                 };

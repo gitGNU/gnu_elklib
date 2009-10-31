@@ -21,44 +21,54 @@
 #include "libc++/algorithm"
 #include "libc++/set"
 
+struct ltstr {
+        bool operator()(const char* s1, const char* s2) const {
+                return strcmp(s1, s2) < 0;
+        }
+};
+
 int main(int argc, char * argv[])
 {
-
+#if 0
         const int N = 6;
-        const char* a[N] = {"isomer", "ephemeral", "prosaic", 
-                            "nugatory", "artichoke", "serif"};
-        const char* b[N] = {"flat", "this", "artichoke",
-                            "frigate", "prosaic", "isomer"};
+        const char* a[N] = { "isomer", "ephemeral", "prosaic", 
+                             "nugatory", "artichoke", "serif" };
+        const char* b[N] = { "flat", "this", "artichoke",
+                             "frigate", "prosaic", "isomer" };
 
         std::set<const char*, ltstr> A(a, a + N);
         std::set<const char*, ltstr> B(b, b + N);
         std::set<const char*, ltstr> C;
 
-        cout << "Set A: ";
-        copy(A.begin(), A.end(), ostream_iterator<const char*>(cout, " "));
-        cout << endl;
-        cout << "Set B: ";
-        copy(B.begin(), B.end(), ostream_iterator<const char*>(cout, " "));   
-        cout << endl;
+        //std::cout << "Set A: ";
+        std::copy(A.begin(), A.end(),
+                  ostream_iterator<const char*>(std::cout, " "));
+        //std::cout << endl;
+        //std::cout << "Set B: ";
+        std::copy(B.begin(), B.end(),
+                  ostream_iterator<const char*>(std::cout, " "));   
+        //std::cout << endl;
 
-        cout << "Union: ";
+        //std::cout << "Union: ";
         std::set_union(A.begin(), A.end(), B.begin(), B.end(),
-                       ostream_iterator<const char*>(cout, " "),
+                       ostream_iterator<const char*>(std::cout, " "),
                        ltstr());   
-        cout << endl;
+        //std::cout << endl;
 
-        cout << "Intersection: ";
+        //std::cout << "Intersection: ";
         std::set_intersection(A.begin(), A.end(), B.begin(), B.end(),
-                              ostream_iterator<const char*>(cout, " "),
+                              ostream_iterator<const char*>(std::cout, " "),
                               ltstr());    
-        cout << endl;
+        //std::cout << endl;
 
         std::set_difference(A.begin(), A.end(), B.begin(), B.end(),
                             inserter(C, C.begin()),
                             ltstr());
-        cout << "Set C (difference of A and B): ";
-        copy(C.begin(), C.end(), ostream_iterator<const char*>(cout, " "));
-        cout << endl;
+        //std::cout << "Set C (difference of A and B): ";
+        std::copy(C.begin(), C.end(),
+                  ostream_iterator<const char*>(std::cout, " "));
+        //cout << endl;
+#endif
 
         return 0;
 }
