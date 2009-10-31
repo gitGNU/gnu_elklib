@@ -31,8 +31,6 @@ Makefile
 /src/config.h.in
 /src/stamp-h1
 
-/src/libterm/teken_state.h
-
 /tests/test-c++-numeric-1
 /tests/test-c++-iterator-1
 /tests/test-c++-algorithm-1
@@ -50,8 +48,6 @@ Makefile
 /tests/test-c++-queue-1
 /tests/test-c++-set-1
 /tests/test-c++-stack-1
-
-/tests/test-term-1
 
 /tools/maint/fetch
 /tools/maint/whitespace-detect
