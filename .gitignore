@@ -38,6 +38,7 @@ Makefile
 /tests/test-c++-functional-1
 /tests/test-c++-string-1
 /tests/test-c++-list-1
+/tests/test-c++-slist-1
 /tests/test-c++-vector-1
 /tests/test-c++-clibrary-1
 /tests/test-c++-bitset-1

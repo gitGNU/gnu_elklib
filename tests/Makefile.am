@@ -26,6 +26,7 @@ TESTS =						\
 	test-c++-clibrary-1			\
 	test-c++-string-1			\
 	test-c++-list-1				\
+	test-c++-slist-1			\
 	test-c++-vector-1			\
 	test-c++-memory-1			\
 	test-c++-stack-1			\
@@ -37,9 +38,9 @@ TESTS =						\
 						\
 	test-c++-iterator-1			\
 						\
-	test-c++-functional-1			\
 	test-c++-algorithm-1			\
 	test-c++-algorithm-2			\
+	test-c++-functional-1			\
 	test-c++-numeric-1
 
 check_PROGRAMS =				\
@@ -96,6 +97,13 @@ test_c___list_1_CFLAGS            = $(TARGET_CFLAGS)
 test_c___list_1_CXXFLAGS          = $(TARGET_CXXFLAGS)
 test_c___list_1_CPPFLAGS          = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
 test_c___list_1_CXXCPPFLAGS       = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
+
+test_c___slist_1_SOURCES          = test-c++-slist-1.cxx
+test_c___slist_1_LDADD            = $(TARGET_LDFLAGS)
+test_c___slist_1_CFLAGS           = $(TARGET_CFLAGS)
+test_c___slist_1_CXXFLAGS         = $(TARGET_CXXFLAGS)
+test_c___slist_1_CPPFLAGS         = $(TARGET_CPPFLAGS) $(TEST_CFLAGS)
+test_c___slist_1_CXXCPPFLAGS      = $(TARGET_CXXCPPFLAGS) $(TEST_CXXCPPFLAGS)
 
 test_c___vector_1_SOURCES         = test-c++-vector-1.cxx
 test_c___vector_1_LDADD           = $(TARGET_LDFLAGS)
@@ -176,6 +184,7 @@ TESTS_SRCS =					\
 	$(test_c___clibrary_1_SOURCES)		\
 	$(test_c___string_1_SOURCES)		\
 	$(test_c___list_1_SOURCES)		\
+	$(test_c___slist_1_SOURCES)		\
 	$(test_c___vector_1_SOURCES)		\
 	$(test_c___memory_1_SOURCES)		\
 	$(test_c___stack_1_SOURCES)		\
