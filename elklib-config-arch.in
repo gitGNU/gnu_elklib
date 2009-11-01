@@ -110,7 +110,6 @@ if test "$echo_static_libs" == "yes" ; then
          "@libdir@/libelk-cxx-@target_cpu@.a "          \
          "@libdir@/libelk-m-@target_cpu@.a "            \
          "@libdir@/libelk-compiler-@target_cpu@.a "     \
-         "@libdir@/libelk-term-@target_cpu@.a "         \
          "@libdir@/libelk-bfd-@target_cpu@.a "          \
          "@TARGET_LIBADD@ "                             \
          "$output"
