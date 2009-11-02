@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_BITS_CHAR_TRAITS
-#define ELKLIB_LIBCXX_BITS_CHAR_TRAITS
+#ifndef ELKLIB_LIBCXX_BITS_TYPE_TRAITS
+#define ELKLIB_LIBCXX_BITS_TYPE_TRAITS
 
 #include "elklib.h"
 
