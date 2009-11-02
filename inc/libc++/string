@@ -29,92 +29,6 @@
 #include "libc++/bits/funct_exception"
 
 namespace std {
-        typedef signed int char_traits_off_type;
-
-        template<class charT> struct char_traits { };
-
-        template<> struct char_traits<char> {
-                typedef char                 char_type;
-                typedef short int            int_type;
-                typedef char_traits_off_type off_type;
-                typedef char_traits_off_type pos_type;
-                typedef char                 state_type;
-
-                static void assign(char_type & c,
-                                   char_type & d) { c = d; }
-
-                static bool eq(const char_type & c1, const char_type & c2);
-
-                static char_type to_char_type(const int_type & i);
-
-                static int_type to_int_type(const char_type & c) {
-                        return (short int)(unsigned char) c;
-                }
-
-                static bool eq_int_type(const int_type & a,
-                                        const int_type & b) {
-                        if (a == b) {
-                                return true;
-                        }
-                        return false;
-                }
-
-                static bool lt(const char_type & c1,
-                               const char_type & c2) {
-                        if (strncmp(&c1, &c2, 1) < 0) {
-                                return true;
-                        }
-                        return false;
-                }
-
-                static char_type * move(char_type *       s1,
-                                        const char_type * s2,
-                                        size_t            n) {
-                        return (char*) memmove(s1, s2, n);
-                }
-
-                static char_type * copy(char_type *       s1,
-                                        const char_type * s2,
-                                        size_t            n) {
-                        return strncpy(s1, s2, n);
-                }
-
-                static char_type * assign(char_type * s,
-                                          size_t      n,
-                                          char_type   a) {
-                        return (char *) memset(s, a, n);
-                }
-
-                static int compare(const char_type * s1,
-                                   const char_type * s2,
-                                   size_t            n) {
-                        return strncmp(s1, s2, n);
-                }
-
-                static size_t length(const char_type * s) {
-                        return strlen(s);
-                }
-
-                static const char_type * find(const char_type * s,
-                                              int               n,
-                                              const char_type & a);
-
-                static char_type eos() { return 0;  }
-                static int_type  eof() { return -1; }
-                static int_type  not_eof(const int_type & i) {
-                        if (i == -1) {
-                                return 0;
-                        } else {
-                                return i;
-                        }
-                }
-                static state_type get_state(pos_type p) {
-                        p = p;
-                        state_type a;
-                        return a;
-                }
-        };
-
         template<class Ch,
                  class Tr = char_traits<Ch>,
                  class A = allocator<Ch> > class basic_string;
@@ -143,9 +57,8 @@ public:
 
         static const size_type npos = -1;
 
-        explicit basic_string(const A & al = A()) : vector<Ch, A>(al) {
-                return;
-        }
+        explicit basic_string(const A & al = A()) : vector<Ch, A>(al)
+ { return; }
 
         basic_string(const basic_string & str,
                      size_type            pos = 0,
@@ -182,13 +95,13 @@ public:
         {
         }
 
-        ~basic_string() {
-                return;
-        }
+        ~basic_string()
+        { }
 
         basic_string & operator=(const basic_string & str);
 
-        basic_string & operator=(const Ch * s) {
+        basic_string & operator=(const Ch * s)
+        {
                 vector<Ch, A>::clear();
                 if (s != 0) {
                         size_type len = Tr::length(s);
@@ -198,7 +111,8 @@ public:
                 return * this;
         }
 
-        basic_string & operator=(Ch c) {
+        basic_string & operator=(Ch c)
+        {
                 vector<Ch, A>::clear();
                 vector<Ch, A>::push_back(c);
                 return *this;
@@ -206,24 +120,23 @@ public:
 
         size_type length() const { return vector<Ch, A>::size(); }
 
-        void resize(size_type n) {
-                vector<Ch, A>::resize(n, Ch());
-        }
+        void resize(size_type n)
+        { vector<Ch, A>::resize(n, Ch()); }
 
-        basic_string & operator+=(const basic_string & str) {
-                return append(str);
-        }
+        basic_string & operator+=(const basic_string & str)
+        { return append(str); }
 
-        basic_string & operator+=(const Ch * s) {
-                return append(s);
-        }
+        basic_string & operator+=(const Ch * s)
+        { return append(s); }
 
-        basic_string & operator+=(Ch c) {
+        basic_string & operator+=(Ch c)
+        {
                 vector<Ch, A>::push_back(c);
                 return *this;
         }
 
-        basic_string & append(const basic_string & str) {
+        basic_string & append(const basic_string & str)
+        {
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + str.elements);
                 Tr::copy(vector<Ch, A>::data + temp,
@@ -235,7 +148,8 @@ public:
 
         basic_string & append(const basic_string & str,
                               size_type            pos,
-                              size_type            n) {
+                              size_type            n)
+        {
                 if (pos > str.size()) {
                         std::__throw_out_of_range();
                 }
@@ -254,14 +168,16 @@ public:
                 return *this;
         }
 
-        basic_string & append(const Ch* s, size_type n) {
+        basic_string & append(const Ch* s, size_type n)
+        {
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + n);
                 Tr::copy(vector<Ch, A>::data + temp, s, n);
                 return *this;
         }
 
-        basic_string & append(const Ch* s) {
+        basic_string & append(const Ch* s)
+        {
                 size_type strLen = Tr::length(s);
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + strLen);
@@ -269,19 +185,22 @@ public:
                 return *this;
         }
 
-        basic_string & append(size_type n, Ch c) {
+        basic_string & append(size_type n, Ch c)
+        {
                 vector<Ch, A>::resize(vector<Ch, A>::elements + n, c);
                 return *this;
         }
 
-        basic_string & assign(const basic_string & str) {
+        basic_string & assign(const basic_string & str)
+        {
                 operator=(str);
                 return *this;
         }
 
         basic_string & assign(const basic_string & str,
                               size_type            pos,
-                              size_type            n) {
+                              size_type            n)
+ {
                 if (pos > str.elements) {
                         std::__throw_out_of_range();
                 }
@@ -297,19 +216,22 @@ public:
                 return *this;
         }
 
-        basic_string & assign(const Ch* s, size_type n) {
+        basic_string & assign(const Ch* s, size_type n)
+        {
                 resize(n);
                 //              vector<Ch, A>::elements = n;
                 Tr::copy(vector<Ch, A>::data, s, n);
                 return *this;
         }
 
-        basic_string & assign(const Ch* s) {
+        basic_string & assign(const Ch* s)
+        {
                 size_type len = Tr::length(s);
                 return assign(s, len);
         }
 
-        basic_string & assign(size_type n, Ch c) {
+        basic_string & assign(size_type n, Ch c)
+        {
                 vector<Ch, A>::clear();
                 vector<Ch, A>::resize(n, Ch());
                 return *this;
@@ -320,7 +242,8 @@ public:
         basic_string & insert(size_type            pos1,
                               const basic_string & str,
                               size_type            pos2 = 0,
-                              size_type            n = npos) {
+                              size_type            n = npos)
+        {
                 if (pos1 > vector<Ch, A>::elements || pos2 > str.elements) {
                         std::__throw_out_of_range();
                 }
@@ -342,7 +265,8 @@ public:
                 return *this;
         }
 
-        basic_string & insert(size_type pos, const Ch * s, size_type n) {
+        basic_string & insert(size_type pos, const Ch * s, size_type n)
+        {
                 if (pos > vector<Ch, A>::elements) {
                         std::__throw_out_of_range();
                 }
@@ -359,12 +283,14 @@ public:
                 return *this;
         }
 
-        basic_string & insert(size_type pos, const Ch* s) {
+        basic_string & insert(size_type pos, const Ch* s)
+        {
                 size_type len = Tr::length(s);
                 return insert(pos, s, len);
         }
 
-        basic_string & insert(size_type pos, size_type n, Ch c) {
+        basic_string & insert(size_type pos, size_type n, Ch c)
+        {
                 if (pos > vector<Ch, A>::elements) {
                         std::__throw_out_of_range();
                 }
@@ -385,7 +311,8 @@ public:
         //      void insert(iterator p, size_type n, charT c);
         //      template<class InputIterator> void insert(iterator p, InputIterator first, InputIterator last);
 
-        basic_string & erase(size_type pos = 0, size_type n = npos) {
+        basic_string & erase(size_type pos = 0, size_type n = npos)
+        {
                 size_type xlen = vector<Ch, A>::elements - pos;
 
                 if (xlen > n) {
@@ -400,7 +327,8 @@ public:
                 return *this;
         }
 
-        iterator erase(iterator position) {
+        iterator erase(iterator position)
+        {
                 if (position == vector<Ch, A>::end()) {
                         return position;
                 }
@@ -418,7 +346,8 @@ public:
                 return temp;
         }
 
-        iterator erase(iterator first, iterator last) {
+        iterator erase(iterator first, iterator last)
+        {
                 size_t count = last - first;
 
                 iterator temp = last;
@@ -479,23 +408,20 @@ public:
         basic_string & replace(size_type  pos,
                                size_type  n1,
                                const Ch * s,
-                               size_type  n2) {
-                return replace(pos,n1,basic_string<Ch,Tr,A>(s,n2));
-
-        }
+                               size_type  n2)
+        { return replace(pos,n1,basic_string<Ch,Tr,A>(s,n2)); }
 
         basic_string & replace(size_type  pos,
                                size_type  n1,
-                               const Ch * s) {
-                return replace(pos,n1,basic_string<Ch,Tr,A>(s));
-        }
+                               const Ch * s)
+        { return replace(pos,n1,basic_string<Ch,Tr,A>(s)); }
 
         basic_string & replace(size_type pos,
                                size_type n1,
                                size_type n2,
-                               Ch        c) {
-                return replace(pos,n1,basic_string<Ch, Tr, A>(n2,c));
-        }
+                               Ch        c)
+        { return replace(pos,n1,basic_string<Ch, Tr, A>(n2,c)); }
+
         //      basic_string & replace(iterator i1, iterator i2, const basic_string & str);
         //      basic_string & replace(iterator i1, iterator i2, const Ch* s, size_type n);
         //      basic_string & replace(iterator i1, iterator i2, const Ch* s);
@@ -503,7 +429,8 @@ public:
         /*      template<class InputIterator> basic_string & replace(iterator i1, iterator i2,
                 InputIterator j1, InputIterator j2);*/
 
-        size_type copy(Ch* s, size_type n, size_type pos = 0) const {
+        size_type copy(Ch* s, size_type n, size_type pos = 0) const
+        {
                 if (pos > vector<Ch, A>::elements) {
                         std::__throw_out_of_range();
                 }
@@ -515,25 +442,21 @@ public:
                 return r;
         }
 
-        void swap(basic_string<Ch,Tr,A>& s) {
-                // Data pointers
+        void swap(basic_string<Ch,Tr,A>& s)
+        { vector<Ch, A>::swap(s); }
 
-                vector<Ch, A>::swap(s);
-        }
-
-        const Ch * c_str() const {
+        const Ch * c_str() const
+        {
                 const_cast<basic_string<Ch,Tr,A> *>(this)->reserve(vector<Ch, A>::elements+1);
                 vector<Ch, A>::data[vector<Ch, A>::elements] = 0;
                 return vector<Ch, A>::data;
         }
 
-        const Ch * data() const {
-                return vector<Ch, A>::data;
-        }
+        const Ch * data() const
+        { return vector<Ch, A>::data; }
 
-        allocator_type get_allocator() const {
-                return vector<Ch, A>::a;
-        }
+        allocator_type get_allocator() const
+        { return vector<Ch, A>::a; }
 
         size_type find (const basic_string & str, size_type pos = 0) const;
 
@@ -792,7 +715,8 @@ public:
 
 // Functions
 
-template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::basic_string(const Ch* s, const A& al)
+template<class Ch, class Tr, class A>
+basic_string<Ch,Tr,A>::basic_string(const Ch* s, const A& al)
         : vector<Ch, A>(al)
 {
         if (s!=0) {
@@ -801,8 +725,11 @@ template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::basic_string(const Ch
         }
 }
 
-template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>::
-basic_string(const basic_string & str, size_type pos, size_type n, const A& al)
+template<class Ch,class Tr,class A>
+basic_string<Ch,Tr,A>::basic_string(const basic_string & str,
+                                    size_type            pos,
+                                    size_type            n,
+                                    const A &            al)
         : vector<Ch, A>(al)
 {
         if (pos>str.size()) {
@@ -813,10 +740,12 @@ basic_string(const basic_string & str, size_type pos, size_type n, const A& al)
                 rlen = n;
         }
         resize(rlen);
-        Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data + pos, vector<Ch, A>::elements);
+        Tr::copy(vector<Ch, A>::data, str.vector<Ch, A>::data + pos,
+                 vector<Ch, A>::elements);
 }
 
-template<class Ch,class Tr,class A> basic_string<Ch,Tr,A>&
+template<class Ch,class Tr,class A>
+basic_string<Ch,Tr,A> &
 basic_string<Ch,Tr,A>::operator=(const basic_string<Ch,Tr,A> & str)
 {
         if (&str == this) { // Check if we are doing a=a
@@ -831,7 +760,8 @@ basic_string<Ch,Tr,A>::operator=(const basic_string<Ch,Tr,A> & str)
 
 template<class Ch,class Tr,class A>
 typename basic_string<Ch,Tr,A>::size_type
-basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A>& str, size_type pos) const
+basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A> & str,
+                             size_type                     pos) const
 {
         if (str.length() > length()) {
                 return npos;
@@ -846,7 +776,9 @@ basic_string<Ch,Tr,A>::find (const basic_string<Ch,Tr,A>& str, size_type pos) co
 }
 
 template<class Ch,class Tr,class A>
-basic_string<Ch, Tr, A> basic_string<Ch,Tr,A>::substr(size_type pos, size_type n) const
+basic_string<Ch, Tr, A>
+basic_string<Ch,Tr,A>::substr(size_type pos,
+                              size_type n) const
 {
         if (pos > vector<Ch, A>::elements) {
                 std::__throw_out_of_range();

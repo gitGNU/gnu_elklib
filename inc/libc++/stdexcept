@@ -16,8 +16,8 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 
-#ifndef ELKLIB_LIBCXX_LIST
-#define ELKLIB_LIBCXX_LIST
+#ifndef ELKLIB_LIBCXX_STDEXCEPT
+#define ELKLIB_LIBCXX_STDEXCEPT
 
 #include "elklib.h"
 #include "libc++/exception"
