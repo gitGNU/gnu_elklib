@@ -26,30 +26,32 @@
 
 __BEGIN_DECLS
 
-void*              bsearch(const void* key,
-                           const void* base,
-                           size_t      nmemb,
-                           size_t      size,
-                           int         (* compar)(const void*, const void *));
-void               qsort(void*  base,
+void *             bsearch(const void * key,
+                           const void * base,
+                           size_t       nmemb,
+                           size_t       size,
+                           int          (* compar)(const void *,
+                                                   const void *));
+void               qsort(void *  base,
                          size_t nmemb,
                          size_t size,
-                         int    (*compar)(const void *, const void *));
+                         int    (* compar)(const void *,
+                                           const void *));
 
-int                atoi(const char* num);
-long               atol(const char* s);
-unsigned long      atoul(const char* s);
-long long          atoll(const char* s);
-double             atof(const char* s);
+int                atoi(const char * num);
+long               atol(const char * s);
+unsigned long      atoul(const char * s);
+long long          atoll(const char * s);
+double             atof(const char * s);
 
 int                abs(int n);
 long               labs(long n);
 
-long               strtol(const char* cp, char** endp,unsigned int base);
-long long          strtoll(const char* cp, char** endp,unsigned int base);
-unsigned long      strtoul(const char* cp, char** endp,unsigned int base);
-unsigned long long strtoull(const char* cp, char** endp,unsigned int base);
-double             strtod(const char* s, char** scan_end);
+long               strtol(const char * cp, char ** endp,unsigned int base);
+long long          strtoll(const char * cp, char ** endp,unsigned int base);
+unsigned long      strtoul(const char * cp, char ** endp,unsigned int base);
+unsigned long long strtoull(const char * cp, char ** endp,unsigned int base);
+double             strtod(const char * s, char ** scan_end);
 
 typedef struct div_t {
         int quot;
@@ -70,32 +72,34 @@ typedef struct lldiv_t {
         long long rem;
 } lldiv_t;
 
-lldiv_t            lldiv(long long num, long long denom);
+lldiv_t lldiv(long long num, long long denom);
 
-void*              malloc(size_t size);
-void               free(void* address);
-void*              calloc(size_t nmemb, size_t size);
-void*              realloc(void* ptr, size_t size);
-void*              valloc(size_t size);
-void*              memalign(size_t boundary, size_t size);
+void *  malloc(size_t size);
+void    free(void * address);
+void *  calloc(size_t nmemb, size_t size);
+void *  realloc(void * ptr, size_t size);
+void *  valloc(size_t size);
+void *  memalign(size_t boundary, size_t size);
 
 
-#define ATEXIT_MAX   32
-int                atexit(void (* function)(void));
+#define ATEXIT_MAX 32
+int     atexit(void (* function)(void));
 
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
-void               exit(int status);
+void    exit(int status);
 
-#define RAND_MAX     INT_MAX
-int                rand(void);
-int                rand_r(unsigned int* seedp);
-void               srand(unsigned int seed);
+#define RAND_MAX INT_MAX
+int     rand(void);
+int     rand_r(unsigned int* seedp);
+void    srand(unsigned int seed);
 
-int                setenv(const char *name, const char *value, int overwrite);
-int                unsetenv(const char *name);
-char*              getenv(const char *name);
-int                putenv(char *string);
+int     setenv(const char * name,
+               const char * value,
+               int          overwrite);
+int     unsetenv(const char * name);
+char *  getenv(const char * name);
+int     putenv(char * string);
 
 __END_DECLS
 
