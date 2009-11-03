@@ -53,9 +53,9 @@
 			<entry priority="high" start="1253138840">
 				Move internal macros to build-utils package
 			</entry>
-			<entry priority="high" start="1253138841">
+			<entry end="1257269897" priority="high" start="1253138841">
 				Create AX_PACKAGE_API macro
-				<entry priority="high" start="1253138841">
+				<entry end="1257269886" priority="high" start="1253138841">
 					Update configure.ac replacing API-handling with AX_PACKAGE_API
 				</entry>
 			</entry>
