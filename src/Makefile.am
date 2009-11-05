@@ -199,4 +199,10 @@ our_SRCS =					\
 maintainer-check-whitespaces: Makefile $(our_SRCS)
 	$(WHITESPACE_DETECT) $(our_SRCS)
 
-maintainer-check-local: Makefile maintainer-check-whitespaces maintainer-check-parameters
+maintainer-check-wordwraps: Makefile $(our_SRCS)
+	$(WORDWRAP_DETECT) --tab-size 8 --columns 80 $(our_SRCS)
+
+maintainer-check-local: Makefile		\
+	maintainer-check-whitespaces		\
+	maintainer-check-wordwraps		\
+	maintainer-check-parameters
