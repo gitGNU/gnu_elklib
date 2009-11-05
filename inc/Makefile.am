@@ -133,7 +133,13 @@ update-local: Makefile
 maintainer-check-whitespaces: Makefile $(nobase_incdest_HEADERS)
 	$(WHITESPACE_DETECT) $(nobase_incdest_HEADERS)
 
+maintainer-check-wordwraps: Makefile $(our_SRCS)
+	$(WORDWRAP_DETECT) --tab-size 8 --columns 80 $(our_SRCS)
+
 maintainer-check-guards: Makefile $(nobase_incdest_HEADERS)
 	$(GUARDS_CHECK) $(nobase_incdest_HEADERS)
 
-maintainer-check-local: Makefile maintainer-check-guards maintainer-check-whitespaces
+maintainer-check-local: Makefile		\
+	maintainer-check-guards			\
+	maintainer-check-whitespaces		\
+	maintainer-check-wordwraps
