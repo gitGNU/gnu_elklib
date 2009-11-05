@@ -909,7 +909,7 @@ void __cxa_finalize(void * d)
         /*
          * NOTE:
          *     If D is non-NULL, call all functions registered with
-         *     __cxa_atexit() with the same dso handle. Otherwise. Otherwise, if
+         *     __cxa_atexit() with the same dso handle. Otherwise, if
          *     d is NULL, call all of the registered handlers.
          */
 
