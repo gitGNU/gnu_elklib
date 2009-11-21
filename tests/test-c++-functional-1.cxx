@@ -76,11 +76,38 @@ int main(int argc, char * argv[])
                 std::vector<double> V(100);
                 std::generate(V.begin(), V.end(), rand);
         }
-
+#if 0
         {
-                struct less_mag : public std::binary_function<double,
-                        double, bool> {
-                        bool operator()(double x, double y)
+                struct A {
+                        virtual void foo() { }
+                };
+                struct B : public A {
+                        virtual void foo() { }
+                };
+
+                std::vector<A> v;
+                std::for_each(v.begin(), v.end(), std::mem_fun(&A::foo));
+        }
+#endif
+#if 0
+        {
+                struct test {
+                        void operator() ()
+                        { }
+                };
+
+                std::vector<unsigned char> elements;
+
+                std::for_each(elements.begin(), elements.end(), test());
+        }
+#endif
+#if 0
+        {
+                struct less_mag //:
+                //public std::binary_function<double, double, bool>
+                {
+                        bool operator()(double x,
+                                        double y)
                         { return x < y; }
                 };
 
@@ -89,20 +116,23 @@ int main(int argc, char * argv[])
 
                 std::sort(V.begin(), V.end(), less_mag());
         }
-
+#endif
+#if 0
         {
-                struct adder : public std::unary_function<double, void>
+                struct adder //:
+                //public std::unary_function<double, void>
                 {
                         adder() : sum(0) { }
-                        double sum;
-                        void operator()(double x) { sum += x; }
+                        int sum;
+                        void operator()(int x)
+                        { sum += x; }
                 };
 
-                std::vector<double> V(100);
+                std::vector<int> V(100);
                 std::generate(V.begin(), V.end(), rand);
 
                 adder result = std::for_each(V.begin(), V.end(), adder());
         }
-
+#endif
         return 0;
 }
