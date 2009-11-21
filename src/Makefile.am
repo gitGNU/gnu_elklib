@@ -140,12 +140,6 @@ libelk_cxx_@target_cpu@_a_CFLAGS        = $(COMMONCFLAGS)
 libelk_cxx_@target_cpu@_a_CXXFLAGS      = $(COMMONCXXFLAGS)
 libelk_cxx_@target_cpu@_a_SOURCES       = $(libcxx_SRCS)
 
-libelk_cxxx0_@target_cpu@_a_ASFLAGS     = $(COMMONASFLAGS)
-libelk_cxxx0_@target_cpu@_a_CPPFLAGS    = $(COMMONCPPFLAGS)
-libelk_cxxx0_@target_cpu@_a_CFLAGS      = $(COMMONCFLAGS)
-libelk_cxxx0_@target_cpu@_a_CXXFLAGS    = $(COMMONCXXFLAGS)
-libelk_cxxx0_@target_cpu@_a_SOURCES     = $(libcxxx0_SRCS)
-
 libelk_m_@target_cpu@_a_ASFLAGS         = $(COMMONASFLAGS)
 libelk_m_@target_cpu@_a_CPPFLAGS        = $(COMMONCPPFLAGS)
 libelk_m_@target_cpu@_a_CFLAGS          = $(COMMONCFLAGS)
@@ -167,7 +161,6 @@ libelk_bfd_@target_cpu@_a_SOURCES       = $(libbfd_SRCS)
 libelk_SRCS =					\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
-	$(libcxxx0_SRCS)			\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)			\
 	$(libbfd_SRCS)
@@ -191,7 +184,6 @@ maintainer-check-parameters: Makefile $(bin_PROGRAMS) $(bin_SCRIPTS)
 our_SRCS =					\
 	$(libc_SRCS)				\
 	$(libcxx_SRCS)				\
-	$(libcxxx0_SRCS)			\
 	$(libm_SRCS)				\
 	$(libcompiler_SRCS)			\
 	$(libbfd_SRCS)
