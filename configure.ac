@@ -43,7 +43,7 @@ AC_CANONICAL_TARGET
 # For automake options (AM_INIT_AUTOMAKE options) see Makefile.am
 # file, AUTOMAKE_OPTIONS variable
 #
-AM_INIT_AUTOMAKE([1.10 foreign std-options nostdinc -Wall])
+AM_INIT_AUTOMAKE([1.10 foreign std-options nostdinc -Wall color-tests])
 
 #
 # Build related programs
