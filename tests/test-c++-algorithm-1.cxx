@@ -23,6 +23,7 @@
 
 int main(int argc, char * argv[])
 {
+#if 0
         std::vector<int> v;
 
         v.push_back(1);
@@ -39,6 +40,6 @@ int main(int argc, char * argv[])
         if (std::find(v.begin(), v.end(), 4) == v.end()) {
                 return 0;
         }
-
+#endif
         return 0;
 }
