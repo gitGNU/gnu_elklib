@@ -23,7 +23,6 @@
 
 int main(int argc, char * argv[])
 {
-#if 0
         std::vector<int> v;
 
         v.push_back(1);
@@ -33,13 +32,21 @@ int main(int argc, char * argv[])
         v.push_back(7);
         v.push_back(11);
 
-        if (std::find(v.begin(), v.end(), 7) != v.end()) {
+        if (std::find(v.begin(), v.end(), 0) != v.end()) {
                 return 1;
         }
 
-        if (std::find(v.begin(), v.end(), 4) == v.end()) {
-                return 0;
+        if (std::find(v.begin(), v.end(), 12) != v.end()) {
+                return 1;
         }
-#endif
+
+        if (std::find(v.begin(), v.end(), 4) != v.end()) {
+                return 1;
+        }
+
+        if (std::find(v.begin(), v.end(), 3) == v.end()) {
+                return 1;
+        }
+
         return 0;
 }
