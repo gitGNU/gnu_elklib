@@ -24,14 +24,10 @@
 /* This should be the only exported function */
 char * demangle(const char * mangled)
 {
-        int options;
-
         assert(mangled);
 
-        options = DMGL_PARAMS | DMGL_ANSI | DMGL_TYPES;
-
 #if HAVE_GCC
-        return cplus_demangle_v3(mangled, options);
+        return cplus_demangle_v3(mangled, DMGL_PARAMS|DMGL_ANSI|DMGL_TYPES);
 #else
         return NULL;
 #endif
