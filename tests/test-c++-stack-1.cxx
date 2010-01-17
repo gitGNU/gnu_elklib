@@ -21,5 +21,47 @@
 
 int main(int argc, char * argv[])
 {
+        try {
+                std::stack<int> s;
+
+                if (!s.empty()) {
+                        return 1;
+                }
+                if (s.size() != 0) {
+                        return 1;
+                }
+
+                s.push(1);
+                s.push(2);
+
+                if (s.empty()) {
+                        return 1;
+                }
+                if (s.size() != 2) {
+                        return 1;
+                }
+
+                (void) s.pop();
+
+                if (s.empty()) {
+                        return 1;
+                }
+                if (s.size() != 1) {
+                        return 1;
+                }
+
+                (void) s.pop();
+
+                if (s.size() != 0) {
+                        return 1;
+                }
+                if (s.size() != 0) {
+                        return 1;
+                }
+
+        } catch (...) {
+                return 1;
+        }
+
         return 0;
 }
