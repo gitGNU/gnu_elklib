@@ -1,0 +1,7 @@
+*~
+*.o
+*.a
+
+/config.h
+/config.h.in
+/stamp-h1
