@@ -59,7 +59,8 @@ namespace std {
                               const Allocator & = Allocator());
                 template <class InputIterator> list(InputIterator     first,
                                                     InputIterator     last,
-                                                    const Allocator & al= Allocator());
+                                                    const Allocator & al =
+                                                    Allocator());
                 list(const list<T,Allocator>& x);
                 ~list();
 
@@ -76,8 +77,10 @@ namespace std {
                         return *this;
                 }
 
-                template <class InputIterator> void assign(InputIterator first, InputIterator last);
-                template <class Size, class U> void assign(Size n, const U& u = U());
+                template <class InputIterator> void assign(InputIterator first,
+                                                           InputIterator last);
+                template <class Size, class U> void assign(Size      n,
+                                                           const U & u = U());
                 allocator_type          get_allocator() const;
 
                 iterator                begin();
@@ -115,14 +118,22 @@ namespace std {
                 void     clear();
 
                 void splice(iterator position, list<T,Allocator> & x);
-                void splice(iterator position, list<T,Allocator> & x, iterator i);
-                void splice(iterator position, list<T,Allocator> & x, iterator first, iterator last);
+                void splice(iterator position, list<T,Allocator> & x,
+                            iterator i);
+                void splice(iterator position, list<T,Allocator> & x,
+                            iterator first,
+                            iterator last);
                 void remove(const T & value);
+
                 template <class Predicate> void remove_if (Predicate pred);
                 void unique();
-                template <class BinaryPredicate> void unique(BinaryPredicate binary_pred);
+
+                template <class BinaryPredicate> void
+                unique(BinaryPredicate binary_pred);
+
                 void merge(list<T,Allocator>& x);
-                template <class Compare> void merge(list<T,Allocator>& x, Compare comp);
+                template <class Compare> void merge(list<T,Allocator>& x,
+                                                    Compare            comp);
                 void sort();
                 template <class Compare> void sort(Compare comp);
                 void reverse();
@@ -150,7 +161,8 @@ namespace std {
                 ~node() { }
         };
 
-        template <class T, class Allocator> class list<T, Allocator>::iter_list :
+        template <class T, class Allocator>
+        class list<T, Allocator>::iter_list :
                 public std::iterator<bidirectional_iterator_tag,
                                      T,
                                      typename Allocator::difference_type,
@@ -161,8 +173,10 @@ namespace std {
                 node * current;
         public:
                 iter_list():current(0) { }
-                iter_list( typename list<T, Allocator>::node * n) : current(n) { }
-                iter_list(const list<T, Allocator>::iter_list & l) : current(l.current) { }
+                iter_list(typename list<T, Allocator>::node * n) :
+                        current(n) { }
+                iter_list(const list<T, Allocator>::iter_list & l) :
+                        current(l.current) { }
                 ~iter_list() { }
 
                 iter_list & operator=(const list<T, Allocator>::iter_list & right) {
@@ -498,8 +512,12 @@ namespace std {
 
         template <class T, class Allocator>
         void
-        list<T, Allocator>::insert(iterator position, size_type n, const T & x) {
-                for (typename list<T, Allocator>::size_type i = 0; i < n; ++i) {
+        list<T, Allocator>::insert(iterator  position,
+                                   size_type n,
+                                   const T & x) {
+                for (typename list<T, Allocator>::size_type i = 0;
+                     i < n;
+                     ++i) {
                         position = insert(position, x);
                 }
         }
@@ -507,7 +525,9 @@ namespace std {
         template <class T, class Allocator>
         template <class InputIterator>
         void
-        list<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+        list<T, Allocator>::insert(iterator      position,
+                                   InputIterator first,
+                                   InputIterator last)
         {
                 while (first !=last) {
                         insert(position, *first);
@@ -629,9 +649,10 @@ namespace std {
                 }
 
                 if (position == begin()) {
-
-                        i.link_struct()->previous->next = i.link_struct()->next;
-                        i.link_struct()->next->previous = i.link_struct()->previous;
+                        i.link_struct()->previous->next =
+                                i.link_struct()->next;
+                        i.link_struct()->next->previous =
+                                i.link_struct()->previous;
 
                         i.link_struct()->previous = 0;
                         i.link_struct()->next = position.link_struct();
@@ -645,8 +666,10 @@ namespace std {
                 }
 
                 if ( i.link_struct()->previous != 0) {
-                        i.link_struct()->previous->next = i.link_struct()->next;
-                        i.link_struct()->next->previous = i.link_struct()->previous;
+                        i.link_struct()->previous->next =
+                                i.link_struct()->next;
+                        i.link_struct()->next->previous =
+                                i.link_struct()->previous;
                 } else {
                         i.link_struct()->next->previous = 0;
                         x.list_start = i.link_struct()->next;
@@ -758,15 +781,21 @@ namespace std {
                         ++temp;
 
                         if (dest == begin()) {
-                                dest.link_struct()->previous = source.link_struct();
-                                source.link_struct()->next = dest.link_struct();
+                                dest.link_struct()->previous   =
+                                        source.link_struct();
+                                source.link_struct()->next     =
+                                        dest.link_struct();
                                 source.link_struct()->previous = 0;
                                 list_start = source.link_struct();
                         } else {
-                                source.link_struct()->previous = dest.link_struct()->previous;
-                                dest.link_struct()->previous->next = source.link_struct();
-                                source.link_struct()->next = dest.link_struct();
-                                dest.link_struct()->previous = source.link_struct();
+                                source.link_struct()->previous     =
+                                        dest.link_struct()->previous;
+                                dest.link_struct()->previous->next =
+                                        source.link_struct();
+                                source.link_struct()->next         =
+                                        dest.link_struct();
+                                dest.link_struct()->previous       =
+                                        source.link_struct();
                         }
                         source = temp;
                 }
@@ -804,7 +833,8 @@ namespace std {
                         ++k;
                         while (j != i) {
                                 if ( comp(*k, *j)) {
-                                        swap_nodes(k.link_struct(), j.link_struct());
+                                        swap_nodes(k.link_struct(),
+                                                   j.link_struct());
                                 }
                                 ++j;
                                 ++k;
