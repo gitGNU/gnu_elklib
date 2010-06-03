@@ -24,27 +24,27 @@
 #include "libc/heap.h"
 #include "libcompiler/cdefs.h"
 
-static void* (*old_malloc_hook)(size_t      size,
-                                const void* caller)   = 0;
-static void* (*old_realloc_hook)(void*  ptr,
-                                 size_t size,
-                                 const void* caller)  = 0;
-static void* (*old_memalign_hook)(size_t      alignment,
-                                  size_t      size,
-                                  const void* caller) = 0;
-static void  (*old_free_hook)(void*       ptr,
-                              const void* caller)     = 0;
-static void  (*old_malloc_initialize_hook)(void)      = 0;
-static void  (*old_after_morecore_hook)(void)         = 0;
+static void * (*old_malloc_hook)(size_t       size,
+                                 const void * caller)   = 0;
+static void * (*old_realloc_hook)(void * ptr,
+                                  size_t size,
+                                  const void * caller)  = 0;
+static void * (*old_memalign_hook)(size_t      alignment,
+                                   size_t      size,
+                                   const void * caller) = 0;
+static void  (*old_free_hook)(void *       ptr,
+                              const void * caller)      = 0;
+static void  (*old_malloc_initialize_hook)(void)        = 0;
+static void  (*old_after_morecore_hook)(void)           = 0;
 
 #define RESTORE_HOOK(X) __CONCAT3(__,X,_hook)   = __CONCAT3(old_,X,_hook)
 #define SAVE_HOOK(X)    __CONCAT3(old_,X,_hook) = __CONCAT3(__,X,_hook)
 #define SET_HOOK(X)     __CONCAT3(__,X,_hook)   = __CONCAT3(mtrace_,X,_hook)
 
-static void* mtrace_malloc_hook(size_t      size,
-                                const void* caller)
+static void * mtrace_malloc_hook(size_t      size,
+                                 const void * caller)
 {
-        void* result;
+        void * result;
 
         RESTORE_HOOK(malloc);
         result = malloc(size);
@@ -56,11 +56,11 @@ static void* mtrace_malloc_hook(size_t      size,
         return result;
 }
 
-static void* mtrace_realloc_hook(void*       ptr,
-                                 size_t      size,
-                                 const void* caller)
+static void * mtrace_realloc_hook(void *       ptr,
+                                  size_t       size,
+                                  const void * caller)
 {
-        void* result;
+        void * result;
 
         RESTORE_HOOK(realloc);
         result = realloc(ptr, size);
@@ -73,11 +73,11 @@ static void* mtrace_realloc_hook(void*       ptr,
         return result;
 }
 
-static void* mtrace_memalign_hook(size_t      alignment,
-                                  size_t      size,
-                                  const void* caller)
+static void * mtrace_memalign_hook(size_t       alignment,
+                                   size_t       size,
+                                   const void * caller)
 {
-        void* result;
+        void * result;
 
         RESTORE_HOOK(memalign);
         result = memalign(alignment, size);
@@ -89,8 +89,8 @@ static void* mtrace_memalign_hook(size_t      alignment,
         return result;
 }
 
-static void mtrace_free_hook(void*       ptr,
-                             const void* caller)
+static void mtrace_free_hook(void *       ptr,
+                             const void * caller)
 {
         RESTORE_HOOK(free);
         free(ptr);

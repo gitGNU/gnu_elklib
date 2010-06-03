@@ -24,10 +24,10 @@
 #include "libc/stdlib.h"
 #include "libcompiler/macro.h"
 
-char* strcat(char*       destination,
-             const char* source)
+char * strcat(char *       destination,
+              const char * source)
 {
-        char* tmp;
+        char * tmp;
 
         tmp = destination;
 
@@ -42,10 +42,10 @@ char* strcat(char*       destination,
         return tmp;
 }
 
-char* strchr(const char* s,
-             int         c)
+char * strchr(const char * s,
+              int          c)
 {
-        char* cursor;
+        char * cursor;
 
         cursor = (char *) s;
         while (1) {
@@ -60,16 +60,16 @@ char* strchr(const char* s,
         }
 }
 
-char* index(const char* s,
-            int         c)
+char * index(const char * s,
+             int          c)
 {
         return strchr(s, c);
 }
 
-char* strrchr(const char* s,
-              int         c)
+char * strrchr(const char * s,
+               int          c)
 {
-        char* save;
+        char * save;
 
         for (save = NULL; *s != 0; s++) {
                 if (*s == c) {
@@ -80,14 +80,14 @@ char* strrchr(const char* s,
         return save;
 }
 
-char* rindex(const char* s,
-             int         c)
+char * rindex(const char * s,
+              int          c)
 {
         return strrchr(s, c);
 }
 
-int strcmp(const char* source,
-           const char* target)
+int strcmp(const char * source,
+           const char * target)
 {
         register signed char res;
 
@@ -100,9 +100,9 @@ int strcmp(const char* source,
         return res;
 }
 
-int strncmp(const char*  source,
-            const char*  target,
-            unsigned int count)
+int strncmp(const char *  source,
+            const char *  target,
+            unsigned int  count)
 {
         register signed char res;
 
@@ -117,10 +117,10 @@ int strncmp(const char*  source,
         return res;
 }
 
-char* strcpy(char*       destination,
-             const char* source)
+char * strcpy(char *       destination,
+              const char * source)
 {
-        char* tmp;
+        char * tmp;
 
         tmp = destination;
         while ((*destination++ = *source++) != '\0') {
@@ -130,11 +130,11 @@ char* strcpy(char*       destination,
         return (tmp);
 }
 
-char* strncpy(char*        destination,
-              const char*  source,
-              unsigned int count)
+char * strncpy(char *        destination,
+               const char *  source,
+               unsigned int  count)
 {
-        char* tmp;
+        char * tmp;
 
         tmp = destination;
         while (count-- && (*destination++ = *source++) != '\0') {
@@ -144,9 +144,9 @@ char* strncpy(char*        destination,
         return (tmp);
 }
 
-size_t strlen(const char* string)
+size_t strlen(const char * string)
 {
-        const char* p;
+        const char * p;
 
         for (p = string; *p != '\0'; ++p) {
                 /* Nothing to do */
@@ -155,10 +155,10 @@ size_t strlen(const char* string)
         return (p - string);
 }
 
-size_t strnlen(const char*  string,
+size_t strnlen(const char *  string,
                unsigned int count)
 {
-        const char* sc;
+        const char * sc;
 
         for (sc = string; count-- && *sc != '\0'; ++sc) {
                 /* nothing */
@@ -167,11 +167,11 @@ size_t strnlen(const char*  string,
         return (sc - string);
 }
 
-char* strncat(char*        destination,
-              const char*  source,
-              unsigned int count)
+char * strncat(char *        destination,
+               const char *  source,
+               unsigned int  count)
 {
-        char* tmp;
+        char * tmp;
 
         tmp = destination;
         if (count) {
@@ -189,8 +189,8 @@ char* strncat(char*        destination,
         return tmp;
 }
 
-char* strstr(const char* s1,
-             const char* s2)
+char * strstr(const char * s1,
+              const char * s2)
 {
         int l1, l2;
 
@@ -210,9 +210,9 @@ char* strstr(const char* s1,
         return NULL;
 }
 
-char* strdup(const char* s)
+char * strdup(const char * s)
 {
-        char* buf;
+        char * buf;
 
         buf = (char *) malloc(strlen(s) + 1);
         if (buf != NULL) {
@@ -222,9 +222,10 @@ char* strdup(const char* s)
         return buf;
 }
 
-char* strndup(const char* s, size_t n)
+char * strndup(const char * s,
+               size_t       n)
 {
-        char*  buf;
+        char *  buf;
         size_t l;
 
         l   = strnlen(s, n); /* Avoid problem if s is not terminated */
@@ -237,11 +238,11 @@ char* strndup(const char* s, size_t n)
         return buf;
 }
 
-void* memchr(const void*  s,
-             int          c,
-             unsigned int n)
+void * memchr(const void *  s,
+              int           c,
+              unsigned int  n)
 {
-        const unsigned char* p;
+        const unsigned char * p;
 
         p = (unsigned char *) s;
         while (n-- != 0) {
@@ -254,12 +255,12 @@ void* memchr(const void*  s,
         return NULL;
 }
 
-void* memcpy(void*        destination,
-             const void*  source,
-             unsigned int count)
+void * memcpy(void *        destination,
+              const void *  source,
+              unsigned int  count)
 {
-        char* tmp;
-        char* s;
+        char * tmp;
+        char * s;
 
         tmp = (char *) destination;
         s   = (char *) source;
@@ -271,12 +272,12 @@ void* memcpy(void*        destination,
         return destination;
 }
 
-int memcmp(const void*  source,
-           const void*  destination,
-           unsigned int count)
+int memcmp(const void *  source,
+           const void *  destination,
+           unsigned int  count)
 {
-        const unsigned char* su1;
-        const unsigned char* su2;
+        const unsigned char * su1;
+        const unsigned char * su2;
         int                  result = 0;
 
         for (su1 = (unsigned char *)source, su2 = (unsigned char *)destination;
@@ -293,11 +294,11 @@ int memcmp(const void*  source,
         return result;
 }
 
-void* memset(void*        s,
-             int          c,
-             unsigned int count)
+void * memset(void *        s,
+              int          c,
+              unsigned int count)
 {
-        char* xs = (char *) s;
+        char * xs = (char *) s;
 
         while (count--) {
                 *xs++ = (char) c;
@@ -306,12 +307,12 @@ void* memset(void*        s,
         return s;
 }
 
-void* memmove(void*        destination,
-              const void*  source,
-              unsigned int count)
+void * memmove(void *      destination,
+               const void * source,
+               unsigned int count)
 {
-        char* tmp;
-        char* s;
+        char * tmp;
+        char * s;
 
         if (destination <= source) {
                 tmp = (char *) destination;
@@ -330,13 +331,13 @@ void* memmove(void*        destination,
         return destination;
 }
 
-char* strtok(char*       s,
-             const char* delim)
+char * strtok(char *       s,
+              const char * delim)
 {
-        char*        spanp;
+        char *        spanp;
         int          c, sc;
-        char*        tok;
-        static char* last;
+        char *        tok;
+        static char * last;
 
 
         if (s == NULL && (s = last) == NULL) {
@@ -383,13 +384,13 @@ char* strtok(char*       s,
         assert(0);
 }
 
-char* strtok_r(char*       s,
-               const char* delim,
-               char**      last)
+char * strtok_r(char *       s,
+                const char * delim,
+                char **      last)
 {
-        char* spanp;
+        char * spanp;
         int   c, sc;
-        char* tok;
+        char * tok;
 
         if (s == NULL && (s = *last) == NULL) {
                 return NULL;
@@ -435,10 +436,11 @@ char* strtok_r(char*       s,
         assert(0);
 }
 
-size_t strspn(const char* s1, const char* s2)
+size_t strspn(const char * s1,
+              const char * s2)
 {
-        const char* p;
-        const char* spanp;
+        const char * p;
+        const char * spanp;
         char        c, sc;
 
         p = s1;
@@ -456,11 +458,11 @@ size_t strspn(const char* s1, const char* s2)
         return (p - 1 - s1);
 }
 
-size_t strcspn(const char* s1,
-               const char* s2)
+size_t strcspn(const char * s1,
+               const char * s2)
 {
-        const char* p;
-        const char* spanp;
+        const char * p;
+        const char * spanp;
         char        c, sc;
 
         /*
@@ -481,7 +483,8 @@ size_t strcspn(const char* s1,
         assert(0);
 }
 
-int strcasecmp(const char* s1, const char* s2)
+int strcasecmp(const char * s1,
+               const char * s2)
 {
         int r;
 
@@ -495,7 +498,9 @@ int strcasecmp(const char* s1, const char* s2)
         return r;
 }
 
-int strncasecmp(const char* s1, const char* s2, size_t n)
+int strncasecmp(const char * s1,
+                const char * s2,
+                size_t       n)
 {
         int r;
 
@@ -510,10 +515,11 @@ int strncasecmp(const char* s1, const char* s2, size_t n)
         return r;
 }
 
-char* strpbrk(const char* s, const char* accept)
+char * strpbrk(const char * s,
+               const char * accept)
 {
-        const char* t;
-        const char* p;
+        const char * t;
+        const char * p;
 
         for (t = s; *t; t++) {
                 for (p = accept; *p; p++) {
@@ -526,10 +532,11 @@ char* strpbrk(const char* s, const char* accept)
         return NULL;
 }
 
-char* strsep(char** stringp, const char* delim)
+char * strsep(char **      stringp,
+              const char * delim)
 {
-        char* begin;
-        char* end;
+        char * begin;
+        char * end;
 
         begin = *stringp;
 
@@ -583,11 +590,7 @@ int ffsll(long long int i)
 }
 
 int ffsl(long int i)
-{
-        return ffsll(i);
-}
+{ return ffsll(i); }
 
 int ffs(int i)
-{
-        return ffsll(i);
-}
+{ return ffsll(i); }
