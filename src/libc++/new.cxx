@@ -45,9 +45,7 @@ new_handler set_new_handler(new_handler h)
 
 void * operator new(std::size_t size) throw(std::bad_alloc)
 {
-        void * tmp;
-
-        tmp = std::malloc(size);
+        void * tmp = std::malloc(size);
         if (!tmp) {
                 throw(std::bad_alloc());
         }
@@ -58,9 +56,7 @@ void * operator new(std::size_t size) throw(std::bad_alloc)
 
 void * operator new[](std::size_t size) throw(std::bad_alloc)
 {
-        void * tmp;
-
-        tmp = std::malloc(size);
+        void * tmp = std::malloc(size);
         if (!tmp) {
                 throw(std::bad_alloc());
         }
@@ -68,17 +64,17 @@ void * operator new[](std::size_t size) throw(std::bad_alloc)
         return tmp;
 }
 
-void operator delete(void * pointer) throw()
+void operator delete(void * p) throw()
 {
-        if (pointer) {
-                std::free(pointer);
+        if (p) {
+                std::free(p);
         }
 }
 
-void operator delete[](void * pointer) throw()
+void operator delete[](void * p) throw()
 {
-        if (pointer) {
-                std::free(pointer);
+        if (p) {
+                std::free(p);
         }
 }
 
@@ -87,21 +83,21 @@ void operator delete[](void * pointer) throw()
 //
 
 void * operator new(std::size_t s, const std::nothrow_t &) throw()
-{
-        return std::malloc(s);
-}
+{ return std::malloc(s); }
 
 void * operator new[](std::size_t s, const std::nothrow_t &) throw()
-{
-        return std::malloc(s);
-}
+{ return std::malloc(s); }
 
 void operator delete(void * p, const std::nothrow_t &) throw()
 {
-        std::free(p);
+        if (p) {
+                std::free(p);
+        }
 }
 
 void operator delete[](void * p, const std::nothrow_t &) throw()
 {
-        std::free(p);
+        if (p) {
+                std::free(p);
+        }
 }
