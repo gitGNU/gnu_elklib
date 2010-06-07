@@ -46,9 +46,9 @@ void   operator delete(void * p,     const std::nothrow_t & e) throw();
 void   operator delete[](void * p,   const std::nothrow_t & e) throw();
 
 // Placement operators
-inline void * operator new(std::size_t,   void * p) throw() { return p; }
-inline void * operator new[](std::size_t, void * p) throw() { return p; }
-inline void   operator delete  (void *, void *) throw() { }
-inline void   operator delete[](void *, void *) throw() { }
+void * operator new(std::size_t,   void * p) throw();
+void * operator new[](std::size_t, void * p) throw();
+void   operator delete  (void *, void *)     throw();
+void   operator delete[](void *, void *)     throw();
 
 #endif // ELKLIB_LIBCXX_NEW

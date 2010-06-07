@@ -101,3 +101,19 @@ void operator delete[](void * p, const std::nothrow_t &) throw()
                 std::free(p);
         }
 }
+
+//
+// Placement operators
+//
+
+void * operator new(std::size_t, void * p) throw()
+{ return p; }
+
+void * operator new[](std::size_t s, void * p) throw()
+{ return p; }
+
+void operator delete(void *, void *) throw()
+{ }
+
+void operator delete[](void *, void *) throw()
+{ }
