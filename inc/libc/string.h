@@ -26,13 +26,13 @@
 __BEGIN_DECLS
 
 size_t strlen(const char* s);
-size_t strnlen(const char* s, unsigned int count);
+size_t strnlen(const char* s, size_t count);
 int    strcmp(const char* cs, const char* ct);
-int    strncmp(const char* cs, const char* ct, unsigned int count);
+int    strncmp(const char* cs, const char* ct, size_t count);
 char*  strcpy(char* dest, const char* src);
-char*  strncpy(char* dest, const char* src, unsigned int count);
+char*  strncpy(char* dest, const char* src, size_t count);
 char*  strcat(char* dest, const char* src);
-char*  strncat(char* dest, const char* src, unsigned int count);
+char*  strncat(char* dest, const char* src, size_t count);
 char*  strchr(const char* s, int c);
 char*  strrchr(const char* s, int c);
 char*  strstr(const char* s1, const char* s2);
@@ -50,11 +50,11 @@ char*  strtok_r(char* s, const char* delim, char** last);
 char*  index(const char* s, int c);
 char*  rindex(const char* s, int c);
 
-void*  memset(void* s, int c, unsigned int count);
-void*  memcpy(void* dest, const void* src, unsigned int count);
-void*  memmove(void* dest, const void* src, unsigned int count);
-int    memcmp(const void* cs, const void* ct, unsigned int count);
-void*  memchr(const void* s, int c, unsigned int count);
+void*  memset(void* s, int c, size_t count);
+void*  memcpy(void* dest, const void* src, size_t count);
+void*  memmove(void* dest, const void* src, size_t count);
+int    memcmp(const void* cs, const void* ct, size_t count);
+void*  memchr(const void* s, int c, size_t count);
 
 int    ffs(int i);
 int    ffsl(long int i);

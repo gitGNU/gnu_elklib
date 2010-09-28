@@ -100,9 +100,9 @@ int strcmp(const char * source,
         return res;
 }
 
-int strncmp(const char *  source,
-            const char *  target,
-            unsigned int  count)
+int strncmp(const char * source,
+            const char * target,
+            size_t       count)
 {
         register signed char res;
 
@@ -130,9 +130,9 @@ char * strcpy(char *       destination,
         return (tmp);
 }
 
-char * strncpy(char *        destination,
-               const char *  source,
-               unsigned int  count)
+char * strncpy(char *       destination,
+               const char * source,
+               size_t       count)
 {
         char * tmp;
 
@@ -155,8 +155,8 @@ size_t strlen(const char * string)
         return (p - string);
 }
 
-size_t strnlen(const char *  string,
-               unsigned int count)
+size_t strnlen(const char * string,
+               size_t       count)
 {
         const char * sc;
 
@@ -167,9 +167,9 @@ size_t strnlen(const char *  string,
         return (sc - string);
 }
 
-char * strncat(char *        destination,
-               const char *  source,
-               unsigned int  count)
+char * strncat(char *       destination,
+               const char * source,
+               size_t       count)
 {
         char * tmp;
 
@@ -238,9 +238,9 @@ char * strndup(const char * s,
         return buf;
 }
 
-void * memchr(const void *  s,
-              int           c,
-              unsigned int  n)
+void * memchr(const void * s,
+              int          c,
+              size_t       n)
 {
         const unsigned char * p;
 
@@ -255,9 +255,9 @@ void * memchr(const void *  s,
         return NULL;
 }
 
-void * memcpy(void *        destination,
-              const void *  source,
-              unsigned int  count)
+void * memcpy(void *       destination,
+              const void * source,
+              size_t       count)
 {
         char * tmp;
         char * s;
@@ -272,9 +272,9 @@ void * memcpy(void *        destination,
         return destination;
 }
 
-int memcmp(const void *  source,
-           const void *  destination,
-           unsigned int  count)
+int memcmp(const void * source,
+           const void * destination,
+           size_t       count)
 {
         const unsigned char * su1;
         const unsigned char * su2;
@@ -294,9 +294,9 @@ int memcmp(const void *  source,
         return result;
 }
 
-void * memset(void *        s,
-              int          c,
-              unsigned int count)
+void * memset(void * s,
+              int    c,
+              size_t count)
 {
         char * xs = (char *) s;
 
@@ -307,9 +307,9 @@ void * memset(void *        s,
         return s;
 }
 
-void * memmove(void *      destination,
+void * memmove(void *       destination,
                const void * source,
-               unsigned int count)
+               size_t       count)
 {
         char * tmp;
         char * s;
