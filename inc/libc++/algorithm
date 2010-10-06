@@ -1839,6 +1839,7 @@ namespace std {
                 for (;;) {
                         ii = i;
                         --i;
+
                         if (comp(*ii, *i)) {
                                 BidirectionalIterator j = last;
                                 --j;

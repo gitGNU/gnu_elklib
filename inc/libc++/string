@@ -58,7 +58,7 @@ public:
         static const size_type npos = -1;
 
         explicit basic_string(const A & al = A()) : vector<Ch, A>(al)
- { return; }
+        { return; }
 
         basic_string(const basic_string & str,
                      size_type            pos = 0,
@@ -85,15 +85,13 @@ public:
 
         basic_string(size_type n, Ch c, const A & al = A())
                 : vector<Ch, A>(n, c, al)
-        {
-        }
+        { }
 
         template<class InputIterator> basic_string(InputIterator begin,
                                                    InputIterator end,
                                                    const A &    a = A())
-                :vector<Ch, A>(begin, end)
-        {
-        }
+                : vector<Ch, A>(begin, end)
+        { }
 
         ~basic_string()
         { }
@@ -103,11 +101,13 @@ public:
         basic_string & operator=(const Ch * s)
         {
                 vector<Ch, A>::clear();
+
                 if (s != 0) {
                         size_type len = Tr::length(s);
                         resize(len);
                         Tr::copy(vector<Ch, A>::data, s, len);
                 }
+
                 return * this;
         }
 
@@ -115,10 +115,12 @@ public:
         {
                 vector<Ch, A>::clear();
                 vector<Ch, A>::push_back(c);
+
                 return *this;
         }
 
-        size_type length() const { return vector<Ch, A>::size(); }
+        size_type length() const
+        { return vector<Ch, A>::size(); }
 
         void resize(size_type n)
         { vector<Ch, A>::resize(n, Ch()); }
@@ -139,6 +141,7 @@ public:
         {
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + str.elements);
+
                 Tr::copy(vector<Ch, A>::data + temp,
                          str.vector<Ch, A>::data,
                          str.elements);
@@ -158,13 +161,16 @@ public:
                 if (rlen > n) {
                         rlen = n;
                 }
+
                 if (vector<Ch, A>::elements > npos - rlen) {
                         std::__throw_length_error();
                 }
+
                 size_t temp = vector<Ch, A>::elements;
                 resize(vector<Ch, A>::elements + rlen);
                 Tr::copy(vector<Ch, A>::data + temp,
                          str.vector<Ch, A>::data + pos, rlen);
+
                 return *this;
         }
 
@@ -200,7 +206,7 @@ public:
         basic_string & assign(const basic_string & str,
                               size_type            pos,
                               size_type            n)
- {
+        {
                 if (pos > str.elements) {
                         std::__throw_out_of_range();
                 }
@@ -247,10 +253,12 @@ public:
                 if (pos1 > vector<Ch, A>::elements || pos2 > str.elements) {
                         std::__throw_out_of_range();
                 }
+
                 size_type r = str.elements - pos2;
                 if (r > n) {
                         r = n;
                 }
+
                 if (vector<Ch, A>::elements > npos - r) {
                         std::__throw_length_error();
                 }
@@ -434,10 +442,12 @@ public:
                 if (pos > vector<Ch, A>::elements) {
                         std::__throw_out_of_range();
                 }
+
                 size_type r = vector<Ch, A>::elements - pos;
                 if (r > n) {
                         r = n;
                 }
+
                 Tr::copy(s, vector<Ch, A>::data + pos, r);
                 return r;
         }
@@ -460,13 +470,11 @@ public:
 
         size_type find (const basic_string & str, size_type pos = 0) const;
 
-        size_type find (const Ch* s, size_type pos, size_type n) const {
-                return find(basic_string<Ch, Tr, A>(s,n), pos);
-        }
+        size_type find (const Ch* s, size_type pos, size_type n) const
+        { return find(basic_string<Ch, Tr, A>(s,n), pos); }
 
-        size_type find (const Ch* s, size_type pos = 0) const {
-                return find(basic_string<Ch, Tr, A>(s), pos);
-        }
+        size_type find (const Ch* s, size_type pos = 0) const
+        { return find(basic_string<Ch, Tr, A>(s), pos); }
 
         size_type find (Ch c, size_type pos = 0) const {
                 for(size_type i = pos; i < length(); ++i) {
@@ -474,6 +482,7 @@ public:
                                 return i;
                         }
                 }
+
                 return npos;
         }
 
@@ -481,25 +490,24 @@ public:
                 if (pos >= length()) {
                         pos = length();
                 }
+
                 for(size_type i = pos; i > 0; --i) {
                         if (str == substr(i-1, str.length())) {
                                 return i-1;
                         }
                 }
+
                 return npos;
         }
 
-        size_type rfind(const Ch* s, size_type pos, size_type n) const {
-                return rfind(basic_string<Ch, Tr, A>(s,n),pos);
-        }
+        size_type rfind(const Ch* s, size_type pos, size_type n) const
+        { return rfind(basic_string<Ch, Tr, A>(s,n),pos); }
 
-        size_type rfind(const Ch* s, size_type pos = npos) const {
-                return rfind(basic_string<Ch, Tr, A>(s),pos);
-        }
+        size_type rfind(const Ch* s, size_type pos = npos) const
+        { return rfind(basic_string<Ch, Tr, A>(s),pos); }
 
-        size_type rfind(Ch c, size_type pos = npos) const {
-                return rfind(basic_string<Ch, Tr, A>(1,c),pos);
-        }
+        size_type rfind(Ch c, size_type pos = npos) const
+        { return rfind(basic_string<Ch, Tr, A>(1,c),pos); }
 
         size_type find_first_of(const basic_string & str, size_type pos = 0) const {
                 for(size_type i = pos; i < length(); ++i) {
@@ -509,16 +517,15 @@ public:
                                 }
                         }
                 }
+
                 return npos;
         }
 
-        size_type find_first_of(const Ch* s, size_type pos, size_type n) const {
-                return find_first_of(basic_string<Ch, Tr, A>(s,n),pos);
-        }
+        size_type find_first_of(const Ch* s, size_type pos, size_type n) const
+        { return find_first_of(basic_string<Ch, Tr, A>(s,n),pos); }
 
-        size_type find_first_of(const Ch* s, size_type pos = 0) const {
-                return find_first_of(basic_string<Ch, Tr, A>(s),pos);
-        }
+        size_type find_first_of(const Ch* s, size_type pos = 0) const
+        { return find_first_of(basic_string<Ch, Tr, A>(s),pos); }
 
         size_type find_first_of(Ch c, size_type pos = 0) const {
                 for(size_type i = pos; i< length(); ++i) {
@@ -526,6 +533,7 @@ public:
                                 return i;
                         }
                 }
+
                 return npos;
         }
 
@@ -533,6 +541,7 @@ public:
                 if (pos > length()) {
                         pos = length();
                 }
+
                 for(size_type i = pos; i >0 ; --i) {
                         for(size_type j = 0 ; j < str.length(); ++j) {
                                 if (operator[](i-1) == str[j]) {
@@ -540,34 +549,35 @@ public:
                                 }
                         }
                 }
+
                 return npos;
         }
 
-        size_type find_last_of (const Ch* s, size_type pos, size_type n) const {
-                return find_last_of(basic_string<Ch, Tr, A>(s,n),pos);
-        }
+        size_type find_last_of (const Ch* s, size_type pos, size_type n) const
+        { return find_last_of(basic_string<Ch, Tr, A>(s,n),pos); }
 
-        size_type find_last_of (const Ch* s, size_type pos = npos) const {
-                return find_last_of(basic_string<Ch, Tr, A>(s),pos);
-        }
+        size_type find_last_of (const Ch* s, size_type pos = npos) const
+        { return find_last_of(basic_string<Ch, Tr, A>(s),pos); }
 
         size_type find_last_of (Ch c, size_type pos = npos) const {
                 if (pos > length()) {
                         pos = length();
                 }
+
                 for(size_type i = pos; i >0 ; --i) {
                         if (operator[](i-1) == c) {
                                 return i-1;
                         }
                 }
+
                 return npos;
         }
 
         size_type find_first_not_of(const basic_string & str, size_type pos = 0) const {
                 bool foundCharacter;
-                for(size_type i = pos; i < length(); ++i) {
+                for (size_type i = pos; i < length(); ++i) {
                         foundCharacter = false;
-                        for(size_type j = 0; j < str.length() ; ++j) {
+                        for (size_type j = 0; j < str.length() ; ++j) {
                                 if (str[j] == operator[](i)) {
                                         foundCharacter = true;
                                 }
@@ -579,12 +589,15 @@ public:
                 return npos;
         }
 
-        size_type find_first_not_of(const Ch* s, size_type pos, size_type n) const {
-                return find_first_not_of(basic_string<Ch, Tr, A>(s,n),pos);
-        }
-        size_type find_first_not_of(const Ch* s, size_type pos = 0) const {
-                return find_first_not_of(basic_string<Ch, Tr, A>(s),pos);
-        }
+        size_type find_first_not_of(const Ch* s,
+                                    size_type pos,
+                                    size_type n) const
+        { return find_first_not_of(basic_string<Ch, Tr, A>(s,n),pos); }
+
+        size_type find_first_not_of(const Ch* s,
+                                    size_type pos = 0) const
+        { return find_first_not_of(basic_string<Ch, Tr, A>(s),pos); }
+
         size_type find_first_not_of(Ch c, size_type pos = 0) const {
                 for(size_type i = pos; i < length() ; ++i) {
                         if (operator[](i) != c) {
@@ -606,7 +619,10 @@ public:
                 if (rlen >  str.elements) {
                         rlen = str.elements;
                 }
-                int retval = Tr::compare(vector<Ch, A>::data, str.vector<Ch, A>::data, rlen);
+
+                int retval = Tr::compare(vector<Ch, A>::data,
+                                         str.vector<Ch, A>::data,
+                                         rlen);
                 if (retval == 0) {
                         if (vector<Ch, A>::elements < str.elements) {
                                 retval = -1;
@@ -615,6 +631,7 @@ public:
                                 retval = 1;
                         }
                 }
+
                 return retval;
         }
 
@@ -623,10 +640,14 @@ public:
                 if (rlen > n1) {
                         rlen = n1;
                 }
+
                 if (rlen > str.elements) {
                         rlen = str.elements;
                 }
-                int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data, rlen);
+
+                int retval = Tr::compare(vector<Ch, A>::data + pos1,
+                                         str.vector<Ch, A>::data,
+                                         rlen);
                 if (retval == 0) {
                         if (vector<Ch, A>::elements - pos1 < str.elements) {
                                 retval = -1;
@@ -635,6 +656,7 @@ public:
                                 retval = 1;
                         }
                 }
+
                 return retval;
         }
 
@@ -652,7 +674,11 @@ public:
                 if (rlen > len2) {
                         rlen = len2;
                 }
-                int retval = Tr::compare(vector<Ch, A>::data + pos1, str.vector<Ch, A>::data + pos2, rlen);
+
+                int retval = Tr::compare(vector<Ch, A>::data + pos1,
+                                         str.vector<Ch,
+                                         A>::data + pos2,
+                                         rlen);
                 if (retval == 0) {
                         if (len1 < len2) {
                                 retval = -1;
@@ -661,6 +687,7 @@ public:
                                 retval = 1;
                         }
                 }
+
                 return retval;
         }
 
@@ -670,6 +697,7 @@ public:
                 if (rlen > vector<Ch, A>::elements) {
                         rlen=vector<Ch, A>::elements;
                 }
+
                 int retval = Tr::compare(vector<Ch, A>::data, s, rlen);
                 if (retval==0) {
                         if (vector<Ch, A>::elements < slen) {
@@ -679,6 +707,7 @@ public:
                                 retval = 1;
                         }
                 }
+
                 return retval;
         }
 
@@ -699,6 +728,7 @@ public:
                 if (rlen > len2) {
                         rlen = len2;
                 }
+
                 int retval  = Tr::compare(vector<Ch, A>::data + pos1, s, rlen);
                 if (retval == 0) {
                         if (len1 < len2) {
@@ -708,6 +738,7 @@ public:
                                 retval = 1;
                         }
                 }
+
                 return retval;
         }
 

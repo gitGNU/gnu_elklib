@@ -472,21 +472,21 @@ template <class Key, class T, class Compare, class Allocator>
 typename map<Key, T, Compare, Allocator>::iterator
 map<Key, T, Compare, Allocator>::ifind(const key_type &x)
 {
-        /* This function is not from the standard. It is an internal
-         * utility function which returns an iterator to either the
-         * first matching element, or to the element before which
-         * an insert should be performed.  Will not indicate if the
-         *insert should be performed before the first element
-         */
+        // This function is not from the standard. It is an internal
+        // utility function which returns an iterator to either the
+        // first matching element, or to the element before which
+        // an insert should be performed.  Will not indicate if the
+        // insert should be performed before the first element
 
         if (data.size() == 0) {
                 return end();
         }
 
         if (data.size() == 1) {
-                if ( c(data[0].first, x)) {
+                if (c(data[0].first, x)) {
                         return end();
                 }
+
                 return begin();
         }
 
@@ -494,7 +494,7 @@ map<Key, T, Compare, Allocator>::ifind(const key_type &x)
         size_type high;
         size_type i;
 
-        low = 0;
+        low  = 0;
         high = data.size() - 1;
 
         //This algorithm assumes no duplicates in stored information

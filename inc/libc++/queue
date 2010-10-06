@@ -97,10 +97,11 @@ namespace std {
                         c(a), comp(x)
                 { make_heap(c.begin(), c.end(), comp) ; }
 
-                template <class InputIterator> priority_queue(InputIterator first,
-                                                              InputIterator last,
-                                                              const Compare& x = Compare(),
-                                                              const Container& y= Container()) :
+                template <class InputIterator>
+                priority_queue(InputIterator     first,
+                               InputIterator     last,
+                               const Compare &   x = Compare(),
+                               const Container & y = Container()) :
                         c(y), comp(c)
                 {
                         c.insert(c.end(), first, last);
