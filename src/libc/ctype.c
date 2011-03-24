@@ -66,7 +66,7 @@ int islower(int c)  { return ((__ismask(c)&(_L))              != 0); }
 int isprint(int c)  { return ((__ismask(c)&(_P|_U|_L|_D|_SP)) != 0); }
 int ispunct(int c)  { return ((__ismask(c)&(_P))              != 0); }
 int isspace(int c)  { return ((__ismask(c)&(_S))              != 0); }
-int isblank(int c)  { return isspace(c);}
+int isblank(int c)  { return isspace(c);                             }
 int isupper(int c)  { return ((__ismask(c)&(_U))              != 0); }
 int isxdigit(int c) { return ((__ismask(c)&(_D|_X))           != 0); }
 int isascii(int c)  { return (((unsigned char)(c)) <= 0x7f);         }
